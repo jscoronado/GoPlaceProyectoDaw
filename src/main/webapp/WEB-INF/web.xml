@@ -2,19 +2,19 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>ControlJson</servlet-name>
-        <servlet-class>net.daw.control.JsonControl</servlet-class>
+        <servlet-class>com.goplace.control.JsonControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ControlJsp</servlet-name>
-        <servlet-class>net.daw.control.JspControl</servlet-class>
+        <servlet-name>Control</servlet-name>
+        <servlet-class>com.goplace.control.Control</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControlJson</servlet-name>
         <url-pattern>/json</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ControlJsp</servlet-name>
-        <url-pattern>/jsp</url-pattern>
+        <servlet-name>Control</servlet-name>
+        <url-pattern>/control</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -22,6 +22,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>redirect.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

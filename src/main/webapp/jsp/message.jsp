@@ -17,4 +17,4 @@
 --%>
 
 <h1><%=request.getAttribute("title")%></h1>
-<h5><%=request.getAttribute("message")%></h5>
+<h4><%=request.getAttribute("message")%></h4>

@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 --%>
 
-<%@page import="net.daw.helper.AppInformationHelper"%>
-<%@page import="net.daw.helper.EstadoHelper"%>
+<%@page import="com.goplace.helper.AppInformationHelper"%>
+<%@page import="com.goplace.helper.EstadoHelper"%>
 <div class="jumbotron">
     <h1>Bienvenidos a <%=AppInformationHelper.getAppName()%> <%=EstadoHelper.getAnyo()%></h1>
     <h3>Versión (v.<%=EstadoHelper.getVersion()%>) de <%=EstadoHelper.getFecha()%></h3>

@@ -27,7 +27,6 @@ function fPublicacionRoutes() {
 //        return false;
 //    });
 
-
     Path.map("#/publicacion").to(function () {
         $('#indexContenidoJsp').spinner();
         oPublicacionControl.list($('#indexContenido'), param().defaultizeUrlObjectParameters({}), null, oPublicacionModel, oPublicacionView);
@@ -79,14 +78,6 @@ function fPublicacionRoutes() {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oPublicacionControl.remove($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView);
-        $('#indexContenidoJsp').empty();
-        return false;
-    });
-
-    Path.map("#/publicacion/duplicate/:id").to(function () {
-        $('#indexContenidoJsp').spinner();
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.duplicate($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView);
         $('#indexContenidoJsp').empty();
         return false;
     });

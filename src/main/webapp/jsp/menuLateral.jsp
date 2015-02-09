@@ -15,7 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 --%>           
-<%@page import="net.daw.bean.generic.specific.implementation.UsuarioBeanGenSpImpl"%>
+<%@page import="com.goplace.bean.generic.specific.implementation.UsuarioBeanGenSpImpl"%>
 
 <%
     int id_tipousuario = 0, id_usuario = 0;

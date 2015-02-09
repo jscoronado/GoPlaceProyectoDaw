@@ -32,12 +32,9 @@ inicioRedSocialView.prototype.loadButtons = function (id) {
     var botonera = "";
     botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
     botonera += '<a class="btn btn-default view" id="' + id + '"  href="jsp#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
-    
-    if (myuser == id || mylevel == 1) {
-        botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
-        botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
-    }
-    
+    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
+    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
+    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/duplicate/' + id + '"><i class="glyphicon glyphicon-floppy-disk"></i></a>';
     botonera += '</div></div>';
     return botonera;
 
@@ -216,32 +213,5 @@ inicioRedSocialView.prototype.getHeaderPageTable = function (prettyFieldNames, f
         tabla += '</tr>';
     }
     ;
-    return tabla;
-};
-
-inicioRedSocialView.prototype.getBodyPageTable = function (page, fieldNames, visibleFields, tdbuttons) {
-    var thisObject = this;
-    var tabla = "";
-    $.each(page, function (index, value) {
-        tabla += '<tr>';
-        var numField = 0;
-        var id;
-        var strClaveAjena;
-        $.each(fieldNames, function (index, valor) {
-            if ("id" == valor) {
-                id = value[valor];
-            }
-            ;
-            numField++;
-            if (numField <= visibleFields) {
-                tabla += '<td>' + thisObject.printValue(value, valor, true) + '</td>';
-            }
-        });
-        tabla += '<td>';
-        tabla += tdbuttons(id);
-        id_elemento++;
-        tabla += '</td>';
-        tabla += '</tr>';
-    });
     return tabla;
 };

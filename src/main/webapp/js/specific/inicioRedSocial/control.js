@@ -66,6 +66,7 @@ inicioRedSocialControl.prototype.list = function (place, objParams, callback, oM
     });
     //show the table
     var fieldNames = oDocumentoModel.getCachedFieldNames();
+    fieldNames.shift(); // ELIMINA EL PRIMER VALOR DEL ARRAY
     if (fieldNames.length < objParams["vf"]) {
         objParams["vf"] = fieldNames.length;
     }
@@ -76,6 +77,7 @@ inicioRedSocialControl.prototype.list = function (place, objParams, callback, oM
         $("#selectVisibleFields").val(objParams["vf"]);
     }
     var prettyFieldNames = oDocumentoModel.getCachedPrettyFieldNames();
+    prettyFieldNames.shift(); // ELIMINA EL PRIMER VALOR DEL ARRAY
     var strUrlFromParamsWithoutOrder = param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["order", "ordervalue"]));
     var page = oDocumentoModel.getCachedPage();
     if (parseInt(objParams["page"]) > parseInt(oDocumentoModel.getCachedPages())) {
@@ -84,8 +86,6 @@ inicioRedSocialControl.prototype.list = function (place, objParams, callback, oM
     $("#pagination").empty().append(oView.getSpinner()).html(oView.getPageLinks(url, parseInt(objParams["page"]), parseInt(oDocumentoModel.getCachedPages()), 2));
 
     $("#tableHeaders").empty().append(oView.getSpinner()).html(oView.getHeaderPageTable(prettyFieldNames, fieldNames, parseInt(objParams["vf"]), strUrlFromParamsWithoutOrder));
-    
-    id_elemento = 0;
     $("#tableBody").empty().append(oView.getSpinner()).html(function () {
         return oView.getBodyPageTable(page, fieldNames, parseInt(objParams["vf"]), function (id) {
             if (callback) {
@@ -95,7 +95,7 @@ inicioRedSocialControl.prototype.list = function (place, objParams, callback, oM
                 botonera += '</div></div>';
                 return botonera;
             } else {
-                return oView.loadButtons(id, page[id_elemento]["id_usuario"]);
+                return oView.loadButtons(id);
             }
             //mejor pasar documento como parametro y crear un repo global de código personalizado
         });

@@ -1,0 +1,69 @@
+/* Effect 18: cross */
+.cl-effect-1s {
+	position: relative;
+	z-index: 1;
+}
+
+.effect-h3 a {
+	padding: 0 5px;
+	color: #b4770d;
+	font-weight: 700;
+	-webkit-transition: color 0.3s;
+	-moz-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.effect-h3 a::before,
+.effect-h3 a::after {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 50%;
+	height: 2px;
+	margin-top: -1px;
+	background: #b4770d;
+	content: '';
+	z-index: -1;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	pointer-events: none;
+}
+
+.effect-h3 a::before {
+	-webkit-transform: translateY(-20px);
+	-moz-transform: translateY(-20px);
+	transform: translateY(-20px);
+}
+
+.effect-h3 a::after {
+	-webkit-transform: translateY(20px);
+	-moz-transform: translateY(20px);
+	transform: translateY(20px);
+}
+
+.effect-h3 a:hover,
+.effect-h3 a:focus {
+	color: #fff;
+}
+
+.effect-h3 a:hover::before,
+.effect-h3 a:hover::after,
+.effect-h3 a:focus::before,
+.effect-h3 a:focus::after {
+	opacity: 0.7;
+}
+
+.effect-h3 a:hover::before,
+.effect-h3 a:focus::before {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.effect-h3 a:hover::after,
+.effect-h3 a:focus::after {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}

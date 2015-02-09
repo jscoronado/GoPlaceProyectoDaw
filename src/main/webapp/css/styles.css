@@ -1,0 +1,157 @@
+*, html{
+	margin: 0;
+	padding: 0;
+	font-family: 'Raleway', sans-serif;
+}
+.page{
+	width: 100%;
+	height: 100%;
+	background: url('../images/vlc.png') fixed no-repeat center;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    cursor: default;
+}
+.pageRegister{
+	width: 100%;
+	height: 100%;
+	background-color: #20B2AA;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    cursor: default;
+}
+h1{
+	color: white;
+	letter-spacing: 0.05em;
+	font-size: 50px;
+	font-weight: 700;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	text-shadow: 3px 3px 3px black;
+}
+h2{
+	color: #232930;
+	font-weight: 900;
+	letter-spacing: 0.3em;
+	font-size: 30px;
+	clear: both;
+}
+h3, h4, h5{
+	color: #232930;
+	letter-spacing: 0.1em;
+	font-size: 25px;
+	font-weight: 700;
+	clear: both;
+}
+h2::after {content: " "; border-bottom: solid 1px #232930; display: block; width: 2em; margin: 0.6em auto auto auto;}
+a{
+	font-family: 'Raleway', sans-serif;
+	color: #232930;
+	text-decoration: none; 
+}
+
+/* CABECERA */
+header{
+	width: 100%;
+	height: 14%;
+	background-color: white;
+}
+
+.row{
+	margin: 0px;
+}
+.logo{
+	margin: 6% 0 0 30%;
+	cursor: pointer;
+}
+
+.logoRegistro, .cabecera{
+	width: 100%;
+	margin: 2% 0 1% 0;
+	text-align: center;
+}
+
+/* FORMULARIO ACCESO */
+.formuser, .formpass{
+	width: 30%;
+	margin-top: 5%;
+	margin-right: 5px;
+	float: left;
+}
+
+.formbutton{
+	width: 20%;
+	padding: 0px;
+	margin-top: 5%;
+	height: 34px;
+	float: left;
+}
+
+/* MAIN */
+main{
+	width: 100%;
+	height: 100%;
+}
+.principal{
+	padding: 5% 20% 5% 20%;
+}
+.titulo{
+	text-align: center;
+	width: 100%;
+}
+.principal span{
+	color: white;
+	font-size: 20px;
+	font-weight: 100;
+	margin-top: 10px;
+	text-shadow: 3px 3px 3px black;
+}
+
+/* REGISTRO */
+.registro{
+	margin-top: 5%;
+	padding: 1% 0 2% 2%;
+	width: 100%;
+	height: 100%;
+	background-color:rgba(255,255,255,0.5);
+}
+#nombrereg, #apereg{
+	width: 50%;
+	margin-bottom: 5px;
+	float: left;
+}
+#nombreregdef, #aperegdef{
+	width: 100%;
+	margin-bottom: 5px;
+	float: left;
+}
+#emailreg, #passreg{
+	width: 100%;
+	clear: both;
+}
+.reguser, .regemail, .regpass{
+	margin: 5px 0 5px 0;
+}
+.botonreg{
+	margin: 3% 0 0 0;
+}
+
+/* FOOTER */
+footer{
+	width: 100%;
+	height: 14%;
+	text-align: center;
+	background-color: white;
+}
+.cr{
+	letter-spacing: 0.05em;
+	font-weight: 900;
+	top: 100px;
+}
+.help{
+    padding: 2% 0 1% 0;
+}
+

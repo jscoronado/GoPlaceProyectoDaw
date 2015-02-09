@@ -45,38 +45,9 @@ redsocialperfilControl.prototype.view = function (place, id, oModel, oView) {
     var oDocumentoModel = oModel;
     oDocumentoModel.loadAggregateViewOne(id);
     $(place).append(oView.getPanel("Perfil" /*+ "de " + this.clase*/, oView.getObjectTable(oDocumentoModel.getCachedPrettyFieldNames(), oDocumentoModel.getCachedOne(), oDocumentoModel.getCachedFieldNames())));
-    
-    var jsonamigo = oRedsocialperfilModel.existeAmigo(id);
-    var amigo = jsonamigo["data"];
-    
-    if (myuser == id) {
-        $(place).append('<a class="btn btn-primary" href="jsp#/usuario/edit/' + id + '">Editar</a>');
-        $(place).append('<a class="btn btn-primary" href="jsp#/usuario/remove/' + id + '">Borrar</a><br /><br />');
-    } else {
-        if(!amigo){
-            $(place).append('<a class="btn btn-primary" id=\"addfriend\">Añadir amigo</a>');
-        } else {
-            $(place).append('<a class="btn btn-danger" id=\"removefriend\">Eliminar amigo</a>');
-        }        
-    }
-    
-    $(place).append('<a class="btn btn-primary" href="jsp#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + id + '">Ver amigos</a><br /><br />');
-    
-    $('#addfriend').click(function () {
-        resultado = oRedsocialperfilModel.agregarAmigo(id);
-        //$('#addfriend').attr("id","removefriend");
-        //$('#removefriend').text("Eliminar amigo");
-        oRedsocialperfilView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha añadido el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
-        return false;
-    });
-    
-    $('#removefriend').click(function () {
-        resultado = oRedsocialperfilModel.removeAmigo(id);
-        //$('#removefriend').attr("id","addfriend");
-        //$('#addfriend').text("Añadir amigo");
-        oRedsocialperfilView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha eliminado el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
-        return false;
-    });
+    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/edit/' + id + '">Editar</a>');
+    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/remove/' + id + '">Borrar</a>');
+    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/list/' + id + '">Listar</a><br /><br />');
 };
 
 redsocialperfilControl.prototype.list = function (place, objParams, callback, oModel, oView) {
@@ -109,6 +80,7 @@ redsocialperfilControl.prototype.list = function (place, objParams, callback, oM
     });
     //show the table
     var fieldNames = oDocumentoModel.getCachedFieldNames();
+    fieldNames.shift();
     if (fieldNames.length < objParams["vf"]) {
         objParams["vf"] = fieldNames.length;
     }
@@ -119,6 +91,7 @@ redsocialperfilControl.prototype.list = function (place, objParams, callback, oM
         $("#selectVisibleFields").val(objParams["vf"]);
     }
     var prettyFieldNames = oDocumentoModel.getCachedPrettyFieldNames();
+    prettyFieldNames.shift();
     var strUrlFromParamsWithoutOrder = param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["order", "ordervalue"]));
     var page = oDocumentoModel.getCachedPage();
     if (parseInt(objParams["page"]) > parseInt(oDocumentoModel.getCachedPages())) {
@@ -127,8 +100,6 @@ redsocialperfilControl.prototype.list = function (place, objParams, callback, oM
     $("#pagination").empty().append(oView.getSpinner()).html(oView.getPageLinks(url, parseInt(objParams["page"]), parseInt(oDocumentoModel.getCachedPages()), 2));
 
     $("#tableHeaders").empty().append(oView.getSpinner()).html(oView.getHeaderPageTable(prettyFieldNames, fieldNames, parseInt(objParams["vf"]), strUrlFromParamsWithoutOrder));
-    
-    id_elemento = 0;
     $("#tableBody").empty().append(oView.getSpinner()).html(function () {
         return oView.getBodyPageTable(page, fieldNames, parseInt(objParams["vf"]), function (id) {
             if (callback) {
@@ -138,7 +109,7 @@ redsocialperfilControl.prototype.list = function (place, objParams, callback, oM
                 botonera += '</div></div>';
                 return botonera;
             } else {
-                return oView.loadButtons(id, page[id_elemento]["id_usuario"]);
+                return oView.loadButtons(id);
             }
             //mejor pasar documento como parametro y crear un repo global de código personalizado
         });

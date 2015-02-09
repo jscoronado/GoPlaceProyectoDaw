@@ -29,24 +29,6 @@ redsocialperfilModel.prototype.duplicateOne = function (id) {
     });
     return feedback;
 };
-redsocialperfilModel.prototype.agregarAmigo = function (id) {
-    $.when(ajax().ajaxCallSync('/ausiasYield2014/json?ob=amistad&op=agregaramigo&id=' + id, 'GET', '')).done(function (data) {
-        feedback = data;
-    });
-    return feedback;
-};
-redsocialperfilModel.prototype.removeAmigo = function (id) {
-    $.when(ajax().ajaxCallSync('/ausiasYield2014/json?ob=amistad&op=removeamigo&id=' + id, 'GET', '')).done(function (data) {
-        feedback = data;                           
-    });
-    return feedback;
-};
-redsocialperfilModel.prototype.existeAmigo = function (id) {
-    $.when(ajax().ajaxCallSync('/ausiasYield2014/json?ob=amistad&op=existeamigo&id=' + id, 'GET', '')).done(function (data) {
-        feedback = data;                           
-    });
-    return feedback;
-};
 var oRedsocialperfilModel = new redsocialperfilModel('publicacion');
 
 redsocialperfilModel.prototype.getOne = function (id_usuario) {

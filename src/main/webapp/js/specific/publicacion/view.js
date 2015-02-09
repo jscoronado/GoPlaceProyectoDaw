@@ -26,17 +26,14 @@ publicacionView.prototype.getClassNamePublicacion = function () {
 };
 var oPublicacionView = new publicacionView('publicacion');
 
-publicacionView.prototype.loadButtons = function (id, id_usuario) {
+
+publicacionView.prototype.loadButtons = function (id) {
 
     var botonera = "";
     botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
     botonera += '<a class="btn btn-default view" id="' + id + '"  href="jsp#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
-    
-    if (myuser == id_usuario || mylevel == 1) {
-        botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
-        botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
-    }
-    
+    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
+    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
     botonera += '</div></div>';
     return botonera;
 
@@ -76,7 +73,7 @@ publicacionView.prototype.doEventsLoading = function () {
     var thisObject = this;
     $('#publicacionForm #obj_usuario_button').unbind('click');
     $("#publicacionForm #obj_usuario_button").click(function () {
-        var oControl = oPublicacionControl;  //para probar dejar publicacion
+        var oControl = oUsuarioControl;  //para probar dejar publicacion
         //vista('usuario').cargaModalBuscarClaveAjena('#modal01', "publicacion");
 
         $("#publicacionForm").append(thisObject.getEmptyModal());
@@ -105,8 +102,8 @@ publicacionView.prototype.printValue = function (value, valor, recortar) {
     if (/obj_usuario/.test(valor)) {
         if (value[valor].id > 0) {
             val = valor.substring(4);
-            strResult = '<a href="jsp#/' + 'redsocialperfil' + '/list/systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue=' + value[valor].id + '&page=1&id=1&rpp=10&vf=4&order=fechacreacion&ordervalue=desc' + '">' + value[valor].login.charAt(0).toUpperCase() + value[valor].login.slice(1)+ '</a>';
-            //function MaysPrimera(string){ return string.charAt(0).toUpperCase() + string.slice(1); }
+            val = val.substring(0, val.length-2);
+            strResult = '<a href="jsp#/' + val + '/view/' + value[valor].id + '">' + value[valor].id + ":" + value[valor].login + '</a>';
         } else {
             strResult = '???';
         }
@@ -128,38 +125,14 @@ publicacionView.prototype.printValue = function (value, valor, recortar) {
             default:
                 strResult = decodeURIComponent(value[valor]);
                 
+                if (/contenido/.test(valor)) {                    
+                } else {
                     if (recortar) 
                         if (strResult.length > 50) //don't show too long fields
-                            strResult = strResult.substr(0, 20) + " ...";     
+                            strResult = strResult.substr(0, 20) + " ...";
+                }            
 
             };
     };
     return strResult;
-};
-
-publicacionView.prototype.getBodyPageTable = function (page, fieldNames, visibleFields, tdbuttons) {
-    var thisObject = this;
-    var tabla = "";
-    $.each(page, function (index, value) {
-        tabla += '<tr>';
-        var numField = 0;
-        var id;
-        var strClaveAjena;
-        $.each(fieldNames, function (index, valor) {
-            if ("id" == valor) {
-                id = value[valor];
-            }
-            ;
-            numField++;
-            if (numField <= visibleFields) {
-                tabla += '<td>' + thisObject.printValue(value, valor, true) + '</td>';
-            }
-        });
-        tabla += '<td>';
-        tabla += tdbuttons(id);
-        id_elemento++;
-        tabla += '</td>';
-        tabla += '</tr>';
-    });
-    return tabla;
 };

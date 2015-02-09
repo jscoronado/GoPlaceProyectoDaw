@@ -27,17 +27,14 @@ redsocialperfilView.prototype.getClassNameRedsocialperfil = function () {
 var oRedsocialperfilView = new redsocialperfilView('publicacion');
 
 
-redsocialperfilView.prototype.loadButtons = function (id, id_usuario) {
+redsocialperfilView.prototype.loadButtons = function (id) {
 
     var botonera = "";
     botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
     botonera += '<a class="btn btn-default view" id="' + id + '"  href="jsp#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
-    
-    if (myuser == id_usuario || mylevel == 1) {
-        botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
-        botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
-    }
-    
+    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
+    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
+    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/duplicate/' + id + '"><i class="glyphicon glyphicon-floppy-disk"></i></a>';
     botonera += '</div></div>';
     return botonera;
 
@@ -91,7 +88,7 @@ redsocialperfilView.prototype.doEventsLoading = function () {
             $('#obj_usuario_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
-        }, oUsuarioModel, oUsuarioView);
+        },oUsuarioModel, oUsuarioView);
         return false;
     });
     $('#publicacionForm #obj_tipopublicacion_button').unbind('click');
@@ -109,7 +106,7 @@ redsocialperfilView.prototype.doEventsLoading = function () {
             $('#obj_tipopublicacion_desc').text(decodeURIComponent(oTipopublicacionModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
-        }, oPublicacionModel, oPublicacionView);
+        },oPublicacionModel, oPublicacionView);
         return false;
     });
     $('#contenido_button').unbind('click');
@@ -156,7 +153,7 @@ redsocialperfilView.prototype.printValue = function (value, valor, recortar) {
     } else if (/obj_/.test(valor)) {
         if (value[valor].id > 0) {
             strResult = '<a href="jsp#/' + valor.substring(4) + '/view/' + value[valor].id + '">' + value[valor].id + ":" + util().getForeign(value[valor]) + '</a>';
-
+            
         } else {
             strResult = '???';
         }
@@ -170,22 +167,20 @@ redsocialperfilView.prototype.printValue = function (value, valor, recortar) {
                 break;
             default:
                 strResult = decodeURIComponent(value[valor]);
+                
+                    if (recortar) 
+                        if (strResult.length > 50) //don't show too long fields
+                            strResult = strResult.substr(0, 20) + " ...";     
 
-                if (recortar)
-                    if (strResult.length > 50) //don't show too long fields
-                        strResult = strResult.substr(0, 20) + " ...";
-
-        }
-        ;
-    }
-    ;
+            };
+    };
     return strResult;
 };
 
 redsocialperfilView.prototype.getObjectTable = function (nombresCamposBonitos, valoresRegistro, nombresCampos) {
     var thisObject = this;
-    nombresCamposBonitos.splice(index, 0);
-    valoresRegistro.splice(index, 0);
+        nombresCamposBonitos.splice(index, 0);
+        valoresRegistro.splice(index, 0);
 
     var tabla = "<table class=\"table table table-bordered table-condensed\">";
     $.each(nombresCampos, function (index, nombreDeCampo) {
@@ -193,57 +188,5 @@ redsocialperfilView.prototype.getObjectTable = function (nombresCamposBonitos, v
         tabla += '<td>' + thisObject.printValue(valoresRegistro, nombreDeCampo, false) + '</td>';
     });
     tabla += '</table>';
-    return tabla;
-};
-
-redsocialperfilView.prototype.doResultOperationNotifyToUser = function (place, resultadoStatus, resultadoMessage, id, mostrar, id_usuario_2) {
-    var strNombreClase = this.clase;
-    if (resultadoStatus == "200") {
-        mensaje = "<h3>La operacion se ha ejecutado con éxito</h3>";
-    } else {
-        mensaje = "<h3>ERROR</h3>";
-        resultadoMessage = "Error, el usuario con ID = " + id_usuario_2 + " usuario ya es tu amigo.";
-    }
-    mensaje += "<h5>Código: " + resultadoStatus + "</h5><h5>" + resultadoMessage + "</h5>";
-    $(place).append(this.getEmptyModal());
-    util().loadForm('#modal01', this.getFormHeader('Respuesta del servidor'), mensaje, this.getFormFooter(), true);
-    $('#modal01').css({
-        'right': '20px',
-        'left': '20px',
-        'width': 'auto',
-        'margin': '10px',
-        'display': 'block'
-    });
-
-    $('#modal01').on('hidden.bs.modal', function () {
-        location.reload();
-    })
-    ;
-};
-
-redsocialperfilView.prototype.getBodyPageTable = function (page, fieldNames, visibleFields, tdbuttons) {
-    var thisObject = this;
-    var tabla = "";
-    $.each(page, function (index, value) {
-        tabla += '<tr>';
-        var numField = 0;
-        var id;
-        var strClaveAjena;
-        $.each(fieldNames, function (index, valor) {
-            if ("id" == valor) {
-                id = value[valor];
-            }
-            ;
-            numField++;
-            if (numField <= visibleFields) {
-                tabla += '<td>' + thisObject.printValue(value, valor, true) + '</td>';
-            }
-        });
-        tabla += '<td>';
-        tabla += tdbuttons(id);
-        id_elemento++;
-        tabla += '</td>';
-        tabla += '</tr>';
-    });
     return tabla;
 };
