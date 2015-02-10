@@ -42,15 +42,20 @@ h2{
 h3, h4, h5{
 	color: #232930;
 	letter-spacing: 0.1em;
-	font-size: 25px;
+	font-size: 16px;
 	font-weight: 700;
-	clear: both;
 }
 h2::after {content: " "; border-bottom: solid 1px #232930; display: block; width: 2em; margin: 0.6em auto auto auto;}
 a{
 	font-family: 'Raleway', sans-serif;
 	color: #232930;
 	text-decoration: none; 
+}
+.nomargin{
+	margin: 0;
+}
+.nopadding{
+	padding: 0;
 }
 
 /* CABECERA */
@@ -153,5 +158,84 @@ footer{
 }
 .help{
     padding: 2% 0 1% 0;
+}
+
+/* PRINCIPAL */
+.principalpag{
+	background-color: #66FFB2;
+	padding: 5% 10% 5% 10%;
+}
+.logoMain{
+	width: 100%;
+	margin: 2% 0 0.5% 0;
+	text-align: center;
+}
+.posder{
+	margin-left: 50%;
+}
+.actived{
+	background-color: #eee;
+	border-top: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
+	border-radius: 4px;
+}
+.fotoPerfil{
+	width: 170px;
+	height: 180px;
+	margin: 0 auto;
+	margin-top: 10px;
+	border: 10px solid gray;
+	border-bottom: 20px solid gray;
+}
+.foto{
+	width: 100%;
+	height: 100%;
+}
+.perfilMain{
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 4px;
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+	box-shadow: 2px 2px 2px gray;
+	cursor: pointer;
+}
+.publicacion{
+	background-color: white;
+	padding: 10px 0 10px 0;
+	margin: 5px 0 5px 0;
+	border: 1px solid gray;
+	border-radius: 4px;
+	box-shadow: 2px 2px 2px gray;
+	cursor: pointer;
+}
+.publicacion>span{
+	color: black;
+	font-size: 14px;
+	text-shadow: none;
+}
+.publicacion .nick{
+	color: #00994C;
+	font-size: 12px;
+	font-weight: 700;
+	text-shadow: none;
+	margin-left: 5px;
+}
+.publicacion h4{
+	font-size: 20px;
+	font-weight: 900;
+	margin-bottom: 0px;
+}
+.publicacion span{
+	color: black;
+	font-size: 14px;
+	text-shadow: none;
+	margin: 0;
+}
+.fotoPub{
+	width: 50px;
+	height: 50px;
+	margin: 0 10px 0 0;
+	border-radius: 4px;
 }
 

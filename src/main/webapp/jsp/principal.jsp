@@ -36,29 +36,60 @@
 
     </head>
 
+    
     <body>
         <div class="pagePrincipal">
             <header class="title row">
-                <div class="col-md-10 col-sm-10 logoRegistro">
+                <div class="col-md-10 col-sm-10 logoMain">
                     <a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/images/logo.png" alt="Logo GoPlace"></a>
-                </div><br/>
-                <div class="cabecera">
-                    <a href="<%=logout%>">Cerrar Sesion</a>
                 </div>
+                <ul class="nav nav-tabs navbar-left">
+                    <li class="actived"><a href="#" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
+                    <li><a href="#" class="glyphicon glyphicon-user"><span> Perfil</span></a></li>
+                    <li><a href="#" class="glyphicon glyphicon-comment"><span> Descubre</span></a></li>
+                    <li class="publicarbtn"><a href="#" class="glyphicon glyphicon-send"><span> Publicar</span></a></li>
+                </ul>
+                <ul class="nav nav-tabs navbar-right">
+                    <li>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Buscar en GoPlace">
+                                <button type="submit" class="btn glyphicon glyphicon-search"></button>
+                            </div>
+                        </form>
+                    </li>
+                    <li class="cerrarbtn"><a href="<%=logout%>" class="glyphicon glyphicon-off"><span> Cerrar Sesion</span></a></li>
+                </ul>
             </header>
 
             <main>
-                <div class="principal">
-                    <article class="titulo">
-                        <h1>Has Iniciado Sesion</h1>
-                        <span> Una red social donde poder ver y compartir con tus amigos y otra cantidad de personas los eventos que se hacen en tu ciudad o alrededores.<br/> Obtén actualizaciones instantáneas de las cosas que te interesan!</span>
-                    </article>
+                <div class="principalpag">
+                        <!--<h1 class="titulo">Has Iniciado Sesion</h1>-->
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 perfilMain">
+                            <div class="fotoPerfil"><img src="<%=request.getContextPath()%>/images/user.png" class="foto" alt="Foto usuario"></div><br/>
+                            <h3 class="nomargin"><a href="#">Jose Miguel Coronado Aroca</a></h3>
+                        </div>
+                        <div class="col-md-9 col-sm-9 inicioMain" >
+                            <div class="publicacion row">
+                                <div class="col-md-1">
+                                    <img src="<%=request.getContextPath()%>/images/user.png" class="fotoPub" alt="Foto usuario">
+                                </div>
+                                <div class="col-md-11">
+                                    <a href="#">Jose Miguel Coronado Aroca</a> <span class="nick">@joshco</span><br/>
+                                    <h4><a href="#">Titulo del acondecimiento</a></h4>
+                                    <span>Descripcion del acondecimiento en tu ciudad etc etc etc</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
-            
+            <script>
             <%
                 String espacio = "&nbsp;&nbsp;&nbsp;&nbsp;";
             %>
+            </script>
             <footer class="row">
                 <div class="help col-md-12"> 
                     <a href="#" >Acerca de</a> <%=espacio%>

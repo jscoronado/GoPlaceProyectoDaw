@@ -104,6 +104,10 @@ public class Control extends HttpServlet {
                             if (oUsuarioPass.equals(password)) {
                                 request.getSession().setAttribute("usuario", "admitted");
                                 getServletContext().getRequestDispatcher("/jsp/principal.jsp").forward(request, response);
+                                /*response.setContentType("application/json;charset=UTF-8");
+                                FacturaMaker oFacturaMaker = new FacturaMaker();
+                                out.print(oFacturaMaker.getFactura());
+                                out.flush();*/
                             } else {
                                 request.setAttribute("title", "Usuario o Contraseña incorrecta");
                                 request.setAttribute("message", "Por favor, vuelva a iniciar sesión para acceder a GoPlace");
