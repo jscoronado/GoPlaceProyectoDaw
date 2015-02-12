@@ -102,7 +102,7 @@ public class Control extends HttpServlet {
                             oUsuario = oUsuarioDao.getPass("password", oUsuario);
                             String oUsuarioPass = oUsuario.getPassword();
                             if (oUsuarioPass.equals(password)) {
-                                request.getSession().setAttribute("usuario", "admitted");
+                                request.getSession().setAttribute("usuarioBean", oUsuario);
                                 getServletContext().getRequestDispatcher("/jsp/principal.jsp").forward(request, response);
                                 /*response.setContentType("application/json;charset=UTF-8");
                                 FacturaMaker oFacturaMaker = new FacturaMaker();

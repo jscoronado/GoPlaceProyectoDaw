@@ -19,6 +19,9 @@
 package com.goplace.control;
 
 import com.google.gson.Gson;
+import com.goplace.control.operation.generic.specific.implementation.CiudadControlOperationGenSpImpl;
+import com.goplace.control.operation.generic.specific.implementation.PublicacionControlOperationGenSpImpl;
+import com.goplace.control.operation.generic.specific.implementation.TipopublicacionControlOperationGenSpImpl;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +34,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.goplace.control.operation.generic.specific.implementation.TipousuarioControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.UsuarioControlOperationGenSpImpl;
+import com.goplace.control.route.generic.specific.implementation.CiudadControlRouteGenSpImpl;
+import com.goplace.control.route.generic.specific.implementation.PublicacionControlRouteGenSpImpl;
+import com.goplace.control.route.generic.specific.implementation.TipopublicacionControlRouteGenSpImpl;
 
 import com.goplace.control.route.generic.specific.implementation.TipousuarioControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.UsuarioControlRouteGenSpImpl;
@@ -84,17 +90,31 @@ public class JsonControl extends HttpServlet {
             if (request.getSession().getAttribute("usuarioBean") != null) {
 
                 switch (ParameterCooker.prepareObject(request)) {
-                    case "tipousuario":
-                        TipousuarioControlRouteGenSpImpl oTipousuarioRoute = new TipousuarioControlRouteGenSpImpl();
-                        TipousuarioControlOperationGenSpImpl oTipousuarioControlOperation = new TipousuarioControlOperationGenSpImpl(request);
-                        //jsonResult = oTipousuarioRoute.execute(request, oTipousuarioControlOperation);
-                        break;
                     case "usuario":
                         UsuarioControlRouteGenSpImpl oUsuarioRoute = new UsuarioControlRouteGenSpImpl();
                         UsuarioControlOperationGenSpImpl oUsuarioControlOperation = new UsuarioControlOperationGenSpImpl(request);
-                        //jsonResult = oUsuarioRoute.execute(request, oUsuarioControlOperation);
+                        jsonResult = oUsuarioRoute.execute(request, oUsuarioControlOperation);
                         break;
-                    
+                    case "tipousuario":
+                        TipousuarioControlRouteGenSpImpl oTipousuarioRoute = new TipousuarioControlRouteGenSpImpl();
+                        TipousuarioControlOperationGenSpImpl oTipousuarioControlOperation = new TipousuarioControlOperationGenSpImpl(request);
+                        jsonResult = oTipousuarioRoute.execute(request, oTipousuarioControlOperation);
+                        break;
+                    case "publicacion":
+                        PublicacionControlRouteGenSpImpl oPublicacionRoute = new PublicacionControlRouteGenSpImpl();
+                        PublicacionControlOperationGenSpImpl oPublicacionControlOperation = new PublicacionControlOperationGenSpImpl(request);
+                        jsonResult = oPublicacionRoute.execute(request, oPublicacionControlOperation);
+                        break;
+                    case "tipopublicacion":
+                        TipopublicacionControlRouteGenSpImpl oTipopublicacionRoute = new TipopublicacionControlRouteGenSpImpl();
+                        TipopublicacionControlOperationGenSpImpl oTipopublicacionControlOperation = new TipopublicacionControlOperationGenSpImpl(request);
+                        jsonResult = oTipopublicacionRoute.execute(request, oTipopublicacionControlOperation);
+                        break;
+                    case "ciudad":
+                        CiudadControlRouteGenSpImpl oCiudadRoute = new CiudadControlRouteGenSpImpl();
+                        CiudadControlOperationGenSpImpl oCiudadControlOperation = new CiudadControlOperationGenSpImpl(request);
+                        jsonResult = oCiudadRoute.execute(request, oCiudadControlOperation);
+                        break;
                     default:
                         ExceptionBooster.boost(new Exception(this.getClass().getName() + ":processRequest ERROR: no such operation"));
                 }

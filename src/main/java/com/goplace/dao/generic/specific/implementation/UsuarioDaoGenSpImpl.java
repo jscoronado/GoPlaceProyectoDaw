@@ -17,7 +17,6 @@
  */
 package com.goplace.dao.generic.specific.implementation;
 
-
 import java.sql.Connection;
 import com.goplace.bean.generic.specific.implementation.UsuarioBeanGenSpImpl;
 import com.goplace.dao.generic.implementation.TableDaoGenImpl;
@@ -31,14 +30,17 @@ public class UsuarioDaoGenSpImpl extends TableDaoGenImpl<UsuarioBeanGenSpImpl> {
 
     public UsuarioBeanGenSpImpl getPass(String registro, UsuarioBeanGenSpImpl oUsuario) throws Exception {
         try {
-
-            String strRegister = oMysql.getRegister(registro, "usuario", "login", oUsuario.getLogin());
-            if (strRegister == null) {
+            String strId = oMysql.getId("usuario", "login", oUsuario.getLogin());
+            if (strId == null) {
                 oUsuario.setId(0);
             } else {
-                oUsuario.setPassword(strRegister);
-                String login = oUsuario.getLogin();
-                
+                Integer intId = Integer.parseInt(strId);
+                oUsuario.setId(intId);
+                String pass = oMysql.getRegister(registro, "usuario", "login", oUsuario.getLogin());
+                oUsuario.setPassword(pass);
+                if (!pass.equals(oUsuario.getPassword())) {
+                    oUsuario.setId(0);
+                }
                 oUsuario = this.get(oUsuario, AppConfigurationHelper.getJsonDepth());
             }
 

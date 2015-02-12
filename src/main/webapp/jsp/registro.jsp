@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3"><label for="labelCorreo" class="control-label">Correo electronico</label></div>
-                                    <div class="col-md-9"><input type="text" class="form-control col-md-3" id="emailreg" placeholder="Correo electrónico" name="emailreg" value="<%=emailUser%>" required></div><br/><br/>
+                                    <div class="col-md-9"><input type="email" class="form-control col-md-3" id="emailreg" placeholder="Correo electrónico" name="emailreg" value="<%=emailUser%>" required></div><br/><br/>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3"><label for="labelUsuario" class="control-label">Nombre de Usuario</label></div>

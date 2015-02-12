@@ -48,7 +48,7 @@ public class ControlOperationGenImpl implements ControlOperationInterface {
             Constructor oConstructor = Class.forName("com.goplace.service.generic.specific.implementation." + ParameterCooker.prepareCamelCaseObject(request) + "ServiceGenSpImpl").getConstructor(String.class, String.class, Connection.class);
             oService = (TableServiceGenImpl) oConstructor.newInstance(strObject, strObject, connection);
             PermissionManager oPermissionM = new PermissionManager();
-            //perm = oPermissionM.getPermission(request, connection);           
+            perm = oPermissionM.getPermission(request, connection);           
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":ControlOperationGenImpl ERROR: " + ex.getMessage()));
         }

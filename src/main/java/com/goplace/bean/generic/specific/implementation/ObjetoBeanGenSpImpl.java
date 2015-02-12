@@ -15,19 +15,33 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.goplace.control.operation.generic.specific.implementation;
+package com.goplace.bean.generic.specific.implementation;
 
-import java.lang.reflect.InvocationTargetException;
-import javax.servlet.http.HttpServletRequest;
-import com.goplace.control.operation.generic.implementation.ControlOperationGenImpl;
-import com.goplace.service.generic.specific.implementation.UsuarioServiceGenSpImpl;
+import com.goplace.bean.generic.implementation.BeanGenImpl;
+import com.goplace.bean.publicinterface.BeanInterface;
+import com.google.gson.annotations.Expose;
+import java.util.Date;
 
-public class UsuarioControlOperationGenSpImpl extends ControlOperationGenImpl {
+public class ObjetoBeanGenSpImpl extends BeanGenImpl implements BeanInterface {
 
-    private UsuarioServiceGenSpImpl oUsuarioService = (UsuarioServiceGenSpImpl) oService;
-    
-    public UsuarioControlOperationGenSpImpl(HttpServletRequest request) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, Exception {
-        super(request);
+    public ObjetoBeanGenSpImpl() {
     }
+
+    public ObjetoBeanGenSpImpl(Integer id) {
+        super(id);
+    }
+
+   
+  private String descripcion="";
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+   
 
 }

@@ -675,15 +675,15 @@ public class MysqlDataSpImpl implements DataInterface {
         }
     }
 
-    public ArrayList<Integer> getPageComentarioAmigo(int id_usuario, int intRegsPerPage, int intPagina, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder) throws Exception {
-        ArrayList<Integer> vector = null;
+    public ArrayList<Integer> getPageComentarios(int id_usuario, int intRegsPerPage, int intPagina, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        ArrayList<Integer> comentarios = null;
         Statement oStatement = null;
         try {
-            vector = new ArrayList<>();
+            comentarios = new ArrayList<>();
             int intOffset;
             oStatement = (Statement) connection.createStatement();
-            String strSQL = "select distinct p.* from publicacion p inner join amistad a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = " + id_usuario + " OR p.id_usuario = " + id_usuario + " ";
-            String strSQLcount = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = " + id_usuario + " OR p.id_usuario = " + id_usuario + " ";
+            String strSQL = "SELECT distinct p.* FROM publicacion p INNER JOIN amistad a WHERE p.id_usuario = a.id_usuario2 AND a.id_usuario1 = " + id_usuario + " ORDER BY p.fechapub DESC ";
+            String strSQLcount = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario2 and a.id_usuario1 = " + id_usuario + " ";
             // select p.* from publicacion p inner join amigo a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = 2 ORDER BY `fechacreacion` DESC
             if (alFilter != null) {
                 String strSQLFilter = "";
@@ -730,17 +730,10 @@ public class MysqlDataSpImpl implements DataInterface {
             intPagina = Math.min(intPagina - 1, maxPaginas) + 1;
             intOffset = Math.max(((intPagina - 1) * intRegsPerPage), 0);
             //--                        
-            if (hmOrder != null) {
-                strSQL += " ORDER BY";
-                for (Map.Entry oPar : hmOrder.entrySet()) {
-                    strSQL += " " + oPar.getKey() + " " + oPar.getValue() + ",";
-                }
-                strSQL = strSQL.substring(0, strSQL.length() - 1);
-            }
             strSQL += " LIMIT " + intOffset + " , " + intRegsPerPage;
             oResultSet = oStatement.executeQuery(strSQL);
             while (oResultSet.next()) {
-                vector.add(oResultSet.getInt("id"));
+                comentarios.add(oResultSet.getInt("id"));
             }
 
         } catch (SQLException ex) {
@@ -750,7 +743,7 @@ public class MysqlDataSpImpl implements DataInterface {
                 oStatement.close();
             }
         }
-        return vector;
+        return comentarios;
     }
 
     @Override
@@ -841,13 +834,13 @@ public class MysqlDataSpImpl implements DataInterface {
         }
     }
 
-    public int getPagesComentarioAmigo(int id_usuario, int intRegsPerPage, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+    public int getPagesComentarios(int id_usuario, int intRegsPerPage, ArrayList<FilterBeanHelper> alFilter) throws Exception {
 
         int intResult = 0;
         Statement oStatement = null;
         try {
             oStatement = (Statement) connection.createStatement();
-            String strSQL = "SELECT count(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = " + id_usuario + " OR p.id_usuario = " + id_usuario + " ";
+            String strSQL = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario2 and a.id_usuario1 = " + id_usuario + " ";
             if (alFilter != null) {
                 Iterator iterator = alFilter.iterator();
                 while (iterator.hasNext()) {

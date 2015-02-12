@@ -33,6 +33,12 @@ public class PublicacionControlRouteGenSpImpl extends ControlRouteGenImpl {
         String jsonResult = "";
         try {
             switch (operation) {
+                case "getcomentarios":
+                    jsonResult = oPublicacionControl.getcomentarios(request);
+                    break;
+                case "getpagescomentarios":
+                    jsonResult = oPublicacionControl.getpagescomentarios(request);
+                    break;
                 default:
                     jsonResult = super.execute(request, oControl);
                     break;

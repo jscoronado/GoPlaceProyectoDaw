@@ -21,7 +21,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import com.goplace.bean.generic.specific.implementation.UsuarioBeanGenSpImpl;
-//import com.goplace.service.generic.specific.implementation.PermisoServiceGenSpImpl;
+import com.goplace.service.generic.specific.implementation.PermisoServiceGenSpImpl;
 
 /**
  *
@@ -32,14 +32,14 @@ public class PermissionManager {
     public PermissionManager() {
     }
     
-//    public boolean getPermission(HttpServletRequest request, Connection connection) throws SQLException, Exception {
-//       
-//        PermisoServiceGenSpImpl oPermiso = new PermisoServiceGenSpImpl("permiso", "Permiso", connection);
-//        String objeto = request.getParameter("ob");
-//        String operacion = request.getParameter("op");
-//        UsuarioBeanGenSpImpl oUsuarioBean = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");
-//        boolean permiso = oPermiso.hasPermission(operacion, objeto, oUsuarioBean);
-//        return permiso;
-//    }
+    public boolean getPermission(HttpServletRequest request, Connection connection) throws SQLException, Exception {
+       
+        PermisoServiceGenSpImpl oPermiso = new PermisoServiceGenSpImpl("permiso", "Permiso", connection);
+        String objeto = request.getParameter("ob");
+        String operacion = request.getParameter("op");
+        UsuarioBeanGenSpImpl oUsuarioBean = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");
+        boolean permiso = oPermiso.hasPermission(operacion, objeto, oUsuarioBean);
+        return permiso;
+    }
 
 }

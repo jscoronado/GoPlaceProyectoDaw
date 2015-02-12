@@ -21,9 +21,17 @@ package com.goplace.bean.generic.specific.implementation;
 import com.google.gson.annotations.Expose;
 import com.goplace.bean.generic.implementation.BeanGenImpl;
 import com.goplace.bean.publicinterface.BeanInterface;
+import java.util.Date;
 
 public class PublicacionBeanGenSpImpl extends BeanGenImpl implements BeanInterface {
 
+    public PublicacionBeanGenSpImpl() {
+    }
+
+    public PublicacionBeanGenSpImpl(Integer id) {
+        super(id);
+    }
+    
     @Expose
     private String titulo = "";
     @Expose
@@ -31,7 +39,7 @@ public class PublicacionBeanGenSpImpl extends BeanGenImpl implements BeanInterfa
     @Expose(serialize = false)
     private Integer id_usuario = 0;
     @Expose(deserialize = false)
-    private CiudadBeanGenSpImpl obj_usuario = null;
+    private UsuarioBeanGenSpImpl obj_usuario = null;
     @Expose(serialize = false)
     private Integer id_ciudad = 0;
     @Expose(deserialize = false)
@@ -39,7 +47,9 @@ public class PublicacionBeanGenSpImpl extends BeanGenImpl implements BeanInterfa
     @Expose(serialize = false)
     private Integer id_tipopublicacion = 0;
     @Expose(deserialize = false)
-    private CiudadBeanGenSpImpl obj_tipopublicacion = null;
+    private TipopublicacionBeanGenSpImpl obj_tipopublicacion = null;
+    @Expose
+    private Date fechapub = new Date();
 
     public String getTitulo() {
         return titulo;
@@ -65,11 +75,11 @@ public class PublicacionBeanGenSpImpl extends BeanGenImpl implements BeanInterfa
         this.id_usuario = id_usuario;
     }
 
-    public CiudadBeanGenSpImpl getObj_usuario() {
+    public UsuarioBeanGenSpImpl getObj_usuario() {
         return obj_usuario;
     }
 
-    public void setObj_usuario(CiudadBeanGenSpImpl obj_usuario) {
+    public void setObj_usuario(UsuarioBeanGenSpImpl obj_usuario) {
         this.obj_usuario = obj_usuario;
     }
 
@@ -97,12 +107,20 @@ public class PublicacionBeanGenSpImpl extends BeanGenImpl implements BeanInterfa
         this.id_tipopublicacion = id_tipopublicacion;
     }
 
-    public CiudadBeanGenSpImpl getObj_tipopublicacion() {
+    public TipopublicacionBeanGenSpImpl getObj_tipopublicacion() {
         return obj_tipopublicacion;
     }
 
-    public void setObj_tipopublicacion(CiudadBeanGenSpImpl obj_tipopublicacion) {
+    public void setObj_tipopublicacion(TipopublicacionBeanGenSpImpl obj_tipopublicacion) {
         this.obj_tipopublicacion = obj_tipopublicacion;
     }
-        
+
+    public Date getFechapub() {
+        return fechapub;
+    }
+
+    public void setFechapub(Date fechapub) {
+        this.fechapub = fechapub;
+    }
+
 }
