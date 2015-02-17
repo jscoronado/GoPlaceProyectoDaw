@@ -33,6 +33,10 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/effects.css">
         <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:200|Oswald' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/inicio.js" charset="UTF-8"></script>
     </head>
 
     
@@ -69,7 +73,18 @@
                             <div class="fotoPerfil"><img src="<%=request.getContextPath()%>/images/user.png" class="foto" alt="Foto usuario"></div><br/>
                             <h3 class="nomargin"><a href="#">Jose Miguel Coronado Aroca</a></h3>
                         </div>
-                        <div class="col-md-9 col-sm-9 inicioMain" id="comentariosgp"></div>
+                        <div class="col-md-9 col-sm-9 inicioMain" >
+                            <div class="publicacion row">
+                                <div class="col-md-1">
+                                    <img src="<%=request.getContextPath()%>/images/user.png" class="fotoPub" alt="Foto usuario">
+                                </div>
+                                <div class="col-md-11">
+                                    <a href="#">Jose Miguel Coronado Aroca</a> <span class="nick">@joshco</span><br/>
+                                    <h4><a href="#">Titulo del acondecimiento</a></h4>
+                                    <span>Descripcion del acondecimiento en tu ciudad etc etc etc</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -94,9 +109,5 @@
             </footer>
         </div>
     </body>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="<%=request.getContextPath()%>/js/inicio.js" charset="UTF-8"></script>
 </html>
 

@@ -19,6 +19,7 @@
 package com.goplace.control;
 
 import com.google.gson.Gson;
+import com.goplace.bean.generic.specific.implementation.UsuarioBeanGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.CiudadControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.PublicacionControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.TipopublicacionControlOperationGenSpImpl;
@@ -88,7 +89,9 @@ public class JsonControl extends HttpServlet {
             retardo(0); //debug delay
             String jsonResult = "";
             if (request.getSession().getAttribute("usuarioBean") != null) {
-
+                
+                UsuarioBeanGenSpImpl oUsuario = new UsuarioBeanGenSpImpl();
+                oUsuario = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");
                 switch (ParameterCooker.prepareObject(request)) {
                     case "usuario":
                         UsuarioControlRouteGenSpImpl oUsuarioRoute = new UsuarioControlRouteGenSpImpl();
