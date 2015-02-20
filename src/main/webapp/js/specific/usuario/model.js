@@ -28,7 +28,7 @@ var oUsuarioModel = new usuarioModel('usuario');
 
 usuarioModel.prototype.getCachedPrettyFieldNames = function () {
     var prettyFieldNames = this.cPrettyFieldNames;
-    var i = prettyFieldNames.indexOf("Contraseña");    
+    var i = prettyFieldNames.indexOf("Password");    
     prettyFieldNames.splice(i, 1);
     
     return prettyFieldNames;

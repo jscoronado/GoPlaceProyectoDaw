@@ -60,10 +60,10 @@ function fPublicacionRoutes() {
         $('#indexContenidoJsp').empty();
     });
     Path.map("#/publicacion/new").to(function () {
-        $('#indexContenidoJsp').spinner();
+        //$('#indexContenidoJsp').spinner();
         //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.new($('#indexContenido'), null, oPublicacionModel, oPublicacionView);
-        $('#indexContenidoJsp').empty();
+        oPublicacionControl.new($('#principalpag'), null, oPublicacionModel, oPublicacionView);
+        //$('#indexContenidoJsp').empty();
         return false;
     });
     Path.map("#/publicacion/new/:url").to(function () {
@@ -80,5 +80,12 @@ function fPublicacionRoutes() {
         oPublicacionControl.remove($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView);
         $('#indexContenidoJsp').empty();
         return false;
+    });
+    Path.map("#/publicacion/inicio").to(function () {
+    //$('#indexContenidoJsp').spinner();
+    //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+    oPublicacionControl.listar($('#principalpag'), oPublicacionModel, oPublicacionView);
+    //$('#indexContenidoJsp').empty();
+    return false;
     });
 }

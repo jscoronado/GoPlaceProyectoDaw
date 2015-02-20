@@ -82,7 +82,7 @@ function fInicioRedSocialRoutes() {
         return false;
     });
 
-    Path.map("#/inicioRedSocial/duplicate/:id").to(function () {
+    Path.map("#/inicio").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oPublicacionControl.duplicate($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView);

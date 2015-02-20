@@ -55,9 +55,9 @@ control.prototype.view = function (place, id, oModel, oView) {
     var oDocumentoModel = oModel;
     oDocumentoModel.loadAggregateViewOne(id);
     $(place).append(oView.getPanel("Detalle de " + this.clase, oView.getObjectTable(oDocumentoModel.getCachedPrettyFieldNames(), oDocumentoModel.getCachedOne(), oDocumentoModel.getCachedFieldNames())));
-    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/edit/' + id + '">Editar</a>');
-    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/remove/' + id + '">Borrar</a>');
-    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/list/' + id + '">Listar</a>');
+    $(place).append('<a class="btn btn-primary" href="control#/' + this.clase + '/edit/' + id + '">Editar</a>');
+    $(place).append('<a class="btn btn-primary" href="control#/' + this.clase + '/remove/' + id + '">Borrar</a>');
+    $(place).append('<a class="btn btn-primary" href="control#/' + this.clase + '/list/' + id + '">Listar</a>');
 };
 control.prototype.edit = function (place, id, oModel, oView) {
     var thisObject = this;
@@ -108,14 +108,14 @@ control.prototype.list = function (place, objParams, callback, oModel, oView) {
         }
         //show page links pad
         var strUrlFromParamsWithoutPage = param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["page"]));
-        var url = 'jsp#/' + this.clase + '/list/' + strUrlFromParamsWithoutPage;
+        var url = 'control#/' + this.clase + '/list/' + strUrlFromParamsWithoutPage;
 
         //visible fields select population, setting & event
         $('#selectVisibleFields').empty()
         oView.populateSelectVisibleFieldsBox($('#selectVisibleFields'), oDocumentoModel.getCachedCountFields());
         $('#selectVisibleFields').unbind('change');
         $("#selectVisibleFields").change(function () {
-            window.location.href = "jsp#/" + thisObject.clase + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+            window.location.href = "control#/" + thisObject.clase + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
             return false;
         });
         //show the table
@@ -165,13 +165,13 @@ control.prototype.list = function (place, objParams, callback, oModel, oView) {
             filter = $("#selectFilter option:selected").val();
             filteroperator = $("#selectFilteroperator option:selected").val();
             filtervalue = $("#inputFiltervalue").val();
-            window.location.href = 'jsp#/' + thisObject.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
+            window.location.href = 'control#/' + thisObject.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
             return false;
         });
 
         if (objParams["systemfilter"]) {
-            //$('#newButton').prop("href", 'jsp#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
-            $('#newButton').prop("href", 'jsp#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
+            //$('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
+            $('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
         }
     } else {
         alert("Lo siento pero no tienes permiso para ejecutar esta operación");
@@ -197,7 +197,7 @@ control.prototype.modalListEventsLoading = function (place, objParams, callbackF
         objParams["vf"] = $("#selectVisibleFields option:selected").val();
         thisObject.list(place, objParams, callbackFunction, oModel, oView);
         thisObject.modalListEventsLoading(place, objParams, callbackFunction, oModel, oView);
-        //window.location.href = "jsp#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+        //window.location.href = "control#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
         return false;
     });
     $('.rpp_link').unbind('click');
@@ -206,7 +206,7 @@ control.prototype.modalListEventsLoading = function (place, objParams, callbackF
         objParams["rpp"] = parseInt($(this).attr('id'));
         thisObject.list(place, objParams, callbackFunction, oModel, oView);
         thisObject.modalListEventsLoading(place, objParams, callbackFunction, oModel, oView);
-        //window.location.href = "jsp#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+        //window.location.href = "control#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
         return false;
         //thisObject.inicia(pag, order, ordervalue, rpp, filter, filteroperator, filtervalue, callback, systemfilter, systemfilteroperator, systemfiltervalue);
     });
@@ -223,7 +223,7 @@ control.prototype.modalListEventsLoading = function (place, objParams, callbackF
 //                filter = $("#selectFilter option:selected").val();
 //                filteroperator = $("#selectFilteroperator option:selected").val();
 //                filtervalue = $("#inputFiltervalue").val();
-//                window.location.href = 'jsp#/' + model('documento').getName() + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
+//                window.location.href = 'control#/' + model('documento').getName() + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
 //                return false;
         objParams = param().getUrlObjectFromParamsWithoutParamArray(objParams, ["filter", "filteroperator", "filtervalue"]);
         objParams["filter"] = $("#selectFilter option:selected").val();
@@ -231,7 +231,7 @@ control.prototype.modalListEventsLoading = function (place, objParams, callbackF
         objParams["filtervalue"] = $("#inputFiltervalue").val();
         thisObject.list(place, objParams, callbackFunction, oModel, oView);
         thisObject.modalListEventsLoading(place, objParams, callbackFunction, oModel, oView);
-        //window.location.href = "jsp#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+        //window.location.href = "control#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
         return false;
     });
 
@@ -242,7 +242,7 @@ control.prototype.modalListEventsLoading = function (place, objParams, callbackF
         objParams["ordervalue"] = "asc";
         thisObject.list(place, objParams, callbackFunction, oModel, oView);
         thisObject.modalListEventsLoading(place, objParams, callbackFunction, oModel, oView);
-        //window.location.href = "jsp#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+        //window.location.href = "control#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
         return false;
         //thisObject.inicia(pag, order, ordervalue, rpp, filter, filteroperator, filtervalue, callback, systemfilter, systemfilteroperator, systemfiltervalue);
     });
@@ -254,7 +254,7 @@ control.prototype.modalListEventsLoading = function (place, objParams, callbackF
         objParams["ordervalue"] = "desc";
         thisObject.list(place, objParams, callbackFunction, oModel, oView);
         thisObject.modalListEventsLoading(place, objParams, callbackFunction, oModel, oView);
-        //window.location.href = "jsp#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+        //window.location.href = "control#/" + model('documento').getName() + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
         return false;
         //thisObject.inicia(pag, order, ordervalue, rpp, filter, filteroperator, filtervalue, callback, systemfilter, systemfilteroperator, systemfiltervalue);
     });

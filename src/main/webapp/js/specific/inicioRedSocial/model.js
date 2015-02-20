@@ -23,10 +23,10 @@ inicioRedSocialModel.prototype = new model('publicacion');
 inicioRedSocialModel.prototype.getClassNameInicioRedSocial = function () {
     return this.getClassName() + "Modelo";
 };
-inicioRedSocialModel.prototype.duplicateOne = function (id) {
-    $.when(ajax().ajaxCallSync(this.urlJson + '&op=duplicate&id=' + id, 'GET', '')).done(function (data) {
-        feedback = data;
+inicioRedSocialModel.prototype.publicacionesUsuario = function (){
+    $.when(ajax().ajaxCallSync('json?ob=publicacion&op=getcomentarios', 'GET', '')).done(function (data) {
+        jsondata = data;
     });
-    return feedback;
+    return jsondata;
 };
 var oInicioRedSocialModel = new inicioRedSocialModel('publicacion');

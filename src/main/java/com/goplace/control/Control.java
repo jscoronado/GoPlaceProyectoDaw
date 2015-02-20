@@ -77,16 +77,6 @@ public class Control extends HttpServlet {
              }
              }*/
 
-            //delivering jsp page
-            /*if ("wrappered".equals(mode)) {
-             request.setAttribute("contenido", "jsp/" + ob + "/" + op + ".jsp");
-             request.setAttribute("connection", connection);
-             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-             } else {
-             response.setContentType("text/html; charset=UTF-8");
-             request.setAttribute("connection", connection);
-             getServletContext().getRequestDispatcher("/jsp/" + ob + "/" + op + ".jsp").forward(request, response);
-             }*/
             // LOGIN
             if (request.getParameter("op") != null) {
                 if (request.getParameter("op").equalsIgnoreCase("login")) {
@@ -104,10 +94,6 @@ public class Control extends HttpServlet {
                             if (oUsuarioPass.equals(password)) {
                                 request.getSession().setAttribute("usuarioBean", oUsuario);
                                 getServletContext().getRequestDispatcher("/jsp/principal.jsp").forward(request, response);
-                                /*response.setContentType("application/json;charset=UTF-8");
-                                FacturaMaker oFacturaMaker = new FacturaMaker();
-                                out.print(oFacturaMaker.getFactura());
-                                out.flush();*/
                             } else {
                                 request.setAttribute("title", "Usuario o Contraseña incorrecta");
                                 request.setAttribute("message", "Por favor, vuelva a iniciar sesión para acceder a GoPlace");
@@ -144,17 +130,38 @@ public class Control extends HttpServlet {
                         UsuarioServiceGenSpImpl oUsuarioService = new UsuarioServiceGenSpImpl("usuario", "usuario", connection);
                         UsuarioDaoGenSpImpl oUsuarioDao = oUsuarioService.registro(request);
 
-                        if (oUsuarioDao != null) {
-                            request.getSession().setAttribute("usuario", "admitted");
-                            getServletContext().getRequestDispatcher("/jsp/principal.jsp").forward(request, response);
+                        String user = request.getParameter("userreg");
+                        oUsuario.setLogin(user);
+                        oUsuario = oUsuarioDao.getPass("password", oUsuario);
+
+                        if (oUsuario != null) {
+                            //request.getSession().setAttribute("usuarioBean", oUsuario);
+                            //getServletContext().getRequestDispatcher("/jsp/principal.jsp").forward(request, response);
+                            request.setAttribute("title", "Bienvenido " + oUsuario.getLogin() + " !");
+                            request.setAttribute("message", "Por favor, inicie sesion para empezar en GoPlace");
+                            request.setAttribute("atributo", "incorrecto");
+                            request.setAttribute("contenido", "/jsp/message.jsp");
+                            getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                         } else {
-                            getServletContext().getRequestDispatcher("/jsp/registro.jsp").forward(request, response);
+                            request.setAttribute("title", "Error al crear el usuario");
+                            request.setAttribute("message", "Lo sentimos, hubo problemas al crear el usuario");
+                            request.setAttribute("atributo", "incorrecto");
+                            request.setAttribute("contenido", "/jsp/message.jsp");
+                            getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                         }
                     } catch (Exception ex) {
                         if (EstadoHelper.getTipo_estado() == EstadoHelper.Tipo_estado.Debug) {
-                            getServletContext().getRequestDispatcher("/jsp/registro.jsp").forward(request, response);
+                            request.setAttribute("title", "Error al crear el usuario");
+                            request.setAttribute("message", "Lo sentimos, hubo problemas al crear el usuario");
+                            request.setAttribute("atributo", "incorrecto");
+                            request.setAttribute("contenido", "/jsp/message.jsp");
+                            getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                         } else {
-                            getServletContext().getRequestDispatcher("/jsp/registro.jsp").forward(request, response);
+                            request.setAttribute("title", "Error al crear el usuario");
+                            request.setAttribute("message", "Lo sentimos, hubo problemas al crear el usuario");
+                            request.setAttribute("atributo", "incorrecto");
+                            request.setAttribute("contenido", "/jsp/message.jsp");
+                            getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                         }
                         Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -170,20 +177,6 @@ public class Control extends HttpServlet {
                 }
             }
 
-//                //ejercicio 2
-//                if (request.getParameter("ob").equals("cliente")) {
-//                    if (request.getParameter("op").equals("insertar")) {
-//                        String valorsesion = (String) request.getSession().getAttribute("usuario");
-//                        if (valorsesion.equals("userExamen")) {
-//                            ClienteControlRouteGenSpImpl oClienteRoute = new ClienteControlRouteGenSpImpl();
-//                            ClienteControlOperationGenSpImpl oClienteControlOperation = new ClienteControlOperationGenSpImpl(request);
-//                            String jsonresult = oClienteRoute.execute(request, oClienteControlOperation);
-//                            out.print(jsonresult);
-//                        } else {
-//                            out.println("no se puede ejecutar el ejercicio 2");
-//                        }
-//                    }
-//                }
             //menu
             if (request.getParameter("ob") != null) {
                 if (request.getParameter("ob").equals("menu")) {
@@ -193,9 +186,32 @@ public class Control extends HttpServlet {
                     getServletContext().getRequestDispatcher("/menu2.jsp").forward(request, response);
                 }
             }
+
+            //delivering jsp page
+            if ("wrappered".equals(mode)) {
+                request.setAttribute("contenido", "jsp/" + ob + "/" + op + ".jsp");
+                request.setAttribute("connection", connection);
+                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            } else {
+                response.setContentType("text/html; charset=UTF-8");
+                request.setAttribute("connection", connection);
+                getServletContext().getRequestDispatcher("/jsp/" + ob + "/" + op + ".jsp").forward(request, response);
+            }
         } catch (Exception ex) {
-            out.println(JsonControl.class.getName() + " " + ex.getMessage());
-            ex.printStackTrace();
+            if (EstadoHelper.getTipo_estado() == EstadoHelper.Tipo_estado.Debug) {
+                request.setAttribute("title", "404 Application server error (debug mode)");
+                request.setAttribute("message", "<pre>ERROR: " + ex.getMessage() + "</pre>");
+                request.setAttribute("atributo", "incorrecto");
+                request.setAttribute("contenido", "/jsp/message.jsp");
+                getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+            } else {
+                request.setAttribute("title", "404 Application server error");
+                request.setAttribute("message", "Please, contact your server administrator.");
+                request.setAttribute("atributo", "incorrecto");
+                request.setAttribute("contenido", "/jsp/message.jsp");
+                getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+            }
+            Logger.getLogger(JsonControl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

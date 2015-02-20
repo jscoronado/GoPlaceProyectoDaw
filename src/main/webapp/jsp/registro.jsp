@@ -47,24 +47,6 @@
                 <div class="cabecera">
                     <a href="<%=login%>">¿Ya tienes cuenta? Inicia Sesión</a>
                 </div>
-                <!--<div class="btn-group col-md-4">
-                    <button type="button" class="btn btn-danger">Título del botón</button>
-
-                    <button type="button" class="btn btn-danger dropdown-toggle"
-                            data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Desplegar menú</span>
-                    </button>
-
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Acción #1</a></li>
-                        <li><a href="#">Acción #2</a></li>
-                        <li><a href="#">Acción #3</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Acción #4</a></li>
-                    </ul>
-                </div>-->
-
             </header>
 
             <main>
@@ -91,11 +73,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3"><label for="labelUsuario" class="control-label">Nombre de Usuario</label></div>
-                                    <div class="col-md-5"><input type="text" class="form-control col-md-8" id="passreg" placeholder="Nombre de Usuario" name="userreg" value="<%=passUser%>" required></div><br/><br/>
+                                    <div class="col-md-5"><input type="text" class="form-control col-md-8" id="passreg" placeholder="Nombre de Usuario" name="userreg"  required></div><br/><br/>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3"><label for="labelContraseña" class="control-label">Contraseña</label></div>
-                                    <div class="col-md-5"><input type="password" class="form-control col-md-8" id="passreg" placeholder="Contraseña" name="passreg" required></div><br/><br/>
+                                    <div class="col-md-5"><input type="password" class="form-control col-md-8" id="passreg" placeholder="Contraseña" name="passreg" value="<%=passUser%>" required></div><br/><br/>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3"><label for="labelContraseña2" class="control-label">Conf Contraseña</label></div>

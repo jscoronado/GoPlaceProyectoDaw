@@ -87,7 +87,7 @@ publicacionView.prototype.doEventsLoading = function () {
             $('#obj_usuario_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
-        },oUsuarioModel, oUsuarioView);
+        }, oUsuarioModel, oUsuarioView);
         return false;
     });
 };
@@ -96,43 +96,51 @@ publicacionView.prototype.okValidation = function (f) {
     $('#publicacionForm').on('success.form.bv', f);
 };
 
-publicacionView.prototype.printValue = function (value, valor, recortar) {
-    var thisObject = this;
-    var strResult = "";
-    if (/obj_usuario/.test(valor)) {
-        if (value[valor].id > 0) {
-            val = valor.substring(4);
-            val = val.substring(0, val.length-2);
-            strResult = '<a href="jsp#/' + val + '/view/' + value[valor].id + '">' + value[valor].id + ":" + value[valor].login + '</a>';
-        } else {
-            strResult = '???';
-        }
-    } else if (/obj_/.test(valor)) {
-        if (value[valor].id > 0) {
-            strResult = '<a href="jsp#/' + valor.substring(4) + '/view/' + value[valor].id + '">' + value[valor].id + ":" + util().getForeign(value[valor]) + '</a>';
-            
-        } else {
-            strResult = '???';
+publicacionView.prototype.getComentarios = function (jason) {
+    
+    espacio = ' ';
+    comilla = "'";
+    salto = "<br />";
+    apertura = "<";
+    cierre = ">";
+    barra = "/";
+    alm = "#";
+    
+    comentarios = "<div class=" + "'row'" + ">";
+    comentarios += "<div class=" + "'col-md-3 col-sm-3 perfilMain'" + ">";
+    comentarios += "<div class=" + "'fotoPerfil'" + "><img src=" + "'http://localhost:8081/goplace/images/user.png'" + " class=" + "'foto'" + " alt=" + "'Foto usuario'" + "></div><br/>";
+    comentarios += "<h3 class=" + "'nomargin'" + "><a href=" + "'#'" + "> Jose Miguel Coronado Aroca</a></h3>";
+    comentarios += "</div><div class=" + "'col-md-9 col-sm-9 inicioMain'" + "id=" + "'comentariosgp'" + ">";
+    jsonP = data.data.page.list;
+    if (jsonP.length != 0) {
+        for (i = 0; i < jsonP.length; i++) {
+            comentarios += "<div class=" + comilla + "publicacion row" + comilla + ">";
+            comentarios += "<div class=" + comilla + "col-md-1" + comilla + ">";
+            comentarios += "<img src=" + comilla + "http://localhost:8081/goplace/images/user.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario" + i + comilla + ">";
+            comentarios += "</div>";
+            comentarios += "<div class=" + comilla + "col-md-11" + comilla + ">";
+            comentarios += "<a href=" + comilla + "#/usuario/view/" + jsonP[i].obj_usuario.id + comilla + ">" + jsonP[i].obj_usuario.nombre + espacio + jsonP[i].obj_usuario.apellidos + "</a>";
+            comentarios += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span><br/>";
+            comentarios += "<h4><a href=" + comilla + "#/publicacion/view/" + jsonP[i].id + comilla + ">" + jsonP[i].titulo + "</a></h4>";
+            comentarios += "<span>" + jsonP[i].descripcion + "</span>";
+            comentarios += "</div>";
+            comentarios += "</div>";
         }
     } else {
-        switch (value[valor]) {
-            case true:
-                strResult = '<i class="glyphicon glyphicon-ok"></i>';
-                break;
-            case false:
-                strResult = '<i class="glyphicon glyphicon-remove"></i>';
-                break;
-            default:
-                strResult = decodeURIComponent(value[valor]);
-                
-                if (/contenido/.test(valor)) {                    
-                } else {
-                    if (recortar) 
-                        if (strResult.length > 50) //don't show too long fields
-                            strResult = strResult.substr(0, 20) + " ...";
-                }            
+        comentarios += "<div class=" + comilla + "publicacion row" + comilla + ">";
+        comentarios += "<div class=" + comilla + "col-md-1" + comilla + ">";
+        comentarios += "<img src=" + comilla + "<%=request.getContextPath()%>/images/foto.jpg" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario admin" + comilla + ">";
+        comentarios += "</div>";
+        comentarios += "<div class=" + comilla + "col-md-11" + comilla + ">";
+        comentarios += "<a href=" + comilla + "#/usuario/view/1" + comilla + ">" + "Administrador" + "</a>";
+        comentarios += "<span class=" + comilla + "nick" + comilla + "> @admin" + "</span><br/>";
+        comentarios += "<h4>Haz tu primer comentario!</h4>";
+        comentarios += "<span>Comenta los planes con tus amigos</span>";
+        comentarios += "</div>";
+        comentarios += "</div>";
+    }
+    comentarios += "</div>";
+    comentarios += "</div>";
 
-            };
-    };
-    return strResult;
+    return comentarios;
 };

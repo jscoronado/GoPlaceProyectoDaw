@@ -1,241 +1,252 @@
 *, html{
-	margin: 0;
-	padding: 0;
-	font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
 }
 .page{
-	width: 100%;
-	height: 100%;
-	background: url('../images/vlc.png') fixed no-repeat center;
-	-webkit-background-size: cover;
+    width: 100%;
+    height: 100%;
+    background: url('../images/vlc.png') fixed no-repeat center;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     cursor: default;
 }
 .pageRegister{
-	width: 100%;
-	height: 100%;
-	background-color: #20B2AA;
-	-webkit-background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-color: #20B2AA;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     cursor: default;
 }
 h1{
-	color: white;
-	letter-spacing: 0.05em;
-	font-size: 50px;
-	font-weight: 700;
-	margin-top: 10px;
-	margin-bottom: 20px;
-	text-shadow: 3px 3px 3px black;
+    color: white;
+    letter-spacing: 0.05em;
+    font-size: 50px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 3px black;
 }
 h2{
-	color: #232930;
-	font-weight: 900;
-	letter-spacing: 0.3em;
-	font-size: 30px;
-	clear: both;
+    color: #232930;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    font-size: 30px;
+    clear: both;
 }
-h3, h4, h5{
-	color: #232930;
-	letter-spacing: 0.1em;
-	font-size: 16px;
-	font-weight: 700;
+h3,h4,h5{
+    color: #232930;
+    letter-spacing: 0.1em;
+    font-size: 16px;
+    font-weight: 700;
+}
+span.blanco{
+    color: white;
+    letter-spacing: 0.1em;
+    font-size: 16px;
+    font-weight: 700;
+    text-shadow: 3px 3px 3px black;
 }
 h2::after {content: " "; border-bottom: solid 1px #232930; display: block; width: 2em; margin: 0.6em auto auto auto;}
 a{
-	font-family: 'Raleway', sans-serif;
-	color: #232930;
-	text-decoration: none; 
+    font-family: 'Raleway', sans-serif;
+    color: #232930;
+    text-decoration: none; 
 }
 .nomargin{
-	margin: 0;
+    margin: 0;
 }
 .nopadding{
-	padding: 0;
+    padding: 0;
 }
 
 /* CABECERA */
 header{
-	width: 100%;
-	height: 14%;
-	background-color: white;
+    width: 100%;
+    height: 14%;
+    background-color: white;
 }
 
 .row{
-	margin: 0px;
+    margin: 0px;
 }
 .logo{
-	margin: 6% 0 0 30%;
-	cursor: pointer;
+    margin: 6% 0 0 30%;
+    cursor: pointer;
 }
 
 .logoRegistro, .cabecera{
-	width: 100%;
-	margin: 2% 0 1% 0;
-	text-align: center;
+    width: 100%;
+    margin: 2% 0 1% 0;
+    text-align: center;
 }
 
 /* FORMULARIO ACCESO */
 .formuser, .formpass{
-	width: 30%;
-	margin-top: 5%;
-	margin-right: 5px;
-	float: left;
+    width: 30%;
+    margin-top: 5%;
+    margin-right: 5px;
+    float: left;
 }
 
 .formbutton{
-	width: 20%;
-	padding: 0px;
-	margin-top: 5%;
-	height: 34px;
-	float: left;
+    width: 20%;
+    padding: 0px;
+    margin-top: 5%;
+    height: 34px;
+    float: left;
 }
 
 /* MAIN */
 main{
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 .principal{
-	padding: 5% 20% 5% 20%;
+    padding: 5% 20% 5% 20%;
 }
 .titulo{
-	text-align: center;
-	width: 100%;
+    text-align: center;
+    width: 100%;
 }
 .principal span{
-	color: white;
-	font-size: 20px;
-	font-weight: 100;
-	margin-top: 10px;
-	text-shadow: 3px 3px 3px black;
+    color: white;
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 10px;
+    text-shadow: 3px 3px 3px black;
 }
 
 /* REGISTRO */
 .registro{
-	margin-top: 5%;
-	padding: 1% 0 2% 2%;
-	width: 100%;
-	height: 100%;
-	background-color:rgba(255,255,255,0.5);
+    margin-top: 5%;
+    padding: 1% 0 2% 2%;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(255,255,255,0.5);
 }
 #nombrereg, #apereg{
-	width: 50%;
-	margin-bottom: 5px;
-	float: left;
+    width: 50%;
+    margin-bottom: 5px;
+    float: left;
 }
 #nombreregdef, #aperegdef{
-	width: 100%;
-	margin-bottom: 5px;
-	float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    float: left;
 }
 #emailreg, #passreg{
-	width: 100%;
-	clear: both;
+    width: 100%;
+    clear: both;
 }
 .reguser, .regemail, .regpass{
-	margin: 5px 0 5px 0;
+    margin: 5px 0 5px 0;
 }
 .botonreg{
-	margin: 3% 0 0 0;
+    margin: 3% 0 0 0;
 }
 
 /* FOOTER */
 footer{
-	width: 100%;
-	height: 14%;
-	text-align: center;
-	background-color: white;
+    width: 100%;
+    height: 14%;
+    text-align: center;
+    background-color: white;
 }
 .cr{
-	letter-spacing: 0.05em;
-	font-weight: 900;
-	top: 100px;
+    letter-spacing: 0.05em;
+    font-weight: 900;
+    top: 100px;
 }
 .help{
     padding: 2% 0 1% 0;
 }
 
 /* PRINCIPAL */
-.principalpag{
-	background-color: #66FFB2;
-	padding: 5% 10% 5% 10%;
+#principalpag{
+    background-color: #66FFB2;
+    padding: 5% 10% 5% 10%;
 }
 .logoMain{
-	width: 100%;
-	margin: 2% 0 0.5% 0;
-	text-align: center;
+    width: 100%;
+    margin: 2% 0 0.5% 0;
+    text-align: center;
 }
 .posder{
-	margin-left: 50%;
+    margin-left: 50%;
 }
 .actived{
-	background-color: #eee;
-	border-top: 1px solid lightgrey;
-	border-right: 1px solid lightgrey;
-	border-radius: 4px;
+    background-color: #eee;
+    border-top: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-radius: 4px;
 }
 .fotoPerfil{
-	width: 170px;
-	height: 180px;
-	margin: 0 auto;
-	margin-top: 10px;
-	border: 10px solid gray;
-	border-bottom: 20px solid gray;
+    width: 170px;
+    height: 180px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 10px solid gray;
+    border-bottom: 20px solid gray;
 }
 .foto{
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 .perfilMain{
-	background-color: white;
-	border: 1px solid gray;
-	border-radius: 4px;
-	padding: 10px 10px 10px 10px;
-	text-align: center;
-	box-shadow: 2px 2px 2px gray;
-	cursor: pointer;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    box-shadow: 2px 2px 2px gray;
+    cursor: pointer;
 }
 .publicacion{
-	background-color: white;
-	padding: 10px 0 10px 0;
-	margin: 5px 0 5px 0;
-	border: 1px solid gray;
-	border-radius: 4px;
-	box-shadow: 2px 2px 2px gray;
-	cursor: pointer;
+    background-color: white;
+    padding: 10px 0 10px 0;
+    margin: 5px 0 5px 0;
+    border: 1px solid gray;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px gray;
+    cursor: pointer;
 }
 .publicacion>span{
-	color: black;
-	font-size: 14px;
-	text-shadow: none;
+    color: black;
+    font-size: 14px;
+    text-shadow: none;
 }
 .publicacion .nick{
-	color: #00994C;
-	font-size: 12px;
-	font-weight: 700;
-	text-shadow: none;
-	margin-left: 5px;
+    color: #00994C;
+    font-size: 12px;
+    font-weight: 700;
+    text-shadow: none;
+    margin-left: 5px;
 }
 .publicacion h4{
-	font-size: 20px;
-	font-weight: 900;
-	margin-bottom: 0px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 0px;
 }
 .publicacion span{
-	color: black;
-	font-size: 14px;
-	text-shadow: none;
-	margin: 0;
+    color: black;
+    font-size: 14px;
+    text-shadow: none;
+    margin: 0;
 }
 .fotoPub{
-	width: 50px;
-	height: 50px;
-	margin: 0 10px 0 0;
-	border-radius: 4px;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px 0 0;
+    border-radius: 4px;
 }
 
+.panel-heading{
+    background-color: #337ab7;
+    border-color: #2e6da4; 
+}

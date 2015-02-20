@@ -27,7 +27,7 @@ view.prototype.printValue = function (value, valor, recortar) {
     var strResult = "";
     if (/obj_/.test(valor)) {
         if (value[valor].id > 0) {
-            strResult = '<a href="jsp#/' + valor.substring(4) + '/view/' + value[valor].id + '">' + value[valor].id + ":" + util().getForeign(value[valor]) + '</a>';
+            strResult = '<a href="control#/' + valor.substring(4) + '/view/' + value[valor].id + '">' + value[valor].id + ":" + util().getForeign(value[valor]) + '</a>';
         } else {
             strResult = '???';
         }
@@ -106,19 +106,19 @@ view.prototype.getPanel = function (titulo, contenido) {
     return '<div class="panel panel-default"><div class="panel-heading"><h1>' + titulo + '</h1></div><div class="panel-body">' + contenido + '</div></div>';
 };
 view.prototype.getEmptyForm = function () {
-    $.when(ajax().ajaxCallSync(path + '/jsp?ob=' + this.clase + '&op=form&mode=1', 'GET', '')).done(function (data) {
+    $.when(ajax().ajaxCallSync(path + '/control?ob=' + this.clase + '&op=form&mode=1', 'GET', '')).done(function (data) {
         form = data;
     });
     return form;
 };
 view.prototype.getEmptyList = function () {
-    $.when(ajax().ajaxCallSync(path + '/jsp?ob=' + this.clase + '&op=list&mode=1', 'GET', '')).done(function (data) {
+    $.when(ajax().ajaxCallSync(path + '/control?ob=' + this.clase + '&op=list&mode=1', 'GET', '')).done(function (data) {
         form = data;
     });
     return form;
 };
 view.prototype.getEmptyView = function (operacion, mode) {
-    $.when(ajax().ajaxCallSync(path + '/jsp?ob=' + this.clase + '&op=' + operacion + '&mode=' + mode, 'GET', '')).done(function (data) {
+    $.when(ajax().ajaxCallSync(path + '/control?ob=' + this.clase + '&op=' + operacion + '&mode=' + mode, 'GET', '')).done(function (data) {
         form = data;
     });
     return form;
@@ -169,7 +169,7 @@ view.prototype.getRegistersInfo = function (regs) {
 };
 view.prototype.getOrderInfo = function (objParams) {
     if (objParams['order']) {
-        strOrder = "<p><small>Contenido ordenado por " + objParams["order"] + " (" + objParams["ordervalue"] + ') <a href="jsp#/' + this.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["order", "ordervalue"])) + '" id="linkQuitarOrden">(Quitar orden)</a></small></p>';
+        strOrder = "<p><small>Contenido ordenado por " + objParams["order"] + " (" + objParams["ordervalue"] + ') <a href="control#/' + this.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["order", "ordervalue"])) + '" id="linkQuitarOrden">(Quitar orden)</a></small></p>';
     } else {
         strOrder = "<p>Contenido no ordenado</p>";
     }
@@ -178,7 +178,7 @@ view.prototype.getOrderInfo = function (objParams) {
 };
 view.prototype.getFilterInfo = function (objParams) {
     if (objParams['filter']) {
-        strFilter = "<p><small>Contenido filtrado (" + objParams ['filter'] + " " + objParams['filteroperator'] + " " + objParams['filtervalue'] + ') <a href="jsp#/' + this.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["filter", "filteroperator", "filtervalue"])) + '" id="linkQuitarFiltro">(Quitar filtro)</small></a></p>';
+        strFilter = "<p><small>Contenido filtrado (" + objParams ['filter'] + " " + objParams['filteroperator'] + " " + objParams['filtervalue'] + ') <a href="control#/' + this.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["filter", "filteroperator", "filtervalue"])) + '" id="linkQuitarFiltro">(Quitar filtro)</small></a></p>';
     } else {
         strFilter = "<p>Contenido no filtrado</p>";
     }
@@ -191,22 +191,22 @@ view.prototype.getRppLinks = function (objParams) {
         botonera += '<li class="active">';
     else
         botonera += '<li>';
-    botonera += '<a class="rpp_link" id="10" href="jsp#/' + this.clase + '/list/' + UrlFromParamsWithoutRpp + '&rpp=10">10</a></li>';
+    botonera += '<a class="rpp_link" id="10" href="control#/' + this.clase + '/list/' + UrlFromParamsWithoutRpp + '&rpp=10">10</a></li>';
     if (objParams['rpp'] == 50)
         botonera += '<li class="active">';
     else
         botonera += '<li>';
-    botonera += '<a class="rpp_link" id="50" href="jsp#/' + this.clase + '/list/' + UrlFromParamsWithoutRpp + '&rpp=50">50</a></li>';
+    botonera += '<a class="rpp_link" id="50" href="control#/' + this.clase + '/list/' + UrlFromParamsWithoutRpp + '&rpp=50">50</a></li>';
     if (objParams['rpp'] == 100)
         botonera += '<li class="active">';
     else
         botonera += '<li>';
-    botonera += '<a class="rpp_link" id="100" href="jsp#/' + this.clase + '/list/' + UrlFromParamsWithoutRpp + '&rpp=100">100</a></li>';
+    botonera += '<a class="rpp_link" id="100" href="control#/' + this.clase + '/list/' + UrlFromParamsWithoutRpp + '&rpp=100">100</a></li>';
 //    if (objParams['rpp'] == 50)
 //        botonera += '<li class="active">';
 //    else
 //        botonera += '<li>';
-//    botonera += '<a class="rpp_link" id="50" href="jsp#/' + this.clase + '/list/' + UrlFromParamsWithoutRpp + '&rpp=50">50</a></li>';
+//    botonera += '<a class="rpp_link" id="50" href="control#/' + this.clase + '/list/' + UrlFromParamsWithoutRpp + '&rpp=50">50</a></li>';
     botonera += '</ul></div>';
     return botonera;
 };
@@ -229,7 +229,7 @@ view.prototype.doResultOperationNotifyToUser = function (place, resultadoStatus,
     });
     if (mostrar && resultadoStatus == "200") {
         $('#modal01').on('hidden.bs.modal', function () {
-            window.location.href = "jsp#/" + strNombreClase + "/view/" + id;
+            window.location.href = "control#/" + strNombreClase + "/view/" + id;
         })
     } else {
         $('#modal01').on('hidden.bs.modal', function () {
@@ -265,8 +265,8 @@ view.prototype.getHeaderPageTable = function (prettyFieldNames, fieldNames, visi
                 }
                 ;
                 tabla += '<br />';
-                tabla += '<a class="orderAsc" id="' + fieldName + '" href="jsp#/' + strNombreClase + '/list/' + UrlFromParamsWithoutOrder + '&order=' + fieldName + '&ordervalue=asc"><i class="glyphicon glyphicon-arrow-up"></i></a>';
-                tabla += '<a class="orderDesc" id="' + fieldName + '" href="jsp#/' + strNombreClase + '/list/' + UrlFromParamsWithoutOrder + '&order=' + fieldName + '&ordervalue=desc"><i class="glyphicon glyphicon-arrow-down"></i></a>';
+                tabla += '<a class="orderAsc" id="' + fieldName + '" href="control#/' + strNombreClase + '/list/' + UrlFromParamsWithoutOrder + '&order=' + fieldName + '&ordervalue=asc"><i class="glyphicon glyphicon-arrow-up"></i></a>';
+                tabla += '<a class="orderDesc" id="' + fieldName + '" href="control#/' + strNombreClase + '/list/' + UrlFromParamsWithoutOrder + '&order=' + fieldName + '&ordervalue=desc"><i class="glyphicon glyphicon-arrow-down"></i></a>';
                 tabla += '</th>';
             }
         });
@@ -305,9 +305,9 @@ view.prototype.getBodyPageTable = function (page, fieldNames, visibleFields, tdb
 view.prototype.loadButtons = function (id) {
     var botonera = "";
     botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
-    botonera += '<a class="btn btn-default view" id="' + id + '"  href="jsp#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
-    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
-    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
+    botonera += '<a class="btn btn-default view" id="' + id + '"  href="control#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
+    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="control#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
+    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="control#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
     botonera += '</div></div>';
     return botonera;
 };

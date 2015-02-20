@@ -33,7 +33,7 @@ inicioRedSocialControl.prototype.duplicate = function (place, id, oModel, oView)
     $(place).append('<a class="btn btn-danger" id="btnDuplicarSi" href="#">Sí, duplicar</a>');
     $('#btnDuplicarSi').unbind('click');
     $('#btnDuplicarSi').click(function (event) {
-        resultado = oModel.duplicateOne(id);
+        resultado = oModel.publicacionesUsuario();
         oView.doResultOperationNotifyToUser(place, resultado["status"], resultado["message"], resultado["message"], false);
         return false;
     });

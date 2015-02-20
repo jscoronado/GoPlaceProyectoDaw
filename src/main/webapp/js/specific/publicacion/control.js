@@ -24,3 +24,13 @@ publicacionControl.prototype.getClassNamePublicacion = function () {
     return this.getClassName() + "Control";
 };
 var oPublicacionControl = new publicacionControl('publicacion');
+
+publicacionControl.prototype.listar = function (place, oModel, oView) {
+    var thisObject = this;
+    $(place).empty();
+    var oPublicacionModel = oModel;
+    var oPublicacionView = oView;
+    data = oPublicacionModel.setGenericOperation("getcomentarios&rpp=100","");
+    comentarios = oPublicacionView.getComentarios(data);
+    $("#principalpag").html(comentarios);
+};
