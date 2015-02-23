@@ -31,9 +31,13 @@ usuarioView.prototype.loadButtons = function (id) {
 
     var botonera = "";
     botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
-    botonera += '<a class="btn btn-default view" id="' + id + '"  href="jsp#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
-    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
-    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
+    botonera += '<a class="btn btn-default view" id="' + id + '"  href="control#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
+    
+    if (myuser == id_usuario || mylevel == 1) {
+        botonera += '<a class="btn btn-default edit" id="' + id + '"  href="control#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
+        botonera += '<a class="btn btn-default remove" id="' + id + '"  href="control#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
+    }
+    
     botonera += '</div></div>';
     return botonera;
 
@@ -137,4 +141,29 @@ usuarioView.prototype.doEventsLoading = function () {
 
 usuarioView.prototype.okValidation = function (f) {
     $('#usuarioForm').on('success.form.bv', f);
+};
+
+usuarioView.prototype.doResultOperationNotifyToUser = function (place, resultadoStatus, resultadoMessage, id, mostrar, id_usuario_2) {
+    var strNombreClase = this.clase;
+    if (resultadoStatus == "200") {
+        mensaje = "<h3>La operacion se ha ejecutado con éxito</h3>";
+    } else {
+        mensaje = "<h3>ERROR</h3>";
+        resultadoMessage = "Error, el usuario con ID = " + id_usuario_2 + " usuario ya es tu amigo.";
+    }
+    mensaje += "<h5>Código: " + resultadoStatus + "</h5><h5>" + resultadoMessage + "</h5>";
+    $(place).append(this.getEmptyModal());
+    util().loadForm('#modal01', this.getFormHeader('Respuesta del servidor'), mensaje, this.getFormFooter(), true);
+    $('#modal01').css({
+        'right': '20px',
+        'left': '20px',
+        'width': 'auto',
+        'margin': '10px',
+        'display': 'block'
+    });
+
+    $('#modal01').on('hidden.bs.modal', function () {
+        location.reload();
+    })
+    ;
 };

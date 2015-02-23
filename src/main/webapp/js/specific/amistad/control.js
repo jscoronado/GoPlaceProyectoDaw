@@ -16,76 +16,38 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-var usuarioControl = function (strClase) {
+var amistadControl = function (strClase) {
     this.clase = strClase;
 };
-usuarioControl.prototype = new control('usuario');
-usuarioControl.prototype.getClassNameUsuario = function () {
+
+amistadControl.prototype = new control('amistad');
+amistadControl.prototype.getClassNameAmistad = function () {
     return this.getClassName() + "Control";
 };
-var oUsuarioControl = new usuarioControl('usuario');
+var oAmistadControl = new amistadControl('amistad');
 
-usuarioControl.prototype.view = function (place, id, oModel, oView) {
-    $(place).empty();
-    var oDocumentoModel = oModel;
-    oDocumentoModel.loadAggregateViewOne(id);
-    $(place).append(oView.getPanel("Perfil" /*+ "de " + this.clase*/, oView.getObjectTable(oDocumentoModel.getCachedPrettyFieldNames(), oDocumentoModel.getCachedOne(), oDocumentoModel.getCachedFieldNames())));
-    
-    var jsonamigo = oUsuarioModel.existeAmigo(id);
-    var amigo = jsonamigo.data;
-    
-    if (myuser == id) {
-        $(place).append('<a class="btn btn-primary" href="control#/usuario/edit/' + id + '">Editar</a>');
-        $(place).append('<a class="btn btn-primary" href="control#/usuario/remove/' + id + '">Borrar</a><br /><br />');
-    } else {
-        if(!amigo){
-            $(place).append('<a class="btn btn-primary" id=\"addfriend\">Añadir amigo</a>');
-        } else {
-            $(place).append('<a class="btn btn-danger" id=\"removefriend\">Eliminar amigo</a>');
-        }        
-    }
-    
-    $(place).append('<a class="btn btn-primary" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + id + '">Ver amigos</a><br /><br />');
-    
-    $('#addfriend').click(function () {
-        resultado = oUsuarioModel.agregarAmigo(id);
-        oUsuarioView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha añadido el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
-        return false;
-    });
-    
-    $('#removefriend').click(function () {
-        resultado = oUsuarioModel.removeAmigo(id);
-        oUsuarioView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha eliminado el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
-        return false;
-    });
-};
-
-usuarioControl.prototype.list = function (place, objParams, callback, oModel, oView) {
+amistadControl.prototype.list = function (place, objParams, callback, oModel, oView) {
     var thisObject = this;
     objParams = param().validateUrlObjectParameters(objParams);
-    var id_usuario = objParams.systemfiltervalue;
-    var hola = objParams;
-    //var prueba = oRedsocialperfilModel.getOneUser();
-    this.view(place, id_usuario, oUsuarioModel, oUsuarioView);
     //get all data from server in one http call and store it in cache
     var oDocumentoModel = oModel;
     oDocumentoModel.loadAggregateViewSome(objParams);
     //get html template from server and show it
     if (callback) {
-        $(place).append(oView.getSpinner()).html(oView.getEmptyList());
+        $(place).empty().append(oView.getSpinner()).html(oView.getEmptyList());
     } else {
-        $(place).append(oView.getPanel("Listado de " + oModel.getClassName(), oView.getEmptyList()));
+        $(place).empty().append(oView.getSpinner()).html(oView.getPanel("Listado de " + oModel.getClassName(), oView.getEmptyList()));
     }
     //show page links pad
     var strUrlFromParamsWithoutPage = param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["page"]));
-    var url = 'control#/' + this.clase + '/list/' + strUrlFromParamsWithoutPage;
+    var url = 'jsp#/' + this.clase + '/list/' + strUrlFromParamsWithoutPage;
 
     //visible fields select population, setting & event
     $('#selectVisibleFields').empty()
     oView.populateSelectVisibleFieldsBox($('#selectVisibleFields'), oDocumentoModel.getCachedCountFields());
     $('#selectVisibleFields').unbind('change');
     $("#selectVisibleFields").change(function () {
-        window.location.href = "control#/" + thisObject.clase + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+        window.location.href = "jsp#/" + thisObject.clase + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
         return false;
     });
     //show the table
@@ -119,7 +81,7 @@ usuarioControl.prototype.list = function (place, objParams, callback, oModel, oV
                 botonera += '</div></div>';
                 return botonera;
             } else {
-                return oView.loadButtons(id, page[id_elemento]["id_usuario"]);
+                return oView.loadButtons(id, page[id_elemento]["id_usuario_1"]);
             }
             //mejor pasar documento como parametro y crear un repo global de código personalizado
         });
@@ -137,13 +99,13 @@ usuarioControl.prototype.list = function (place, objParams, callback, oModel, oV
         filter = $("#selectFilter option:selected").val();
         filteroperator = $("#selectFilteroperator option:selected").val();
         filtervalue = $("#inputFiltervalue").val();
-        window.location.href = 'control#/' + thisObject.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
+        window.location.href = 'jsp#/' + thisObject.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
         return false;
     });
 
     if (objParams["systemfilter"]) {
-        //$('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
-        $('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
+        //$('#newButton').prop("href", 'jsp#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
+        $('#newButton').prop("href", 'jsp#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
     }
 
 

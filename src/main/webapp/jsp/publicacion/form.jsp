@@ -24,9 +24,15 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label"  for="contenido">Contenido:</label>
+        <label class="col-sm-2 control-label"  for="titulo">Titulo:</label>
         <div class="col-sm-6">
-            <input type="text" id="contenido" class="form-control"  name="contenido" size="15" placeholder="contenido" />
+            <input type="text" id="titulo" class="form-control"  name="titulo" size="15" placeholder="Inserta un Titulo" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"  for="descripcion">Descripcion:</label>
+        <div class="col-sm-6">
+            <input type="text" id="descripcion" class="form-control"  name="descripcion" size="15" placeholder="Inserta una Descripcion" />
         </div>
     </div>
     <div class="form-group">
@@ -38,6 +44,26 @@
             <a class="btn btn-primary btn-sm" id="obj_usuario_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
         </div>        
         <label class="col-sm-7" for="obj_usuario_desc" id="obj_usuario_desc"></label>                     
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="obj_ciudad_id">Ciudad: </label> 
+        <div class="col-sm-2">              
+            <input readonly="true"  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" />  
+        </div>
+        <div class="col-sm-1">              
+            <a class="btn btn-primary btn-sm" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
+        </div>        
+        <label class="col-sm-7" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="obj_tipopublicacion_id">Tipo Publicacion: </label> 
+        <div class="col-sm-2">              
+            <input readonly="true"  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" />  
+        </div>
+        <div class="col-sm-1">              
+            <a class="btn btn-primary btn-sm" id="obj_tipopublicacion_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
+        </div>        
+        <label class="col-sm-7" for="obj_tipopublicacion_desc" id="obj_tipopublicacion_desc"></label>                     
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -90,10 +116,36 @@
                                 }
                             }
                         }
+                        id_ciudad: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe elegir un ciudad'
+                                },
+                                integer: {
+                                    message: 'El identificador de ciudad debe ser un entero'
+                                }
+                            }
+                        }
+                        id_tipopublicacion: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe elegir un tipopublicacion'
+                                },
+                                integer: {
+                                    message: 'El identificador de tipopublicacion debe ser un entero'
+                                }
+                            }
+                        }
                     }
                 })
                 .on('change', '[name="id_usuario"]', function () {
                     $('#publicacionForm').bootstrapValidator('revalidateField', 'id_usuario');
+                });
+                .on('change', '[name="id_ciudad"]', function () {
+                    $('#publicacionForm').bootstrapValidator('revalidateField', 'id_ciudad');
+                });
+                .on('change', '[name="id_tipopublicacion"]', function () {
+                    $('#publicacionForm').bootstrapValidator('revalidateField', 'id_tipopublicacion');
                 });
     });
 </script>

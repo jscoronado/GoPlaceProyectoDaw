@@ -18,7 +18,8 @@
 <%@page import="com.goplace.bean.generic.specific.implementation.UsuarioBeanGenSpImpl"%>
 <%UsuarioBeanGenSpImpl user = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");%>
 <%
-        int id = user.getId();
+    int id = user.getId();
+    String genero = user.getGenero();
 %>
 
 <form class="form-horizontal" role="form" action="#" id="usuarioForm" name="formulario">
@@ -29,29 +30,63 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label"  for="login">Nombre de Usuario:</label>
+        <label class="col-sm-2 control-label"  for="nombre">Nombre:</label>
         <div class="col-sm-6">
-            <input type="text" id="login" class="form-control"  name="login" size="15" placeholder="Pon aquí tu nombre de usuario" />
+            <input type="text" id="nombre" class="form-control"  name="nombre" size="15" placeholder="Pon aquí tu nombre" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"  for="apellidos">Apellidos:</label>
+        <div class="col-sm-6">
+            <input type="text" id="apellidos" class="form-control"  name="apellidos" size="15" placeholder="Pon aquí tus apellidos" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"  for="correo">Correo:</label>
+        <div class="col-sm-6">
+            <input type="text" id="correo" class="form-control"  name="correo" size="15" placeholder="Pon aquí tu correo" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"  for="login">Login:</label>
+        <div class="col-sm-6">
+            <input type="text" id="login" class="form-control"  name="login" size="15" placeholder="Pon aquí tu login" />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"  for="password">Contraseña:</label>
         <div class="col-sm-6">
-            <input type="text" id="password" class="form-control"  name="password" size="15" placeholder="Pon aquí tu contraseña" />
+            <input type="password" id="password" class="form-control"  name="password" size="15" placeholder="Pon aquí tu contraseña" />
         </div>
     </div>
-    
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="obj_estado_id">Estado: </label> 
+        <label class="col-sm-2 control-label" for="fecha_group">Fecha Nacimiento:</label> 
+        <div class="col-sm-3">           
+            <div class='input-group date' id='fecha_group'>
+                <input type='text' class="form-control" id='fecha' name="fecha_group" placeholder="Fecha de nacimiento" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="obj_ciudad_id">Ciudad: </label> 
         <div class="col-sm-2">              
-            <input readonly="true"  class="form-control"  id="obj_estado_id" class="input-mini" name="id_estado" type="text" size="5" maxlength="5" />  
+            <input readonly="true"  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" />  
         </div>
         <div class="col-sm-1">              
-            <a class="btn btn-primary btn-sm" id="obj_estado_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
+            <a class="btn btn-primary btn-sm" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
         </div>        
-        <label class="col-sm-7" for="obj_estado_desc" id="obj_estado_desc"></label>                     
+        <label class="col-sm-7" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
     </div>
-
+    <input type="hidden" name="genero" value="<%=genero%>" />
+    <div class="form-group">
+        <label class="col-sm-2 control-label"  for="estado">Estado:</label>
+        <div class="col-sm-6">
+            <input type="text" id="estado" class="form-control"  name="estado" size="15" placeholder="Pon aquí tu estado" />
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-sm-2 control-label" for="obj_tipousuario_id">Tipo de usuario: </label> 
         <div class="col-sm-2">              
@@ -62,27 +97,6 @@
         </div>        
         <label class="col-sm-7" for="obj_usuario_desc" id="obj_tipousuario_desc"></label>                     
     </div>
-
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="ciudad">Ciudad:</label>
-        <div class="col-sm-10">
-            <input type="text"  class="form-control"  id="ciudad" name="ciudad" size="15" placeholder="¿Dónde vives?" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="firma">Firma:</label>
-        <div class="col-sm-10">
-            <input type="text"  class="form-control"  id="firma" name="firma" size="15" placeholder="Ponga una firma" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="skin">Skin:</label>
-        <div class="col-sm-10">
-            <input type="text"  class="form-control"  id="skin" name="skin" size="15" placeholder="Plantilla" />
-        </div>
-    </div>    
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -97,21 +111,11 @@
     </div>
 
 </form>
-        
+
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
-        $('#alta_group').datetimepicker({
-            pickTime: false,
-            language: 'es',
-            showToday: true
-        });
-        $('#cambio_group').datetimepicker({
-            pickTime: false,
-            language: 'es',
-            showToday: true
-        });
+    $(document).ready(function () {
         //http://jqueryvalidation.org/documentation/
         $('#usuarioForm')
                 .bootstrapValidator({
@@ -122,28 +126,53 @@
                         validating: 'glyphicon glyphicon-refresh'
                     },
                     fields: {
-                        titulo: {
+                        nombre: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Debe introducir un título'
+                                    message: 'Debe introducir un nombre'
                                 },
                                 stringLength: {
                                     max: 255,
-                                    message: 'El título debe tener como máximo 255 caracteres'
+                                    message: 'El nombre debe tener como máximo 255 caracteres'
                                 }
                             }
                         },
-                        contenido: {
+                        apellidos: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Debe introducir contenido'
+                                    message: 'Debe introducir apellidos'
                                 }
                             }
                         },
-                        alta_group: {
+                        correo: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Debe introducir una fecha de alta'
+                                    message: 'Debe introducir un correo'
+                                }
+                            }
+                        },
+                        login: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe introducir un login'
+                                }
+                            }
+                        },
+                        password: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe introducir una contraseña'
+                                },
+                                stringLength: {
+                                    min: 4,
+                                    message: 'La contraseña debe tener como minimo 4 caracteres'
+                                }
+                            }
+                        },
+                        fecha_group: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe introducir una fecha de nacimiento'
                                 },
                                 date: {
                                     format: 'DD/MM/YYYY',
@@ -151,40 +180,24 @@
                                 }
                             }
                         },
-                        cambio_group: {
+                        id_ciudad: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Debe introducir una fecha de cambio'
+                                    message: 'Debe elegir una ciudad'
                                 },
-                                date: {
-                                    format: 'DD/MM/YYYY',
-                                    message: 'La fecha de cambio no tiene formato DD/MM/YYYY'
+                                integer: {
+                                    message: 'El identificador de ciudad debe ser un entero'
                                 }
                             }
                         },
-                        hits: {
+                        estado: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Debe introducir un número de hits'
+                                    message: 'Debe introducir un estado'
                                 },
-                                integer: {
-                                    message: 'El valor de hits debe ser un entero'
-                                },
-                                between: {
-                                    min: -0,
-                                    max: 99999999,
-                                    message: 'El número de hits debe ser un entero entre 0 y 99999999'
-                                }
-                            }
-
-                        },
-                        id_usuario: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Debe elegir un usuario'
-                                },
-                                integer: {
-                                    message: 'El identificador de usuario debe ser un entero'
+                                stringLength: {
+                                    max: 140,
+                                    message: 'El estado debe tener como máximo 140 caracteres'
                                 }
                             }
                         },
@@ -197,40 +210,23 @@
                                     message: 'El identificador de tipo de usuario debe ser un entero'
                                 }
                             }
-                        },
-                        etiquetas: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Debe introducir una etiqueta'
-                                },
-                                stringLength: {
-                                    max: 100,
-                                    message: 'La longitud de las etiquetas debe ser de 100 caracteres como mucho'
-                                }
-                            }
                         }
-
                     }
                 })
-                .on('change', '[name="id_usuario"]', function() {
-                    $('#usuarioForm').bootstrapValidator('revalidateField', 'id_usuario');
+                .on('change', '[name="id_ciudad"]', function () {
+                    $('#usuarioForm').bootstrapValidator('revalidateField', 'id_ciudad');
                 })
 
-                .on('change', '[name="id_tipousuario"]', function() {
+                .on('change', '[name="id_tipousuario"]', function () {
                     $('#usuarioForm').bootstrapValidator('revalidateField', 'id_tipousuario');
                 })
                 ;
-        $('#alta_group').on('dp.change dp.show', function(e) {
+        $('#fecha_group').on('dp.change dp.show', function (e) {
 // Revalidate the date when user change it
-            $('#usuarioForm').bootstrapValidator('revalidateField', 'alta_group');
+            $('#usuarioForm').bootstrapValidator('revalidateField', 'fecha_group');
         });
-        $('#cambio_group').on('dp.change dp.show', function(e) {
-// Revalidate the date when user change it
-            $('#usuarioForm').bootstrapValidator('revalidateField', 'cambio_group');
-        });
-    });       
+    });
 
-    
-    
+
+
 </script>
-     

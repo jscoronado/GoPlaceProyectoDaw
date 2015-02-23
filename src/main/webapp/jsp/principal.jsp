@@ -30,9 +30,9 @@
         <title>GoPlace</title>
         <meta name="author" content="Jose Miguel Coronado Aroca">
         <meta name="description" content="Web Developer">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/effects.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles.css">
+        <link rel="stylesheet" href="./css/effects.css">
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/styles.css">
         <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:200|Oswald' rel='stylesheet' type='text/css'>
     </head>
 
@@ -41,7 +41,7 @@
         <div class="pagePrincipal">
             <header class="title row">
                 <div class="col-md-10 col-sm-10 logoMain">
-                    <a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/images/logo.png" alt="Logo GoPlace"></a>
+                    <a href="#/publicacion/inicio"><img src="./images/logo.png" alt="Logo GoPlace"></a>
                 </div>
                 <ul class="nav nav-tabs navbar-left">
                     <li class="actived"><a href="#/publicacion/inicio" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
@@ -91,17 +91,17 @@
         <script type="text/javascript"  src="./js/vendor/language/es_ES.js"></script>
         <script type="text/javascript"  src="./js/vendor/creole-parser.js"></script>            
 
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script type="text/javascript" src="./js/vendor/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="./js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
-        <script src="<%=request.getContextPath()%>/js/generic/view.js" charset="UTF-8"></script>    
-        <script src="<%=request.getContextPath()%>/js/generic/param.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/generic/ajax.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/generic/util.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/generic/model.js" charset="UTF-8"></script>        
-        <script src="<%=request.getContextPath()%>/js/generic/control.js" charset="UTF-8"></script> 
-        <script src="<%=request.getContextPath()%>/js/generic/initialization.js" charset="UTF-8"></script>
+        <script src="./js/generic/view.js" charset="UTF-8"></script>    
+        <script src="./js/generic/param.js" charset="UTF-8"></script>
+        <script src="./js/generic/ajax.js" charset="UTF-8"></script>
+        <script src="./js/generic/util.js" charset="UTF-8"></script>
+        <script src="./js/generic/model.js" charset="UTF-8"></script>        
+        <script src="./js/generic/control.js" charset="UTF-8"></script> 
+        <script src="./js/generic/initialization.js" charset="UTF-8"></script>
 
         <script type="text/javascript">
                 var path = '<%=request.getContextPath()%>';
@@ -109,22 +109,31 @@
                 var mylevel = <%=id_tipousuario%>;
         </script>
 
-        <script src="<%=request.getContextPath()%>/js/specific/inicioRedSocial/model.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/specific/inicioRedSocial/control.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/specific/inicioRedSocial/routes.js" charset="UTF-8"></script>
+        <script src="./js/specific/inicioRedSocial/model.js" charset="UTF-8"></script>
+        <script src="./js/specific/inicioRedSocial/control.js" charset="UTF-8"></script>
+        <script src="./js/specific/inicioRedSocial/routes.js" charset="UTF-8"></script>
         <!-- view.js de inicioRedSocial -->
 
-        <script src="<%=request.getContextPath()%>/js/specific/publicacion/view.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/specific/publicacion/model.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/specific/publicacion/control.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/specific/publicacion/routes.js" charset="UTF-8"></script>
+        <script src="./js/specific/publicacion/view.js" charset="UTF-8"></script>
+        <script src="./js/specific/publicacion/model.js" charset="UTF-8"></script>
+        <script src="./js/specific/publicacion/control.js" charset="UTF-8"></script>
+        <script src="./js/specific/publicacion/routes.js" charset="UTF-8"></script>
 
-        <script src="<%=request.getContextPath()%>/js/specific/usuario/view.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/specific/usuario/model.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/specific/usuario/control.js" charset="UTF-8"></script>
-        <script src="<%=request.getContextPath()%>/js/specific/usuario/routes.js" charset="UTF-8"></script>
+        <script src="./js/specific/usuario/view.js" charset="UTF-8"></script>
+        <script src="./js/specific/usuario/model.js" charset="UTF-8"></script>
+        <script src="./js/specific/usuario/control.js" charset="UTF-8"></script>
+        <script src="./js/specific/usuario/routes.js" charset="UTF-8"></script>
 
-
+        <script src="./js/specific/amistad/view.js" charset="UTF-8"></script>
+        <script src="./js/specific/amistad/model.js" charset="UTF-8"></script>
+        <script src="./js/specific/amistad/control.js" charset="UTF-8"></script>
+        <script src="./js/specific/amistad/routes.js" charset="UTF-8"></script>
+        
+        <script src="./js/specific/tipousuario/view.js" charset="UTF-8"></script>
+        <script src="./js/specific/tipousuario/model.js" charset="UTF-8"></script>
+        <script src="./js/specific/tipousuario/control.js" charset="UTF-8"></script>
+        <script src="./js/specific/tipousuario/routes.js" charset="UTF-8"></script>
+        
         <script type="text/javascript">
 
                 $(document).ready(function () {
@@ -137,6 +146,8 @@
                     inicializacion();
                     fPublicacionRoutes();
                     fUsuarioRoutes();
+                    fAmistadRoutes();
+                    fTipousuarioRoutes();
                     fInicioRedSocialRoutes();
                     Path.listen();
 

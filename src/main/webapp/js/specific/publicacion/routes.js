@@ -45,19 +45,19 @@ function fPublicacionRoutes() {
     });
 
     Path.map("#/publicacion/view/:id").to(function () {
-        $('#indexContenidoJsp').spinner();
+        //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.view($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView);
-        $('#indexContenidoJsp').empty();
+        oPublicacionControl.view($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
+        //$('#indexContenidoJsp').empty();
 
         return false;
     });
 
     Path.map("#/publicacion/edit/:id").to(function () {
-        $('#indexContenidoJsp').spinner();
+        //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.edit($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView);
-        $('#indexContenidoJsp').empty();
+        oPublicacionControl.edit($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
+        //$('#indexContenidoJsp').empty();
     });
     Path.map("#/publicacion/new").to(function () {
         //$('#indexContenidoJsp').spinner();
@@ -67,18 +67,18 @@ function fPublicacionRoutes() {
         return false;
     });
     Path.map("#/publicacion/new/:url").to(function () {
-        $('#indexContenidoJsp').spinner();
+        //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.new($('#indexContenido'), paramsObject, oPublicacionModel, oPublicacionView);
-        $('#indexContenidoJsp').empty();
+        oPublicacionControl.new($('#principalpag'), paramsObject, oPublicacionModel, oPublicacionView);
+        //$('#indexContenidoJsp').empty();
         return false;
     });
 
     Path.map("#/publicacion/remove/:id").to(function () {
-        $('#indexContenidoJsp').spinner();
+        //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.remove($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView);
-        $('#indexContenidoJsp').empty();
+        oPublicacionControl.remove($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
+        //$('#indexContenidoJsp').empty();
         return false;
     });
     Path.map("#/publicacion/inicio").to(function () {

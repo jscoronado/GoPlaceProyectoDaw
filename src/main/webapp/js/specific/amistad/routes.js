@@ -17,69 +17,68 @@
  */
 
 
-function fUsuarioRoutes() {
+function fAmistadRoutes() {
 
-//    Path.map("#/usuario").to(function () {
+//    Path.map("#/amistad").to(function () {
 //        $('#indexContenidoJsp').spinner();
-//        control('usuario').list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null);
-//        //usuarioControl.modalListEventsLoading(usuarioObject, usuarioView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
+//        control('amistad').list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null);
+//        //amistadControl.modalListEventsLoading(amistadObject, amistadView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
 //        $('#indexContenidoJsp').empty();
 //        return false;
 //    });
 
-    Path.map("#/usuario").to(function () {
+
+    Path.map("#/amistad").to(function () {
         $('#indexContenidoJsp').spinner();
-        oUsuarioControl.list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null, oUsuarioModel, oUsuarioView);
-        //usuarioControl.modalListEventsLoading(usuarioObject, usuarioView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
+        oAmistadControl.list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null, oAmistadModel, oAmistadView);
+        //amistadControl.modalListEventsLoading(amistadObject, amistadView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
         $('#indexContenidoJsp').empty();
-        //$('#indexContenidoJsp').append(oUsuarioControl.getClassNameUsuario());
+        //$('#indexContenidoJsp').append(oAmistadControl.getClassNameAmistad());
         return false;
     });
 
-    Path.map("#/usuario/list/:url").to(function () {
+    Path.map("#/amistad/list/:url").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.list($('#principalpag'), paramsObject, null, oUsuarioModel, oUsuarioView);
+        oAmistadControl.list($('#principalpag'), paramsObject, null, oAmistadModel, oAmistadView);
         $('#indexContenidoJsp').empty();
         return false;
     });
 
-    Path.map("#/usuario/view/:id").to(function () {
-        //$('#indexContenidoJsp').spinner();
+    Path.map("#/amistad/view/:id").to(function () {
+        $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.view($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-        //$('#indexContenidoJsp').empty();
+        oAmistadControl.view($('#principalpag'), paramsObject['id'], oAmistadModel, oAmistadView);
+        $('#indexContenidoJsp').empty();
 
         return false;
     });
 
-    Path.map("#/usuario/edit/:id").to(function () {
+    Path.map("#/amistad/edit/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+        oAmistadControl.edit($('#principalpag'), paramsObject['id'], oAmistadModel, oAmistadView);
         $('#indexContenidoJsp').empty();
     });
-
-    Path.map("#/usuario/new").to(function () {
+    Path.map("#/amistad/new").to(function () {
         $('#indexContenidoJsp').spinner();
         //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.new($('#indexContenido'), null, oUsuarioModel, oUsuarioView);
+        oAmistadControl.new($('#principalpag'), null, oAmistadModel, oAmistadView);
+        $('#indexContenidoJsp').empty();
+        return false;
+    });
+    Path.map("#/amistad/new/:url").to(function () {
+        $('#indexContenidoJsp').spinner();
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+        oAmistadControl.new($('#principalpag'), paramsObject, oAmistadModel, oAmistadView);
         $('#indexContenidoJsp').empty();
         return false;
     });
 
-    Path.map("#/usuario/new/:url").to(function () {
+    Path.map("#/amistad/remove/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.new($('#indexContenido'), paramsObject, oUsuarioModel, oUsuarioView);
-        $('#indexContenidoJsp').empty();
-        return false;
-    });
-
-    Path.map("#/usuario/remove/:id").to(function () {
-        $('#indexContenidoJsp').spinner();
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.remove($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+        oAmistadControl.remove($('#principalpag'), paramsObject['id'], oAmistadModel, oAmistadView);
         $('#indexContenidoJsp').empty();
         return false;
     });

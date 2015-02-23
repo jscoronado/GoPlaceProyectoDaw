@@ -41,3 +41,28 @@ usuarioModel.prototype.getCachedFieldNames = function () {
     
     return this.cFieldNames;
 };
+
+usuarioModel.prototype.agregarAmigo = function (id) {
+    $.when(ajax().ajaxCallSync('/goplace/json?ob=amistad&op=agregaramigo&id=' + id, 'GET', '')).done(function (data) {
+        feedback = data;
+    });
+    return feedback;
+};
+usuarioModel.prototype.removeAmigo = function (id) {
+    $.when(ajax().ajaxCallSync('/goplace/json?ob=amistad&op=removeamigo&id=' + id, 'GET', '')).done(function (data) {
+        feedback = data;                           
+    });
+    return feedback;
+};
+usuarioModel.prototype.existeAmigo = function (id) {
+    $.when(ajax().ajaxCallSync('/goplace/json?ob=amistad&op=existeamigo&id=' + id, 'GET', '')).done(function (data) {
+        feedback = data;                           
+    });
+    return feedback;
+};
+usuarioModel.prototype.getOne = function (id_usuario) {
+    $.when(ajax().ajaxCallSync(this.urlJson + '&op=get&id_usuario=' + id_usuario, 'GET', '')).done(function (data) {
+        one = data;
+    });
+    return one;
+};

@@ -20,6 +20,7 @@ package com.goplace.control;
 
 import com.google.gson.Gson;
 import com.goplace.bean.generic.specific.implementation.UsuarioBeanGenSpImpl;
+import com.goplace.control.operation.generic.specific.implementation.AmistadControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.CiudadControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.PublicacionControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.TipopublicacionControlOperationGenSpImpl;
@@ -35,6 +36,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.goplace.control.operation.generic.specific.implementation.TipousuarioControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.UsuarioControlOperationGenSpImpl;
+import com.goplace.control.route.generic.specific.implementation.AmistadControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.CiudadControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.PublicacionControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.TipopublicacionControlRouteGenSpImpl;
@@ -117,6 +119,11 @@ public class JsonControl extends HttpServlet {
                         CiudadControlRouteGenSpImpl oCiudadRoute = new CiudadControlRouteGenSpImpl();
                         CiudadControlOperationGenSpImpl oCiudadControlOperation = new CiudadControlOperationGenSpImpl(request);
                         jsonResult = oCiudadRoute.execute(request, oCiudadControlOperation);
+                        break;
+                    case "amistad":
+                        AmistadControlRouteGenSpImpl oAmistadRoute = new AmistadControlRouteGenSpImpl();
+                        AmistadControlOperationGenSpImpl oAmistadControlOperation = new AmistadControlOperationGenSpImpl(request);
+                        jsonResult = oAmistadRoute.execute(request, oAmistadControlOperation);
                         break;
                     default:
                         ExceptionBooster.boost(new Exception(this.getClass().getName() + ":processRequest ERROR: no such operation"));

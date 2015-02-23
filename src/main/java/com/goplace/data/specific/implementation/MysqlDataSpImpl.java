@@ -682,8 +682,8 @@ public class MysqlDataSpImpl implements DataInterface {
             comentarios = new ArrayList<>();
             int intOffset;
             oStatement = (Statement) connection.createStatement();
-            String strSQL = "SELECT distinct p.* FROM publicacion p INNER JOIN amistad a WHERE p.id_usuario = a.id_usuario2 AND a.id_usuario1 = " + id_usuario + " ORDER BY p.fechapub DESC ";
-            String strSQLcount = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario2 and a.id_usuario1 = " + id_usuario + " ";
+            String strSQL = "SELECT distinct p.* FROM publicacion p INNER JOIN amistad a WHERE p.id_usuario = a.id_usuario_2 AND a.id_usuario_1 = " + id_usuario + " ORDER BY p.fechapub DESC ";
+            String strSQLcount = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = " + id_usuario + " ";
             // select p.* from publicacion p inner join amigo a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = 2 ORDER BY `fechacreacion` DESC
             if (alFilter != null) {
                 String strSQLFilter = "";
@@ -840,7 +840,7 @@ public class MysqlDataSpImpl implements DataInterface {
         Statement oStatement = null;
         try {
             oStatement = (Statement) connection.createStatement();
-            String strSQL = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario2 and a.id_usuario1 = " + id_usuario + " ";
+            String strSQL = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = " + id_usuario + " ";
             if (alFilter != null) {
                 Iterator iterator = alFilter.iterator();
                 while (iterator.hasNext()) {

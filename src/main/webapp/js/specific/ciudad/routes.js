@@ -17,69 +17,61 @@
  */
 
 
-function fUsuarioRoutes() {
+function fCiudadRoutes() {
 
-//    Path.map("#/usuario").to(function () {
+//    Path.map("#/ciudad").to(function () {
 //        $('#indexContenidoJsp').spinner();
-//        control('usuario').list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null);
-//        //usuarioControl.modalListEventsLoading(usuarioObject, usuarioView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
+//        control('ciudad').list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null);
+//        //ciudadControl.modalListEventsLoading(ciudadObject, ciudadView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
 //        $('#indexContenidoJsp').empty();
 //        return false;
 //    });
 
-    Path.map("#/usuario").to(function () {
+    Path.map("#/ciudad").to(function () {
         $('#indexContenidoJsp').spinner();
-        oUsuarioControl.list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null, oUsuarioModel, oUsuarioView);
-        //usuarioControl.modalListEventsLoading(usuarioObject, usuarioView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
+        oCiudadControl.list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null, oCiudadModel, oCiudadView);
+        //ciudadControl.modalListEventsLoading(ciudadObject, ciudadView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
         $('#indexContenidoJsp').empty();
-        //$('#indexContenidoJsp').append(oUsuarioControl.getClassNameUsuario());
+        //$('#indexContenidoJsp').append(oCiudadControl.getClassNameCiudad());
         return false;
     });
 
-    Path.map("#/usuario/list/:url").to(function () {
+    Path.map("#/ciudad/list/:url").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.list($('#principalpag'), paramsObject, null, oUsuarioModel, oUsuarioView);
-        $('#indexContenidoJsp').empty();
-        return false;
-    });
-
-    Path.map("#/usuario/view/:id").to(function () {
-        //$('#indexContenidoJsp').spinner();
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.view($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-        //$('#indexContenidoJsp').empty();
-
-        return false;
-    });
-
-    Path.map("#/usuario/edit/:id").to(function () {
-        $('#indexContenidoJsp').spinner();
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-        $('#indexContenidoJsp').empty();
-    });
-
-    Path.map("#/usuario/new").to(function () {
-        $('#indexContenidoJsp').spinner();
-        //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.new($('#indexContenido'), null, oUsuarioModel, oUsuarioView);
+        oCiudadControl.list($('#principalpag'), paramsObject, null, oCiudadModel, oCiudadView);
         $('#indexContenidoJsp').empty();
         return false;
     });
 
-    Path.map("#/usuario/new/:url").to(function () {
+    Path.map("#/ciudad/view/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.new($('#indexContenido'), paramsObject, oUsuarioModel, oUsuarioView);
+        oCiudadControl.view($('#principalpag'), paramsObject['id'], oCiudadModel, oCiudadView);
+        $('#indexContenidoJsp').empty();
+
+        return false;
+    });
+
+    Path.map("#/ciudad/edit/:id").to(function () {
+        $('#indexContenidoJsp').spinner();
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+        oCiudadControl.edit($('#principalpag'), paramsObject['id'], oCiudadModel, oCiudadView);
+        $('#indexContenidoJsp').empty();
+    });
+
+    Path.map("#/ciudad/new").to(function () {
+        $('#indexContenidoJsp').spinner();
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+        oCiudadControl.new($('#principalpag'), oCiudadModel, oCiudadView);
         $('#indexContenidoJsp').empty();
         return false;
     });
 
-    Path.map("#/usuario/remove/:id").to(function () {
+    Path.map("#/ciudad/remove/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.remove($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+        oCiudadControl.remove($('#principalpag'), paramsObject['id'], oCiudadModel, oCiudadView);
         $('#indexContenidoJsp').empty();
         return false;
     });
