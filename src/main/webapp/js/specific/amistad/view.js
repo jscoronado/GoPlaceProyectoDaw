@@ -73,8 +73,8 @@ amistadView.prototype.getFormValues = function () {
 
 amistadView.prototype.doEventsLoading = function () {
     var thisObject = this;
-    $('#amistadForm #obj_usuario_button').unbind('click');
-    $("#amistadForm #obj_usuario_button").click(function () {
+    $('#amistadForm #obj_usuario_1_button').unbind('click');
+    $("#amistadForm #obj_usuario_1_button").click(function () {
         var oControl = oUsuarioControl;  //para probar dejar amistad
         //vista('usuario').cargaModalBuscarClaveAjena('#modal01', "amistad");
 
@@ -85,29 +85,30 @@ amistadView.prototype.doEventsLoading = function () {
 
         oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oUsuarioModel, oUsuarioView);
         oControl.modalListEventsLoading('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), function (id) {
-            $('#obj_usuario_id').val(id).change();
-            $('#obj_usuario_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
+            $('#obj_usuario_1_id').val(id).change();
+            $('#obj_usuario_1_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
         },oUsuarioModel, oUsuarioView);
         return false;
     });
-    $('#amistadForm #obj_amistad_button').unbind('click');
-    $("#amistadForm #obj_amistad_button").click(function () {
-        var oControl = oAmistadControl;
+    $('#amistadForm #obj_usuario_2_button').unbind('click');
+    $("#amistadForm #obj_usuario_2_button").click(function () {
+        var oControl = oUsuarioControl;  //para probar dejar amistad
+        //vista('usuario').cargaModalBuscarClaveAjena('#modal01', "amistad");
 
         $("#amistadForm").append(thisObject.getEmptyModal());
-        util().loadForm('#modal01', thisObject.getFormHeader('Elección de  de amistad'), "", thisObject.getFormFooter(), true);
+        util().loadForm('#modal01', thisObject.getFormHeader('Elección de usuario'), "", thisObject.getFormFooter(), true);
 
         $('#amistadForm').append(thisObject.getEmptyModal());
 
-        oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oAmistadModel, oAmistadView);
+        oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oUsuarioModel, oUsuarioView);
         oControl.modalListEventsLoading('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), function (id) {
-            $('#obj_amistad_id').val(id).change();
-            $('#obj_amistad_desc').text(decodeURIComponent(oAmistadModel.getMeAsAForeignKey(id)));
+            $('#obj_usuario_2_id').val(id).change();
+            $('#obj_usuario_2_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
-        },oAmistadModel, oAmistadView);
+        },oUsuarioModel, oUsuarioView);
         return false;
     });
     $('#contenido_button').unbind('click');
@@ -191,13 +192,13 @@ amistadView.prototype.printValue = function (value, valor, recortar) {
         if (value[valor].id > 0) {
             val = valor.substring(4);
             val = val.substring(0, val.length-2);
-            strResult = '<a href="jsp#/' + 'redsocialperfil' + '/list/systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue=' + value[valor].id + '&page=1&id=1&rpp=10&vf=4&order=fechacreacion&ordervalue=desc' + '">' + value[valor].login.charAt(0).toUpperCase() + value[valor].login.slice(1)+ '</a>';
+            strResult = '<a href="control#/' + 'usuario' + '/list/systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue=' + value[valor].id + '&page=1&id=1&rpp=10&vf=4&order=fechacreacion&ordervalue=desc' + '">' + value[valor].login.charAt(0).toUpperCase() + value[valor].login.slice(1)+ '</a>';
         } else {
             strResult = '???';
         }
     } else if (/obj_/.test(valor)) {
         if (value[valor].id > 0) {
-            strResult = '<a href="jsp#/' + valor.substring(4) + '/view/' + value[valor].id + '">' + value[valor].id + ":" + util().getForeign(value[valor]) + '</a>';
+            strResult = '<a href="control#/' + valor.substring(4) + '/view/' + value[valor].id + '">' + value[valor].id + ":" + util().getForeign(value[valor]) + '</a>';
             
         } else {
             strResult = '???';

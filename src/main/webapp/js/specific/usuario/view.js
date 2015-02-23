@@ -75,9 +75,9 @@ usuarioView.prototype.getFormValues = function () {
 
 usuarioView.prototype.doEventsLoading = function () {
     var thisObject = this;
-    $('#usuarioForm #obj_estado_button').unbind('click');
-    $("#usuarioForm #obj_estado_button").click(function () {
-        var oControl = oEstadoControl;  //para probar dejar usuario
+    $('#usuarioForm #obj_ciudad_button').unbind('click');
+    $("#usuarioForm #obj_ciudad_button").click(function () {
+        var oControl = oCiudadControl;  //para probar dejar usuario
         //vista('usuario').cargaModalBuscarClaveAjena('#modal01', "usuario");
 
         $("#usuarioForm").append(thisObject.getEmptyModal());
@@ -85,13 +85,13 @@ usuarioView.prototype.doEventsLoading = function () {
 
         $('#usuarioForm').append(thisObject.getEmptyModal());
 
-        oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oEstadoModel, oEstadoView);
+        oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oCiudadModel, oCiudadView);
         oControl.modalListEventsLoading('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), function (id) {
-            $('#obj_estado_id').val(id).change();
-            $('#obj_estado_desc').text(decodeURIComponent(oEstadoModel.getMeAsAForeignKey(id)));
+            $('#obj_ciudad_id').val(id).change();
+            $('#obj_ciudad_desc').text(decodeURIComponent(oCiudadModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
-        },oEstadoModel, oEstadoView);
+        },oCiudadModel, oCiudadView);
         return false;
     });
     $('#usuarioForm #obj_tipousuario_button').unbind('click');

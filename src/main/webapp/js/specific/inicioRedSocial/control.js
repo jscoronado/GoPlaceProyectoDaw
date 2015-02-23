@@ -54,14 +54,14 @@ inicioRedSocialControl.prototype.list = function (place, objParams, callback, oM
     }
     //show page links pad
     var strUrlFromParamsWithoutPage = param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["page"]));
-    var url = 'jsp#/' + this.clase + '/list/' + strUrlFromParamsWithoutPage;
+    var url = 'control#/' + this.clase + '/list/' + strUrlFromParamsWithoutPage;
 
     //visible fields select population, setting & event
     $('#selectVisibleFields').empty()
     oView.populateSelectVisibleFieldsBox($('#selectVisibleFields'), oDocumentoModel.getCachedCountFields());
     $('#selectVisibleFields').unbind('change');
     $("#selectVisibleFields").change(function () {
-        window.location.href = "jsp#/" + thisObject.clase + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+        window.location.href = "control#/" + thisObject.clase + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
         return false;
     });
     //show the table
@@ -113,13 +113,13 @@ inicioRedSocialControl.prototype.list = function (place, objParams, callback, oM
         filter = $("#selectFilter option:selected").val();
         filteroperator = $("#selectFilteroperator option:selected").val();
         filtervalue = $("#inputFiltervalue").val();
-        window.location.href = 'jsp#/' + thisObject.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
+        window.location.href = 'control#/' + thisObject.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
         return false;
     });
 
     if (objParams["systemfilter"]) {
-        //$('#newButton').prop("href", 'jsp#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
-        $('#newButton').prop("href", 'jsp#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
+        //$('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
+        $('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
     }
 
 

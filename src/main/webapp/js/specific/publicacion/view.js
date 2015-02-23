@@ -31,9 +31,9 @@ publicacionView.prototype.loadButtons = function (id) {
 
     var botonera = "";
     botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
-    botonera += '<a class="btn btn-default view" id="' + id + '"  href="jsp#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
-    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="jsp#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
-    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="jsp#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
+    botonera += '<a class="btn btn-default view" id="' + id + '"  href="control#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
+    botonera += '<a class="btn btn-default edit" id="' + id + '"  href="control#/' + this.clase + '/edit/' + id + '"><i class="glyphicon glyphicon-pencil"></i></a>';
+    botonera += '<a class="btn btn-default remove" id="' + id + '"  href="control#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
     botonera += '</div></div>';
     return botonera;
 
@@ -74,7 +74,7 @@ publicacionView.prototype.doEventsLoading = function () {
     $('#publicacionForm #obj_usuario_button').unbind('click');
     $("#publicacionForm #obj_usuario_button").click(function () {
         var oControl = oUsuarioControl;  //para probar dejar publicacion
-        //vista('usuario').cargaModalBuscarClaveAjena('#modal01', "publicacion");
+        //vista('publicacion').cargaModalBuscarClaveAjena('#modal01', "publicacion");
 
         $("#publicacionForm").append(thisObject.getEmptyModal());
         util().loadForm('#modal01', thisObject.getFormHeader('Elección de usuario'), "", thisObject.getFormFooter(), true);
@@ -87,7 +87,47 @@ publicacionView.prototype.doEventsLoading = function () {
             $('#obj_usuario_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
-        }, oUsuarioModel, oUsuarioView);
+        },oUsuarioModel, oUsuarioView);
+        return false;
+    });
+    
+    $('#publicacionForm #obj_ciudad_button').unbind('click');
+    $("#publicacionForm #obj_ciudad_button").click(function () {
+        var oControl = oCiudadControl;  //para probar dejar publicacion
+        //vista('publicacion').cargaModalBuscarClaveAjena('#modal01', "publicacion");
+
+        $("#publicacionForm").append(thisObject.getEmptyModal());
+        util().loadForm('#modal01', thisObject.getFormHeader('Elección de ciudad'), "", thisObject.getFormFooter(), true);
+
+        $('#publicacionForm').append(thisObject.getEmptyModal());
+
+        oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oCiudadModel, oCiudadView);
+        oControl.modalListEventsLoading('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), function (id) {
+            $('#obj_ciudad_id').val(id).change();
+            $('#obj_ciudad_desc').text(decodeURIComponent(oCiudadModel.getMeAsAForeignKey(id)));
+            $('#modal01').modal('hide');
+
+        },oCiudadModel, oCiudadView);
+        return false;
+    });
+    
+    $('#publicacionForm #obj_tipopublicacion_button').unbind('click');
+    $("#publicacionForm #obj_tipopublicacion_button").click(function () {
+        var oControl = oTipopublicacionControl;  //para probar dejar publicacion
+        //vista('publicacion').cargaModalBuscarClaveAjena('#modal01', "publicacion");
+
+        $("#publicacionForm").append(thisObject.getEmptyModal());
+        util().loadForm('#modal01', thisObject.getFormHeader('Elección de Tipo de Publicacion'), "", thisObject.getFormFooter(), true);
+
+        $('#publicacionForm').append(thisObject.getEmptyModal());
+
+        oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oTipopublicacionModel, oTipopublicacionView);
+        oControl.modalListEventsLoading('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), function (id) {
+            $('#obj_tipopublicacion_id').val(id).change();
+            $('#obj_tipopublicacion_desc').text(decodeURIComponent(oTipopublicacionModel.getMeAsAForeignKey(id)));
+            $('#modal01').modal('hide');
+
+        },oTipopublicacionModel, oTipopublicacionView);
         return false;
     });
 };

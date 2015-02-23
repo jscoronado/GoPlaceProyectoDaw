@@ -91,10 +91,6 @@
         <script type="text/javascript"  src="./js/vendor/language/es_ES.js"></script>
         <script type="text/javascript"  src="./js/vendor/creole-parser.js"></script>            
 
-        <script type="text/javascript" src="./js/vendor/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="./js/vendor/bootstrap.min.js"></script>
-        <script type="text/javascript" src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
         <script src="./js/generic/view.js" charset="UTF-8"></script>    
         <script src="./js/generic/param.js" charset="UTF-8"></script>
         <script src="./js/generic/ajax.js" charset="UTF-8"></script>
@@ -129,10 +125,20 @@
         <script src="./js/specific/amistad/control.js" charset="UTF-8"></script>
         <script src="./js/specific/amistad/routes.js" charset="UTF-8"></script>
         
+        <script src="./js/specific/ciudad/view.js" charset="UTF-8"></script>
+        <script src="./js/specific/ciudad/model.js" charset="UTF-8"></script>
+        <script src="./js/specific/ciudad/control.js" charset="UTF-8"></script>
+        <script src="./js/specific/ciudad/routes.js" charset="UTF-8"></script>
+        
         <script src="./js/specific/tipousuario/view.js" charset="UTF-8"></script>
         <script src="./js/specific/tipousuario/model.js" charset="UTF-8"></script>
         <script src="./js/specific/tipousuario/control.js" charset="UTF-8"></script>
         <script src="./js/specific/tipousuario/routes.js" charset="UTF-8"></script>
+        
+        <script src="./js/specific/tipopublicacion/view.js" charset="UTF-8"></script>
+        <script src="./js/specific/tipopublicacion/model.js" charset="UTF-8"></script>
+        <script src="./js/specific/tipopublicacion/control.js" charset="UTF-8"></script>
+        <script src="./js/specific/tipopublicacion/routes.js" charset="UTF-8"></script>
         
         <script type="text/javascript">
 
@@ -147,7 +153,9 @@
                     fPublicacionRoutes();
                     fUsuarioRoutes();
                     fAmistadRoutes();
+                    fCiudadRoutes();
                     fTipousuarioRoutes();
+                    fTipopublicacionRoutes();
                     fInicioRedSocialRoutes();
                     Path.listen();
 

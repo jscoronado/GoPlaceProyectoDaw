@@ -45,9 +45,9 @@ redsocialperfilControl.prototype.view = function (place, id, oModel, oView) {
     var oDocumentoModel = oModel;
     oDocumentoModel.loadAggregateViewOne(id);
     $(place).append(oView.getPanel("Perfil" /*+ "de " + this.clase*/, oView.getObjectTable(oDocumentoModel.getCachedPrettyFieldNames(), oDocumentoModel.getCachedOne(), oDocumentoModel.getCachedFieldNames())));
-    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/edit/' + id + '">Editar</a>');
-    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/remove/' + id + '">Borrar</a>');
-    $(place).append('<a class="btn btn-primary" href="jsp#/' + this.clase + '/list/' + id + '">Listar</a><br /><br />');
+    $(place).append('<a class="btn btn-primary" href="control#/' + this.clase + '/edit/' + id + '">Editar</a>');
+    $(place).append('<a class="btn btn-primary" href="control#/' + this.clase + '/remove/' + id + '">Borrar</a>');
+    $(place).append('<a class="btn btn-primary" href="control#/' + this.clase + '/list/' + id + '">Listar</a><br /><br />');
 };
 
 redsocialperfilControl.prototype.list = function (place, objParams, callback, oModel, oView) {
@@ -68,14 +68,14 @@ redsocialperfilControl.prototype.list = function (place, objParams, callback, oM
     }
     //show page links pad
     var strUrlFromParamsWithoutPage = param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ["page"]));
-    var url = 'jsp#/' + this.clase + '/list/' + strUrlFromParamsWithoutPage;
+    var url = 'control#/' + this.clase + '/list/' + strUrlFromParamsWithoutPage;
 
     //visible fields select population, setting & event
     $('#selectVisibleFields').empty()
     oView.populateSelectVisibleFieldsBox($('#selectVisibleFields'), oDocumentoModel.getCachedCountFields());
     $('#selectVisibleFields').unbind('change');
     $("#selectVisibleFields").change(function () {
-        window.location.href = "jsp#/" + thisObject.clase + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
+        window.location.href = "control#/" + thisObject.clase + "/list/" + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['vf'])) + "&vf=" + $("#selectVisibleFields option:selected").val();
         return false;
     });
     //show the table
@@ -127,13 +127,13 @@ redsocialperfilControl.prototype.list = function (place, objParams, callback, oM
         filter = $("#selectFilter option:selected").val();
         filteroperator = $("#selectFilteroperator option:selected").val();
         filtervalue = $("#inputFiltervalue").val();
-        window.location.href = 'jsp#/' + thisObject.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
+        window.location.href = 'control#/' + thisObject.clase + '/list/' + param().getUrlStringFromParamsObject(param().getUrlObjectFromParamsWithoutParamArray(objParams, ['filter', 'filteroperator', 'filtervalue'])) + "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
         return false;
     });
 
     if (objParams["systemfilter"]) {
-        //$('#newButton').prop("href", 'jsp#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
-        $('#newButton').prop("href", 'jsp#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
+        //$('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
+        $('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
     }
 
 

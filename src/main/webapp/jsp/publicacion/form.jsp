@@ -38,7 +38,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="obj_usuario_id">Usuario: </label> 
         <div class="col-sm-2">              
-            <input readonly="true"  class="form-control"  id="obj_usuario_id" class="input-mini" name="id_usuario" type="text" size="5" maxlength="5" />  
+            <input  class="form-control"  id="obj_usuario_id" class="input-mini" name="id_usuario" type="text" size="5" maxlength="5" />  
         </div>
         <div class="col-sm-1">              
             <a class="btn btn-primary btn-sm" id="obj_usuario_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
@@ -48,7 +48,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="obj_ciudad_id">Ciudad: </label> 
         <div class="col-sm-2">              
-            <input readonly="true"  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" />  
+            <input  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" />  
         </div>
         <div class="col-sm-1">              
             <a class="btn btn-primary btn-sm" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
@@ -58,7 +58,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="obj_tipopublicacion_id">Tipo Publicacion: </label> 
         <div class="col-sm-2">              
-            <input readonly="true"  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" />  
+            <input  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" />  
         </div>
         <div class="col-sm-1">              
             <a class="btn btn-primary btn-sm" id="obj_tipopublicacion_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
@@ -115,7 +115,7 @@
                                     message: 'El identificador de usuario debe ser un entero'
                                 }
                             }
-                        }
+                        },
                         id_ciudad: {
                             validators: {
                                 notEmpty: {
@@ -125,7 +125,7 @@
                                     message: 'El identificador de ciudad debe ser un entero'
                                 }
                             }
-                        }
+                        },
                         id_tipopublicacion: {
                             validators: {
                                 notEmpty: {
@@ -140,12 +140,6 @@
                 })
                 .on('change', '[name="id_usuario"]', function () {
                     $('#publicacionForm').bootstrapValidator('revalidateField', 'id_usuario');
-                });
-                .on('change', '[name="id_ciudad"]', function () {
-                    $('#publicacionForm').bootstrapValidator('revalidateField', 'id_ciudad');
-                });
-                .on('change', '[name="id_tipopublicacion"]', function () {
-                    $('#publicacionForm').bootstrapValidator('revalidateField', 'id_tipopublicacion');
                 });
     });
 </script>
