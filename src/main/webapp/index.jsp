@@ -19,29 +19,33 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="css/effects.css">
-        <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:200|Oswald' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:200|Oswald|Montserrat' rel='stylesheet' type='text/css'>
 
     </head>
 
     <body>
         <div class="page">
             <header class="title row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6 logo-goplace">
                     <a href="index.jsp"><img src="images/logo.png" alt="Logo GoPlace" class="logo"></a>
                 </div>
 
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6 register">
                     <form id="loginForm" action="control" role="form" method="post">
                         <input type="hidden" name="op" value="login" />
-                        <div class="form-group formuser">
-                            <input type="text" class="form-control" id="userform" placeholder="Usuario o Email" name="userform" required>
-                            <input type="checkbox" id="recuerda" name="recuerda"> No cerrar sesión
+                        <div class="form-group formuser col-md-5 col-sm-5 col-xs-12">
+                            <input type="text" class="input-access" id="userform" placeholder="Usuario o Email" name="userform" required>
                         </div>
-                        <div class="form-group formpass">
-                            <input type="password" class="form-control" id="passform" placeholder="Contraseña" name="passform" required>
+                        <div class="form-group formpass col-md-5 col-sm-5 col-xs-12">
+                            <input type="password" class="input-access" id="passform" placeholder="Contraseña" name="passform" required>
+                        </div>
+                        <div class="form-remember col-md-7 col-sm-7 col-xs-12">
+                            <input type="checkbox" id="recuerda" name="recuerda"> No cerrar sesión
                             <span><a href="#" id="olvidopass">¿Has olvidado la contraseña?</a></span>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block formbutton" type="submit">Acceder</button>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <button class="btn btn-lg btn-primary btn-block formbutton " type="submit">Acceder</button>
+                        </div>
                         <!--<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text}}-->
                     </form>
                 </div>
@@ -54,18 +58,22 @@
                         <span> Una red social donde poder ver y compartir con tus amigos y otra cantidad de personas los eventos que se hacen en tu ciudad o alrededores.<br/> Obtén actualizaciones instantáneas de las cosas que te interesan!</span>
                     </article>
                     <div class="registro row">
-                        <h3>¿Eres nuevo en GoPlace? <span>Regístrate!</span></h3>
+                        <div class="col-md-12 youarenew">
+                            <p>¿ Eres nuevo en GoPlace ? <br/><span class="span_register">¡ Regístrate !</span></p>
+                        </div>
                         <form id="registerForm" action="jsp/registro.jsp" role="form" method="post">
-                            <div class="col-md-9">
-                                <div class="form-group reguser">
-                                    <input type="text" class="form-control" id="nombrereg" placeholder="Nombre" name="nombrereg">
-                                    <input type="text" class="form-control" id="apereg" placeholder="Apellidos" name="apereg">
+                            <div class="col-md-12">
+                                <div class="form-group col-lg-6 col-md-6 regizq">
+                                    <input type="text" class="input-register input-name" id="nombrereg" placeholder="Nombre" name="nombrereg" title="Introduzca su nombre" required>
                                 </div>
-                                <div class="form-group regemail">
-                                    <input type="text" class="form-control" id="emailreg" placeholder="Correo electrónico" name="emailreg">
+                                <div class="form-group col-lg-6 col-md-6 regder">
+                                    <input type="text" class="input-register input-ape" id="apereg" placeholder="Apellidos" name="apereg" title="Introduzca su Apellido" required>
                                 </div>
-                                <div class="form-group regpass">
-                                    <input type="password" class="form-control" id="passreg" placeholder="Contraseña" name="passreg">
+                                <div class="form-group col-lg-6 col-md-6 regizq">
+                                    <input type="mail" class="input-register" id="emailreg" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" placeholder="Correo electrónico" name="emailreg" title="mail@example.com" required>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 regder">
+                                    <input type="password" class="input-register" id="passreg" placeholder="Contraseña" name="passreg" title="Introduzca contraseña" required>
                                 </div>
                             </div>
                             <div class="col-md-3 botonreg">
@@ -74,8 +82,24 @@
                         </form>
                     </div>
                 </div>
+                <div class="principal_info">
+                    <div class="titulo"><h2>Descubre los planes en tu ciudad</h2></div>
+                    <div class="info_descubre row">
+                        <div class="col-md-4">
+                            <img src="images/descubre1.png" alt="Descubre" class="logo">
+                            <div class="descubre_text"><h3>Busca los planes que se celebran en tu ciudad</h3></div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="images/descubre1.png" alt="Encuentra" class="logo">
+                            <div class="descubre_text"><h3>Crea tus propios planes y haz que lo vean los demás</h3></div>
+                        </div><div class="col-md-4">
+                            <img src="images/descubre1.png" alt="Comenta" class="logo">
+                            <div class="descubre_text"><h3>Comenta y queda con tus amigos de una forma mas sencilla</h3></div>
+                        </div>
+                    </div>
+                </div>
             </main>
-            
+
             <%
                 String espacio = "&nbsp;&nbsp;&nbsp;&nbsp;";
             %>

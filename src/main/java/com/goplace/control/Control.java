@@ -97,7 +97,7 @@ public class Control extends HttpServlet {
                             } else {
                                 request.setAttribute("title", "Usuario o Contraseña incorrecta");
                                 request.setAttribute("message", "Por favor, vuelva a iniciar sesión para acceder a GoPlace");
-                                request.setAttribute("atributo", "incorrecto");
+                                request.setAttribute("atributo", "access");
                                 request.setAttribute("contenido", "/jsp/message.jsp");
                                 getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                             }
@@ -105,13 +105,13 @@ public class Control extends HttpServlet {
                             if (EstadoHelper.getTipo_estado() == EstadoHelper.Tipo_estado.Debug) {
                                 request.setAttribute("title", "Usuario o Contraseña incorrecta");
                                 request.setAttribute("message", "Por favor, vuelva a iniciar sesión para acceder a GoPlace");
-                                request.setAttribute("atributo", "incorrecto");
+                                request.setAttribute("atributo", "access");
                                 request.setAttribute("contenido", "/jsp/message.jsp");
                                 getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                             } else {
                                 request.setAttribute("title", "Usuario o Contraseña incorrecta");
                                 request.setAttribute("message", "Por favor, vuelva a iniciar sesión para acceder a GoPlace");
-                                request.setAttribute("atributo", "incorrecto");
+                                request.setAttribute("atributo", "access");
                                 request.setAttribute("contenido", "/jsp/message.jsp");
                                 getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                             }
@@ -139,7 +139,7 @@ public class Control extends HttpServlet {
                             //getServletContext().getRequestDispatcher("/jsp/principal.jsp").forward(request, response);
                             request.setAttribute("title", "Bienvenido " + oUsuario.getLogin() + " !");
                             request.setAttribute("message", "Por favor, inicie sesion para empezar en GoPlace");
-                            request.setAttribute("atributo", "incorrecto");
+                            request.setAttribute("atributo", "access");
                             request.setAttribute("contenido", "/jsp/message.jsp");
                             getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                         } else {

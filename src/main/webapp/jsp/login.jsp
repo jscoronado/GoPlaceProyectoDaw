@@ -21,11 +21,11 @@
         <title>
             <% if (atributo.equals("out")) {%>
             Saliendo de GoPlace
-            <%} else if (atributo.equals("incorrecto")) { %>
+            <%} else if (atributo.equals("access") || atributo.equals("incorrecto")) {%>
             Error de Acceso a GoPlace
             <% }%>
         </title>
-        <% if (atributo.equals("out") || atributo.equals("incorrecto")) {%>
+        <% if (atributo.equals("out") || atributo.equals("incorrecto") || atributo.equals("access")){%>
         <meta name="author" content="Jose Miguel Coronado Aroca">
         <meta name="description" content="Web Developer">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
@@ -41,22 +41,66 @@
                 <div class="col-md-10 col-sm-12 logoRegistro">
                     <a href="<%=request.getContextPath()%>/index.jsp"><img src="images/logo.png" alt="Logo GoPlace"></a>
                 </div>
-                <div class="cabecera">
-                    <a href="<%=login%>">Iniciar Sesion</a>
-                </div>
             </header>
 
             <main>
-                <div class="principal">
-                    <article class="titulo">
-                        <% if (atributo.equals("out")) {%>
+                <div class="principal princial_login row">
+                    <div class="col-md-12 col-sm-12 titulo">
+                        <% if (atributo.equals("access")) {%>
+                        <jsp:include page='<%=(String) request.getAttribute("contenido")%>' />             
+                        <%} else if (atributo.equals("out")) {%>
                         <jsp:include page='<%=(String) request.getAttribute("contenido")%>' />
                         <%} else if (atributo.equals("incorrecto")) {%>
                         <jsp:include page='<%=(String) request.getAttribute("contenido")%>' />
                         <% } else {%>
-                        <h1>Prueba prueba</h1>
+                        <h1>Ops! Sucedió un error inesperado</h1>
+                        <span>Vuelva a Inicio de GoPlace y vuelve a intentarlo</span>
                         <% } %>
-                    </article>
+                    </div>
+                    
+                    <div class="col-md-12 col-sm-12 contenido">
+                        <% if (atributo.equals("access") || atributo.equals("out")) {%>
+                        <div class="register">
+                            <form id="loginForm" action="control" role="form" method="post">
+                                <input type="hidden" name="op" value="login" />
+                                <div class="form-group formuser col-md-8 col-sm-8 col-xs-12">
+                                    <input type="text" class="input-access" id="userform" placeholder="Usuario o Email" name="userform" required>
+                                </div>
+                                <div class="form-group formpass col-md-8 col-sm-8 col-xs-12">
+                                    <input type="password" class="input-access" id="passform" placeholder="Contraseña" name="passform" required>
+                                </div>
+                                <div class="form-remember col-md-8 col-sm-8 col-xs-12">
+                                    <span><a href="#" id="olvidopass_access">¿Has olvidado la contraseña?</a></span>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <button class="btn btn-lg btn-primary btn-block formbutton " type="submit">Acceder</button>
+                                </div>
+                                <!--<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text}}-->
+                            </form>
+                        </div>
+                        
+                        <%} else if (atributo.equals("incorrecto")) {%>
+                            <div class="col-md-3 col-sm-3 col-xs-12 return_gp">
+                                <a href="<%=request.getContextPath()%>/index.jsp">
+                                    <button class="btn btn-lg btn-primary btn-block returnbutton " type="submit">Volver a Inicio</button>
+                                </a>      
+                            </div>
+                        <% } else {%>
+                            <div class="col-md-3 col-sm-3 col-xs-12 return_gp">
+                                <a href="<%=request.getContextPath()%>/index.jsp">
+                                    <button class="btn btn-lg btn-primary btn-block returnbutton " type="submit">Volver a Inicio</button>
+                                </a>      
+                            </div>
+                        <% } %>
+                    
+                        <% if (atributo.equals("out")) {%>
+                            <div class="col-md-3 col-sm-3 col-xs-12 return_gp">
+                                    <a href="<%=request.getContextPath()%>/index.jsp">
+                                        <button class="btn btn-lg btn-primary btn-block returnbutton " type="submit">Volver a Inicio</button>
+                                    </a>      
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
             </main>
 

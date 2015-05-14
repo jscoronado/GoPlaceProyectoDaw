@@ -1,41 +1,49 @@
+
+/*
+* INDEX CSS
+*
+*   1. Default Styles
+*   2. Header
+*   3. Page Intro & Register
+*       3.1 Form Access
+*       3.2 Form Register
+*       3.3 Section Error
+*   4. Home Page
+*   10. Footer
+*   11. Media Querys
+*/
+
+/* 1. DEFAULT STYLES */
 *, html{
     margin: 0;
     padding: 0;
     font-family: 'Raleway', sans-serif;
 }
+body{
+    max-width: 1500px;
+    margin: 0 auto;
+}
 .page{
     width: 100%;
     height: 100%;
-    background: url('../images/vlc.png') fixed no-repeat center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: #fff;
     cursor: default;
 }
-.pageRegister{
-    width: 100%;
-    height: 100%;
-    background-color: #20B2AA;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    cursor: default;
+h1, h2, h3, h4, h5{
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
 }
+
 h1{
     color: white;
     letter-spacing: 0.05em;
     font-size: 50px;
-    font-weight: 700;
     margin-top: 10px;
     margin-bottom: 20px;
-    text-shadow: 3px 3px 3px black;
 }
 h2{
     color: #232930;
     font-weight: 900;
-    letter-spacing: 0.3em;
     font-size: 30px;
     clear: both;
 }
@@ -56,27 +64,37 @@ h2::after {content: " "; border-bottom: solid 1px #232930; display: block; width
 a{
     font-family: 'Raleway', sans-serif;
     color: #232930;
-    text-decoration: none; 
+    text-decoration: none !important; 
 }
-.nomargin{
-    margin: 0;
+button{
+    background-color: #55AE60 !important;
+    border: 1px solid #55AE60 !important;
+}
+button:hover{
+    background-color: #7BDA86 !important;
+    border: 1px solid #7BDA86 !important;
+}
+.nomargin, .row{
+    margin: 0px;
 }
 .nopadding{
-    padding: 0;
+    padding: 0px;
+}
+main{
+    width: 100%;
+    height: 100%;
 }
 
-/* CABECERA */
+
+/* 2. HEADER */
 header{
     width: 100%;
     height: 14%;
     background-color: white;
 }
 
-.row{
-    margin: 0px;
-}
 .logo{
-    margin: 6% 0 0 30%;
+    margin: 10% 0 0 30%;
     cursor: pointer;
 }
 
@@ -86,33 +104,113 @@ header{
     text-align: center;
 }
 
-/* FORMULARIO ACCESO */
+
+/* 3. PAGE INTRO & REGISTER*/
+.principal{
+    padding: 5% 20% 5% 20%;
+    background: url('../images/vlc.png') fixed no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.pageRegister{
+    width: 100%;
+    height: 100%;
+    background-color: #20B2AA;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    cursor: default;
+}
+.register{
+    margin-bottom: 30px;
+}
+
+/* 3.1 FORMULARIO ACCESO */
 .formuser, .formpass{
-    width: 30%;
     margin-top: 5%;
     margin-right: 5px;
     float: left;
 }
 
-.formbutton{
-    width: 20%;
+.input-access, .input-register{
+    width: 100%;
+    height: 40px;
+    padding: 15px;
+    border: 0;
+    outline: 0;
+    resize: none;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 17px;
+    background-color: rgb(236, 236, 236);
+    color: #000;
+    font-family: 'Raleway';
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-remember{
+    font-size: 13px;
+    font-weight: 600;
+}
+.form-remember span{
+    padding-top: 4px;
+    float: right;
+    padding-right: 20px; 
+}
+.formbutton, .returnbutton{
     padding: 0px;
-    margin-top: 5%;
     height: 34px;
     float: left;
 }
 
-/* MAIN */
-main{
+/* 3.2 FORM REGISTER */
+.registro{
+    margin-top: 5%;
+    padding-top: 30px;
+    padding-bottom: 30px;
     width: 100%;
     height: 100%;
+    background-color: #fff;
 }
-.principal{
-    padding: 5% 20% 5% 20%;
+.youarenew *{
+    color: #55AE60;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    text-align: center;   
+    text-shadow: none !important;
+    text-transform: uppercase;
 }
-.titulo{
-    text-align: center;
+.youarenew span{
+    color: #2e6da4;
+    font-size: 24px !important;
+}
+
+/* 3.3 SECTION ERROR */
+.titulo, .descubre_text{
+    text-align: center !important;
     width: 100%;
+}
+.contenido{
+    width: 100%;
+    margin: 0 auto;
+}
+.contenido *{
+    margin-top: 40px;
+    float: none !important;
+}
+.contenido form *, .return_gp{
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.contenido span a{
+    color: white;
+    font-size: 80%;
 }
 .principal span{
     color: white;
@@ -122,54 +220,14 @@ main{
     text-shadow: 3px 3px 3px black;
 }
 
-/* REGISTRO */
-.registro{
-    margin-top: 5%;
-    padding: 1% 0 2% 2%;
-    width: 100%;
-    height: 100%;
-    background-color:rgba(255,255,255,0.5);
-}
-#nombrereg, #apereg{
-    width: 50%;
-    margin-bottom: 5px;
-    float: left;
-}
-#nombreregdef, #aperegdef{
-    width: 100%;
-    margin-bottom: 5px;
-    float: left;
-}
-#emailreg, #passreg{
-    width: 100%;
-    clear: both;
-}
-.reguser, .regemail, .regpass{
-    margin: 5px 0 5px 0;
-}
-.botonreg{
-    margin: 3% 0 0 0;
-}
 
-/* FOOTER */
-footer{
-    width: 100%;
-    height: 14%;
-    text-align: center;
-    background-color: white;
-}
-.cr{
-    letter-spacing: 0.05em;
-    font-weight: 900;
-    top: 100px;
-}
-.help{
-    padding: 2% 0 1% 0;
-}
-
-/* PRINCIPAL */
+/* 4. HOME PAGE */
 #principalpag{
-    background-color: #66FFB2;
+    background: url('../images/background_index.jpg') fixed no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     padding: 5% 10% 5% 10%;
 }
 .logoMain{
@@ -249,4 +307,35 @@ footer{
 .panel-heading{
     background-color: #337ab7;
     border-color: #2e6da4; 
+}
+
+
+/* FOOTER */
+footer{
+    width: 100%;
+    height: 14%;
+    text-align: center;
+    background-color: white;
+}
+.cr{
+    letter-spacing: 0.05em;
+    font-weight: 900;
+    top: 100px;
+}
+.help{
+    padding: 2% 0 1% 0;
+}
+
+
+/* MEDIA QUERYS */
+@media (min-width: 992px){
+	
+    .regizq, .regder{
+        padding: 0 !important;
+        padding-left: 5px !important;
+    }
+    
+    .botonreg{
+        float: right;
+    }
 }
