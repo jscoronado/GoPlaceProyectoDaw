@@ -19,8 +19,8 @@ package com.goplace.service.generic.specific.implementation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.goplace.bean.generic.specific.implementation.PublicacionBeanGenSpImpl;
-import com.goplace.dao.generic.specific.implementation.PublicacionDaoGenSpImpl;
+import com.goplace.bean.generic.specific.implementation.ComentarioBeanGenSpImpl;
+import com.goplace.dao.generic.specific.implementation.ComentarioDaoGenSpImpl;
 import com.goplace.helper.AppConfigurationHelper;
 import com.goplace.helper.EncodingUtilHelper;
 import com.goplace.helper.ExceptionBooster;
@@ -35,9 +35,9 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
-public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
+public class ComentarioServiceGenSpImpl extends TableServiceGenImpl {
 
-    public PublicacionServiceGenSpImpl(String strObject, String pojo, Connection con) {
+    public ComentarioServiceGenSpImpl(String strObject, String pojo, Connection con) {
         super(strObject, pojo, con);
     }
 
@@ -45,16 +45,16 @@ public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
         String resultado = null;
         try {
             oConnection.setAutoCommit(false);
-            PublicacionDaoGenSpImpl oPublicacionDAO = new PublicacionDaoGenSpImpl(strObjectName, oConnection);
-            PublicacionBeanGenSpImpl oPublicacion = new PublicacionBeanGenSpImpl();
+            ComentarioDaoGenSpImpl oComentarioDAO = new ComentarioDaoGenSpImpl(strObjectName, oConnection);
+            ComentarioBeanGenSpImpl oComentario = new ComentarioBeanGenSpImpl();
             Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy HH:mm:ss").create();
             jason = EncodingUtilHelper.decodeURIComponent(jason);
-            oPublicacion = gson.fromJson(jason, oPublicacion.getClass());
-            if (oPublicacion.getId_usuario() == id_usuario || id_tipousuario == 1) {
-                oPublicacion = oPublicacionDAO.set(oPublicacion);
+            oComentario = gson.fromJson(jason, oComentario.getClass());
+            if (oComentario.getId_usuario() == id_usuario || id_tipousuario == 1) {
+                oComentario = oComentarioDAO.set(oComentario);
                 Map<String, String> data = new HashMap<>();
                 data.put("status", "200");
-                data.put("message", Integer.toString(oPublicacion.getId()));
+                data.put("message", Integer.toString(oComentario.getId()));
                 resultado = gson.toJson(data);
             } else {
                 Map<String, String> data = new HashMap<>();
@@ -75,13 +75,13 @@ public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
         String data = null;
         try {
             oConnection.setAutoCommit(false);
-            PublicacionDaoGenSpImpl oPublicacionDAO = new PublicacionDaoGenSpImpl(strObjectName, oConnection);
-            PublicacionBeanGenSpImpl oPublicacion = new PublicacionBeanGenSpImpl(id);
-            oPublicacion = oPublicacionDAO.get(oPublicacion, AppConfigurationHelper.getJsonDepth());
+            ComentarioDaoGenSpImpl oComentarioDAO = new ComentarioDaoGenSpImpl(strObjectName, oConnection);
+            ComentarioBeanGenSpImpl oComentario = new ComentarioBeanGenSpImpl(id);
+            oComentario = oComentarioDAO.get(oComentario, AppConfigurationHelper.getJsonDepth());
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.setDateFormat("dd/MM/yyyy HH:mm:ss");
             Gson gson = gsonBuilder.create();
-            data = gson.toJson(oPublicacion);
+            data = gson.toJson(oComentario);
             oConnection.commit();
         } catch (Exception ex) {
             oConnection.rollback();
@@ -90,16 +90,16 @@ public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
         return data;
     }
     
-        public String getPageEventos(int id_usuario, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder) throws Exception {
+        public String getPageComentarios(int id_publicacion, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder) throws Exception {
         String data = null;
         try {
             oConnection.setAutoCommit(false);
-            PublicacionDaoGenSpImpl oPublicacionDAO = new PublicacionDaoGenSpImpl(strObjectName, oConnection);
-            List<PublicacionBeanGenSpImpl> oPublicacions = oPublicacionDAO.getPageEventos(id_usuario, intRegsPerPag, intPage, alFilter, hmOrder);
+            ComentarioDaoGenSpImpl oComentarioDAO = new ComentarioDaoGenSpImpl(strObjectName, oConnection);
+            List<ComentarioBeanGenSpImpl> oComentarios = oComentarioDAO.getPageComentarios(id_publicacion, intRegsPerPag, intPage, alFilter, hmOrder);
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.setDateFormat("dd/MM/yyyy HH:mm:ss");
             Gson gson = gsonBuilder.create();
-            data = gson.toJson(oPublicacions);
+            data = gson.toJson(oComentarios);
             data = "{\"list\":" + data + "}";
             oConnection.commit();
         } catch (Exception ex) {
@@ -109,12 +109,12 @@ public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
         return data;
     }
     
-    public String getPagesEventos(int id_usuario, int intRegsPerPag, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+    public String getPagesComentarios(int id_publicacion, int intRegsPerPag, ArrayList<FilterBeanHelper> alFilter) throws Exception {
         String data = null;
         try {
             oConnection.setAutoCommit(false);
-            PublicacionDaoGenSpImpl oPublicacionDAO = new PublicacionDaoGenSpImpl(strObjectName, oConnection);
-            int pages = oPublicacionDAO.getPagesEventos(id_usuario, intRegsPerPag, alFilter);
+            ComentarioDaoGenSpImpl oComentarioDAO = new ComentarioDaoGenSpImpl(strObjectName, oConnection);
+            int pages = oComentarioDAO.getPagesComentarios(id_publicacion, intRegsPerPag, alFilter);
             data = "{\"data\":\"" + Integer.toString(pages) + "\"}";
             oConnection.commit();
         } catch (Exception ex) {
@@ -124,15 +124,15 @@ public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
         return data;
     }
     
-    public String getEventos(int id_usuario, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder) throws Exception {
+    public String getComentarios(int id_usuario, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder) throws Exception {
         String data = null;
         try {
             oConnection.setAutoCommit(false);
             String columns = this.getColumns();
             String prettyColumns = this.getPrettyColumns();
             //String types = this.getTypes();
-            String page = this.getPageEventos(id_usuario, intRegsPerPag, intPage, alFilter, hmOrder);
-            String pages = this.getPagesEventos(id_usuario, intRegsPerPag, alFilter);
+            String page = this.getPageComentarios(id_usuario, intRegsPerPag, intPage, alFilter, hmOrder);
+            String pages = this.getPagesComentarios(id_usuario, intRegsPerPag, alFilter);
             String registers = this.getCount(alFilter);
             data = "{\"data\":{"
                     + "\"columns\":" + columns

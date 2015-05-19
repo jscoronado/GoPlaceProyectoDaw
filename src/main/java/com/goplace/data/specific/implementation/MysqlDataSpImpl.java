@@ -675,15 +675,86 @@ public class MysqlDataSpImpl implements DataInterface {
         }
     }
 
-    public ArrayList<Integer> getPageComentarios(int id_usuario, int intRegsPerPage, int intPagina, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+    public ArrayList<Integer> getPageEventos(int id_usuario, int intRegsPerPage, int intPagina, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        ArrayList<Integer> eventos = null;
+        Statement oStatement = null;
+        try {
+            eventos = new ArrayList<>();
+            int intOffset;
+            oStatement = (Statement) connection.createStatement();
+            String strSQL = "SELECT distinct p.* FROM publicacion p INNER JOIN amistad a WHERE p.id_usuario = a.id_usuario_2 AND a.id_usuario_1 = " + id_usuario + " ORDER BY p.fechapub ASC ";
+            String strSQLcount = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = " + id_usuario + " ";
+            // select p.* from publicacion p inner join amigo a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = 2 ORDER BY `fechacreacion` DESC
+            if (alFilter != null) {
+                String strSQLFilter = "";
+                Iterator iterator = alFilter.iterator();
+                while (iterator.hasNext()) {
+                    FilterBeanHelper oFilterBean = (FilterBeanHelper) iterator.next();
+                    switch (oFilterBean.getFilterOperator()) {
+                        case "like":
+                            strSQLFilter += " AND " + oFilterBean.getFilter() + " LIKE '%" + oFilterBean.getFilterValue() + "%'";
+                            break;
+                        case "notlike":
+                            strSQLFilter += " AND " + oFilterBean.getFilter() + " NOT LIKE '%" + oFilterBean.getFilterValue() + "%'";
+                            break;
+                        case "equals":
+                            strSQLFilter += " AND " + oFilterBean.getFilter() + " = '" + oFilterBean.getFilterValue() + "'";
+                            break;
+                        case "notequalto":
+                            strSQLFilter += " AND " + oFilterBean.getFilter() + " <> '" + oFilterBean.getFilterValue() + "'";
+                            break;
+                        case "less":
+                            strSQLFilter += " AND " + oFilterBean.getFilter() + " < " + oFilterBean.getFilterValue() + "";
+                            break;
+                        case "lessorequal":
+                            strSQLFilter += " AND " + oFilterBean.getFilter() + " <= " + oFilterBean.getFilterValue() + "";
+                            break;
+                        case "greater":
+                            strSQLFilter += " AND " + oFilterBean.getFilter() + " > " + oFilterBean.getFilterValue() + "";
+                            break;
+                        case "greaterorequal":
+                            strSQLFilter += " AND " + oFilterBean.getFilter() + " >= " + oFilterBean.getFilterValue() + "";
+                            break;
+                    }
+                }
+                strSQL += strSQLFilter;
+                strSQLcount += strSQLFilter;
+            }
+            //when limit of pages exceed, show last page
+            ResultSet oResultSet = oStatement.executeQuery(strSQLcount);
+            int intCuenta = 0;
+            if (oResultSet.next()) {
+                intCuenta = oResultSet.getInt("COUNT(*)");
+            }
+            int maxPaginas = new Double(intCuenta / intRegsPerPage).intValue();
+            intPagina = Math.min(intPagina - 1, maxPaginas) + 1;
+            intOffset = Math.max(((intPagina - 1) * intRegsPerPage), 0);
+            //--                        
+            strSQL += " LIMIT " + intOffset + " , " + intRegsPerPage;
+            oResultSet = oStatement.executeQuery(strSQL);
+            while (oResultSet.next()) {
+                eventos.add(oResultSet.getInt("id"));
+            }
+
+        } catch (SQLException ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR:  Can't process query: " + ex.getMessage()));
+        } finally {
+            if (oStatement != null) {
+                oStatement.close();
+            }
+        }
+        return eventos;
+    }
+
+        public ArrayList<Integer> getPageComentarios(int id_publicacion, int intRegsPerPage, int intPagina, ArrayList<FilterBeanHelper> alFilter) throws Exception {
         ArrayList<Integer> comentarios = null;
         Statement oStatement = null;
         try {
             comentarios = new ArrayList<>();
             int intOffset;
             oStatement = (Statement) connection.createStatement();
-            String strSQL = "SELECT distinct p.* FROM publicacion p INNER JOIN amistad a WHERE p.id_usuario = a.id_usuario_2 AND a.id_usuario_1 = " + id_usuario + " ORDER BY p.fechapub DESC ";
-            String strSQLcount = "SELECT COUNT(*) from publicacion p inner join amistad a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = " + id_usuario + " ";
+            String strSQL = "SELECT distinct c.* FROM comentario c INNER JOIN publicacion p WHERE c.id_publicacion = p.id AND p.id = " + id_publicacion + " ORDER BY c.fechacomentario ASC ";
+            String strSQLcount = "SELECT COUNT(*) FROM comentario c INNER JOIN publicacion p WHERE c.id_publicacion = p.id AND p.id = " + id_publicacion + " ";
             // select p.* from publicacion p inner join amigo a where p.id_usuario = a.id_usuario_2 and a.id_usuario_1 = 2 ORDER BY `fechacreacion` DESC
             if (alFilter != null) {
                 String strSQLFilter = "";
@@ -745,7 +816,7 @@ public class MysqlDataSpImpl implements DataInterface {
         }
         return comentarios;
     }
-
+    
     @Override
     public int getPages(String strTabla, int intRegsPerPage, ArrayList<FilterBeanHelper> alFilter) throws Exception {
         Boolean strOrigenTabla = true;
@@ -834,7 +905,7 @@ public class MysqlDataSpImpl implements DataInterface {
         }
     }
 
-    public int getPagesComentarios(int id_usuario, int intRegsPerPage, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+    public int getPagesEventos(int id_usuario, int intRegsPerPage, ArrayList<FilterBeanHelper> alFilter) throws Exception {
 
         int intResult = 0;
         Statement oStatement = null;
@@ -890,7 +961,64 @@ public class MysqlDataSpImpl implements DataInterface {
         }
         return intResult;
     }
+    
+    public int getPagesComentarios(int id_publicacion, int intRegsPerPage, ArrayList<FilterBeanHelper> alFilter) throws Exception {
 
+        int intResult = 0;
+        Statement oStatement = null;
+        try {
+            oStatement = (Statement) connection.createStatement();
+            String strSQL = "SELECT COUNT(*) FROM comentario c INNER JOIN publicacion p WHERE c.id_publicacion = p.id AND p.id = " + id_publicacion + " ";
+            if (alFilter != null) {
+                Iterator iterator = alFilter.iterator();
+                while (iterator.hasNext()) {
+                    FilterBeanHelper oFilterBean = (FilterBeanHelper) iterator.next();
+                    switch (oFilterBean.getFilterOperator()) {
+                        case "like":
+                            strSQL += " AND " + oFilterBean.getFilter() + " LIKE '%" + oFilterBean.getFilterValue() + "%'";
+                            break;
+                        case "notlike":
+                            strSQL += " AND " + oFilterBean.getFilter() + " NOT LIKE '%" + oFilterBean.getFilterValue() + "%'";
+                            break;
+                        case "equals":
+                            strSQL += " AND " + oFilterBean.getFilter() + " = '" + oFilterBean.getFilterValue() + "'";
+                            break;
+                        case "notequalto":
+                            strSQL += " AND " + oFilterBean.getFilter() + " <> '" + oFilterBean.getFilterValue() + "'";
+                            break;
+                        case "less":
+                            strSQL += " AND " + oFilterBean.getFilter() + " < " + oFilterBean.getFilterValue() + "";
+                            break;
+                        case "lessorequal":
+                            strSQL += " AND " + oFilterBean.getFilter() + " <= " + oFilterBean.getFilterValue() + "";
+                            break;
+                        case "greater":
+                            strSQL += " AND " + oFilterBean.getFilter() + " > " + oFilterBean.getFilterValue() + "";
+                            break;
+                        case "greaterorequal":
+                            strSQL += " AND " + oFilterBean.getFilter() + " >= " + oFilterBean.getFilterValue() + "";
+                            break;
+                    }
+
+                }
+            }
+            ResultSet oResultSet = oStatement.executeQuery(strSQL);
+            while (oResultSet.next()) {
+                intResult = oResultSet.getInt("COUNT(*)") / intRegsPerPage;
+                if ((oResultSet.getInt("COUNT(*)") % intRegsPerPage) > 0) {
+                    intResult++;
+                }
+            }
+        } catch (SQLException ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR:  Can't process query: " + ex.getMessage()));
+        } finally {
+            if (oStatement != null) {
+                oStatement.close();
+            }
+        }
+        return intResult;
+    }
+    
     @Override
     public int getCount(String strTabla, ArrayList<FilterBeanHelper> alFilter) throws Exception {
         Boolean strOrigenTabla = true;

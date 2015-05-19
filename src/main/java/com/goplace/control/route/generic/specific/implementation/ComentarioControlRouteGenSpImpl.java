@@ -17,27 +17,27 @@
  */
 package com.goplace.control.route.generic.specific.implementation;
 
-import com.goplace.control.operation.generic.specific.implementation.PublicacionControlOperationGenSpImpl;
+import com.goplace.control.operation.generic.specific.implementation.ComentarioControlOperationGenSpImpl;
 import com.goplace.control.operation.publicinterface.ControlOperationInterface;
 import com.goplace.control.route.generic.implementation.ControlRouteGenImpl;
 import com.goplace.helper.ExceptionBooster;
 import javax.servlet.http.HttpServletRequest;
 import com.goplace.helper.ParameterCooker;
 
-public class PublicacionControlRouteGenSpImpl extends ControlRouteGenImpl {
+public class ComentarioControlRouteGenSpImpl extends ControlRouteGenImpl {
     
     @Override
     public String execute(HttpServletRequest request, ControlOperationInterface oControl) throws Exception {
-        PublicacionControlOperationGenSpImpl oPublicacionControl = (PublicacionControlOperationGenSpImpl) oControl;
+        ComentarioControlOperationGenSpImpl oComentarioControl = (ComentarioControlOperationGenSpImpl) oControl;
         String operation = ParameterCooker.prepareOperation(request);
         String jsonResult = "";
         try {
             switch (operation) {
-                case "geteventos":
-                    jsonResult = oPublicacionControl.geteventos(request);
+                case "getcomentarios":
+                    jsonResult = oComentarioControl.getcomentarios(request);
                     break;
-                case "getpageseventos":
-                    jsonResult = oPublicacionControl.getpageseventos(request);
+                case "getpagescomentarios":
+                    jsonResult = oComentarioControl.getpagescomentarios(request);
                     break;
                 default:
                     jsonResult = super.execute(request, oControl);

@@ -37,50 +37,37 @@ function fUsuarioRoutes() {
     });
 
     Path.map("#/usuario/list/:url").to(function () {
-        $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oUsuarioControl.list($('#principalpag'), paramsObject, null, oUsuarioModel, oUsuarioView);
-        $('#indexContenidoJsp').empty();
         return false;
     });
 
     Path.map("#/usuario/view/:id").to(function () {
-        //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oUsuarioControl.view($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-        //$('#indexContenidoJsp').empty();
 
         return false;
     });
 
     Path.map("#/usuario/edit/:id").to(function () {
-        $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-        $('#indexContenidoJsp').empty();
     });
 
     Path.map("#/usuario/new").to(function () {
-        $('#indexContenidoJsp').spinner();
-        //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oUsuarioControl.new($('#indexContenido'), null, oUsuarioModel, oUsuarioView);
-        $('#indexContenidoJsp').empty();
         return false;
     });
 
     Path.map("#/usuario/new/:url").to(function () {
-        $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oUsuarioControl.new($('#indexContenido'), paramsObject, oUsuarioModel, oUsuarioView);
-        $('#indexContenidoJsp').empty();
         return false;
     });
 
     Path.map("#/usuario/remove/:id").to(function () {
-        $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oUsuarioControl.remove($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-        $('#indexContenidoJsp').empty();
         return false;
     });
 }

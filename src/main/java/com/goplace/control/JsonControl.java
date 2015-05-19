@@ -24,6 +24,7 @@ import com.goplace.control.operation.generic.specific.implementation.AmistadCont
 import com.goplace.control.operation.generic.specific.implementation.CiudadControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.PublicacionControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.TipopublicacionControlOperationGenSpImpl;
+import com.goplace.control.operation.generic.specific.implementation.ComentarioControlOperationGenSpImpl;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +41,7 @@ import com.goplace.control.route.generic.specific.implementation.AmistadControlR
 import com.goplace.control.route.generic.specific.implementation.CiudadControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.PublicacionControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.TipopublicacionControlRouteGenSpImpl;
+import com.goplace.control.route.generic.specific.implementation.ComentarioControlRouteGenSpImpl;
 
 import com.goplace.control.route.generic.specific.implementation.TipousuarioControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.UsuarioControlRouteGenSpImpl;
@@ -114,6 +116,11 @@ public class JsonControl extends HttpServlet {
                         TipopublicacionControlRouteGenSpImpl oTipopublicacionRoute = new TipopublicacionControlRouteGenSpImpl();
                         TipopublicacionControlOperationGenSpImpl oTipopublicacionControlOperation = new TipopublicacionControlOperationGenSpImpl(request);
                         jsonResult = oTipopublicacionRoute.execute(request, oTipopublicacionControlOperation);
+                        break;
+                    case "comentario":
+                        ComentarioControlRouteGenSpImpl oComentarioRoute = new ComentarioControlRouteGenSpImpl();
+                        ComentarioControlOperationGenSpImpl oComentarioControlOperation = new ComentarioControlOperationGenSpImpl(request);
+                        jsonResult = oComentarioRoute.execute(request, oComentarioControlOperation);
                         break;
                     case "ciudad":
                         CiudadControlRouteGenSpImpl oCiudadRoute = new CiudadControlRouteGenSpImpl();

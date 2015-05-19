@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 --%>
 
+
 <%@page import="com.goplace.bean.generic.specific.implementation.UsuarioBeanGenSpImpl"%>
 
 <%
@@ -28,51 +29,35 @@
     }
 %>
 
-<form class="form-horizontal" role="form" action="#" id="publicacionForm" name="formulario">
-    <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
+<form class="form-horizontal" role="form" action="#" id="comentarioForm" name="formulario">
+    <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg">
         <label class="col-sm-2 control-label" for="id">Id:</label>
         <div class="col-sm-2">
             <input type="text" id="id" class="form-control"  name="id" placeholder="id" />
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label"  for="titulo">Titulo:</label>
+        <label class="col-sm-2 control-label"  for="titulo">Comentario:</label>
         <div class="col-sm-6">
-            <input type="text" id="titulo" class="form-control"  name="titulo" size="15" placeholder="Inserta un Titulo" />
+            <input type="text" id="coment" class="form-control"  name="coment" size="15" placeholder="Inserta un Comentario" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="descripcion">Descripcion:</label>
-        <div class="col-sm-6">
-            <input type="text" id="descripcion" class="form-control"  name="descripcion" size="15" placeholder="Inserta una Descripcion" />
-        </div>
-    </div>
-    <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
+    <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg">
         <label class="col-sm-2 control-label" for="obj_usuario_id">Usuario: </label> 
         <div class="col-sm-2">              
             <input  class="form-control"  id="obj_usuario_id" class="input-mini" name="id_usuario" type="text" size="5" maxlength="5" value=" <%=id_usuario%>" readonly/>  
-        </div>       
+        </div>    
         <label class="col-sm-7" for="obj_usuario_desc" id="obj_usuario_desc"></label>                     
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="obj_ciudad_id">Ciudad: </label> 
+        <label class="col-sm-2 control-label" for="obj_publicacion_id">Evento: </label> 
         <div class="col-sm-2">              
-            <input  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" />  
+            <input  class="form-control"  id="obj_publicacion_id" class="input-mini" name="id_publicacion" type="text" size="5" maxlength="5" />  
         </div>
         <div class="col-sm-1">              
-            <a class="btn btn-primary btn-sm" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
+            <a class="btn btn-primary btn-sm" id="obj_publicacion_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
         </div>        
-        <label class="col-sm-7" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="obj_tipopublicacion_id">Tipo Publicacion: </label> 
-        <div class="col-sm-2">              
-            <input  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" />  
-        </div>
-        <div class="col-sm-1">              
-            <a class="btn btn-primary btn-sm" id="obj_tipopublicacion_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
-        </div>        
-        <label class="col-sm-7" for="obj_tipopublicacion_desc" id="obj_tipopublicacion_desc"></label>                     
+        <label class="col-sm-7" for="obj_publicacion_desc" id="obj_publicacion_desc"></label>                     
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -95,7 +80,7 @@
     $(document).ready(function () {
 
         //http://jqueryvalidation.org/documentation/
-        $('#publicacionForm')
+        $('#comentarioForm')
                 .bootstrapValidator({
                     container: '#messages',
                     feedbackIcons: {
@@ -125,30 +110,20 @@
                                 }
                             }
                         },
-                        id_ciudad: {
+                        id_publicacion: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Debe elegir un ciudad'
+                                    message: 'Debe elegir un Evento'
                                 },
                                 integer: {
                                     message: 'El identificador de ciudad debe ser un entero'
-                                }
-                            }
-                        },
-                        id_tipopublicacion: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Debe elegir un tipopublicacion'
-                                },
-                                integer: {
-                                    message: 'El identificador de tipopublicacion debe ser un entero'
                                 }
                             }
                         }
                     }
                 })
                 .on('change', '[name="id_usuario"]', function () {
-                    $('#publicacionForm').bootstrapValidator('revalidateField', 'id_usuario');
+                    $('#comentarioForm').bootstrapValidator('revalidateField', 'id_usuario');
                 });
     });
 </script>

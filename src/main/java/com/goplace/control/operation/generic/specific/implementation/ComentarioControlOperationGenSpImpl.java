@@ -24,15 +24,16 @@ import com.goplace.control.operation.generic.implementation.ControlOperationGenI
 import com.goplace.helper.ExceptionBooster;
 import com.goplace.helper.FilterBeanHelper;
 import com.goplace.helper.ParameterCooker;
+import com.goplace.service.generic.specific.implementation.ComentarioServiceGenSpImpl;
 import com.goplace.service.generic.specific.implementation.PublicacionServiceGenSpImpl;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PublicacionControlOperationGenSpImpl extends ControlOperationGenImpl {
+public class ComentarioControlOperationGenSpImpl extends ControlOperationGenImpl {
 
-    private PublicacionServiceGenSpImpl oPublicacionService = (PublicacionServiceGenSpImpl) oService;
+    private ComentarioServiceGenSpImpl oComentarioService = (ComentarioServiceGenSpImpl) oService;
     
-    public PublicacionControlOperationGenSpImpl(HttpServletRequest request) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, Exception {
+    public ComentarioControlOperationGenSpImpl(HttpServletRequest request) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, Exception {
         super(request);
     }
 
@@ -42,7 +43,7 @@ public class PublicacionControlOperationGenSpImpl extends ControlOperationGenImp
         if (perm) {
             UsuarioBeanGenSpImpl user = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");
             
-            result = oPublicacionService.set(ParameterCooker.prepareJson(request), user.getId(), user.getId_tipousuario());
+            result = oComentarioService.set(ParameterCooker.prepareJson(request), user.getId(), user.getId_tipousuario());
             closeDB();
         } else {
             result = "error";
@@ -50,14 +51,14 @@ public class PublicacionControlOperationGenSpImpl extends ControlOperationGenImp
         return result;
     }
     
-    public String getpageseventos(HttpServletRequest request) throws Exception {
+    public String getpagescomentarios(HttpServletRequest request) throws Exception {
         String result = null;
         try {
             if (perm) {
                 Integer intRegsPerPag = ParameterCooker.prepareRpp(request);
                 UsuarioBeanGenSpImpl user = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");
                 ArrayList<FilterBeanHelper> alFilter = ParameterCooker.prepareFilter(request);
-                result = oPublicacionService.getPagesEventos(user.getId(), intRegsPerPag, alFilter);
+                result = oComentarioService.getPagesComentarios(user.getId(), intRegsPerPag, alFilter);
                 closeDB();
             } else {
                 result = "Error, su usuario no tiene permisos para realizar esta operación.";
@@ -68,7 +69,7 @@ public class PublicacionControlOperationGenSpImpl extends ControlOperationGenImp
         return result;
     }
 
-    public String geteventos(HttpServletRequest request) throws Exception {
+    public String getcomentarios(HttpServletRequest request) throws Exception {
         String result = null;
         try {
             if (perm) {
@@ -78,7 +79,7 @@ public class PublicacionControlOperationGenSpImpl extends ControlOperationGenImp
 
                 ArrayList<FilterBeanHelper> alFilter = ParameterCooker.prepareFilter(request);
                 HashMap<String, String> hmOrder = ParameterCooker.prepareOrder(request);
-                result = oPublicacionService.getEventos(user.getId(), intRegsPerPag, intPage, alFilter, hmOrder);
+                result = oComentarioService.getComentarios(user.getId(), intRegsPerPag, intPage, alFilter, hmOrder);
                 closeDB();
             } else {
                 result = "Error, su usuario no tiene permisos para realizar esta operación.";

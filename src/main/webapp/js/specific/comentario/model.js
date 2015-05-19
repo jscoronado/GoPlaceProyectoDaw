@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2014 rafa
+ * Copyright (C) 2014 raznara
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -16,21 +16,11 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-var publicacionControl = function (strClase) {
+var comentarioModel = function (strClase) {
     this.clase = strClase;
 };
-publicacionControl.prototype = new control('publicacion');
-publicacionControl.prototype.getClassNamePublicacion = function () {
-    return this.getClassName() + "Control";
+comentarioModel.prototype = new model('comentario');
+comentarioModel.prototype.getClassNameComentario = function () {
+    return this.getClassName() + "Modelo";
 };
-var oPublicacionControl = new publicacionControl('publicacion');
-
-publicacionControl.prototype.listar = function (place, oModel, oView) {
-    var thisObject = this;
-    $(place).empty();
-    var oPublicacionModel = oModel;
-    var oPublicacionView = oView;
-    data = oPublicacionModel.setGenericOperation("geteventos&rpp=100","");
-    eventos = oPublicacionView.getEventos(data);
-    $("#principalpag").html(eventos);
-};
+var oComentarioModel = new comentarioModel('comentario');
