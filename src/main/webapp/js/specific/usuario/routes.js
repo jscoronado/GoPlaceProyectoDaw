@@ -19,14 +19,6 @@
 
 function fUsuarioRoutes() {
 
-//    Path.map("#/usuario").to(function () {
-//        $('#indexContenidoJsp').spinner();
-//        control('usuario').list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null);
-//        //usuarioControl.modalListEventsLoading(usuarioObject, usuarioView, $('#principalpag'), param().defaultizeUrlObjectParameters({}), null);        
-//        $('#indexContenidoJsp').empty();
-//        return false;
-//    });
-
     Path.map("#/usuario").to(function () {
         $('#indexContenidoJsp').spinner();
         oUsuarioControl.list($('#principalpag'), param().defaultizeUrlObjectParameters({}), null, oUsuarioModel, oUsuarioView);
@@ -54,6 +46,7 @@ function fUsuarioRoutes() {
         oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
     });
 
+    /*
     Path.map("#/usuario/new").to(function () {
         oUsuarioControl.new($('#indexContenido'), null, oUsuarioModel, oUsuarioView);
         return false;
@@ -70,4 +63,5 @@ function fUsuarioRoutes() {
         oUsuarioControl.remove($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
         return false;
     });
+     */
 }

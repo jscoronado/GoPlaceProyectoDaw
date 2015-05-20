@@ -71,15 +71,18 @@ public class ComentarioControlOperationGenSpImpl extends ControlOperationGenImpl
 
     public String getcomentarios(HttpServletRequest request) throws Exception {
         String result = null;
+        int id_evento = 0;
         try {
             if (perm) {
                 Integer intRegsPerPag = ParameterCooker.prepareRpp(request);
                 Integer intPage = ParameterCooker.preparePage(request);
                 UsuarioBeanGenSpImpl user = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");
 
+                id_evento = ParameterCooker.prepareId(request);
+                
                 ArrayList<FilterBeanHelper> alFilter = ParameterCooker.prepareFilter(request);
                 HashMap<String, String> hmOrder = ParameterCooker.prepareOrder(request);
-                result = oComentarioService.getComentarios(user.getId(), intRegsPerPag, intPage, alFilter, hmOrder);
+                result = oComentarioService.getComentarios(id_evento, intRegsPerPag, intPage, alFilter, hmOrder);
                 closeDB();
             } else {
                 result = "Error, su usuario no tiene permisos para realizar esta operación.";

@@ -57,6 +57,7 @@
 
             <main>
                 <div id="principalpag"><h1>Estas dentro de GoPlace</h1></div>
+                <div id="comentariospag"></div>
             </main>
             <script>
                 <%

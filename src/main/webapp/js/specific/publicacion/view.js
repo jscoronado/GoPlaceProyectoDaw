@@ -184,3 +184,47 @@ publicacionView.prototype.getEventos = function (jason) {
 
     return eventos;
 };
+
+publicacionView.prototype.getComentarios = function (jason) {
+    
+    espacio = ' ';
+    comilla = "'";
+    salto = "<br />";
+    apertura = "<";
+    cierre = ">";
+    barra = "/";
+    alm = "#";
+    
+    comentarios = "<div class=" + "'col-md-12 col-sm-12 comentariosEvento'" + "id=" + "'comentariosgp'" + ">";
+    jsonP = data.data.page.list;
+    if (jsonP.length != 0) {
+        for (i = 0; i < jsonP.length; i++) {
+            comentarios += "<div class=" + comilla + "comentario row" + comilla + ">";
+            comentarios += "<div class=" + comilla + "col-md-1" + comilla + ">";
+            comentarios += "<img src=" + comilla + "http://localhost:8081/goplace/images/user.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario" + i + comilla + ">";
+            comentarios += "</div>";
+            comentarios += "<div class=" + comilla + "col-md-11" + comilla + ">";
+            comentarios += "<a href=" + comilla + "#/usuario/view/" + jsonP[i].obj_usuario.id + comilla + ">" + jsonP[i].obj_usuario.nombre + espacio + jsonP[i].obj_usuario.apellidos + "</a>";
+            comentarios += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span><br/>";
+            comentarios += "<span>" + jsonP[i].coment + "</span>";
+            comentarios += "</div>";
+            comentarios += "</div>";
+        }
+    } else {
+        comentarios += "<div class=" + comilla + "publicacion row" + comilla + ">";
+        comentarios += "<div class=" + comilla + "col-md-1" + comilla + ">";
+        comentarios += "<img src=" + comilla + "<%=request.getContextPath()%>/images/foto.jpg" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario admin" + comilla + ">";
+        comentarios += "</div>";
+        comentarios += "<div class=" + comilla + "col-md-11" + comilla + ">";
+        comentarios += "<a href=" + comilla + "#/usuario/view/1" + comilla + ">" + "Administrador" + "</a>";
+        comentarios += "<span class=" + comilla + "nick" + comilla + "> @admin" + "</span><br/>";
+        comentarios += "<h4>Haz tu primer comentario!</h4>";
+        comentarios += "<span>Comenta los planes con tus amigos</span>";
+        comentarios += "</div>";
+        comentarios += "</div>";
+    }
+    comentarios += "</div>";
+    comentarios += "</div>";
+
+    return comentarios;
+};

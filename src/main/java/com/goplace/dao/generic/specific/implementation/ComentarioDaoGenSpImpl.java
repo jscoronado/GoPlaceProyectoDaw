@@ -123,21 +123,21 @@ public class ComentarioDaoGenSpImpl extends TableDaoGenImpl<ComentarioBeanGenSpI
         return oComentarioBean;
     }
     
-    public int getPagesComentarios(int id_publicacion, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+    public int getPagesComentarios(int id_evento, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
         int pages = 0;
         try {
-            pages = oMysql.getPagesComentarios(id_publicacion, intRegsPerPag, hmFilter);
+            pages = oMysql.getPagesComentarios(id_evento, intRegsPerPag, hmFilter);
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
         }
         return pages;
     }
     
-    public ArrayList<ComentarioBeanGenSpImpl> getPageComentarios(int id_publicacion, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public ArrayList<ComentarioBeanGenSpImpl> getPageComentarios(int id_evento, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
         ArrayList<ComentarioBeanGenSpImpl> arrComentario = new ArrayList<>();
         try {
-            arrId = oMysql.getPageComentarios(id_publicacion, intRegsPerPag, intPage, hmFilter);
+            arrId = oMysql.getPageComentarios(id_evento, intRegsPerPag, intPage, hmFilter);
             Iterator<Integer> iterador = arrId.listIterator();
             while (iterador.hasNext()) {
                 ComentarioBeanGenSpImpl oComentarioBean = new ComentarioBeanGenSpImpl(iterador.next());

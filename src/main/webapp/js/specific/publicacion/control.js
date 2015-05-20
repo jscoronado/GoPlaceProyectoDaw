@@ -30,7 +30,17 @@ publicacionControl.prototype.listar = function (place, oModel, oView) {
     $(place).empty();
     var oPublicacionModel = oModel;
     var oPublicacionView = oView;
-    data = oPublicacionModel.setGenericOperation("geteventos&rpp=100","");
+    data = oPublicacionModel.setGenericOperation("geteventos&rpp=4","");
     eventos = oPublicacionView.getEventos(data);
     $("#principalpag").html(eventos);
+};
+
+publicacionControl.prototype.listarComentarios = function (place, id_evento, oModel, oView) {
+    var thisObject = this;
+    $(place).empty();
+    var oComentarioModel = oModel;
+    var oPublicacionView = oView;
+    data = oComentarioModel.setGenericOperation("getcomentarios&id="+id_evento+"&rpp=100","");
+    eventos = oPublicacionView.getComentarios(data);
+    $("#comentariospag").html(eventos);
 };

@@ -45,10 +45,11 @@ function fPublicacionRoutes() {
     });
 
     Path.map("#/publicacion/view/:id").to(function () {
-        //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oPublicacionControl.view($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
-        //$('#indexContenidoJsp').empty();
+        
+        var paramsObject2 = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+        oPublicacionControl.listarComentarios($('#comentariospag'), paramsObject2['id'], oComentarioModel, oPublicacionView);
 
         return false;
     });
@@ -82,10 +83,7 @@ function fPublicacionRoutes() {
         return false;
     });
     Path.map("#/publicacion/inicio").to(function () {
-    //$('#indexContenidoJsp').spinner();
-    //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
     oPublicacionControl.listar($('#principalpag'), oPublicacionModel, oPublicacionView);
-    //$('#indexContenidoJsp').empty();
     return false;
     });
 }
