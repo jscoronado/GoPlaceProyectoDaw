@@ -33,7 +33,7 @@ public class UsuarioBeanGenSpImpl extends BeanGenImpl implements BeanInterface {
     private String correo = "";
     @Expose
     private String login = "";
-    @Expose
+    @Expose(serialize = false)
     private String password = "";
     @Expose
     private Date fecha = null;

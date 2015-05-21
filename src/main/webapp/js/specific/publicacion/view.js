@@ -146,25 +146,21 @@ publicacionView.prototype.getEventos = function (jason) {
     barra = "/";
     alm = "#";
     
-    eventos = "<div class=" + "'row'" + ">";
-    eventos += "<div class=" + "'col-md-3 col-sm-3 perfilMain'" + ">";
-    eventos += "<div class=" + "'fotoPerfil'" + "><img src=" + "'http://localhost:8081/goplace/images/user.png'" + " class=" + "'foto'" + " alt=" + "'Foto usuario'" + "></div><br/>";
-    eventos += "<h3 class=" + "'nomargin'" + "><a href=" + "'#'" + "> Jose Miguel Coronado Aroca</a></h3>";
-    eventos += "</div><div class=" + "'col-md-9 col-sm-9 inicioMain'" + "id=" + "'eventosgp'" + ">";
+    
+    eventos = "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos en Valencia</h2>";
+    
+    eventos += "<div class=" + "'row'" + ">";
+    eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
     jsonP = data.data.page.list;
     if (jsonP.length != 0) {
         for (i = 0; i < jsonP.length; i++) {
-            eventos += "<div class=" + comilla + "publicacion row" + comilla + ">";
-            eventos += "<div class=" + comilla + "col-md-1" + comilla + ">";
-            eventos += "<img src=" + comilla + "http://localhost:8081/goplace/images/user.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario" + i + comilla + ">";
-            eventos += "</div>";
-            eventos += "<div class=" + comilla + "col-md-11" + comilla + ">";
+            eventos += "<div class=" + comilla + "col-md-4 publicacion evento" + jsonP[i].id + comilla + ">";
+            eventos += "<div class=" + comilla + "contentpub" + comilla + ">";
+            eventos += "<h4><a href=" + comilla + "#/publicacion/view/" + jsonP[i].id + comilla + ">" + jsonP[i].titulo + "</a></h4>";
+            eventos += "<div class=" + comilla + "usuariopub" + comilla + ">";
             eventos += "<a href=" + comilla + "#/usuario/view/" + jsonP[i].obj_usuario.id + comilla + ">" + jsonP[i].obj_usuario.nombre + espacio + jsonP[i].obj_usuario.apellidos + "</a>";
             eventos += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span><br/>";
-            eventos += "<h4><a href=" + comilla + "#/publicacion/view/" + jsonP[i].id + comilla + ">" + jsonP[i].titulo + "</a></h4>";
-            eventos += "<span>" + jsonP[i].descripcion + "</span>";
-            eventos += "</div>";
-            eventos += "</div>";
+            eventos += "</div></div></div>";
         }
     } else {
         eventos += "<div class=" + comilla + "publicacion row" + comilla + ">";

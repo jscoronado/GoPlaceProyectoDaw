@@ -30,7 +30,7 @@ publicacionControl.prototype.listar = function (place, oModel, oView) {
     $(place).empty();
     var oPublicacionModel = oModel;
     var oPublicacionView = oView;
-    data = oPublicacionModel.setGenericOperation("geteventos&rpp=4","");
+    data = oPublicacionModel.setGenericOperation("geteventos&rpp=8","");
     eventos = oPublicacionView.getEventos(data);
     $("#principalpag").html(eventos);
 };

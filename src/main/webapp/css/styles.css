@@ -90,7 +90,7 @@ main{
 header{
     width: 100%;
     height: 14%;
-    background-color: white;
+    background-color: #009688;
 }
 
 .logo{
@@ -266,13 +266,15 @@ header{
     cursor: pointer;
 }
 .publicacion{
+    height: 250px;
     background-color: white;
-    padding: 10px 0 10px 0;
+    padding: 150px 0 0 0;
     margin: 5px 0 5px 0;
     border: 1px solid gray;
     border-radius: 4px;
     box-shadow: 2px 2px 2px gray;
     cursor: pointer;
+    text-align: center;
 }
 .publicacion>span{
     color: black;
@@ -313,6 +315,31 @@ header{
     color: #009688;
 }
 
+/* NEW */
+.evento1, .evento3, .evento5, .evento7, .evento9{
+    background: url('../images/eventos/vlc.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.evento2, .evento4, .evento6, .evento8, .evento10{
+    background: url('../images/eventos/vlc2.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.contentpub{
+    background: rgba(255,255,255,0.8);
+    padding: 10px;
+}
+.usuariopub{
+    margin-top: 10px;
+}
+.usuariopub a{
+    font-weight: 900;
+}
 
 /* FOOTER */
 footer{
