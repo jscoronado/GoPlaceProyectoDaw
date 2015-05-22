@@ -50,7 +50,7 @@
                     <li class="publicarbtn"><a href="#/publicacion/new" class="glyphicon glyphicon-send"><span> Publicar</span></a></li>
                 </ul>
                 <ul class="nav nav-tabs navbar-right">
-                    <li><a href="#/usuario/view/<%=user.getId()%>" class="glyphicon glyphicon-user"><span><%=user.getNombre()%> <%=user.getApellidos()%></span></a></li>
+                    <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span><%=user.getNombre()%> <%=user.getApellidos()%></span></a></li>
                     <li class="cerrarbtn"><a href="<%=logout%>" class="glyphicon glyphicon-off"><span> Cerrar Sesion</span></a></li>
                 </ul>
             </header>

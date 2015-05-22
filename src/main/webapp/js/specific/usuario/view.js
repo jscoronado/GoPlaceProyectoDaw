@@ -167,3 +167,78 @@ usuarioView.prototype.doResultOperationNotifyToUser = function (place, resultado
     })
     ;
 };
+
+usuarioView.prototype.getPerfil = function (perfil, comentario, amigos) {
+    
+    espacio = ' ';
+    comilla = "'";
+    salto = "<br />";
+    apertura = "<";
+    cierre = ">";
+    barra = "/";
+    alm = "#";
+    
+plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" + ">";
+    
+    plantillaPerfil += "<div class=" + "'cabeceraPerfil row'" + "id=" + "'cabeceraPerfil'" + ">";
+        plantillaPerfil += "<img src=" + comilla + "http://www.zastavki.com/pictures/originals/2014/World___India_Young_people_resting_in_Goa_066065_.jpg" + comilla + "class=" + comilla + "fotoCabecera col-md-12 col-xs-12" + comilla + " alt=" + comilla + "Foto Cabecera de " + perfil.data.nombre + espacio + perfil.data.apellidos + comilla + ">";
+    plantillaPerfil += "</div>";
+    
+    plantillaPerfil += "<div class=" + comilla + "content_perfil row" + comilla + ">";
+    
+        /* Perfil */
+        plantillaPerfil += "<div class=" + comilla + "perfilgp col-md-4 col-xs-12" + comilla + ">";
+            plantillaPerfil += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-12" + comilla + ">";
+                plantillaPerfil += "<img src=" + comilla + "http://www.notariavillarrica.cl/sitio/1/images/usuario.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario" + perfil.data.id + comilla + ">";
+            plantillaPerfil += "</div>";
+            plantillaPerfil += "<div class=" + comilla + "perfil_desc col-md-12 col-xs-12" + comilla + ">";
+                plantillaPerfil += "<h1 class=" + comilla + "permil_name user col-md-12 col-xs-12" + perfil.data.id + comilla + ">" + perfil.data.nombre + espacio + perfil.data.apellidos + "</h1>";
+                plantillaPerfil += "<span class=" + comilla + "nick perfil_nick" + comilla + "> @" + perfil.data.login + "</span><br/>";
+                plantillaPerfil += "<p class=" + comilla + "perfil_estado" + comilla + ">" + perfil.data.estado + "</p>";
+                plantillaPerfil += "<p class=" + comilla + "perfil_ciudad" + comilla + ">" + perfil.data.obj_ciudad.nombre + "</p>";
+            plantillaPerfil += "</div>";
+            
+            plantillaPerfil += "<div class=" + comilla + "perfil_edit col-md-12 col-xs-12" + comilla + " id=" + comilla + "perfil_edit" + comilla + "></div>";
+            plantillaPerfil += "<div class=" + comilla + "perfil_agregar col-md-12 col-xs-12" + comilla + " id=" + comilla + "perfil_agregar" + comilla + "></div>";
+           
+        plantillaPerfil += "</div>";
+        
+        /* Comentarios */
+        plantillaPerfil += "<div class=" + comilla + "comentariosgp col-md-4 col-xs-12" + comilla + ">";
+            
+            var coment = comentario.list;
+            
+            if (coment.length != 0) {
+                for (i = 0; i < coment.length; i++) {
+                    plantillaPerfil += "<div class=" + comilla + "comentario row" + comilla + ">";
+                    plantillaPerfil += "<div class=" + comilla + "col-md-1 col-xs-1" + comilla + ">";
+                    plantillaPerfil += "<img src=" + comilla + "http://localhost:8081/goplace/images/user.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario" + coment[i].obj_usuario.id + comilla + ">";
+                    plantillaPerfil += "</div>";
+                    plantillaPerfil += "<div class=" + comilla + "col-md-11 col-xs-11" + comilla + ">";
+                    plantillaPerfil += "<a href=" + comilla + "#/usuario/view/" + coment[i].obj_usuario.id + comilla + ">" + coment[i].obj_usuario.nombre + espacio + coment[i].obj_usuario.apellidos + "</a>";
+                    plantillaPerfil += "<span class=" + comilla + "nick" + comilla + "> @" + coment[i].obj_usuario.login + "</span><br/>";
+                    plantillaPerfil += "<span class="+ comilla + "perfil_coment" + comilla + ">" + coment[i].coment + "</span><br/>";
+                    plantillaPerfil += "<a href=" + comilla + "#/publicacion/view/" + coment[i].obj_publicacion.id + comilla + ">" + coment[i].obj_publicacion.titulo + espacio + "( " +coment[i].obj_publicacion.obj_ciudad.nombre + " )"+" </a>";
+                    plantillaPerfil += "</div>";
+                    plantillaPerfil += "</div>";
+                }
+            } else {
+                plantillaPerfil += "<div class=" + comilla + "comentario row" + comilla + ">";
+                plantillaPerfil += "<div class=" + comilla + "col-md-1 col-xs-11" + comilla + ">";
+                plantillaPerfil += "<img src=" + comilla + "http://localhost:8081/goplace/images/user_admin.jpg" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario admin" + comilla + ">";
+                plantillaPerfil += "</div>";
+                plantillaPerfil += "<div class=" + comilla + "col-md-11 col-xs-11" + comilla + ">";
+                plantillaPerfil += "<a href=" + comilla + "#/usuario/view/1" + comilla + ">" + "Administrador" + "</a>";
+                plantillaPerfil += "<span class=" + comilla + "nick" + comilla + "> @admin" + "</span><br/>";
+                plantillaPerfil += "<span>¡ Haz tu primer comentario !</span>";
+                plantillaPerfil += "</div>";
+                plantillaPerfil += "</div>";
+            }
+        plantillaPerfil += "</div>";
+        
+    plantillaPerfil += "</div>";
+    
+plantillaPerfil += "</div>";
+    
+    return plantillaPerfil;
+};

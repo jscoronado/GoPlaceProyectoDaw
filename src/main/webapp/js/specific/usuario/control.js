@@ -60,6 +60,42 @@ usuarioControl.prototype.view = function (place, id, oModel, oView) {
     });
 };
 
+usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
+    $(place).empty();
+    var oDocumentoModel = oModel;
+    var perfil = oDocumentoModel.loadPerfil(id);
+    var comentarios = oComentarioModel.loadComentarios(id);
+    $(place).append(oView.getPerfil(perfil, comentarios, null));
+    
+    var jsonamigo = oUsuarioModel.existeAmigo(id);
+    var amigo = jsonamigo.data;
+    
+    if (myuser == id) {
+        $("#perfil_edit").append('<a class="btn btn-primary" href="control#/usuario/edit/' + id + '">Editar</a>');
+        /*$(place).append('<a class="btn btn-primary" href="control#/usuario/remove/' + id + '">Borrar</a><br /><br />');*/
+    } else {
+        if(!amigo){
+            $("#perfil_agregar").append('<a class="btn btn-primary" id=\"addfriend\">Añadir amigo</a>');
+        } else {
+            $("#perfil_agregar").append('<a class="btn btn-danger" id=\"removefriend\">Eliminar amigo</a>');
+        }        
+    }
+    
+    $(place).append('<a class="btn btn-primary" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + id + '">Ver amigos</a><br /><br />');
+    
+    $('#addfriend').click(function () {
+        resultado = oUsuarioModel.agregarAmigo(id);
+        oUsuarioView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha añadido el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
+        return false;
+    });
+    
+    $('#removefriend').click(function () {
+        resultado = oUsuarioModel.removeAmigo(id);
+        oUsuarioView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha eliminado el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
+        return false;
+    });
+};
+
 usuarioControl.prototype.list = function (place, objParams, callback, oModel, oView) {
     var thisObject = this;
     objParams = param().validateUrlObjectParameters(objParams);

@@ -66,3 +66,11 @@ usuarioModel.prototype.getOne = function (id_usuario) {
     });
     return one;
 };
+
+usuarioModel.prototype.loadPerfil = function (id1) {
+    $.when(ajax().ajaxCallSync(this.urlJson + '&op=getaggregateviewone&id=' + id1, 'GET', '')).done(function (data) {
+        pagina_objs = data;
+    });
+    
+    return pagina_objs.data;
+};

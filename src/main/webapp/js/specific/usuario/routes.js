@@ -40,6 +40,13 @@ function fUsuarioRoutes() {
 
         return false;
     });
+    
+    Path.map("#/perfil/:id").to(function () {
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+        oUsuarioControl.perfil($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+
+        return false;
+    });
 
     Path.map("#/usuario/edit/:id").to(function () {
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));

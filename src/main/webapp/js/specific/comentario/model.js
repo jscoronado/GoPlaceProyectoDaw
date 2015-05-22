@@ -24,3 +24,12 @@ comentarioModel.prototype.getClassNameComentario = function () {
     return this.getClassName() + "Modelo";
 };
 var oComentarioModel = new comentarioModel('comentario');
+
+comentarioModel.prototype.loadComentarios = function (id1) {
+    
+    $.when(ajax().ajaxCallSync(this.urlJson + '&op=getpage&systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue=' + id1 + '&order=fechacomentario&ordervalue=desc', 'GET', '')).done(function (data) {
+        pagina_objs = data;
+    });
+    
+    return pagina_objs;
+};
