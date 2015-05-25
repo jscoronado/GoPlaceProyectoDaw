@@ -45,7 +45,7 @@
                 </div>
                 <ul class="nav nav-tabs navbar-left">
                     <li class="actived"><a href="#/publicacion/inicio" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
-                    <li><a href="#/usuario/view/<%=user.getId()%>" class="glyphicon glyphicon-user"><span> Perfil</span></a></li>
+                    <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span> Perfil</span></a></li>
                     <li><a href="#/publicacion/descubre/view/<%=user.getId_ciudad()%>" class="glyphicon glyphicon-comment"><span> Descubre</span></a></li>
                     <li class="publicarbtn"><a href="#/publicacion/new" class="glyphicon glyphicon-send"><span> Publicar</span></a></li>
                 </ul>
@@ -146,6 +146,8 @@
         <script src="./js/specific/tipopublicacion/control.js" charset="UTF-8"></script>
         <script src="./js/specific/tipopublicacion/routes.js" charset="UTF-8"></script>
         
+        
+        
         <script type="text/javascript">
 
                 $(document).ready(function () {
@@ -159,12 +161,12 @@
                     fPublicacionRoutes();
                     fComentarioRoutes();
                     fUsuarioRoutes();
-                    fAmistadRoutes();
                     fCiudadRoutes();
                     fTipousuarioRoutes();
                     fTipopublicacionRoutes();
-                    fInicioRedSocialRoutes();
+                    
                     Path.listen();
+                    
 
                 });
 

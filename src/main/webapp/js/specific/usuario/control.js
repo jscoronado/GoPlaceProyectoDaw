@@ -35,17 +35,17 @@ usuarioControl.prototype.view = function (place, id, oModel, oView) {
     var amigo = jsonamigo.data;
     
     if (myuser == id) {
-        $(place).append('<a class="btn btn-primary" href="control#/usuario/edit/' + id + '">Editar</a>');
-        $(place).append('<a class="btn btn-primary" href="control#/usuario/remove/' + id + '">Borrar</a><br /><br />');
+        $(place).append('<a class="btn btn-goplace" href="control#/usuario/edit/' + id + '">Editar</a>');
+        $(place).append('<a class="btn btn-goplace" href="control#/usuario/remove/' + id + '">Borrar</a><br /><br />');
     } else {
         if(!amigo){
-            $(place).append('<a class="btn btn-primary" id=\"addfriend\">Añadir amigo</a>');
+            $(place).append('<a class="btn btn-goplace" id=\"addfriend\">Añadir amigo</a>');
         } else {
             $(place).append('<a class="btn btn-danger" id=\"removefriend\">Eliminar amigo</a>');
         }        
     }
     
-    $(place).append('<a class="btn btn-primary" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + id + '">Ver amigos</a><br /><br />');
+    $(place).append('<a class="btn btn-goplace" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + id + '">Ver amigos</a><br /><br />');
     
     $('#addfriend').click(function () {
         resultado = oUsuarioModel.agregarAmigo(id);
@@ -65,23 +65,23 @@ usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
     var oDocumentoModel = oModel;
     var perfil = oDocumentoModel.loadPerfil(id);
     var comentarios = oComentarioModel.loadComentarios(id);
-    $(place).append(oView.getPerfil(perfil, comentarios, null));
+    var eventos = oUsuarioModel.loadEventos(id);
+    
+    $(place).append(oView.getPerfil(perfil, comentarios, eventos));
     
     var jsonamigo = oUsuarioModel.existeAmigo(id);
     var amigo = jsonamigo.data;
     
     if (myuser == id) {
-        $("#perfil_edit").append('<a class="btn btn-primary" href="control#/usuario/edit/' + id + '">Editar</a>');
-        /*$(place).append('<a class="btn btn-primary" href="control#/usuario/remove/' + id + '">Borrar</a><br /><br />');*/
+        $("#perfil_edit").append('<a class="btn btn-goplace" href="control#/usuario/edit/' + id + '">Editar</a>');
+        /*$(place).append('<a class="btn btn-goplace" href="control#/usuario/remove/' + id + '">Borrar</a><br /><br />');*/
     } else {
         if(!amigo){
-            $("#perfil_agregar").append('<a class="btn btn-primary" id=\"addfriend\">Añadir amigo</a>');
+            $("#perfil_agregar").append('<a class="btn btn-goplace" id=\"addfriend\">Añadir amigo</a>');
         } else {
             $("#perfil_agregar").append('<a class="btn btn-danger" id=\"removefriend\">Eliminar amigo</a>');
         }        
     }
-    
-    $(place).append('<a class="btn btn-primary" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + id + '">Ver amigos</a><br /><br />');
     
     $('#addfriend').click(function () {
         resultado = oUsuarioModel.agregarAmigo(id);

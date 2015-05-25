@@ -74,3 +74,11 @@ usuarioModel.prototype.loadPerfil = function (id1) {
     
     return pagina_objs.data;
 };
+
+usuarioModel.prototype.loadEventos = function (id1) {
+    $.when(ajax().ajaxCallSync('/goplace/json?ob=asistencia' + '&op=getpage&systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue=' + id1, 'GET', '')).done(function (data) {
+        pagina_objs = data;
+    });
+    
+    return pagina_objs;
+};

@@ -42,7 +42,7 @@ function fUsuarioRoutes() {
     });
     
     Path.map("#/perfil/:id").to(function () {
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
         oUsuarioControl.perfil($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
 
         return false;

@@ -21,6 +21,7 @@ package com.goplace.control;
 import com.google.gson.Gson;
 import com.goplace.bean.generic.specific.implementation.UsuarioBeanGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.AmistadControlOperationGenSpImpl;
+import com.goplace.control.operation.generic.specific.implementation.AsistenciaControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.CiudadControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.PublicacionControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.TipopublicacionControlOperationGenSpImpl;
@@ -38,6 +39,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.goplace.control.operation.generic.specific.implementation.TipousuarioControlOperationGenSpImpl;
 import com.goplace.control.operation.generic.specific.implementation.UsuarioControlOperationGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.AmistadControlRouteGenSpImpl;
+import com.goplace.control.route.generic.specific.implementation.AsistenciaControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.CiudadControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.PublicacionControlRouteGenSpImpl;
 import com.goplace.control.route.generic.specific.implementation.TipopublicacionControlRouteGenSpImpl;
@@ -126,6 +128,11 @@ public class JsonControl extends HttpServlet {
                         CiudadControlRouteGenSpImpl oCiudadRoute = new CiudadControlRouteGenSpImpl();
                         CiudadControlOperationGenSpImpl oCiudadControlOperation = new CiudadControlOperationGenSpImpl(request);
                         jsonResult = oCiudadRoute.execute(request, oCiudadControlOperation);
+                        break;
+                    case "asistencia":
+                        AsistenciaControlRouteGenSpImpl oAsistenciaRoute = new AsistenciaControlRouteGenSpImpl();
+                        AsistenciaControlOperationGenSpImpl oAsistenciaControlOperation = new AsistenciaControlOperationGenSpImpl(request);
+                        jsonResult = oAsistenciaRoute.execute(request, oAsistenciaControlOperation);
                         break;
                     case "amistad":
                         AmistadControlRouteGenSpImpl oAmistadRoute = new AmistadControlRouteGenSpImpl();

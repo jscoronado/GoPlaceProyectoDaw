@@ -117,7 +117,7 @@ usuarioView.prototype.doEventsLoading = function () {
         //cabecera = '<button id="full-width" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' + '<h3 id="myModalLabel">Edición de contenidos</h3>';
         cabecera = thisObject.getFormHeader('Edición de contenidos');
         //pie = '<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cerrar</button>';                        
-        pie = '<a class="btn btn-primary" href="http://creoleparser.googlecode.com/svn/trunk/creoleparser/test_pages/CheatSheetPlus.html">Sintaxis</a>';
+        pie = '<a class="btn btn-goplace" href="http://creoleparser.googlecode.com/svn/trunk/creoleparser/test_pages/CheatSheetPlus.html">Sintaxis</a>';
         pie += thisObject.getFormFooter();
         contenido = '<div class="row"><div class="col-md-6">';
         contenido += '<textarea type="text" id="contenidomodal" name="contenido" rows="20" cols="70" placeholder="contenido"></textarea>';
@@ -149,7 +149,7 @@ usuarioView.prototype.doResultOperationNotifyToUser = function (place, resultado
         mensaje = "<h3>La operacion se ha ejecutado con éxito</h3>";
     } else {
         mensaje = "<h3>ERROR</h3>";
-        resultadoMessage = "Error, el usuario con ID = " + id_usuario_2 + " usuario ya es tu amigo.";
+        resultadoMessage = "Error, el usuario con ID = " + id_usuario_2 + " usuario ya es tu amigo no?.";
     }
     mensaje += "<h5>Código: " + resultadoStatus + "</h5><h5>" + resultadoMessage + "</h5>";
     $(place).append(this.getEmptyModal());
@@ -168,7 +168,7 @@ usuarioView.prototype.doResultOperationNotifyToUser = function (place, resultado
     ;
 };
 
-usuarioView.prototype.getPerfil = function (perfil, comentario, amigos) {
+usuarioView.prototype.getPerfil = function (perfil, comentario, eventos) {
     
     espacio = ' ';
     comilla = "'";
@@ -188,37 +188,42 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
     
         /* Perfil */
         plantillaPerfil += "<div class=" + comilla + "perfilgp col-md-4 col-xs-12" + comilla + ">";
-            plantillaPerfil += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-12" + comilla + ">";
+            plantillaPerfil += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-4" + comilla + ">";
                 plantillaPerfil += "<img src=" + comilla + "http://www.notariavillarrica.cl/sitio/1/images/usuario.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario" + perfil.data.id + comilla + ">";
             plantillaPerfil += "</div>";
-            plantillaPerfil += "<div class=" + comilla + "perfil_desc col-md-12 col-xs-12" + comilla + ">";
+            plantillaPerfil += "<div class=" + comilla + "perfil_desc col-md-12 col-xs-8" + comilla + ">";
                 plantillaPerfil += "<h1 class=" + comilla + "permil_name user col-md-12 col-xs-12" + perfil.data.id + comilla + ">" + perfil.data.nombre + espacio + perfil.data.apellidos + "</h1>";
                 plantillaPerfil += "<span class=" + comilla + "nick perfil_nick" + comilla + "> @" + perfil.data.login + "</span><br/>";
                 plantillaPerfil += "<p class=" + comilla + "perfil_estado" + comilla + ">" + perfil.data.estado + "</p>";
                 plantillaPerfil += "<p class=" + comilla + "perfil_ciudad" + comilla + ">" + perfil.data.obj_ciudad.nombre + "</p>";
             plantillaPerfil += "</div>";
             
-            plantillaPerfil += "<div class=" + comilla + "perfil_edit col-md-12 col-xs-12" + comilla + " id=" + comilla + "perfil_edit" + comilla + "></div>";
-            plantillaPerfil += "<div class=" + comilla + "perfil_agregar col-md-12 col-xs-12" + comilla + " id=" + comilla + "perfil_agregar" + comilla + "></div>";
-           
+            plantillaPerfil += "<div class=" + comilla + "perfil_edit col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_edit" + comilla + "></div>";
+            plantillaPerfil += "<div class=" + comilla + "perfil_agregar col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_agregar" + comilla + "></div>";
+            
+            plantillaPerfil += "<div class=" + comilla + "perfil_friends col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_friends" + comilla + ">";
+            plantillaPerfil +='<a class="btn btn-goplace" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + perfil.data.id + '">Ver amigos</a>'
+            plantillaPerfil += '</div>';
+            
         plantillaPerfil += "</div>";
         
         /* Comentarios */
         plantillaPerfil += "<div class=" + comilla + "comentariosgp col-md-4 col-xs-12" + comilla + ">";
             
+            plantillaPerfil += "<h2 class=" + comilla + "col-md-12 title_perfil" + comilla +">Tus Comentarios</h2>";
+            
             var coment = comentario.list;
             
             if (coment.length != 0) {
                 for (i = 0; i < coment.length; i++) {
-                    plantillaPerfil += "<div class=" + comilla + "comentario row" + comilla + ">";
-                    plantillaPerfil += "<div class=" + comilla + "col-md-1 col-xs-1" + comilla + ">";
-                    plantillaPerfil += "<img src=" + comilla + "http://localhost:8081/goplace/images/user.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario" + coment[i].obj_usuario.id + comilla + ">";
+                    plantillaPerfil += "<div class=" + comilla + "comentario col-md-12 col-xs-12" + comilla + ">";
+                    plantillaPerfil += "<div class=" + comilla + "col-md-2 col-xs-2 foto_comentario" + comilla + ">";
+                    plantillaPerfil += "<img src=" + comilla + "http://localhost:8081/goplace/images/user.png" + comilla + "class=" + comilla + "fotoComent" + comilla + " alt=" + comilla + "Foto usuario" + coment[i].obj_usuario.id + comilla + ">";
                     plantillaPerfil += "</div>";
-                    plantillaPerfil += "<div class=" + comilla + "col-md-11 col-xs-11" + comilla + ">";
-                    plantillaPerfil += "<a href=" + comilla + "#/usuario/view/" + coment[i].obj_usuario.id + comilla + ">" + coment[i].obj_usuario.nombre + espacio + coment[i].obj_usuario.apellidos + "</a>";
-                    plantillaPerfil += "<span class=" + comilla + "nick" + comilla + "> @" + coment[i].obj_usuario.login + "</span><br/>";
-                    plantillaPerfil += "<span class="+ comilla + "perfil_coment" + comilla + ">" + coment[i].coment + "</span><br/>";
-                    plantillaPerfil += "<a href=" + comilla + "#/publicacion/view/" + coment[i].obj_publicacion.id + comilla + ">" + coment[i].obj_publicacion.titulo + espacio + "( " +coment[i].obj_publicacion.obj_ciudad.nombre + " )"+" </a>";
+                    plantillaPerfil += "<div class=" + comilla + "col-md-10 col-xs-10 desc_comentario" + comilla + ">";
+                    plantillaPerfil += "<span class=" + comilla + "id_comentario" + comilla + "> #" + coment[i].id + "</span>";
+                    plantillaPerfil += "<p class="+ comilla + "perfil_coment" + comilla + ">" + coment[i].coment + "</p>";
+                    plantillaPerfil += "<a href=" + comilla + "#/publicacion/view/" + coment[i].obj_publicacion.id + comilla + " class="+ comilla + "event_coment" + comilla + ">" + coment[i].obj_publicacion.titulo + espacio + "( " +coment[i].obj_publicacion.obj_ciudad.nombre + " )"+" </a>";
                     plantillaPerfil += "</div>";
                     plantillaPerfil += "</div>";
                 }
@@ -236,9 +241,60 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
             }
         plantillaPerfil += "</div>";
         
+        /* Eventos */
+        plantillaPerfil += "<div class=" + comilla + "eventosgp col-md-4 col-xs-12" + comilla + ">";
+            plantillaPerfil += "<h2 class=" + comilla + "col-md-12 title_perfil" + comilla +">Eventos Próximos</h2>";
+            
+            var events = eventos.list;
+            
+            
+            
+            
+            if (events.length != 0) {
+                for (i = 0; i < events.length; i++) {
+                    if(oUsuarioView.compareDate(events[i].obj_publicacion.fechapub) == "1"){
+                    plantillaPerfil += "<div class=" + comilla + "evento_perfil col-md-12 col-sm-6 col-xs-12" + comilla + ">";
+                    plantillaPerfil += "<h4><a href=" + comilla + "#/publicacion/view/" + events[i].obj_publicacion.id + comilla + ">" + events[i].obj_publicacion.titulo + "</a></h4>";
+                    plantillaPerfil += "<span class="+ comilla + "ciudad_event" + comilla + ">" + events[i].obj_publicacion.obj_ciudad.nombre + "</span><br/>";
+                    plantillaPerfil += "<span class="+ comilla + "fecha_event" + comilla + ">" + events[i].obj_publicacion.fechapub + "</span><br/>";
+                    plantillaPerfil += "</div>";
+                    }
+                }
+            } else {
+                plantillaPerfil += "<div class=" + comilla + "evento_perfil col-md-12 col-xs-12" + comilla + ">";
+                    plantillaPerfil += "<h4 style=" + comilla + "text-align: center" + comilla + ">No tienes Eventos Próximos</h4>";
+                    plantillaPerfil += "</div>";
+            }
+        plantillaPerfil += "</div>";
+        
     plantillaPerfil += "</div>";
     
 plantillaPerfil += "</div>";
     
     return plantillaPerfil;
 };
+
+usuarioView.prototype.compareDate = function (dateEvento) {
+
+    var result;
+    
+    /* Date Today */
+    var hoy = new Date();
+
+    var dd = hoy.getDate();
+    var mm = hoy.getMonth()+1; 
+    var yyyy = hoy.getFullYear();
+    var dateToday = new Date(mm + "/" + dd + "/" + yyyy);
+    
+    /* Date Event */
+    var parts = dateEvento.split("/");
+    var dateEv = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+    
+    if(dateEv >= dateToday){
+        result = "1";
+    } else {
+        result = "0";
+    }
+    
+    return result;
+ };

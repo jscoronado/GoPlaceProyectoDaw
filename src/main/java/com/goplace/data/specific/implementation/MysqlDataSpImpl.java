@@ -1013,13 +1013,20 @@ public class MysqlDataSpImpl implements DataInterface {
         }
     }
 
-    public int agregarAmigo(int idamigo, int idamigo2) throws Exception {
+    public int agregarDato(String tabla, int valor1, int valor2) throws Exception {
 
         ResultSet oResultSet;
         java.sql.PreparedStatement oPreparedStatement = null;
         int id = 0;
+        
+        String strSQL = "";
+        
         try {
-            String strSQL = "INSERT INTO `amistad` (`id`, `id_usuario_1`, `id_usuario_2`) VALUES (NULL, '" + idamigo + "', '" + idamigo2 + "'); ";
+            if(tabla == "amistad"){
+                strSQL = "INSERT INTO `amistad` (`id`, `id_usuario_1`, `id_usuario_2`) VALUES (NULL, '" + valor1 + "', '" + valor2 + "'); ";
+            } else if(tabla == "asistencia"){
+                strSQL = "INSERT INTO `asistencia` (`id`, `id_usuario`, `id_publicacion`) VALUES (NULL, '" + valor1 + "', '" + valor2 + "'); ";   
+            }
             oPreparedStatement = connection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
             int returnLastInsertId = oPreparedStatement.executeUpdate();
             if (returnLastInsertId != -1) {
@@ -1027,10 +1034,10 @@ public class MysqlDataSpImpl implements DataInterface {
                 oResultSet.next();
                 id = oResultSet.getInt(1);
             } else {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":agregarAmigo ERROR inserting register"));
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":agregarDato ERROR inserting register"));
             }
         } catch (SQLException ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":agregarAmigo ERROR inserting register: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":agregarDato ERROR inserting register: " + ex.getMessage()));
         } finally {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
@@ -1039,16 +1046,21 @@ public class MysqlDataSpImpl implements DataInterface {
         return id;
     }
 
-    public int removeAmigo(int idamigo, int idamigo2) throws Exception {
+    public int removeDato(String tabla, int valor1, int valor2) throws Exception {
 
         java.sql.PreparedStatement oPreparedStatement = null;
         int intResult = 0;
+        String strSQL = "";
         try {
-            String strSQL = "DELETE FROM `amistad` WHERE `id_usuario_1` = " + idamigo + " AND `id_usuario_2` = " + idamigo2;
+            if(tabla == "amistad"){
+                strSQL = "DELETE FROM `amistad` WHERE `id_usuario_1` = " + valor1 + " AND `id_usuario_2` = " + valor2;
+            } else if(tabla == "asistencia"){
+                strSQL = "DELETE FROM `asistencia` WHERE `id_usuario` = " + valor1 + " AND `id_publicacion` = " + valor2;
+            }
             oPreparedStatement = connection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
             intResult = oPreparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":removeAmigo ERROR inserting register: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":removeDato ERROR inserting register: " + ex.getMessage()));
         } finally {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
@@ -1057,20 +1069,25 @@ public class MysqlDataSpImpl implements DataInterface {
         return intResult;
     }
 
-    public int existeAmigo(int idamigo, int idamigo2) throws Exception {
+    public int existeDato(String tabla, int valor1, int valor2) throws Exception {
 
         int intResult = 0;
         Statement oStatement = null;
+        String strSQL = "";
         try {
             oStatement = (Statement) connection.createStatement();
-            String strSQL = "SELECT COUNT(id) FROM `amistad` WHERE `id_usuario_1` = " + idamigo + " AND `id_usuario_2` = " + idamigo2;
             
+            if(tabla == "amistad"){
+                strSQL = "SELECT COUNT(id) FROM `amistad` WHERE `id_usuario_1` = " + valor1 + " AND `id_usuario_2` = " + valor2;
+            } else if(tabla == "asistencia"){
+                strSQL = "SELECT COUNT(id) FROM `asistencia` WHERE `id_usuario` = " + valor1 + " AND `id_publicacion` = " + valor2;
+            }
             ResultSet oResultSet = oStatement.executeQuery(strSQL);
             while (oResultSet.next()) {
                 intResult = oResultSet.getInt("COUNT(id)");
             }
         } catch (SQLException ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":existeAmigo ERROR:  Can't process query: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":existeDato ERROR:  Can't process query: " + ex.getMessage()));
         } finally {
             if (oStatement != null) {
                 oStatement.close();

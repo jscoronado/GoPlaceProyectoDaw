@@ -35,7 +35,7 @@ public class AmistadDaoGenSpImpl extends TableDaoGenImpl<AmistadBeanGenSpImpl> {
 
     public AmistadBeanGenSpImpl agregarAmigo(AmistadBeanGenSpImpl oAmigoBean) throws Exception {
         try {
-            oMysql.agregarAmigo(oAmigoBean.getId_usuario_1(), oAmigoBean.getId_usuario_2());
+            oMysql.agregarDato("amistad", oAmigoBean.getId_usuario_1(), oAmigoBean.getId_usuario_2());
 
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":agregarAmigo ERROR: " + ex.getMessage()));
@@ -45,7 +45,7 @@ public class AmistadDaoGenSpImpl extends TableDaoGenImpl<AmistadBeanGenSpImpl> {
 
     public AmistadBeanGenSpImpl removeAmigo(AmistadBeanGenSpImpl oAmigoBean) throws Exception {
         try {
-            oMysql.removeAmigo(oAmigoBean.getId_usuario_1(), oAmigoBean.getId_usuario_2());
+            oMysql.removeDato("amistad", oAmigoBean.getId_usuario_1(), oAmigoBean.getId_usuario_2());
 
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":removeAmigo ERROR: " + ex.getMessage()));
@@ -57,7 +57,7 @@ public class AmistadDaoGenSpImpl extends TableDaoGenImpl<AmistadBeanGenSpImpl> {
         int oAmigo = 0;
         Boolean amigo = false;
         try {
-            oAmigo = oMysql.existeAmigo(oAmigoBean.getId_usuario_1(), oAmigoBean.getId_usuario_2());
+            oAmigo = oMysql.existeDato("amistad", oAmigoBean.getId_usuario_1(), oAmigoBean.getId_usuario_2());
             if (oAmigo > 0) {
                 amigo = true;
             } else {
