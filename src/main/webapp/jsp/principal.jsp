@@ -44,6 +44,7 @@
                 <div class="col-md-10 col-sm-10 logoMain">
                     <a href="#/publicacion/inicio"><img src="./images/logo.png" alt="Logo GoPlace"></a>
                 </div>
+                <% if (user != null) {%>
                 <ul class="nav nav-tabs navbar-left">
                     <li class="actived"><a href="#/publicacion/inicio" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
                     <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span> Perfil</span></a></li>
@@ -54,11 +55,21 @@
                     <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span><%=user.getNombre()%> <%=user.getApellidos()%></span></a></li>
                     <li class="cerrarbtn"><a href="<%=logout%>" class="glyphicon glyphicon-off"><span> Cerrar Sesion</span></a></li>
                 </ul>
+                <% } %>
             </header>
 
             <main>
+                <% if (user != null) {%>
                 <div id="principalpag"><h1>Estas dentro de GoPlace</h1></div>
                 <div id="comentariospag"></div>
+                <% } else { %>
+                <div id="principalpag">
+                    <h1>ERROR 404</h1>
+                    <h3>La sesión ha espirado, vuelve a iniciar sesión!</h3>
+                    <a href="<%=logout%>" class="glyphicon glyphicon-off"><span>Volver a la pagina principal</span></a>
+                </div>
+                
+                <% } %>
             </main>
             <script>
                 <%

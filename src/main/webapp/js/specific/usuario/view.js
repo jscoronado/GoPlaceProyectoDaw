@@ -189,7 +189,7 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
         /* Perfil */
         plantillaPerfil += "<div class=" + comilla + "perfilgp col-md-4 col-xs-12" + comilla + ">";
             plantillaPerfil += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-4" + comilla + ">";
-                plantillaPerfil += "<img src=" + comilla + "http://www.notariavillarrica.cl/sitio/1/images/usuario.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario" + perfil.data.id + comilla + ">";
+                plantillaPerfil += perfil.data.imagen;
             plantillaPerfil += "</div>";
             plantillaPerfil += "<div class=" + comilla + "perfil_desc col-md-12 col-xs-8" + comilla + ">";
                 plantillaPerfil += "<h1 class=" + comilla + "permil_name user col-md-12 col-xs-12" + perfil.data.id + comilla + ">" + perfil.data.nombre + espacio + perfil.data.apellidos + "</h1>";
@@ -202,7 +202,8 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
             plantillaPerfil += "<div class=" + comilla + "perfil_agregar col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_agregar" + comilla + "></div>";
             
             plantillaPerfil += "<div class=" + comilla + "perfil_friends col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_friends" + comilla + ">";
-            plantillaPerfil +='<a class="btn btn-goplace" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + perfil.data.id + '">Ver amigos</a>'
+            plantillaPerfil +='<a class="btn btn-goplace" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + perfil.data.id + '">Ver amigos</a>';
+            plantillaPerfil +='<a class="btn btn-goplace" id="botonperfil" href="control#/usuario/upload/' + perfil.data.id + '">Foto de perfil</a>';
             plantillaPerfil += '</div>';
             
         plantillaPerfil += "</div>";

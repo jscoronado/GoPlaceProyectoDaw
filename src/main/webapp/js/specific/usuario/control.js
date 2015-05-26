@@ -182,6 +182,14 @@ usuarioControl.prototype.list = function (place, objParams, callback, oModel, oV
         $('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
     }
 
+};
 
-
+usuarioControl.prototype.upload = function (place, id, oModel, oView) {
+    var thisObject = this;
+    $(place).empty();
+    $(place).append(oView.getPanel("Edición de " + this.clase, oView.getEmptyView("imagen", "unwrappered")));
+    var oDocumentoModel = oModel;
+    oDocumentoModel.loadAggregateViewOne(id);
+    oView.loadFormValues(oDocumentoModel.getCachedOne(), oDocumentoModel.getCachedFieldNames());
+    
 };

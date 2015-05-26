@@ -312,7 +312,7 @@ header{
     text-shadow: none;
     margin: 0;
 }
-.fotoPub{
+.perfil_photo img{
     width: 100px;
     height: 100px;
     margin: 0 10px 0 0;
@@ -447,6 +447,14 @@ header{
     background: white;
 }
 
+
+/* SUBIR IMAGEN */
+.page_subir_imagen{
+    text-align: center;
+}
+.file_subida{
+    margin: 0 auto;
+}
 /* FOOTER */
 footer{
     width: 100%;

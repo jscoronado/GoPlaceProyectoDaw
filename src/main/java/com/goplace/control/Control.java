@@ -69,15 +69,15 @@ public class Control extends HttpServlet {
             String op = ParameterCooker.prepareOperation(request);
             String mode = ParameterCooker.prepareMode(request);
             //security check
-            /*if (request.getSession().getAttribute("usuarioBean") == null) {
-             ob = "usuario";
-             if (!op.equals("inicio") && !op.equals("login02")) {
-             op = "login01";
-             mode = "wrappered";
-             }
-             }*/
+            if (request.getSession().getAttribute("usuarioBean") == null) {
+                ob = "usuario";
+                if (!op.equals("inicio") && !op.equals("login02") && !op.equals("registro")) {
+                    mode = "wrappered";
+                }
+            }
 
             // LOGIN
+            if (ob.equalsIgnoreCase("usuario")){
             if (request.getParameter("op") != null) {
                 if (request.getParameter("op").equalsIgnoreCase("login")) {
                     UsuarioBeanGenSpImpl oUsuario = new UsuarioBeanGenSpImpl();
@@ -175,7 +175,7 @@ public class Control extends HttpServlet {
                     request.setAttribute("contenido", "/jsp/message.jsp");
                     getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                 }
-            }
+            }}
 
             //menu
             if (request.getParameter("ob") != null) {

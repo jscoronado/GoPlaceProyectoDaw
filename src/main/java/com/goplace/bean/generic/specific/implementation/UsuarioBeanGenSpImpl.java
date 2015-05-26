@@ -49,6 +49,8 @@ public class UsuarioBeanGenSpImpl extends BeanGenImpl implements BeanInterface {
     private Integer id_tipousuario = 0;
     @Expose(deserialize = false)
     private TipousuarioBeanGenSpImpl obj_tipousuario = null;
+    @Expose
+    private String imagen = "";
 
     public String getNombre() {
         return nombre;
@@ -146,6 +148,13 @@ public class UsuarioBeanGenSpImpl extends BeanGenImpl implements BeanInterface {
         this.obj_tipousuario = obj_tipousuario;
     }
 
-    
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     
 }

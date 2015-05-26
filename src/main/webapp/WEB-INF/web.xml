@@ -16,6 +16,14 @@
         <servlet-name>Control</servlet-name>
         <url-pattern>/control</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>subir</servlet-name>
+        <servlet-class>com.goplace.imagenes.subir</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>subir</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

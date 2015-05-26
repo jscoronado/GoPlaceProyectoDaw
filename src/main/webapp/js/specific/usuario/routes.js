@@ -58,6 +58,12 @@ function fUsuarioRoutes() {
              $('#principalpag').html("No puedes editar un usuario distinto a ti")
          }
     });
+    
+    Path.map("#/usuario/upload/:id").to(function () {
+        $('#principalpag').spinner();
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+        oUsuarioControl.upload($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+    });
 
     /*
     Path.map("#/usuario/new").to(function () {
