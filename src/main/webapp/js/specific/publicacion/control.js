@@ -25,13 +25,23 @@ publicacionControl.prototype.getClassNamePublicacion = function () {
 };
 var oPublicacionControl = new publicacionControl('publicacion');
 
-publicacionControl.prototype.listar = function (place, oModel, oView) {
+publicacionControl.prototype.listarEventos = function (place, oModel, oView) {
     var thisObject = this;
     $(place).empty();
     var oPublicacionModel = oModel;
     var oPublicacionView = oView;
-    data = oPublicacionModel.setGenericOperation("geteventos&rpp=8","");
-    eventos = oPublicacionView.getEventos(data);
+    var data = oPublicacionModel.setGenericOperation("geteventos&rpp=8","");
+    var eventos = oPublicacionView.getEventos(data, "inicio");
+    $("#principalpag").html(eventos);
+};
+
+publicacionControl.prototype.listarEventosFilter = function (place, id, oModel, oView, tipo) {
+    var thisObject = this;
+    $(place).empty();
+    var oPublicacionModel = oModel;
+    var oPublicacionView = oView;
+    var data = oPublicacionModel.cargaEventos(id);
+    var eventos = oPublicacionView.getEventos(data, tipo);
     $("#principalpag").html(eventos);
 };
 
@@ -40,7 +50,8 @@ publicacionControl.prototype.listarComentarios = function (place, id_evento, oMo
     $(place).empty();
     var oComentarioModel = oModel;
     var oPublicacionView = oView;
-    data = oComentarioModel.setGenericOperation("getcomentarios&id="+id_evento+"&rpp=100","");
-    eventos = oPublicacionView.getComentarios(data);
+    var data = oComentarioModel.setGenericOperation("getcomentarios&id="+id_evento+"&rpp=100","");
+    var eventos = oPublicacionView.getComentarios(data);
     $("#comentariospag").html(eventos);
 };
+

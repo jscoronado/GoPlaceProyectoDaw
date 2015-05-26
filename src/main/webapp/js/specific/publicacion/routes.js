@@ -82,8 +82,17 @@ function fPublicacionRoutes() {
         //$('#indexContenidoJsp').empty();
         return false;
     });
+    
     Path.map("#/publicacion/inicio").to(function () {
-    oPublicacionControl.listar($('#principalpag'), oPublicacionModel, oPublicacionView);
+    oPublicacionControl.listarEventos($('#principalpag'), oPublicacionModel, oPublicacionView);
     return false;
+    });
+    
+    Path.map("#/eventos/:id").to(function () {
+        //$('#indexContenidoJsp').spinner();
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        oPublicacionControl.listarEventosFilter($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView, "ciudad");
+        //$('#indexContenidoJsp').empty();
+        return false;
     });
 }

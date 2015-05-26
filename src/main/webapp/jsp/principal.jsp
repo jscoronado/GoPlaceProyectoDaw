@@ -8,7 +8,7 @@
 <%@page import="com.goplace.helper.AppInformationHelper"%>
 
 <%
-    int id_tipousuario = 0, id_usuario = 0;
+    int id_tipousuario = 0, id_usuario = 0, id_ciudad = 0;
     String nombre, apellidos;
     UsuarioBeanGenSpImpl user = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");
     if (user != null) {
@@ -16,6 +16,7 @@
         id_usuario = user.getId();
         nombre = user.getNombre();
         apellidos = user.getApellidos();
+        id_ciudad = user.getId_ciudad();
     }
 
     String logout = request.getContextPath() + "/control?op=logout";
@@ -46,7 +47,7 @@
                 <ul class="nav nav-tabs navbar-left">
                     <li class="actived"><a href="#/publicacion/inicio" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
                     <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span> Perfil</span></a></li>
-                    <li><a href="#/publicacion/descubre/view/<%=user.getId_ciudad()%>" class="glyphicon glyphicon-comment"><span> Descubre</span></a></li>
+                    <li><a href="#/eventos/<%=user.getId_ciudad()%>" class="glyphicon glyphicon-comment"><span> Descubre</span></a></li>
                     <li class="publicarbtn"><a href="#/publicacion/new" class="glyphicon glyphicon-send"><span> Publicar</span></a></li>
                 </ul>
                 <ul class="nav nav-tabs navbar-right">

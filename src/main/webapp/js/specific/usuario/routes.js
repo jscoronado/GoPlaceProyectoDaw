@@ -49,8 +49,14 @@ function fUsuarioRoutes() {
     });
 
     Path.map("#/usuario/edit/:id").to(function () {
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+        
+        var id_usuario = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        if (myuser == id_usuario.id) {
+            var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+            oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+         }else{
+             $('#principalpag').html("No puedes editar un usuario distinto a ti")
+         }
     });
 
     /*

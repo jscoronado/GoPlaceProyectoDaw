@@ -136,7 +136,7 @@ publicacionView.prototype.okValidation = function (f) {
     $('#publicacionForm').on('success.form.bv', f);
 };
 
-publicacionView.prototype.getEventos = function (jason) {
+publicacionView.prototype.getEventos = function (jason, tipo) {
     
     espacio = ' ';
     comilla = "'";
@@ -146,12 +146,20 @@ publicacionView.prototype.getEventos = function (jason) {
     barra = "/";
     alm = "#";
     
+    if(tipo == "inicio"){
+        jsonP = jason.data.page.list;
+        
+        eventos = "<div class=" + "'row eventos_main'" + ">";
+        eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos de tu entorno</h2>";
+        eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
+    }else{
+        jsonP = jason.list;
+        
+        eventos = "<div class=" + "'row  eventos_ciudad'" + ">";
+        eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos en " + jsonP[0].obj_ciudad.nombre + "</h2>";
+        eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
+    }
     
-    eventos = "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos en Valencia</h2>";
-    
-    eventos += "<div class=" + "'row'" + ">";
-    eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
-    jsonP = data.data.page.list;
     if (jsonP.length != 0) {
         for (i = 0; i < jsonP.length; i++) {
             eventos += "<div class=" + comilla + "col-md-4 publicacion evento" + jsonP[i].id + comilla + ">";
@@ -159,7 +167,8 @@ publicacionView.prototype.getEventos = function (jason) {
             eventos += "<h4><a href=" + comilla + "#/publicacion/view/" + jsonP[i].id + comilla + ">" + jsonP[i].titulo + "</a></h4>";
             eventos += "<div class=" + comilla + "usuariopub" + comilla + ">";
             eventos += "<a href=" + comilla + "#/usuario/view/" + jsonP[i].obj_usuario.id + comilla + ">" + jsonP[i].obj_usuario.nombre + espacio + jsonP[i].obj_usuario.apellidos + "</a>";
-            eventos += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span><br/>";
+            eventos += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span>";
+            eventos += "<p class=" + comilla + "ciudadpub" + comilla + ">" + jsonP[i].obj_ciudad.nombre + "-" + jsonP[i].fechapub + "</p>";
             eventos += "</div></div></div>";
         }
     } else {

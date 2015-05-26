@@ -246,10 +246,7 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
             plantillaPerfil += "<h2 class=" + comilla + "col-md-12 title_perfil" + comilla +">Eventos Próximos</h2>";
             
             var events = eventos.list;
-            
-            
-            
-            
+             
             if (events.length != 0) {
                 for (i = 0; i < events.length; i++) {
                     if(oUsuarioView.compareDate(events[i].obj_publicacion.fechapub) == "1"){

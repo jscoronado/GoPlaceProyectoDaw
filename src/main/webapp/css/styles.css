@@ -442,6 +442,10 @@ header{
     width: 100%;
 }
 
+/* DESCUBRE */
+.eventos_ciudad{
+    background: white;
+}
 
 /* FOOTER */
 footer{
@@ -460,7 +464,7 @@ footer{
 }
 
 /* MODAL */
-/*.modal-open .modal{
+.modal-open .modal{
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -481,7 +485,7 @@ footer{
 .modal-body h5{
     color: white;
     font-size: 10px;
-}*/
+}
 
 
 /* MEDIA QUERYS */
