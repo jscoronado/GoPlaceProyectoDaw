@@ -33,18 +33,10 @@ function fUsuarioRoutes() {
         oUsuarioControl.list($('#principalpag'), paramsObject, null, oUsuarioModel, oUsuarioView);
         return false;
     });
-
-    Path.map("#/usuario/view/:id").to(function () {
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.view($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-
-        return false;
-    });
     
     Path.map("#/perfil/:id").to(function () {
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
         oUsuarioControl.perfil($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-
         return false;
     });
 
@@ -55,32 +47,21 @@ function fUsuarioRoutes() {
             var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
             oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
          }else{
-             $('#principalpag').html("No puedes editar un usuario distinto a ti")
+            content = "No puedes editar el perfil de otro usuario";
+            oUsuarioView.doResultOperationGP($('#principalpag'), "404", null, content, null, true);
          }
     });
     
     Path.map("#/usuario/upload/:id").to(function () {
-        $('#principalpag').spinner();
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.upload($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+        
+        var id_usuario = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        if (myuser == id_usuario.id) {
+            $('#principalpag').spinner();
+            var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+            oUsuarioControl.upload($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+        }else{
+            content = "No puedes editar el perfil de otro usuario";
+            oUsuarioView.doResultOperationGP($('#principalpag'), "404", null, content, null, true);
+         }
     });
-
-    /*
-    Path.map("#/usuario/new").to(function () {
-        oUsuarioControl.new($('#indexContenido'), null, oUsuarioModel, oUsuarioView);
-        return false;
-    });
-
-    Path.map("#/usuario/new/:url").to(function () {
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.new($('#indexContenido'), paramsObject, oUsuarioModel, oUsuarioView);
-        return false;
-    });
-
-    Path.map("#/usuario/remove/:id").to(function () {
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oUsuarioControl.remove($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
-        return false;
-    });
-     */
 }

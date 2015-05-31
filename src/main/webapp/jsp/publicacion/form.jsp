@@ -65,6 +65,12 @@
         <label class="col-sm-7" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
     </div>
     <div class="form-group">
+        <label class="col-sm-2 control-label"  for="direccion">Direccion:</label>
+        <div class="col-sm-6">
+            <input type="text" id="direccion" class="form-control"  name="direccion" size="15" placeholder="Inserta la direccion del Evento" />
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-2 control-label" for="obj_tipopublicacion_id">Tipo Publicacion: </label> 
         <div class="col-sm-2">              
             <input  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" />  

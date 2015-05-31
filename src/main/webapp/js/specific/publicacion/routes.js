@@ -36,24 +36,6 @@ function fPublicacionRoutes() {
         return false;
     });
 
-    Path.map("#/publicacion/list/:url").to(function () {
-        $('#indexContenidoJsp').spinner();
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.list($('#indexContenido'), paramsObject, null, oPublicacionModel, oPublicacionView);
-        $('#indexContenidoJsp').empty();
-        return false;
-    });
-
-    Path.map("#/publicacion/view/:id").to(function () {
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.view($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
-        
-        var paramsObject2 = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.listarComentarios($('#comentariospag'), paramsObject2['id'], oComentarioModel, oPublicacionView);
-
-        return false;
-    });
-
     Path.map("#/publicacion/edit/:id").to(function () {
         //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
@@ -88,7 +70,16 @@ function fPublicacionRoutes() {
     return false;
     });
     
-    Path.map("#/eventos/:id").to(function () {
+    Path.map("#/evento/:id").to(function () {
+        $('#principalpag').spinner();
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        oPublicacionControl.verEvento($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
+        oComentarioControl.new($('#coments_form'), paramsObject['id'], oComentarioModel, oComentarioView);
+ 
+        return false;
+    });
+    
+    Path.map("#/descubre/:id").to(function () {
         //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
         oPublicacionControl.listarEventosFilter($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView, "ciudad");

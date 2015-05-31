@@ -25,6 +25,21 @@ publicacionControl.prototype.getClassNamePublicacion = function () {
 };
 var oPublicacionControl = new publicacionControl('publicacion');
 
+publicacionControl.prototype.verEvento = function (place, id_evento, oModel, oView) {
+    var thisObject = this;
+    $(place).empty();
+    var oPublicacionModel = oModel;
+    var oPublicacionView = oView;
+    
+    var evento = oPublicacionModel.setGenericOperation("getpage&systemfilter=id&systemfilteroperator=equals&systemfiltervalue="+id_evento,"");
+    var usuarios = oPublicacionModel.usuariosEventos(id_evento);
+    var coments = oComentarioModel.setGenericOperation("getpage&systemfilter=id_publicacion&systemfilteroperator=equals&systemfiltervalue="+id_evento+"&order=fechacomentario&ordervalue=desc","");
+    var form = oComentarioModel.getForm();
+    
+    var eventos = oPublicacionView.perfilEvento(evento, usuarios, coments, form);
+    $("#principalpag").html(eventos);
+};
+
 publicacionControl.prototype.listarEventos = function (place, oModel, oView) {
     var thisObject = this;
     $(place).empty();

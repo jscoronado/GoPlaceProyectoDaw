@@ -75,8 +75,9 @@ public class PublicacionDaoGenSpImpl extends TableDaoGenImpl<PublicacionBeanGenS
                         oUsuario.setPassword(null);
                         oPublicacionBean.setObj_usuario(oUsuario);
                         
-                        // SET - id_ciudad
+                        // SET - id_ciudad y direccion
                         oPublicacionBean.setId_ciudad(Integer.parseInt(oMysql.getOne(tabla, "id_ciudad", oPublicacionBean.getId())));
+                        oPublicacionBean.setDireccion(oMysql.getOne(tabla, "direccion", oPublicacionBean.getId()));
 
                         // SET - obj_ciudad
                         CiudadBeanGenSpImpl oCiudad = new CiudadBeanGenSpImpl();
@@ -119,6 +120,7 @@ public class PublicacionDaoGenSpImpl extends TableDaoGenImpl<PublicacionBeanGenS
             oMysql.updateOne(oPublicacionBean.getId(), strTableName, "descripcion", oPublicacionBean.getDescripcion());
             oMysql.updateOne(oPublicacionBean.getId(), strTableName, "id_usuario", oPublicacionBean.getId_usuario().toString());
             oMysql.updateOne(oPublicacionBean.getId(), strTableName, "id_ciudad", oPublicacionBean.getId_ciudad().toString());
+            oMysql.updateOne(oPublicacionBean.getId(), strTableName, "direccion", oPublicacionBean.getDireccion());
             oMysql.updateOne(oPublicacionBean.getId(), strTableName, "id_tipopublicacion", oPublicacionBean.getId_tipopublicacion().toString());
             
             if (isNew == false) {

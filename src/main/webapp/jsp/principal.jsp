@@ -41,20 +41,19 @@
     <body>
         <div class="pagePrincipal">
             <header class="title row">
-                <div class="col-md-10 col-sm-10 logoMain">
+                <div class="col-md-6 col-sm-12 logoMain">
                     <a href="#/publicacion/inicio"><img src="./images/logo.png" alt="Logo GoPlace"></a>
                 </div>
                 <% if (user != null) {%>
-                <ul class="nav nav-tabs navbar-left">
-                    <li class="actived"><a href="#/publicacion/inicio" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
-                    <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span> Perfil</span></a></li>
-                    <li><a href="#/eventos/<%=user.getId_ciudad()%>" class="glyphicon glyphicon-comment"><span> Descubre</span></a></li>
-                    <li class="publicarbtn"><a href="#/publicacion/new" class="glyphicon glyphicon-send"><span> Publicar</span></a></li>
-                </ul>
-                <ul class="nav nav-tabs navbar-right">
-                    <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span><%=user.getNombre()%> <%=user.getApellidos()%></span></a></li>
-                    <li class="cerrarbtn"><a href="<%=logout%>" class="glyphicon glyphicon-off"><span> Cerrar Sesion</span></a></li>
-                </ul>
+                <div class="col-md-6 col-sm-12 nav_header">
+                    <ul class="nav nav-tabs navbar-right">
+                        <li><a href="#/publicacion/inicio" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
+                        <li><a href="#/descubre/<%=user.getId_ciudad()%>" class="glyphicon glyphicon-comment"><span> Descubre</span></a></li>
+                        <li class="publicarbtn"><a href="#/publicacion/new" class="glyphicon glyphicon-send"><span> Publicar</span></a></li>
+                        <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span><%=user.getNombre()%> <%=user.getApellidos()%></span></a></li>
+                        <li class="cerrarbtn"><a href="<%=logout%>" class="glyphicon glyphicon-off"><span> Cerrar Sesion</span></a></li>
+                    </ul>
+                </div>
                 <% } %>
             </header>
 
@@ -176,6 +175,7 @@
                     fCiudadRoutes();
                     fTipousuarioRoutes();
                     fTipopublicacionRoutes();
+                    fAmistadRoutes();
                     
                     Path.listen();
                     

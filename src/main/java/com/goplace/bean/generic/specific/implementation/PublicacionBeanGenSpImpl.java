@@ -44,6 +44,8 @@ public class PublicacionBeanGenSpImpl extends BeanGenImpl implements BeanInterfa
     private Integer id_ciudad = 0;
     @Expose(deserialize = false)
     private CiudadBeanGenSpImpl obj_ciudad = null;
+    @Expose
+    private String direccion = "";
     @Expose(serialize = false)
     private Integer id_tipopublicacion = 0;
     @Expose(deserialize = false)
@@ -99,6 +101,14 @@ public class PublicacionBeanGenSpImpl extends BeanGenImpl implements BeanInterfa
         this.obj_ciudad = obj_ciudad;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    
     public Integer getId_tipopublicacion() {
         return id_tipopublicacion;
     }

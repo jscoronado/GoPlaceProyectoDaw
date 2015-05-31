@@ -189,7 +189,11 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
         /* Perfil */
         plantillaPerfil += "<div class=" + comilla + "perfilgp col-md-4 col-xs-12" + comilla + ">";
             plantillaPerfil += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-4" + comilla + ">";
-                plantillaPerfil += perfil.data.imagen;
+                if(perfil.data.imagen != null){
+                    plantillaPerfil += perfil.data.imagen;
+                }else {
+                    plantillaPerfil += "<img src=" + comilla + "/images/user.png" + comilla + "class=" + comilla + "foto_perfil" + comilla + " alt=" + comilla + "Foto perdil de " + perfil.data.nombre + espacio + perfil.data.apellidos + comilla + ">";
+                }
             plantillaPerfil += "</div>";
             plantillaPerfil += "<div class=" + comilla + "perfil_desc col-md-12 col-xs-8" + comilla + ">";
                 plantillaPerfil += "<h1 class=" + comilla + "permil_name user col-md-12 col-xs-12" + perfil.data.id + comilla + ">" + perfil.data.nombre + espacio + perfil.data.apellidos + "</h1>";
@@ -219,22 +223,22 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
                 for (i = 0; i < coment.length; i++) {
                     plantillaPerfil += "<div class=" + comilla + "comentario col-md-12 col-xs-12" + comilla + ">";
                     plantillaPerfil += "<div class=" + comilla + "col-md-2 col-xs-2 foto_comentario" + comilla + ">";
-                    plantillaPerfil += "<img src=" + comilla + "http://localhost:8081/goplace/images/user.png" + comilla + "class=" + comilla + "fotoComent" + comilla + " alt=" + comilla + "Foto usuario" + coment[i].obj_usuario.id + comilla + ">";
+                    plantillaPerfil += "<img src=" + comilla + "/images/user.png" + comilla + "class=" + comilla + "fotoComent" + comilla + " alt=" + comilla + "Foto usuario" + coment[i].obj_usuario.id + comilla + ">";
                     plantillaPerfil += "</div>";
                     plantillaPerfil += "<div class=" + comilla + "col-md-10 col-xs-10 desc_comentario" + comilla + ">";
                     plantillaPerfil += "<span class=" + comilla + "id_comentario" + comilla + "> #" + coment[i].id + "</span>";
                     plantillaPerfil += "<p class="+ comilla + "perfil_coment" + comilla + ">" + coment[i].coment + "</p>";
-                    plantillaPerfil += "<a href=" + comilla + "#/publicacion/view/" + coment[i].obj_publicacion.id + comilla + " class="+ comilla + "event_coment" + comilla + ">" + coment[i].obj_publicacion.titulo + espacio + "( " +coment[i].obj_publicacion.obj_ciudad.nombre + " )"+" </a>";
+                    plantillaPerfil += "<a href=" + comilla + "#/evento/" + coment[i].obj_publicacion.id + comilla + " class="+ comilla + "event_coment" + comilla + ">" + coment[i].obj_publicacion.titulo + espacio + "( " +coment[i].obj_publicacion.obj_ciudad.nombre + " )"+" </a>";
                     plantillaPerfil += "</div>";
                     plantillaPerfil += "</div>";
                 }
             } else {
-                plantillaPerfil += "<div class=" + comilla + "comentario row" + comilla + ">";
-                plantillaPerfil += "<div class=" + comilla + "col-md-1 col-xs-11" + comilla + ">";
-                plantillaPerfil += "<img src=" + comilla + "http://localhost:8081/goplace/images/user_admin.jpg" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario admin" + comilla + ">";
+                plantillaPerfil += "<div class=" + comilla + "comentario col-md-12 col-xs-12" + comilla + ">";
+                plantillaPerfil += "<div class=" + comilla + "col-md-2 col-xs-12 foto_comentario" + comilla + ">";
+                plantillaPerfil += "<img src=" + comilla + "/images/user_admin.png" + comilla + "class=" + comilla + "fotoComent" + comilla + " alt=" + comilla + "Foto usuario admin" + comilla + ">";
                 plantillaPerfil += "</div>";
-                plantillaPerfil += "<div class=" + comilla + "col-md-11 col-xs-11" + comilla + ">";
-                plantillaPerfil += "<a href=" + comilla + "#/usuario/view/1" + comilla + ">" + "Administrador" + "</a>";
+                plantillaPerfil += "<div class=" + comilla + "col-md-10 col-xs-10 desc_comentario" + comilla + ">";
+                plantillaPerfil += "<b>" + "Administrador" + "</b>";
                 plantillaPerfil += "<span class=" + comilla + "nick" + comilla + "> @admin" + "</span><br/>";
                 plantillaPerfil += "<span>¡ Haz tu primer comentario !</span>";
                 plantillaPerfil += "</div>";
@@ -252,7 +256,7 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
                 for (i = 0; i < events.length; i++) {
                     if(oUsuarioView.compareDate(events[i].obj_publicacion.fechapub) == "1"){
                     plantillaPerfil += "<div class=" + comilla + "evento_perfil col-md-12 col-sm-6 col-xs-12" + comilla + ">";
-                    plantillaPerfil += "<h4><a href=" + comilla + "#/publicacion/view/" + events[i].obj_publicacion.id + comilla + ">" + events[i].obj_publicacion.titulo + "</a></h4>";
+                    plantillaPerfil += "<h4><a href=" + comilla + "#/evento/" + events[i].obj_publicacion.id + comilla + ">" + events[i].obj_publicacion.titulo + "</a></h4>";
                     plantillaPerfil += "<span class="+ comilla + "ciudad_event" + comilla + ">" + events[i].obj_publicacion.obj_ciudad.nombre + "</span><br/>";
                     plantillaPerfil += "<span class="+ comilla + "fecha_event" + comilla + ">" + events[i].obj_publicacion.fechapub + "</span><br/>";
                     plantillaPerfil += "</div>";

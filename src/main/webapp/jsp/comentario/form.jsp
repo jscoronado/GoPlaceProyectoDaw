@@ -36,11 +36,9 @@
             <input type="text" id="id" class="form-control"  name="id" placeholder="id" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="titulo">Comentario:</label>
-        <div class="col-sm-6">
-            <input type="text" id="coment" class="form-control"  name="coment" size="15" placeholder="Inserta un Comentario" />
-        </div>
+    <div class="form-group col-md-12 col-sm-12">
+        <h3>Comenta el evento</h3>
+        <input type="text" id="coment" class="form-control"  name="coment" size="15" placeholder="Inserta un Comentario" />
     </div>
     <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg">
         <label class="col-sm-2 control-label" for="obj_usuario_id">Usuario: </label> 
@@ -49,7 +47,7 @@
         </div>    
         <label class="col-sm-7" for="obj_usuario_desc" id="obj_usuario_desc"></label>                     
     </div>
-    <div class="form-group">
+    <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg">
         <label class="col-sm-2 control-label" for="obj_publicacion_id">Evento: </label> 
         <div class="col-sm-2">              
             <input  class="form-control"  id="obj_publicacion_id" class="input-mini" name="id_publicacion" type="text" size="5" maxlength="5" />  

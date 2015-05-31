@@ -70,6 +70,10 @@ comentarioView.prototype.getFormValues = function () {
     return valores;
 };
 
+comentarioView.prototype.getPanel = function (contenido) {
+    return '<div class="col-md-12 form_comentario">' + contenido + '</div></div>';
+};
+
 comentarioView.prototype.doEventsLoading = function () {
     var thisObject = this;
     

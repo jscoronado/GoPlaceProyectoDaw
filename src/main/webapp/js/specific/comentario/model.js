@@ -33,3 +33,10 @@ comentarioModel.prototype.loadComentarios = function (id1) {
     
     return pagina_objs;
 };
+
+comentarioModel.prototype.getForm = function () {
+    $.when(ajax().ajaxCallSync(path + '/control?ob=comentario&op=form&mode=1', 'GET', '')).done(function (data) {
+        form = data;
+    });
+    return form;
+};

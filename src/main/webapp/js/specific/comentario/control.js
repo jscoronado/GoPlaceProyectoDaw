@@ -24,3 +24,24 @@ comentarioControl.prototype.getClassNameComentario = function () {
     return this.getClassName() + "Control";
 };
 var oComentarioControl = new comentarioControl('comentario');
+
+comentarioControl.prototype.new = function (place, id_evento, oModel, oView) {
+    var thisObject = this;
+    $(place).empty();
+    $(place).append(oView.getPanel(oView.getEmptyForm()));
+    //id must not be enabled
+    $('#id').val('0').attr("disabled", true);
+    $('#obj_publicacion_id').val(id_evento).attr("disabled", true);
+    oView.doEventsLoading();
+    $('#submitForm').unbind('click');
+    $('#submitForm').click(function () {
+        oView.okValidation(function (e) {
+            titulo = "El comentario se ha publicado con éxito!";
+            content = "Actualiza la pagina para verlo!";
+            resultado = oModel.setOne({json: JSON.stringify(oView.getFormValues())});
+            oView.doResultOperationGP(place, resultado["status"], titulo, content, id_evento, true);
+            e.preventDefault();
+            return false;
+        });
+    });
+};

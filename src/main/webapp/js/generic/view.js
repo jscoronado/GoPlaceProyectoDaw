@@ -68,6 +68,18 @@ view.prototype.getEmptyModal = function () {
     modal += '</div>';
     return modal;
 };
+view.prototype.getEmptyModalGP = function () {
+    var modal = '<div id="modalGP" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
+    modal += '<div class="modal-dialog modal-lg">';
+    modal += '<div class="modal-content">';
+    modal += '<div class="modal-header" id="modal-header"></div>';
+    modal += '<div class="modal-body" id="modal-body"></div>';
+    modal += '<div class="modal-footer" id="modal-footer"></div>';
+    modal += '</div>';
+    modal += '</div>';
+    modal += '</div>';
+    return modal;
+};
 view.prototype.getFormHeader = function (title) {
     cabecera = '<button id="full-width" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>';
     cabecera += '<h1 id="myModalLabel">' + title + '</h1>';
@@ -233,6 +245,41 @@ view.prototype.doResultOperationNotifyToUser = function (place, resultadoStatus,
         })
     } else {
         $('#modal01').on('hidden.bs.modal', function () {
+            $(place).empty();
+        });
+    }
+    ;
+};
+view.prototype.doResultOperationGP = function (place, resultadoStatus, title, content, id, mostrar) {
+    var strNombreClase = this.clase;
+    if (resultadoStatus == "200" && title != null) {
+        mensaje = "<h3>"+ title +"</h3>";
+    } else {
+        mensaje = "<h3>Error!</h3>";
+    }
+    if(content != null){
+        mensaje += "<h5>" + content + "</h5>";
+    }
+    $(place).append(this.getEmptyModalGP());
+    util().loadForm('#modalGP', this.getFormHeader('Respuesta del servidor'), mensaje, this.getFormFooter(), true);
+    $('#modalGP').css({
+        'right': '20px',
+        'left': '20px',
+        'width': 'auto',
+        'margin': '10px',
+        'display': 'block'
+    });
+    if (mostrar && resultadoStatus == "200") {
+        $('#modalGP').on('hidden.bs.modal', function () {
+            /*window.location.href = "control#/"+url+"/" + id;*/
+            location.reload();
+        })
+    } else if (mostrar && resultadoStatus == "404") {
+        $('#modalGP').on('hidden.bs.modal', function () {
+            window.location.href = "control#/publicacion/inicio";
+        })
+    }else {
+        $('#modalGP').on('hidden.bs.modal', function () {
             $(place).empty();
         });
     }

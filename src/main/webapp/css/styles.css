@@ -30,10 +30,11 @@ body{
     background: #fff;
     cursor: default;
 }
-h1, h2, h3, h4, h5{
+h1, h2, h3, h4, h5, h1 a, h2 a, h3 a, h4 a{
     
     font-family: 'Raleway', sans-serif;
-    text-transform: uppercase;
+    text-transform: uppercase !important;
+    font-weight: 900;
 }
 
 h1{
@@ -104,6 +105,7 @@ header{
     width: 100%;
     height: 14%;
     background-color: #009688;
+    border-bottom: 2px solid #00665C;
 }
 
 .logo{
@@ -126,6 +128,14 @@ header{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+.principal h1{
+    color: white;
+    letter-spacing: 0.05em;
+    font-size: 50px;
+    font-weight: 900;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 .pageRegister{
     width: 100%;
@@ -244,9 +254,19 @@ header{
     /* padding: 0 5% 10% 5%; */
 }
 .logoMain{
-    width: 100%;
-    margin: 2% 0 0.5% 0;
+    /*width: 100%;*/
+    margin: 2% 0 2% 0;
     text-align: center;
+}
+header .nav-tabs{
+    border: 0px !important;
+    margin: 2% 0 2% 0;
+    padding-right: 2%;
+}
+header .nav-tabs>li>a {
+    color: white;
+    font-size: 13px;
+    font-weight: 900;
 }
 .posder{
     margin-left: 50%;
@@ -407,6 +427,10 @@ header{
 }
 
 
+/* EVENTO */
+#perfilEvento{
+    background: white;
+}
 .comentario, .evento_perfil{
     border: 2px solid #ADE0BA;
     padding-top: 10px;
@@ -455,12 +479,14 @@ header{
 .file_subida{
     margin: 0 auto;
 }
+
 /* FOOTER */
 footer{
     width: 100%;
     height: 14%;
     text-align: center;
     background-color: white;
+    border-top: 2px solid #009688;
 }
 .cr{
     letter-spacing: 0.05em;
@@ -472,27 +498,27 @@ footer{
 }
 
 /* MODAL */
-.modal-open .modal{
+#modalGP .modal-open .modal{
     overflow-x: hidden;
     overflow-y: hidden;
 }
-.modal-dialog{
+#modalGP .modal-dialog{
     float: right;
     margin-top: 0;
     width: 500px;
 }
-.modal-content{
+#modalGP .modal-content{
     background-color: #009688;
 }
-.modal-header{
+#modalGP .modal-header{
     display: none;
 }
-.modal-body h3{
+#modalGP .modal-body h3{
     color: white;
 }
-.modal-body h5{
+#modalGP .modal-body h5{
     color: white;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 

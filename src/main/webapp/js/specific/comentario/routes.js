@@ -61,10 +61,8 @@ function fComentarioRoutes() {
     });
 
     Path.map("#/comentario/new").to(function () {
-        $('#indexContenidoJsp').spinner();
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oComentarioControl.new($('#principalpag'), oComentarioModel, oComentarioView);
-        $('#indexContenidoJsp').empty();
+        $('#principalpag').spinner();
+        oComentarioControl.new($('#principalpag'), null, oComentarioModel, oComentarioView);
         return false;
     });
 

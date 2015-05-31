@@ -74,7 +74,6 @@ usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
     
     if (myuser == id) {
         $("#perfil_edit").append('<a class="btn btn-goplace" href="control#/usuario/edit/' + id + '">Editar</a>');
-        /*$(place).append('<a class="btn btn-goplace" href="control#/usuario/remove/' + id + '">Borrar</a><br /><br />');*/
     } else {
         if(!amigo){
             $("#perfil_agregar").append('<a class="btn btn-goplace" id=\"addfriend\">Añadir amigo</a>');
@@ -85,13 +84,15 @@ usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
     
     $('#addfriend').click(function () {
         resultado = oUsuarioModel.agregarAmigo(id);
-        oUsuarioView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha añadido el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
+        title = "Usuario agregado a tu lista de amigos";
+        oUsuarioView.doResultOperationGP(place, resultado["status"], title, null, id, true);
         return false;
     });
     
     $('#removefriend').click(function () {
         resultado = oUsuarioModel.removeAmigo(id);
-        oUsuarioView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha eliminado el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
+        title = "Usuario eliminado de tu lista de amigos";
+        oUsuarioView.doResultOperationGP(place, resultado["status"], title, null, id, true);
         return false;
     });
 };
