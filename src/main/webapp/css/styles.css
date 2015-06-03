@@ -257,7 +257,7 @@ header{
 
 /* 4. HOME PAGE */
 #principalpag{
-    background: white;
+    background: #E8E8E8;
     padding: 0px 0px 30px 0px !important;
 }
 
@@ -292,22 +292,24 @@ header .nav-tabs>li>a {
 }
 .eventos_main_content{
     padding: 20px;
-    background: #024E31;
+    background: white;
     border-bottom: 5px solid #013722;
     text-align: center;
+    border: 1px solid #024E31;
+    border-bottom: 5px solid #024E31;
 }
 .perfil_home *{
-    color: white;
+    color: #3C3939;
 }
 .perfil_home .login_home{
-    color: #BBB;
+    color: #009D61;
     font-size: 20px;
     font-weight: 900;
     margin-bottom: 20px;
 }
 .datos_home .events_home{padding: 0px;}
 .datos_home .events_home h5{
-    color: white;
+    color: #3C3939;
     margin-top: 30px;
     padding: 3px;
     cursor: pointer;
@@ -319,8 +321,8 @@ header .nav-tabs>li>a {
     -o-transition:0.3s all ease-in;
 }
 .datos_home .events_home h5:hover {
-    color: #024E31;
-    background: white;
+    color: white;
+    background: #024E31;
     border-radius: 2px;
     margin-top: 30px;
     cursor: pointer;
