@@ -60,7 +60,7 @@ public class PublicacionDaoGenSpImpl extends TableDaoGenImpl<PublicacionBeanGenS
                         oPublicacionBean.setDescripcion(oMysql.getOne(tabla, "descripcion", oPublicacionBean.getId()));
                         
                         // SET - fechapub
-                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                         String dateInString = oMysql.getOne(tabla, "fechapub", oPublicacionBean.getId());         
                         oPublicacionBean.setFechapub(formatter.parse(dateInString));   
                         
@@ -122,15 +122,12 @@ public class PublicacionDaoGenSpImpl extends TableDaoGenImpl<PublicacionBeanGenS
             oMysql.updateOne(oPublicacionBean.getId(), strTableName, "id_ciudad", oPublicacionBean.getId_ciudad().toString());
             oMysql.updateOne(oPublicacionBean.getId(), strTableName, "direccion", oPublicacionBean.getDireccion());
             oMysql.updateOne(oPublicacionBean.getId(), strTableName, "id_tipopublicacion", oPublicacionBean.getId_tipopublicacion().toString());
+           
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");      
+            Date date_event = oPublicacionBean.getFechapub();
+            String date = formatter.format(date_event);
+            oMysql.updateOne(oPublicacionBean.getId(), strTableName, "fechapub", date);
             
-            if (isNew == false) {
-                oMysql.updateOne(oPublicacionBean.getId(), strTableName, "fechapub", oMysql.getOne(strTableName, "fechapub", oPublicacionBean.getId()));
-            } else {
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");      
-                Date newDate = new Date();       
-                String date = formatter.format(newDate);
-                oMysql.updateOne(oPublicacionBean.getId(), strTableName, "fechapub", date);
-            }
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
         }
@@ -151,7 +148,7 @@ public class PublicacionDaoGenSpImpl extends TableDaoGenImpl<PublicacionBeanGenS
         ArrayList<Integer> arrId;
         ArrayList<PublicacionBeanGenSpImpl> arrPublicacion = new ArrayList<>();
         try {
-            arrId = oMysql.getPageEventos(id_usuario, intRegsPerPag, intPage, hmFilter);
+            arrId = oMysql.getPageEventos(id_usuario, intRegsPerPag, intPage, hmFilter, hmOrder);
             Iterator<Integer> iterador = arrId.listIterator();
             while (iterador.hasNext()) {
                 PublicacionBeanGenSpImpl oPublicacionBean = new PublicacionBeanGenSpImpl(iterador.next());
@@ -163,14 +160,16 @@ public class PublicacionDaoGenSpImpl extends TableDaoGenImpl<PublicacionBeanGenS
         return arrPublicacion;
     }
     
-    /*public AmistadBeanGenSpImpl agregarAmigo(AmistadBeanGenSpImpl oAmigoBean) throws Exception {
+    public int getAdminEvento(int id_evento) throws Exception {
+        int id_admin = 0;
+        String id = null;
         try {
-
-            oMysql.agregarAmigo(oAmigoBean.getId_usuario_1(), oAmigoBean.getId_usuario_2());
-        
+            id = Integer.toString(id_evento);
+            String result = oMysql.getRegister("id_usuario", "publicacion", "id", id);
+            id_admin = Integer.parseInt(result);
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAdminEvento ERROR: " + ex.getMessage()));
         }
-        return oAmigoBean;
-    }*/
+        return id_admin;
+    }
 }

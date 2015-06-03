@@ -39,6 +39,9 @@ public class PublicacionControlRouteGenSpImpl extends ControlRouteGenImpl {
                 case "getpageseventos":
                     jsonResult = oPublicacionControl.getpageseventos(request);
                     break;
+                case "getadminevento":
+                    jsonResult = oPublicacionControl.getAdminEvento(request);
+                    break;
                 default:
                     jsonResult = super.execute(request, oControl);
                     break;

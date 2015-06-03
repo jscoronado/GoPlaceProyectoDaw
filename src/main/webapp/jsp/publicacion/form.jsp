@@ -28,7 +28,9 @@
     }
 %>
 
-<form class="form-horizontal" role="form" action="#" id="publicacionForm" name="formulario">
+<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 form_publicacion">
+    
+<form class="form-horizontal form_gp" role="form" action="#" id="publicacionForm" name="formulario">
     <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
         <label class="col-sm-2 control-label" for="id">Id:</label>
         <div class="col-sm-2">
@@ -37,14 +39,14 @@
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"  for="titulo">Titulo:</label>
-        <div class="col-sm-6">
+        <div class="col-sm-10">
             <input type="text" id="titulo" class="form-control"  name="titulo" size="15" placeholder="Inserta un Titulo" />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"  for="descripcion">Descripcion:</label>
-        <div class="col-sm-6">
-            <input type="text" id="descripcion" class="form-control"  name="descripcion" size="15" placeholder="Inserta una Descripcion" />
+        <div class="col-sm-10">
+            <textarea type="text" id="descripcion" class="form-control"  name="descripcion" placeholder="Inserta una Descripcion" ></textarea>
         </div>
     </div>
     <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
@@ -57,7 +59,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="obj_ciudad_id">Ciudad: </label> 
         <div class="col-sm-2">              
-            <input  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" />  
+            <input  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" readonly/>  
         </div>
         <div class="col-sm-1">              
             <a class="btn btn-primary btn-sm" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
@@ -71,28 +73,35 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-sm-2 control-label"  for="fechapub">Fecha:</label>
+        <div class="col-sm-6">
+            <input type="date" id="fechapub" class="form-control" name="fechapub" placeholder="Indica fecha y hora del Evento" required>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-2 control-label" for="obj_tipopublicacion_id">Tipo Publicacion: </label> 
         <div class="col-sm-2">              
-            <input  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" />  
+            <input  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" readonly/>  
         </div>
         <div class="col-sm-1">              
             <a class="btn btn-primary btn-sm" id="obj_tipopublicacion_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
         </div>        
         <label class="col-sm-7" for="obj_tipopublicacion_desc" id="obj_tipopublicacion_desc"></label>                     
     </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <div id="messages"></div>
-        </div>
-    </div>
-
+    
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button class="btn btn-primary" id="submitForm">Guardar</button>
         </div>
     </div>
-
+    
+    
 </form>
+</div>
+        
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 message_form">
+    <div id="messages"></div>
+</div>
 
 
 
@@ -110,7 +119,18 @@
                         validating: 'glyphicon glyphicon-refresh'
                     },
                     fields: {
-                        contenido: {
+                        titulo: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe introducir un titulo'
+                                },
+                                stringLength: {
+                                    max: 140,
+                                    message: 'El titulo debe tener como máximo 140 caracteres'
+                                }
+                            }
+                        },
+                        descripcion: {
                             validators: {
                                 notEmpty: {
                                     message: 'Debe introducir una descripción'
@@ -118,6 +138,17 @@
                                 stringLength: {
                                     max: 255,
                                     message: 'La descripción debe tener como máximo 255 caracteres'
+                                }
+                            }
+                        },
+                        direccion: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe introducir una dirección'
+                                },
+                                stringLength: {
+                                    max: 255,
+                                    message: 'La dirección debe tener como máximo 255 caracteres'
                                 }
                             }
                         },
@@ -138,6 +169,13 @@
                                 },
                                 integer: {
                                     message: 'El identificador de ciudad debe ser un entero'
+                                }
+                            }
+                        },
+                        fechapub: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe introducir una fecha'
                                 }
                             }
                         },

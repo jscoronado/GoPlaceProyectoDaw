@@ -47,7 +47,7 @@ public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
             oConnection.setAutoCommit(false);
             PublicacionDaoGenSpImpl oPublicacionDAO = new PublicacionDaoGenSpImpl(strObjectName, oConnection);
             PublicacionBeanGenSpImpl oPublicacion = new PublicacionBeanGenSpImpl();
-            Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy HH:mm:ss").create();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
             jason = EncodingUtilHelper.decodeURIComponent(jason);
             oPublicacion = gson.fromJson(jason, oPublicacion.getClass());
             if (oPublicacion.getId_usuario() == id_usuario || id_tipousuario == 1) {
@@ -79,7 +79,7 @@ public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
             PublicacionBeanGenSpImpl oPublicacion = new PublicacionBeanGenSpImpl(id);
             oPublicacion = oPublicacionDAO.get(oPublicacion, AppConfigurationHelper.getJsonDepth());
             GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.setDateFormat("dd/MM/yyyy HH:mm:ss");
+            gsonBuilder.setDateFormat("dd/MM/yyyy");
             Gson gson = gsonBuilder.create();
             data = gson.toJson(oPublicacion);
             oConnection.commit();
@@ -147,6 +147,24 @@ public class PublicacionServiceGenSpImpl extends TableServiceGenImpl {
         } catch (Exception ex) {
             oConnection.rollback();
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
+        }
+        return data;
+    }
+    
+    public String getAdminEvento(int id_evento) throws Exception {
+        String data = null;
+        int resultado = 0;
+        try {
+            oConnection.setAutoCommit(false);
+            PublicacionDaoGenSpImpl oPublicacionDAO = new PublicacionDaoGenSpImpl(strObjectName, oConnection);
+
+            resultado = oPublicacionDAO.getAdminEvento(id_evento);
+            data = "{\"id\":\"" + Integer.toString(resultado) + "\"}";
+            oConnection.commit();
+
+        } catch (Exception ex) {
+            oConnection.rollback();
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAdminEvento ERROR: " + ex.getMessage()));
         }
         return data;
     }

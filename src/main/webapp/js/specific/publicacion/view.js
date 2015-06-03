@@ -136,7 +136,7 @@ publicacionView.prototype.okValidation = function (f) {
     $('#publicacionForm').on('success.form.bv', f);
 };
 
-publicacionView.prototype.getEventos = function (jason, tipo) {
+publicacionView.prototype.getEventos = function (jason, person, pubs, coments, friends, tipo) {
     
     espacio = ' ';
     comilla = "'";
@@ -147,9 +147,53 @@ publicacionView.prototype.getEventos = function (jason, tipo) {
     alm = "#";
     
     if(tipo == "inicio"){
-        jsonP = jason.data.page.list;
+        var jsonP = jason.data.page.list;
         
-        eventos = "<div class=" + "'row eventos_main'" + ">";
+        /* H1 INTRO */
+        if (person.genero == "M"){
+            eventos = '<h1 class="col-md-12 col-xs-12 title_intro">Bienvenido @' + person.login + '</h1>';
+        } else if (person.genero == "F"){
+            eventos = '<h1 class="col-md-12 col-xs-12 title_intro">Bienvenida @' + person.login + '</h1>';
+        } else {
+            eventos = '<h1 class="col-md-12 col-xs-12 title_intro">Bienvenido/a @' + person.login + '</h1>';
+        }
+        
+        /* PERFIL INTRO */
+        eventos += "<div class=" + "'col-md-4 col-xs-12 eventos_main'" + ">";
+        eventos += "<div class=" + "'col-md-12 col-xs-12 eventos_main_content'" + ">";
+            eventos += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-4" + comilla + ">";
+                if(person.imagen != null){
+                    eventos += person.imagen;
+                }else {
+                    eventos += "<img src=" + comilla + "/images/user.png" + comilla + "class=" + comilla + "foto_perfil" + comilla + " alt=" + comilla + "Foto perdil de " + person.nombre + espacio + person.apellidos + comilla + ">";
+                }
+            eventos += "</div>";
+            eventos += "<div class=" + comilla + "col-md-12 col-xs-8 perfil_home" + comilla + ">";
+                eventos += '<h2 class="nombre_home">'+ person.nombre + " " + person.apellidos + '</h2>';
+                eventos += '<span class="login_home">@'+ person.login + '</span><br/>';
+            eventos += "</div>";    
+            eventos += "<div class=" + comilla + "col-md-12 col-xs-12 datos_home" + comilla + ">";
+                eventos += "<div class=" + comilla + "col-md-4 col-xs-4 events_home" + comilla + ">";
+                    eventos += '<h5 class="text_number">Eventos<br/>';
+                    eventos += '<b>'+ pubs.data + '</b></h5>';
+                eventos += "</div>";   
+                
+                eventos += "<div class=" + comilla + "col-md-4 col-xs-4 events_home" + comilla + ">";
+                    eventos += '<h5 class="text_number">Comentarios<br/>';
+                    eventos += '<b>'+ coments.data + '</b></h5>';
+                eventos += "</div>"; 
+                
+                eventos += "<div class=" + comilla + "col-md-4 col-xs-4 events_home" + comilla + ">";
+                    eventos += '<h5 class="text_number">Siguiendo<br/>';
+                    eventos += '<b>'+ friends.data + '</b></h5>';
+                eventos += "</div>"; 
+                
+            eventos += "</div>";
+        eventos += "</div>";
+        eventos += "</div>";
+        
+        /* EVENTOS */
+        eventos += "<div class=" + "'col-md-8 col-xs-12 eventos_main'" + ">";
         eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos de tu entorno</h2>";
         eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
     }else{
@@ -270,6 +314,8 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
                     descEvent += "<b>Dirección: </b>" + evento.direccion + "<br/>";
                     descEvent += "<b>Fecha del Evento: </b>" + evento.fechapub + "<br/>";
                 descEvent += "</div>";
+                descEvent += "<div class=" + comilla + "col-md-12 col-sm-6 col-xs-12" + comilla + " id=" + comilla + "botones_evento" + comilla + ">";
+                descEvent += "</div>";
                 
                 /* USUARIOS */
                 descEvent += "<div class=" + comilla + "col-md-12 col-sm-6 col-xs-12 personas_evento" + comilla + ">";
@@ -279,11 +325,13 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
                         if (usuario.length != 0) {
                             for (i = 0; i < usuario.length; i++) {
                                 descEvent += "<div class=" + comilla + "user_event col-md-3 col-xs-3" + comilla + ">";
+                                    descEvent += "<a href=" + comilla + "#/perfil/" + usuario[i].obj_usuario.id + comilla + ">";
                                     if (usuario[i].obj_usuario.imagen == null){
                                         descEvent += "<img src=" + comilla + "/images/user.png" + comilla + " class=" + comilla + "fotoUser" + comilla + "/>";
                                     }else{
                                         descEvent += usuario[i].obj_usuario.imagen;
                                     }
+                                    descEvent += "</a>";
                                 descEvent += "</div>";
                             }
                         } else {

@@ -34,6 +34,12 @@ function fUsuarioRoutes() {
         return false;
     });
     
+    Path.map("#/perfil").to(function () {
+        var id_user = myuser;
+        oUsuarioControl.perfil($('#principalpag'), id_user, oUsuarioModel, oUsuarioView);
+        return false;
+    });
+    
     Path.map("#/perfil/:id").to(function () {
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
         oUsuarioControl.perfil($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);

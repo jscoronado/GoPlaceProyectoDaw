@@ -38,6 +38,38 @@ publicacionControl.prototype.verEvento = function (place, id_evento, oModel, oVi
     
     var eventos = oPublicacionView.perfilEvento(evento, usuarios, coments, form);
     $("#principalpag").html(eventos);
+    
+    
+    /* BOTONERA EDITAR - AÑADIR/BORRAR */
+    var adminEvento = oPublicacionModel.getAdminEvento(id_evento);
+    
+    var jsonAsistencia = oPublicacionModel.existeAsistencia(id_evento);
+    var asist = jsonAsistencia.data;
+    
+   if (myuser == adminEvento.id) {
+        $("#botones_evento").append('<a class="btn btn-goplace col-md-6 col-xs-6" href="control#/publicacion/edit/' + id_evento + '">Editar Evento</a>');
+    } else {
+        if(!asist){
+            $("#botones_evento").append('<a class="btn btn-goplace col-md-6 col-xs-6" id=\"btn_seguirE\">Seguir Evento</a>');
+        } else {
+            $("#botones_evento").append('<a class="btn btn-danger col-md-6 col-xs-6" id=\"btn_dejarE\">Dejar Evento</a>');
+        }        
+    }
+    
+    $('#btn_seguirE').click(function () {
+        resultado = oPublicacionModel.seguirEvento(id_evento);
+        title = "Evento añadido a tu lista de eventos";
+        oView.doResultOperationGP(place, resultado["status"], title, null, id_evento, true);
+        return false;
+    });
+    
+    $('#btn_dejarE').click(function () {
+        resultado = oPublicacionModel.dejarEvento(id_evento);
+        title = "Evento eliminado de tu lista de evnetos";
+        oView.doResultOperationGP(place, resultado["status"], title, null, id_evento, true);
+        return false;
+    });
+    
 };
 
 publicacionControl.prototype.listarEventos = function (place, oModel, oView) {
@@ -45,9 +77,17 @@ publicacionControl.prototype.listarEventos = function (place, oModel, oView) {
     $(place).empty();
     var oPublicacionModel = oModel;
     var oPublicacionView = oView;
-    var data = oPublicacionModel.setGenericOperation("geteventos&rpp=8","");
-    var eventos = oPublicacionView.getEventos(data, "inicio");
-    $("#principalpag").html(eventos);
+    
+    var user = myuser;
+    var eventos = oPublicacionModel.setGenericOperation("geteventos&rpp=6","");
+    
+    var person = oUsuarioModel.setGenericOperation("get&id="+user,"");
+    var pubs = oPublicacionModel.setGenericOperation("getregisters&systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue="+user,"");
+    var coments = oComentarioModel.setGenericOperation("getregisters&systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue="+user,"");
+    var friends = oAmistadModel.setGenericOperation("getregisters&systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue="+user,"");
+    
+    var content = oPublicacionView.getEventos(eventos, person, pubs, coments, friends, "inicio");
+    $("#principalpag").html(content);
 };
 
 publicacionControl.prototype.listarEventosFilter = function (place, id, oModel, oView, tipo) {
@@ -56,7 +96,7 @@ publicacionControl.prototype.listarEventosFilter = function (place, id, oModel, 
     var oPublicacionModel = oModel;
     var oPublicacionView = oView;
     var data = oPublicacionModel.cargaEventos(id);
-    var eventos = oPublicacionView.getEventos(data, tipo);
+    var eventos = oPublicacionView.getEventos(data, null, null, null, null, tipo);
     $("#principalpag").html(eventos);
 };
 

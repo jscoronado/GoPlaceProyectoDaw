@@ -46,12 +46,9 @@ public class AsistenciaControlOperationGenSpImpl extends ControlOperationGenImpl
                 int id_publicacion = ParameterCooker.prepareId(request);
                 
                 existe = oAsistenciaService.existeAsistencia(id_usuario, id_publicacion);
+
+                result = oAsistenciaService.seguirEvento(id_usuario, id_publicacion);
                 
-                /*if (id_usuario_1 != id_usuario_2) {*/
-                    result = oAsistenciaService.seguirEvento(id_usuario, id_publicacion);
-                /*} else {
-                    result = "Error, un usuario no puede agregarse a sí miismo.";
-                }*/
                 closeDB();
             } else {
                 result = "Error, su usuario no tiene permisos para realizar esta operación.";

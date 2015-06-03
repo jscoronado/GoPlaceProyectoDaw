@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="./css/effects.css">
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/styles.css">
-        <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:200|Oswald' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Oswald:700|Montserrat:400,700|Raleway:300' rel='stylesheet' type='text/css'>
     </head>
 
 
@@ -42,24 +42,24 @@
         <div class="pagePrincipal">
             <header class="title row">
                 <div class="col-md-6 col-sm-12 logoMain">
-                    <a href="#/publicacion/inicio"><img src="./images/logo.png" alt="Logo GoPlace"></a>
+                    <a href="#/inicio"><img src="./images/logo.png" alt="Logo GoPlace"></a>
                 </div>
                 <% if (user != null) {%>
                 <div class="col-md-6 col-sm-12 nav_header">
                     <ul class="nav nav-tabs navbar-right">
-                        <li><a href="#/publicacion/inicio" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
+                        <li><a href="#/inicio" class="glyphicon glyphicon-home"><span> Inicio</span></a></li>
                         <li><a href="#/descubre/<%=user.getId_ciudad()%>" class="glyphicon glyphicon-comment"><span> Descubre</span></a></li>
                         <li class="publicarbtn"><a href="#/publicacion/new" class="glyphicon glyphicon-send"><span> Publicar</span></a></li>
-                        <li><a href="#/perfil/<%=user.getId()%>" class="glyphicon glyphicon-user"><span><%=user.getNombre()%> <%=user.getApellidos()%></span></a></li>
+                        <li><a href="#/perfil" class="glyphicon glyphicon-user"><span><%=user.getNombre()%> <%=user.getApellidos()%></span></a></li>
                         <li class="cerrarbtn"><a href="<%=logout%>" class="glyphicon glyphicon-off"><span> Cerrar Sesion</span></a></li>
                     </ul>
                 </div>
                 <% } %>
             </header>
 
-            <main>
+            <main class="main_gp row">
                 <% if (user != null) {%>
-                <div id="principalpag"><h1>Estas dentro de GoPlace</h1></div>
+                <div id="principalpag" class="col-md-12 col-xs-12 principalpag"><h1>Estas dentro de GoPlace</h1></div>
                 <div id="comentariospag"></div>
                 <% } else { %>
                 <div id="principalpag">
@@ -75,7 +75,7 @@
                     String espacio = "&nbsp;&nbsp;&nbsp;&nbsp;";
                 %>
             </script>
-            <footer class="row">
+            <footer class="footer row">
                 <div class="help col-md-12"> 
                     <a href="#" >Acerca de</a> <%=espacio%>
                     <a href="#">Ayuda</a> <%=espacio%>

@@ -34,10 +34,38 @@ publicacionModel.prototype.cargaEventos = function (id1) {
     return pagina_objs;
 };
 
+publicacionModel.prototype.getAdminEvento = function (id1) {
+    
+    $.when(ajax().ajaxCallSync(this.urlJson + '&op=getadminevento&id='+id1, 'GET', '')).done(function (data) {
+        id_admin = data;
+    });
+    
+    return id_admin;
+};
+
 publicacionModel.prototype.usuariosEventos = function (id1) {
-    $.when(ajax().ajaxCallSync('/goplace/json?ob=asistencia' + '&op=getpage&systemfilter=id_publicacion&systemfilteroperator=equals&systemfiltervalue=' + id1, 'GET', '')).done(function (data) {
+    $.when(ajax().ajaxCallSync('/goplace/json?ob=asistencia' + '&op=getpage&systemfilter=id_publicacion&rpp=8&systemfilteroperator=equals&systemfiltervalue=' + id1, 'GET', '')).done(function (data) {
         pagina_objs = data;
     });
     
     return pagina_objs;
+};
+
+publicacionModel.prototype.seguirEvento = function (id) {
+    $.when(ajax().ajaxCallSync('/goplace/json?ob=asistencia&op=seguirevento&id=' + id, 'GET', '')).done(function (data) {
+        feedback = data;
+    });
+    return feedback;
+};
+publicacionModel.prototype.dejarEvento = function (id) {
+    $.when(ajax().ajaxCallSync('/goplace/json?ob=asistencia&op=dejarevento&id=' + id, 'GET', '')).done(function (data) {
+        feedback = data;                           
+    });
+    return feedback;
+};
+publicacionModel.prototype.existeAsistencia = function (id) {
+    $.when(ajax().ajaxCallSync('/goplace/json?ob=asistencia&op=existeasistencia&id=' + id, 'GET', '')).done(function (data) {
+        feedback = data;                           
+    });
+    return feedback;
 };

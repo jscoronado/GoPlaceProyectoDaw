@@ -590,7 +590,7 @@ public class MysqlDataSpImpl implements DataInterface {
         }
     }
 
-    public ArrayList<Integer> getPageEventos(int id_usuario, int intRegsPerPage, int intPagina, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+    public ArrayList<Integer> getPageEventos(int id_usuario, int intRegsPerPage, int intPagina, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> eventos = null;
         Statement oStatement = null;
         try {
@@ -644,8 +644,9 @@ public class MysqlDataSpImpl implements DataInterface {
             int maxPaginas = new Double(intCuenta / intRegsPerPage).intValue();
             intPagina = Math.min(intPagina - 1, maxPaginas) + 1;
             intOffset = Math.max(((intPagina - 1) * intRegsPerPage), 0);
-            //--                        
-            strSQL += " LIMIT " + intOffset + " , " + intRegsPerPage;
+            //--
+            
+            strSQL += " LIMIT " + intRegsPerPage;
             oResultSet = oStatement.executeQuery(strSQL);
             while (oResultSet.next()) {
                 eventos.add(oResultSet.getInt("id"));

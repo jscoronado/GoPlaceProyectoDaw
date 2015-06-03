@@ -89,4 +89,18 @@ public class PublicacionControlOperationGenSpImpl extends ControlOperationGenImp
         return result;
     }
     
+    public String getAdminEvento(HttpServletRequest request) throws Exception {
+        String result = null;
+        try {
+
+            int id_evento = ParameterCooker.prepareId(request);
+            result = oPublicacionService.getAdminEvento(id_evento);
+
+            closeDB();
+
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAdminEvento ERROR: " + ex.getMessage()));
+        }
+        return result;
+    }
 }

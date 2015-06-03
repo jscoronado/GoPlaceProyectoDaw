@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 26-05-2015 a las 14:11:15
+-- Tiempo de generación: 03-06-2015 a las 02:55:36
 -- Versión del servidor: 5.5.42
 -- Versión de PHP: 5.4.40
 
@@ -64,18 +64,18 @@ CREATE TABLE IF NOT EXISTS `asistencia` (
   `id` int(11) NOT NULL COMMENT 'id Asistencia',
   `id_usuario` int(11) DEFAULT NULL COMMENT 'Usuario',
   `id_publicacion` int(11) DEFAULT NULL COMMENT 'Evento'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `asistencia`
 --
 
 INSERT INTO `asistencia` (`id`, `id_usuario`, `id_publicacion`) VALUES
-(1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
 (4, 2, 1),
-(6, 3, 3);
+(6, 3, 3),
+(9, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `comentario` (
   `id_usuario` int(11) DEFAULT NULL COMMENT 'Id Usuario',
   `id_publicacion` int(11) DEFAULT NULL COMMENT 'Id Evento',
   `fechacomentario` datetime DEFAULT NULL COMMENT 'Fecha Comentario'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `comentario`
@@ -170,7 +170,19 @@ INSERT INTO `comentario` (`id`, `coment`, `id_usuario`, `id_publicacion`, `fecha
 (3, 'Como me gusta GoPlace :)', 2, 1, '2015-05-15 11:40:25'),
 (4, 'No me lo pierdo :)', 3, 1, '2015-05-02 08:00:00'),
 (5, 'Que guapo!', 4, 2, '2015-05-15 00:00:00'),
-(6, 'Me apunto! jejeje', 2, 4, '2015-05-31 10:00:00');
+(6, 'Me apunto! jejeje', 2, 4, '2015-05-31 10:00:00'),
+(7, 'Hola', 1, 1, '2015-05-31 13:07:11'),
+(8, 'Prueba', 1, 1, '2015-05-31 13:44:39'),
+(9, 'aida es friki', 1, 1, '2015-05-31 14:05:04'),
+(10, 'prueba2', 1, 3, '2015-05-31 17:46:48'),
+(11, 'ieeee', 1, 5, '2015-05-31 17:58:49'),
+(12, 'jojojo', 1, 5, '2015-05-31 18:15:35'),
+(13, 'oh', 1, 5, '2015-05-31 18:16:56'),
+(14, 'hola', 1, 5, '2015-05-31 18:18:20'),
+(15, 'valeeee', 1, 5, '2015-05-31 18:26:05'),
+(16, 'y yo! :)', 1, 4, '2015-05-31 19:32:38'),
+(17, 'hola aida!', 1, 3, '2015-05-31 19:58:01'),
+(18, 'victor viene', 1, 1, '2015-06-03 11:51:35');
 
 -- --------------------------------------------------------
 
@@ -212,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `operacion` (
   `descripcion` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Descripción',
   `id_objeto` int(6) DEFAULT NULL COMMENT 'ID Objeto',
   `id_tipooperacion` int(6) DEFAULT NULL COMMENT 'ID Tipo Operación'
-) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `operacion`
@@ -362,7 +374,8 @@ INSERT INTO `operacion` (`id`, `descripcion`, `id_objeto`, `id_tipooperacion`) V
 (208, 'geteventos', 6, 1),
 (209, 'getpageseventos', 6, 1),
 (210, 'duplicate', 6, 2),
-(211, 'getpage', 12, 1);
+(211, 'getpage', 12, 1),
+(212, 'getadminevento', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -400,25 +413,31 @@ CREATE TABLE IF NOT EXISTS `publicacion` (
   `descripcion` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Descripcion',
   `id_usuario` int(11) DEFAULT NULL COMMENT 'Id Usuario',
   `id_ciudad` int(11) DEFAULT NULL COMMENT 'Id Ciudad',
+  `direccion` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Direccion',
   `id_tipopublicacion` int(11) DEFAULT NULL COMMENT 'Id Tipo Publicacion',
-  `fechapub` datetime DEFAULT NULL COMMENT 'Fecha Publicacion'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `fechapub` date DEFAULT NULL COMMENT 'Fecha Publicacion'
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `publicacion`
 --
 
-INSERT INTO `publicacion` (`id`, `titulo`, `descripcion`, `id_usuario`, `id_ciudad`, `id_tipopublicacion`, `fechapub`) VALUES
-(1, 'Bienvenidos a GoPlace !', 'Una red social donde poder buscar, crear y comentar con tus amigos los planes en tu ciudad!', 1, 46, 2, '2015-02-10 00:00:00'),
-(2, 'Fiestas Tavernes Blanques', '¡Que empiece las fiestas de Tavernes! En esta sección encontrarás toda la información actualizada sobre las Fallas de Tavernes Blanques 2015. Información programación de actos, premios, noticias de actualidad, reportajes sobre la fiesta…', 2, 46, 1, '2015-06-01 10:40:13'),
-(3, 'Vamos a echar chismes al salir', 'Si es que soy un escandalo!', 4, 37, 2, '2015-02-10 19:57:29'),
-(4, 'Cada vez somos mas en GoPlace', 'Uniros!', 1, 46, 1, '2015-02-11 01:11:36'),
-(5, 'Yee un lol o que?', 'Venga animaros jeje', 5, 46, 3, '2015-02-11 10:15:26'),
-(6, 'Pero esto que eeeees?', 'Si solo estaba de paso aisse', 3, 12, 3, '2015-02-11 16:46:56'),
-(7, 'Fiestas Tavernes Blanques 2015', 'oidfhsokdjf', 1, 15, 1, '2015-05-13 23:30:41'),
-(8, 'sdfsdf', 'sdfsdf', 2, 11, 1, '2015-05-18 23:31:40'),
-(9, 'asdasd', 'asdasd', 1, 15, 1, '2015-05-25 17:30:29'),
-(10, 'asdasdd', 'asd', 1, 15, 1, '2015-05-26 21:43:01');
+INSERT INTO `publicacion` (`id`, `titulo`, `descripcion`, `id_usuario`, `id_ciudad`, `direccion`, `id_tipopublicacion`, `fechapub`) VALUES
+(1, 'Bienvenidos a GoPlace !', 'Una red social donde poder buscar, crear y comentar con tus amigos los planes en tu ciudad!', 1, 46, 'Calle Ramon y Cajal', 2, '2015-02-10'),
+(2, 'Fiestas Tavernes Blanques', '¡Que empiece las fiestas de Tavernes! En esta sección encontrarás toda la información actualizada sobre las Fallas de Tavernes Blanques 2015. Información programación de actos, premios, noticias de actualidad, reportajes sobre la fiesta…', 2, 46, NULL, 1, '2015-06-01'),
+(3, 'Vamos a echar chismes al salir', 'Si es que soy un escandalo!', 4, 37, NULL, 2, '2015-02-10'),
+(4, 'Cada vez somos mucho mas en GoPlace', 'Uniros!', 1, 46, '', 1, '2015-02-11'),
+(5, 'Yee un lol o que?', 'Venga animaros jeje', 5, 46, NULL, 3, '2015-02-11'),
+(6, 'Pero esto que eeeees?', 'Si solo estaba de paso aisse', 3, 12, NULL, 3, '2015-02-11'),
+(7, 'Fiestas Tavernes Blanques 2015', 'oidfhsokdjf', 1, 15, NULL, 1, '2015-05-13'),
+(8, 'sdfsdf', 'sdfsdf', 2, 11, NULL, 1, '2015-05-18'),
+(9, 'asdasd', 'asdasd', 1, 15, NULL, 1, '2015-05-25'),
+(10, 'asdasdd', 'asd', 1, 15, NULL, 1, '2015-05-26'),
+(11, 'Fiesta Aida!', 'jejeje', 1, 46, 'Calle de Aida', 2, '2015-05-30'),
+(12, 'Hola', 'que tal', 1, 1, 'Hola Alava', 2, '2015-05-31'),
+(16, 'Cumple Josh', 'En mi casica', 1, 46, 'Calle Ramon y Cajal', 1, '2015-06-13'),
+(17, 'asd', 'asd', 1, 15, 'sdsd', 1, '2015-06-13'),
+(18, 'sdfsdf', 'sdfsdf', 1, 15, 'sdfsdf', 1, '2015-06-06');
 
 -- --------------------------------------------------------
 
@@ -509,7 +528,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellidos`, `correo`, `login`, `password`, `fecha`, `id_ciudad`, `genero`, `estado`, `id_tipousuario`, `imagen`) VALUES
-(1, 'Jose Miguel', 'Coronado Aroca', 'joshco@gmail.com', 'josh', 'coronado', '1994-09-29', 46, 'M', 'Soy el admin de GoPlace!', 1, '<img src="/images/flecha-negra.png" width="150" />'),
+(1, 'Jose Miguel', 'Coronado Aroca', 'joshco@gmail.com', 'josh', 'coronado', '1994-09-29', 46, 'M', 'Soy el admin de GoPlace!', 1, '<img src="/images/image (5).jpg" width="150" />'),
 (2, 'Aida', 'Sanchez Martinez', 'aidasm@gmail.com', 'aida', 'sanchez', '2015-02-22', 46, 'M', '', 2, NULL),
 (3, 'Alejandro', 'Perez Vidal', 'kelo@gmail.com', 'kelo', 'kelo', '2015-02-04', 46, 'H', 'In da nigga Go Place', 2, NULL),
 (4, 'Cristina', 'Sanchez Picado', 'crisloka21@hotmail.com', 'cris', 'cris', '2015-02-02', 37, 'M', '', 2, NULL),
@@ -601,7 +620,7 @@ ALTER TABLE `amistad`
 -- AUTO_INCREMENT de la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id Asistencia',AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id Asistencia',AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
@@ -611,12 +630,12 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id Comentario',AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id Comentario',AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `operacion`
 --
 ALTER TABLE `operacion`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID Operación',AUTO_INCREMENT=212;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'ID Operación',AUTO_INCREMENT=213;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
@@ -626,7 +645,7 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id Publicacion',AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id Publicacion',AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `tipooperacion`
 --

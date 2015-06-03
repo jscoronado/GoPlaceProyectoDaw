@@ -38,7 +38,7 @@ function fPublicacionRoutes() {
 
     Path.map("#/publicacion/edit/:id").to(function () {
         //$('#indexContenidoJsp').spinner();
-        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
         oPublicacionControl.edit($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
         //$('#indexContenidoJsp').empty();
     });
@@ -65,7 +65,7 @@ function fPublicacionRoutes() {
         return false;
     });
     
-    Path.map("#/publicacion/inicio").to(function () {
+    Path.map("#/inicio").to(function () {
     oPublicacionControl.listarEventos($('#principalpag'), oPublicacionModel, oPublicacionView);
     return false;
     });

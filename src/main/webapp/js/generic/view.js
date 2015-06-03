@@ -276,7 +276,7 @@ view.prototype.doResultOperationGP = function (place, resultadoStatus, title, co
         })
     } else if (mostrar && resultadoStatus == "404") {
         $('#modalGP').on('hidden.bs.modal', function () {
-            window.location.href = "control#/publicacion/inicio";
+            window.location.href = "control#/inicio";
         })
     }else {
         $('#modalGP').on('hidden.bs.modal', function () {

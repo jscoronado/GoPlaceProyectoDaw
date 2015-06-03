@@ -25,41 +25,6 @@ usuarioControl.prototype.getClassNameUsuario = function () {
 };
 var oUsuarioControl = new usuarioControl('usuario');
 
-usuarioControl.prototype.view = function (place, id, oModel, oView) {
-    $(place).empty();
-    var oDocumentoModel = oModel;
-    oDocumentoModel.loadAggregateViewOne(id);
-    $(place).append(oView.getPanel("Perfil" /*+ "de " + this.clase*/, oView.getObjectTable(oDocumentoModel.getCachedPrettyFieldNames(), oDocumentoModel.getCachedOne(), oDocumentoModel.getCachedFieldNames())));
-    
-    var jsonamigo = oUsuarioModel.existeAmigo(id);
-    var amigo = jsonamigo.data;
-    
-    if (myuser == id) {
-        $(place).append('<a class="btn btn-goplace" href="control#/usuario/edit/' + id + '">Editar</a>');
-        $(place).append('<a class="btn btn-goplace" href="control#/usuario/remove/' + id + '">Borrar</a><br /><br />');
-    } else {
-        if(!amigo){
-            $(place).append('<a class="btn btn-goplace" id=\"addfriend\">Añadir amigo</a>');
-        } else {
-            $(place).append('<a class="btn btn-danger" id=\"removefriend\">Eliminar amigo</a>');
-        }        
-    }
-    
-    $(place).append('<a class="btn btn-goplace" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + id + '">Ver amigos</a><br /><br />');
-    
-    $('#addfriend').click(function () {
-        resultado = oUsuarioModel.agregarAmigo(id);
-        oUsuarioView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha añadido el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
-        return false;
-    });
-    
-    $('#removefriend').click(function () {
-        resultado = oUsuarioModel.removeAmigo(id);
-        oUsuarioView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha eliminado el usuario con id= " + id + " a tu lista de amigos ", resultado["message"], true, id);
-        return false;
-    });
-};
-
 usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
     $(place).empty();
     var oDocumentoModel = oModel;
@@ -69,6 +34,7 @@ usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
     
     $(place).append(oView.getPerfil(perfil, comentarios, eventos));
     
+    /* BOTONERA EDITAR - AÑADIR/BORRAR */
     var jsonamigo = oUsuarioModel.existeAmigo(id);
     var amigo = jsonamigo.data;
     

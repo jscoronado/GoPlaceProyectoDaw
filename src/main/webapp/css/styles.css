@@ -1,6 +1,6 @@
-
 /*
 * INDEX CSS
+* ---------
 *
 *   1. Default Styles
 *   2. Header
@@ -23,6 +23,11 @@
 body{
     max-width: 1500px;
     margin: 0 auto;
+    background: url('/images/background_goplace_body.jpg') fixed no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .page{
     width: 100%;
@@ -30,29 +35,37 @@ body{
     background: #fff;
     cursor: default;
 }
-h1, h2, h3, h4, h5, h1 a, h2 a, h3 a, h4 a{
-    
-    font-family: 'Raleway', sans-serif;
+h1, h1 a{
+    font-family: 'Oswald', sans-serif;
     text-transform: uppercase !important;
-    font-weight: 900;
+    
+}
+h2, h3, h4, h5, h2 a, h3 a, h4 a{
+    
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase !important;
 }
 
 h1{
     color: white;
     letter-spacing: 0.05em;
-    font-size: 50px;
+    font-size: 36px;
     font-weight: 900;
     margin-top: 10px;
     margin-bottom: 20px;
 }
+#principalpag h1{
+    color: #3C3939;
+    text-align: center;
+}
 h2{
-    color: #232930;
+    color: #024E31;;
     font-weight: 900;
     font-size: 24px;
     clear: both;
 }
 h3,h4,h5{
-    color: #232930;
+    color: #393939;
     letter-spacing: 0.1em;
     font-size: 16px;
     font-weight: 700;
@@ -64,7 +77,7 @@ span.blanco{
     font-weight: 700;
     text-shadow: 3px 3px 3px black;
 }
-h2::after {content: " "; border-bottom: solid 1px #232930; display: block; width: 2em; margin: 0.6em auto auto auto;}
+
 a{
     font-family: 'Raleway', sans-serif;
     color: #232930;
@@ -104,8 +117,8 @@ main{
 header{
     width: 100%;
     height: 14%;
-    background-color: #009688;
-    border-bottom: 2px solid #00665C;
+    background-color: #024E31;
+    border-bottom: 5px solid #013722;
 }
 
 .logo{
@@ -170,7 +183,6 @@ header{
     line-height: 17px;
     background-color: rgb(236, 236, 236);
     color: #000;
-    font-family: 'Raleway';
     font-weight: bold;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -202,7 +214,6 @@ header{
 }
 .youarenew *{
     color: #55AE60;
-    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     text-align: center;   
     text-shadow: none !important;
@@ -246,13 +257,11 @@ header{
 
 /* 4. HOME PAGE */
 #principalpag{
-    background: url('../images/background_index.jpg') fixed no-repeat center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    /* padding: 0 5% 10% 5%; */
+    background: white;
+    padding: 0px 0px 30px 0px !important;
 }
+
+/* 4.1 Header */
 .logoMain{
     /*width: 100%;*/
     margin: 2% 0 2% 0;
@@ -266,7 +275,6 @@ header .nav-tabs{
 header .nav-tabs>li>a {
     color: white;
     font-size: 13px;
-    font-weight: 900;
 }
 .posder{
     margin-left: 50%;
@@ -276,6 +284,53 @@ header .nav-tabs>li>a {
     border-top: 1px solid lightgrey;
     border-right: 1px solid lightgrey;
     border-radius: 4px;
+}
+
+/* 4.2 Principal */
+.title_intro{
+    margin: 40px 0;
+}
+.eventos_main_content{
+    padding: 20px;
+    background: #024E31;
+    border-bottom: 5px solid #013722;
+    text-align: center;
+}
+.perfil_home *{
+    color: white;
+}
+.perfil_home .login_home{
+    color: #BBB;
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+.datos_home .events_home{padding: 0px;}
+.datos_home .events_home h5{
+    color: white;
+    margin-top: 30px;
+    padding: 3px;
+    cursor: pointer;
+    letter-spacing: 0em; 
+    font-size: 12px !important;
+    font-weight: 300;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+.datos_home .events_home h5:hover {
+    color: #024E31;
+    background: white;
+    border-radius: 2px;
+    margin-top: 30px;
+    cursor: pointer;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+
+h5.text_number b {
+  font-size: 24px;
 }
 .fotoPerfil{
     width: 170px;
@@ -521,6 +576,43 @@ footer{
     font-size: 12px;
 }
 
+/* FORMULARIOS */
+.form-group {
+  margin-bottom: 10px !important;
+}
+.form_gp{
+	margin-top: 40px;
+        color: red;
+}
+.form_gp input, .form_gp select, .form_gp textarea {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 10px;
+	border: 1px solid #CCCCCC;
+	background-color: #EFEFEF;
+	color: #111;
+	font-size: 14px;
+        color: #232930;
+        font-weight: 900;
+}
+.form_gp textarea{
+	min-height: 100px !important;
+}
+.form_gp input#fsubmit {
+	background: #0074A5;
+	color: white;
+}
+.form_gp input#fsubmit:hover {
+	color: white;
+	background: #008ECA;
+	border: 2px solid #00628B;
+}
+.form_gp #fsubmit, .form_gp #fsubmit:hover{
+	transition:0.3s all ease-in;
+	-webkit-transition:0.3s all ease-in;
+	-moz-transition:0.3s all ease-in;
+	-o-transition:0.3s all ease-in;
+}
 
 /* MEDIA QUERYS */
 @media (min-width: 992px){
