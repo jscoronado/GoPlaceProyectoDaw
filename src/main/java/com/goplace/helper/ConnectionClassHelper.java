@@ -21,18 +21,13 @@ public class ConnectionClassHelper {
 
     public static Boolean getOpenShift() {
         Boolean openshift = false;
-        if (System.getenv() != null
-                && System.getenv("OPENSHIFT_APP_NAME") != null
-                && !System.getenv("OPENSHIFT_APP_NAME").equals("")) {
-            openshift = true;
-        }
         return openshift;
     }
 
     public static String getDatabaseName() {
         if (ConnectionClassHelper.getOpenShift()) {
-            return System.getenv("OPENSHIFT_APP_NAME");
-
+            //return System.getenv("OPENSHIFT_APP_NAME");
+            return "goplace";
         } else {
             return "goplacedb2015";
         }
@@ -41,7 +36,7 @@ public class ConnectionClassHelper {
     public static String getDatabaseLogin() {
         if (ConnectionClassHelper.getOpenShift()) {
             //return System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-            return "el username esta en la web de openshift";
+            return "adminXc67K2I";
         } else {
             return "root";
         }
@@ -50,7 +45,7 @@ public class ConnectionClassHelper {
     public static String getDatabasePassword() {
         if (ConnectionClassHelper.getOpenShift()) {
             //return System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-            return "la contraseña esta en la web de openshift";
+            return "iz2aRr5DBHGv";
         } else {
             return "bitnami";
         }
@@ -70,7 +65,7 @@ public class ConnectionClassHelper {
         if (ConnectionClassHelper.getOpenShift()) {
             //return System.getenv("OPENSHIFT_MYSQL_DB_IP");
             //return System.getenv("OPENSHIFT_DIY_IP");
-            return "la ip aparece en la ventana de entrada al phpMyadmin";
+            return "127.10.184.130";
 
         } else {
             return "127.0.0.1";

@@ -34,7 +34,7 @@ public class UsuarioDaoGenSpImpl extends TableDaoGenImpl<UsuarioBeanGenSpImpl> {
         super(strFuente, "Usuario", pooledConnection);
     }*/
     
-    private String strTableName = "usuario"; 
+    private String strTableName = "Usuario"; 
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
     
@@ -46,13 +46,13 @@ public class UsuarioDaoGenSpImpl extends TableDaoGenImpl<UsuarioBeanGenSpImpl> {
 
     public UsuarioBeanGenSpImpl getPass(String registro, UsuarioBeanGenSpImpl oUsuario) throws Exception {
         try {
-            String strId = oMysql.getId("usuario", "login", oUsuario.getLogin());
+            String strId = oMysql.getId("Usuario", "login", oUsuario.getLogin());
             if (strId == null) {
                 oUsuario.setId(0);
             } else {
                 Integer intId = Integer.parseInt(strId);
                 oUsuario.setId(intId);
-                String pass = oMysql.getRegister(registro, "usuario", "login", oUsuario.getLogin());
+                String pass = oMysql.getRegister(registro, "Usuario", "login", oUsuario.getLogin());
                 oUsuario.setPassword(pass);
                 if (!pass.equals(oUsuario.getPassword())) {
                     oUsuario.setId(0);

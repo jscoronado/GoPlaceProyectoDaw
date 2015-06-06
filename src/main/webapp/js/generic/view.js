@@ -253,12 +253,12 @@ view.prototype.doResultOperationNotifyToUser = function (place, resultadoStatus,
 view.prototype.doResultOperationGP = function (place, resultadoStatus, title, content, id, mostrar) {
     var strNombreClase = this.clase;
     if (resultadoStatus == "200" && title != null) {
-        mensaje = "<h3>"+ title +"</h3>";
+        mensaje = '<h3 class="title_modal">'+ title +'</h3>';
     } else {
-        mensaje = "<h3>Error!</h3>";
+        mensaje = '<h3 class="title_modal">Error!</h3>';
     }
     if(content != null){
-        mensaje += "<h5>" + content + "</h5>";
+        mensaje += '<h5 class="content_modal">' + content + '</h5>';
     }
     $(place).append(this.getEmptyModalGP());
     util().loadForm('#modalGP', this.getFormHeader('Respuesta del servidor'), mensaje, this.getFormFooter(), true);
@@ -378,3 +378,9 @@ view.prototype.doEventsLoading = function () {
 view.prototype.okValidation = function (f) {
     $('#' + this.clase + 'Form').on('success.form.bv', f);
 }
+
+view.prototype.cargaEventosGP = function (json, tipo, title) {
+    var eventos = "";
+    
+    return eventos;
+};

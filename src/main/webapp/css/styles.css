@@ -40,7 +40,7 @@ h1, h1 a{
     text-transform: uppercase !important;
     
 }
-h2, h3, h4, h5, h2 a, h3 a, h4 a{
+h2, h4, h5, h2 a, h4 a, h5 a{
     
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase !important;
@@ -64,11 +64,17 @@ h2{
     font-size: 24px;
     clear: both;
 }
+h3, h4{
+    font-size: 18px;  
+}
+h5{
+    font-size: 16px;
+}
 h3,h4,h5{
     color: #393939;
     letter-spacing: 0.1em;
-    font-size: 16px;
     font-weight: 700;
+    text-transform: uppercase;
 }
 span.blanco{
     color: white;
@@ -83,13 +89,22 @@ a{
     color: #232930;
     text-decoration: none !important; 
 }
+a:hover, a:focus {
+  color: #17643B;
+  text-decoration: underline;
+}
+.nav-tabs>li {
+  margin-bottom: -1px;
+  float: none;
+  display: inline-block;
+}
 button{
-    background-color: #55AE60 !important;
-    border: 1px solid #55AE60 !important;
+    background-color: #55AE60;
+    border: 1px solid #55AE60;
 }
 button:hover{
-    background-color: #7BDA86 !important;
-    border: 1px solid #7BDA86 !important;
+    background-color: #7BDA86;
+    border: 1px solid #7BDA86;
 }
 .nomargin, .row{
     margin: 0px;
@@ -111,14 +126,33 @@ main{
     width: 100%;
     height: 100%;
 }
+.form-control {
+    height: 28px;
+    padding: 10px 10px;
+    font-size: 11px;
+    line-height: 1.32857143;
+    color: #3C3939;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+.form-horizontal .control-label {
+  text-align: left !important;
+  margin: 10px 0 !important;
+}
 
+.principalpag, .perfilGoPlace, #perfilEvento, .eventos_default, .principalpag .panel-body{
+    background: #f5f5f5;
+}
 
 /* 2. HEADER */
 header{
     width: 100%;
     height: 14%;
-    background-color: #024E31;
-    border-bottom: 5px solid #013722;
+    background-color: #135431;
+    background-color: #2EA666;
+    background-color: #237C4C;
+    border-bottom: 5px solid #1A5A38;
 }
 
 .logo{
@@ -264,17 +298,36 @@ header{
 /* 4.1 Header */
 .logoMain{
     /*width: 100%;*/
-    margin: 2% 0 2% 0;
+    margin: 30px 0 30px 0;
     text-align: center;
+}
+.logoMain{
+    height: 30px;
 }
 header .nav-tabs{
     border: 0px !important;
-    margin: 2% 0 2% 0;
-    padding-right: 2%;
+    margin: 30px 0 30px 0;
 }
 header .nav-tabs>li>a {
-    color: white;
-    font-size: 13px;
+    color: #C2C2C2;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px #000000;
+    border: 0px;
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+header .nav-tabs>li>a:focus, header .nav-tabs>li>a:hover, header .nav-tabs>li>a:active{
+    color: #FFFFFF;
+    border: 0px;
+    background: none;
+    border-bottom: 3px solid #013722;
+    margin-bottom: -3px;
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
 }
 .posder{
     margin-left: 50%;
@@ -293,10 +346,12 @@ header .nav-tabs>li>a {
 .eventos_main_content{
     padding: 20px;
     background: white;
-    border-bottom: 5px solid #013722;
     text-align: center;
-    border: 1px solid #024E31;
+    border: 1px solid #DDDDDD;
     border-bottom: 5px solid #024E31;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
 }
 .perfil_home *{
     color: #3C3939;
@@ -316,6 +371,7 @@ header .nav-tabs>li>a {
     letter-spacing: 0em; 
     font-size: 12px !important;
     font-weight: 300;
+    transition:0.3s all ease-in;
     -webkit-transition:0.3s all ease-in;
     -moz-transition:0.3s all ease-in;
     -o-transition:0.3s all ease-in;
@@ -326,13 +382,23 @@ header .nav-tabs>li>a {
     border-radius: 2px;
     margin-top: 30px;
     cursor: pointer;
+    transition:0.3s all ease-in;
     -webkit-transition:0.3s all ease-in;
     -moz-transition:0.3s all ease-in;
     -o-transition:0.3s all ease-in;
 }
-
 h5.text_number b {
   font-size: 24px;
+}
+
+.perfilMain{
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    box-shadow: 2px 2px 2px gray;
+    cursor: pointer;
 }
 .fotoPerfil{
     width: 170px;
@@ -346,16 +412,14 @@ h5.text_number b {
     width: 100%;
     height: 100%;
 }
-.perfilMain{
-    background-color: white;
-    border: 1px solid gray;
+.perfil_photo img{
+    width: 100px;
+    height: 100px;
+    margin: 0 10px 0 0;
     border-radius: 4px;
-    padding: 10px 10px 10px 10px;
-    text-align: center;
-    box-shadow: 2px 2px 2px gray;
-    cursor: pointer;
 }
-.publicacion{
+
+.evento{
     height: 250px;
     background-color: white;
     padding: 150px 0 0 0;
@@ -366,46 +430,49 @@ h5.text_number b {
     cursor: pointer;
     text-align: center;
 }
-.publicacion>span{
+.contentpub{
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    padding: 10px;
+}
+.evento span{
     color: black;
     font-size: 14px;
     text-shadow: none;
 }
-.publicacion .nick{
+.evento *{
+    color: white;
+}
+.evento .nick{
     color: #00994C;
     font-size: 12px;
     font-weight: 700;
     text-shadow: none;
     margin-left: 5px;
+    
+    display: none;
 }
-.publicacion h4{
-    font-size: 20px;
+.evento h4 a, .evento h4 a{
+    color: white;
+    font-size: 18px;
     font-weight: 900;
     margin-bottom: 0px;
 }
-.publicacion span{
+.evento span{
     color: black;
     font-size: 14px;
     text-shadow: none;
+    font-weight: 900;
     margin: 0;
 }
-.perfil_photo img{
-    width: 100px;
-    height: 100px;
-    margin: 0 10px 0 0;
-    border-radius: 4px;
+.usuariopub{
+    margin-top: 10px;
+}
+.usuariopub a{
+    font-size: 14px;
+    font-weight: 900;
 }
 
-.panel-heading{
-    background-color: #337ab7;
-    border-color: #2e6da4; 
-}
-
-.panel-heading h1, .modal-header h1{
-    color: #009688;
-}
-
-/* NEW */
 .evento1, .evento3, .evento5, .evento7, .evento9{
     background: url('../images/eventos/vlc.png');
     -webkit-background-size: cover;
@@ -420,22 +487,11 @@ h5.text_number b {
     -o-background-size: cover;
     background-size: cover;
 }
-.contentpub{
-    background: rgba(255,255,255,0.8);
-    padding: 10px;
-}
-.usuariopub{
-    margin-top: 10px;
-}
-.usuariopub a{
-    font-weight: 900;
-}
+
+
 
 /* PERFIL */
 
-.perfilGoPlace, .content_pefil{
-    background: #fff;
-}
 .perfilGoPlace *{
     color: black;
 }
@@ -487,7 +543,98 @@ h5.text_number b {
 /* EVENTO */
 #perfilEvento{
     background: white;
+    padding: 30px;
 }
+#perfilEvento *{
+    font-size: 16px;
+}
+#perfilEvento h2{
+    font-size: 30px;
+}
+#perfilEvento h3{
+    font-size: 18px;
+    display: inline-block;
+    border-bottom: 3px solid #024E31;
+    padding-bottom: 10px;
+    margin-bottom: -3px;
+}
+.title_h3_event{
+    border-bottom: 3px solid #CCC;
+    margin: 15px 0 30px 0;
+}
+.evento_info, .coments_form {
+  padding: 0px;
+}
+#perfilEvento iframe{
+    width: 100%;
+}
+.caracteristicas_evento, #botones_evento, .personas_evento {
+    margin-bottom: 40px;
+}
+
+.user_event {
+  padding: 0px 5px 5px 5px;
+  width: 110px;
+  height: 100px;
+}
+.user_event img {
+  width: 100%;
+  height: 100%;
+}
+
+#perfilEvento textarea.comentario_form_gp{
+    resize: none;
+    
+}
+
+#perfilEvento .comentarios {
+    margin-top: 50px;
+}
+.coment {
+    padding: 10px;
+    margin: 5px 0;
+    border: 3px solid #DBDBDB;
+    
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+.coment:hover{
+    border: 3px solid #237C4C;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+.coment .coment_photo{
+    width: 130px;
+}
+.coment img {
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+}
+
+.coment .coment_desc {
+    margin-top: 10px;
+}
+.coment_desc a {
+    color: #237C4C;
+}
+.coment_desc a, .coment_desc span{
+    font-weight: 900;
+}
+.coment_desc span.nick{
+    color: #5F5267;
+}
+
+
+
 .comentario, .evento_perfil{
     border: 2px solid #ADE0BA;
     padding-top: 10px;
@@ -524,8 +671,9 @@ h5.text_number b {
 }
 
 /* DESCUBRE */
-.eventos_ciudad{
+.eventos_default{
     background: white;
+    padding: 20px;
 }
 
 
@@ -543,7 +691,7 @@ footer{
     height: 14%;
     text-align: center;
     background-color: white;
-    border-top: 2px solid #009688;
+    border-top: 5px solid #1A5A38;
 }
 .cr{
     letter-spacing: 0.05em;
@@ -551,7 +699,8 @@ footer{
     top: 100px;
 }
 .help{
-    padding: 2% 0 1% 0;
+    padding: 30px 10px 5px 10px;
+    border-top: 5px solid #237C4C;
 }
 
 /* MODAL */
@@ -565,17 +714,55 @@ footer{
     width: 500px;
 }
 #modalGP .modal-content{
-    background-color: #009688;
+    background-color: #135431;
 }
 #modalGP .modal-header{
     display: none;
 }
 #modalGP .modal-body h3{
-    color: white;
+    color: white;  
+    font-size: 16px;
+    border-bottom: 0px;
+    padding-bottom: 10px;
 }
-#modalGP .modal-body h5{
-    color: white;
-    font-size: 12px;
+#modalGP .modal-body h5 {
+  color: white;
+  font-size: 14px;
+  text-transform: initial !important;
+  font-weight: 400;
+  font-family: 'Raleway', sans-serif;
+  padding-top: 10px;
+}
+#modalGP .modal-footer {
+  padding: 12px;
+  text-align: right;
+  border-top: 2px solid #023522;
+}
+#modalGP button{
+    background-color: #023522 !important;
+    border: 1px solid #023522 !important;
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+
+#modalGP button:hover{
+    color: #135431 !important;
+    background-color: #FFFFFF !important;
+    border: 1px solid #FFFFFF !important;
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+
+.panel-heading{
+    background-color: #337ab7;
+    border-color: #2e6da4; 
+}
+.panel-heading h1, .modal-header h1{
+    color: #009688;
 }
 
 /* FORMULARIOS */
@@ -583,8 +770,9 @@ footer{
   margin-bottom: 10px !important;
 }
 .form_gp{
-	margin-top: 40px;
-        color: red;
+    margin-top: 40px;
+    color: red;
+    padding: 0 10px;
 }
 .form_gp input, .form_gp select, .form_gp textarea {
 	width: 100%;

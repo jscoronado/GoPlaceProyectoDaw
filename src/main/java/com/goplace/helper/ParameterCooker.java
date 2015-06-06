@@ -68,7 +68,7 @@ public class ParameterCooker {
         if (request.getParameter("json") == null) {
             result = "";
         } else {
-            result = request.getParameter("json").replaceAll("%2F", "/");
+            result = EncodingUtilHelper.decodeURIComponent(request.getParameter("json"));
         }
         return result;
     }

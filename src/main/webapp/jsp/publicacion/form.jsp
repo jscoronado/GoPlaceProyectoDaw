@@ -32,32 +32,32 @@
     
 <form class="form-horizontal form_gp" role="form" action="#" id="publicacionForm" name="formulario">
     <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
-        <label class="col-sm-2 control-label" for="id">Id:</label>
+        <h3 class="col-sm-12 control-label" for="id">Id</h3>
         <div class="col-sm-2">
             <input type="text" id="id" class="form-control"  name="id" placeholder="id" />
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label"  for="titulo">Titulo:</label>
+        <h3 class="col-sm-12 control-label"  for="titulo">Titulo</h3>
         <div class="col-sm-10">
             <input type="text" id="titulo" class="form-control"  name="titulo" size="15" placeholder="Inserta un Titulo" />
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label"  for="descripcion">Descripcion:</label>
+        <h3 class="col-sm-12 control-label"  for="descripcion">Descripcion</h3>
         <div class="col-sm-10">
             <textarea type="text" id="descripcion" class="form-control"  name="descripcion" placeholder="Inserta una Descripcion" ></textarea>
         </div>
     </div>
     <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
-        <label class="col-sm-2 control-label" for="obj_usuario_id">Usuario: </label> 
+        <h3 class="col-sm-12 control-label" for="obj_usuario_id">Usuario</h3> 
         <div class="col-sm-2">              
             <input  class="form-control"  id="obj_usuario_id" class="input-mini" name="id_usuario" type="text" size="5" maxlength="5" value=" <%=id_usuario%>" readonly/>  
         </div>       
         <label class="col-sm-7" for="obj_usuario_desc" id="obj_usuario_desc"></label>                     
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="obj_ciudad_id">Ciudad: </label> 
+        <h3 class="col-sm-12 control-label" for="obj_ciudad_id">Ciudad</h3> 
         <div class="col-sm-2">              
             <input  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" readonly/>  
         </div>
@@ -67,19 +67,19 @@
         <label class="col-sm-7" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label"  for="direccion">Direccion:</label>
+        <h3 class="col-sm-12 control-label"  for="direccion">Dirección</h3>
         <div class="col-sm-6">
             <input type="text" id="direccion" class="form-control"  name="direccion" size="15" placeholder="Inserta la direccion del Evento" />
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label"  for="fechapub">Fecha:</label>
+        <h3 class="col-sm-12 control-label"  for="fechapub">Fecha del Evento</h3>
         <div class="col-sm-6">
             <input type="date" id="fechapub" class="form-control" name="fechapub" placeholder="Indica fecha y hora del Evento" required>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="obj_tipopublicacion_id">Tipo Publicacion: </label> 
+        <h3 class="col-sm-12 control-label" for="obj_tipopublicacion_id">Tipo Evento</h3> 
         <div class="col-sm-2">              
             <input  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" readonly/>  
         </div>

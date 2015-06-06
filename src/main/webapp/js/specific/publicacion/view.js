@@ -162,14 +162,18 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
         eventos += "<div class=" + "'col-md-4 col-xs-12 eventos_main'" + ">";
         eventos += "<div class=" + "'col-md-12 col-xs-12 eventos_main_content'" + ">";
             eventos += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-4" + comilla + ">";
+                eventos += "<a href=" + comilla + "#/perfil/" + person.id + comilla + ">";
                 if(person.imagen != null){
                     eventos += person.imagen;
                 }else {
                     eventos += "<img src=" + comilla + "/images/user.png" + comilla + "class=" + comilla + "foto_perfil" + comilla + " alt=" + comilla + "Foto perdil de " + person.nombre + espacio + person.apellidos + comilla + ">";
                 }
+                eventos += "</a>";
             eventos += "</div>";
             eventos += "<div class=" + comilla + "col-md-12 col-xs-8 perfil_home" + comilla + ">";
-                eventos += '<h2 class="nombre_home">'+ person.nombre + " " + person.apellidos + '</h2>';
+                eventos += "<a href=" + comilla + "#/perfil/" + person.id + comilla + ">";
+                    eventos += '<h2 class="nombre_home">'+ person.nombre + " " + person.apellidos + '</h2>';
+                eventos += "</a>";
                 eventos += '<span class="login_home">@'+ person.login + '</span><br/>';
             eventos += "</div>";    
             eventos += "<div class=" + comilla + "col-md-12 col-xs-12 datos_home" + comilla + ">";
@@ -199,14 +203,14 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
     }else{
         jsonP = jason.list;
         
-        eventos = "<div class=" + "'row  eventos_ciudad'" + ">";
+        eventos = "<div class=" + "'row  eventos_default'" + ">";
         eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos en " + jsonP[0].obj_ciudad.nombre + "</h2>";
         eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
     }
     
     if (jsonP.length != 0) {
         for (i = 0; i < jsonP.length; i++) {
-            eventos += "<div class=" + comilla + "col-md-4 publicacion evento" + jsonP[i].id + comilla + ">";
+            eventos += "<div class=" + comilla + "col-md-6 evento evento" + jsonP[i].id + comilla + ">";
             eventos += "<div class=" + comilla + "contentpub" + comilla + ">";
             eventos += "<h4><a href=" + comilla + "#/evento/" + jsonP[i].id + comilla + ">" + jsonP[i].titulo + "</a></h4>";
             eventos += "<div class=" + comilla + "usuariopub" + comilla + ">";
@@ -216,16 +220,11 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
             eventos += "</div></div></div>";
         }
     } else {
-        eventos += "<div class=" + comilla + "publicacion row" + comilla + ">";
-        eventos += "<div class=" + comilla + "col-md-1" + comilla + ">";
-        eventos += "<img src=" + comilla + "/images/user_admin.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario admin" + comilla + ">";
-        eventos += "</div>";
-        eventos += "<div class=" + comilla + "col-md-11" + comilla + ">";
-        eventos += "<a href=" + comilla + "#/usuario/view/1" + comilla + ">" + "Administrador" + "</a>";
-        eventos += "<span class=" + comilla + "nick" + comilla + "> @admin" + "</span><br/>";
-        eventos += "<h4>Haz tu primer comentario!</h4>";
-        eventos += "<span>Comenta los planes con tus amigos</span>";
-        eventos += "</div>";
+        eventos += "<div class=" + comilla + "col-md-12 evento evento" + comilla + ">";
+            eventos += "<div class=" + comilla + "contentpub" + comilla + ">";
+                eventos += "<h4>No tienes eventos en tu entorno!</h4>";
+                eventos += "<span>Busca a tu amigos, sigue sus eventos, crea tus propios eventos y comentarios y disfruta de GOPLACE!</span>";
+            eventos += "</div>";
         eventos += "</div>";
     }
     eventos += "</div>";
@@ -247,36 +246,37 @@ publicacionView.prototype.getComentarios = function (coments) {
     var jsonP = coments.list;
     
     comentarios = "<div class=" + comilla + "col-md-12 col-sm-12 comentarios" + comilla + ">";
-    comentarios += "<h3>" + "Comentarios ( "+ jsonP.length +" )</h3>";
+    comentarios += "<h5>" + "Comentarios ( "+ jsonP.length +" )</h5>";
     
     if (jsonP.length != 0) {
         for (i = 0; i < jsonP.length; i++) {
             comentarios += "<div class=" + comilla + "col-md-12 col-sm-12 coment" + comilla + ">";
-                comentarios += "<div class=" + comilla + "col-md-2" + comilla + ">";
+                comentarios += "<div class=" + comilla + "col-md-2 coment_photo" + comilla + ">";
                     if (jsonP[i].obj_usuario.imagen == null){
-                        comentarios += "<img src=" + comilla + "/images/user.png" + comilla + " class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario " + i + comilla +"/>";
+                        comentarios += "<img src=" + comilla + "/images/user.png" + comilla + " alt=" + comilla + "Foto usuario " + i + comilla +"/>";
                     }else{
                         comentarios += jsonP[i].obj_usuario.imagen;
                     }
                     
                 comentarios += "</div>";
-                comentarios += "<div class=" + comilla + "col-md-10" + comilla + ">";
-                    comentarios += "<a href=" + comilla + "#/perfil/" + jsonP[i].obj_usuario.id + comilla + ">" + jsonP[i].obj_usuario.nombre + espacio + jsonP[i].obj_usuario.apellidos + "</a>";
-                    comentarios += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span><br/>";
+                comentarios += "<div class=" + comilla + "col-md-10 coment_desc" + comilla + ">";
+                    comentarios += "<a href=" + comilla + "#/perfil/" + jsonP[i].obj_usuario.id + comilla + ">" + jsonP[i].obj_usuario.nombre + espacio + jsonP[i].obj_usuario.apellidos + "</a><br/>";
+                    comentarios += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span> - ";
+                    comentarios += "<span class=" + comilla + "fecha" + comilla + ">" + jsonP[i].fechacomentario + "</span><br/>";
                     comentarios += "<p>" + jsonP[i].coment + "</p>";
                 comentarios += "</div>";
             comentarios += "</div>";
         }
     } else {
         comentarios += "<div class=" + comilla + "col-md-12 col-sm-12 coment" + comilla + ">";
-            comentarios += "<div class=" + comilla + "col-md-2" + comilla + ">";
-                comentarios += "<img src=" + comilla + "/images/user_admin.png" + comilla + "class=" + comilla + "fotoPub" + comilla + " alt=" + comilla + "Foto usuario admin" + comilla + ">";
+            comentarios += "<div class=" + comilla + "col-md-2 coment_photo" + comilla + ">";
+                comentarios += "<img src=" + comilla + "/images/user_admin.png" + comilla + " alt=" + comilla + "Foto usuario admin" + comilla + ">";
             comentarios += "</div>";
-            comentarios += "<div class=" + comilla + "col-md-10" + comilla + ">";
+            comentarios += "<div class=" + comilla + "col-md-10 coment_desc" + comilla + ">";
                 comentarios += "<b>" + "Administrador" + "</b>";
-                comentarios += "<span class=" + comilla + "nick" + comilla + "> @admin" + "</span><br/>";
+                comentarios += "<span class=" + comilla + "nick" + comilla + "> @admin </span>";
                 comentarios += "<h4>Este evento no tiene comentarios</h4>";
-                comentarios += "<span>Haz tu su primer comentario!</span>";
+                comentarios += "<p>Haz tu su primer comentario!</p>";
             comentarios += "</div>";
         comentarios += "</div>";
     }
@@ -307,7 +307,9 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
                 
                 /* DESCRIPCION */
                 descEvent += "<div class=" + comilla + "col-md-12 col-sm-6 col-xs-12 caracteristicas_evento " + comilla + ">";
-                    descEvent += "<h3>" + "Informacion del evento" +"</h3>";
+                    descEvent += "<div class=" + comilla + "col-md-12 col-xs-12 title_h3_event" + comilla + ">";
+                        descEvent += "<h3>" + "Informacion del evento" +"</h3>";
+                    descEvent += "</div>";
                     descEvent += "<p>" + evento.descripcion +"</p>";
                     descEvent += "<b>Creado por: </b><a href=" + comilla + "#/perfil/" + evento.obj_usuario.id + comilla + ">" + evento.obj_usuario.nombre + " " + evento.obj_usuario.apellidos + "</a><br/>";
                     descEvent += "<b>Ciudad: </b>" + evento.obj_ciudad.nombre + "<br/>";
@@ -319,7 +321,9 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
                 
                 /* USUARIOS */
                 descEvent += "<div class=" + comilla + "col-md-12 col-sm-6 col-xs-12 personas_evento" + comilla + ">";
-                    descEvent += "<h3>" + "Usuarios que asistiran" +"</h3>";
+                    descEvent += "<div class=" + comilla + "col-md-12 col-xs-12 title_h3_event" + comilla + ">";
+                        descEvent += "<h3>" + "Usuarios que asistiran" +"</h3>";
+                    descEvent += "</div>";
                     descEvent += "<div class=" + comilla + "users col-md-12 col-xs-12" + comilla + ">";
                     
                         if (usuario.length != 0) {
@@ -335,7 +339,7 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
                                 descEvent += "</div>";
                             }
                         } else {
-                            
+                            descEvent += "<h5>" + "Ningún usuario sigue este evento" +"</h5>";
                         }
                     descEvent += "</div>";
                     
@@ -345,7 +349,9 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
             
             /* MAPS */
             descEvent += "<div class=" + comilla + "col-md-6 col-xs-12 evento_maps" + comilla + ">";
-                descEvent += "<h3>" + "Localizacion" +"</h3>";
+                descEvent += "<div class=" + comilla + "col-md-12 col-xs-12 title_h3_event" + comilla + ">";
+                    descEvent += "<h3>" + "Localizacion" +"</h3>";
+                descEvent += "</div>";
                 descEvent += "<div class=" + comilla + "col-md-12 col-xs-12 evento_info img_maps" + comilla + ">";
                     descEvent += "<iframe src=" + comilla + "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d197294.23575548557!2d-0.36151129999999165!3d39.40778525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd604f4cf0efb06f%3A0xb4a351011f7f1d39!2sValencia!5e0!3m2!1ses!2ses!4v1433004088943" + comilla + " width=" + comilla + "400" + comilla + " height=" + comilla + "300" + comilla + " frameborder=" + comilla + "0" + comilla + " style=" + comilla + "border:0" + comilla + "></iframe>";
                 descEvent += "</div>";

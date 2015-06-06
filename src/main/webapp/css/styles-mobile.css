@@ -1,0 +1,79 @@
+/* MEDIA QUERY'S */
+@media (min-width: 992px) {
+    .eventos_main .evento{
+        width: 48%;
+        margin: 1%;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-right{
+        float: none !important;
+        text-align: center;
+    }
+    header .nav-tabs{
+        padding: 0;
+        margin: 10px 0 10px 0; 
+    }
+    .eventos_main .evento{
+        height: 100%;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (min-width: 560px) and (max-width:767px){
+
+}
+
+@media (max-width: 532px) {
+    h1 {
+        font-size: 32px;
+    }
+    .perfil_home h2 {
+        font-size: 22px;
+        padding-left: 20px;
+    }
+    .nav-tabs>li {
+        margin-bottom: 0px;
+        width: 18%;
+        background: #013722;
+    }
+    header .nav-tabs>li>a:focus, header .nav-tabs>li>a:hover, header .nav-tabs>li>a:active{
+        background: #fff;
+        color: #013722;
+        text-shadow: none;
+    }
+    header .nav-tabs>li>a span{
+        display: none;
+    }
+    header .nav-tabs {
+        padding: 0;
+        margin: 10px 0 1px 0;
+    }
+}
+
+@media (max-width: 532px) {
+    .perfil_photo {
+        width: 100%;
+    }
+    .perfil_photo img {
+        margin: 0px;
+    }
+    .perfil_home, .perfil_desc {
+        width: 100%;
+    }
+    .perfil_home h2 {
+        font-size: 18px;
+        padding-left: 0px;
+    }
+    .perfil_home .login_home {
+        font-size: 16px;
+    }
+    .datos_home .events_home h5 {
+        font-size: 10px !important;
+    }
+}

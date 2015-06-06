@@ -88,7 +88,7 @@ public class Control extends HttpServlet {
                             DataConnectionSource = new BoneConnectionPoolImpl();
                             connection = DataConnectionSource.newConnection();
                             oUsuario.setLogin(user);
-                            UsuarioDaoGenSpImpl oUsuarioDao = new UsuarioDaoGenSpImpl("usuario", connection);
+                            UsuarioDaoGenSpImpl oUsuarioDao = new UsuarioDaoGenSpImpl("Usuario", connection);
                             oUsuario = oUsuarioDao.getPass("password", oUsuario);
                             String oUsuarioPass = oUsuario.getPassword();
                             if (oUsuarioPass.equals(password)) {
@@ -127,7 +127,7 @@ public class Control extends HttpServlet {
                         DataConnectionSource = new BoneConnectionPoolImpl();
                         connection = DataConnectionSource.newConnection();
 
-                        UsuarioServiceGenSpImpl oUsuarioService = new UsuarioServiceGenSpImpl("usuario", "usuario", connection);
+                        UsuarioServiceGenSpImpl oUsuarioService = new UsuarioServiceGenSpImpl("Usuario", "Usuario", connection);
                         UsuarioDaoGenSpImpl oUsuarioDao = oUsuarioService.registro(request);
 
                         String user = request.getParameter("userreg");
@@ -228,7 +228,9 @@ public class Control extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try{
         processRequest(request, response);
+        } catch (Exception ex) {}
     }
 
     /**
@@ -242,7 +244,9 @@ public class Control extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try{
         processRequest(request, response);
+        } catch (Exception ex) {}
     }
 
     /**

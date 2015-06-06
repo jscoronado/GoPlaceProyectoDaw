@@ -40,9 +40,9 @@ public class PublicacionDaoGenSpImpl extends TableDaoGenImpl<PublicacionBeanGenS
     private Connection oConnection = null;
     
     public PublicacionDaoGenSpImpl(String strFuente, Connection pooledConnection) throws Exception {
-        super(strFuente, "Publicacion", pooledConnection);
-        tabla = "publicacion";
-        strTableName = "publicacion";
+        super(strFuente, strFuente, pooledConnection);
+        tabla = "Publicacion";
+        strTableName = "Publicacion";
         oConnection = pooledConnection;
     }
     

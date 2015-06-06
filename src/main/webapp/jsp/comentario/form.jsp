@@ -37,8 +37,12 @@
         </div>
     </div>
     <div class="form-group col-md-12 col-sm-12">
-        <h3>Comenta el evento</h3>
-        <input type="text" id="coment" class="form-control"  name="coment" size="15" placeholder="Inserta un Comentario" />
+        
+        <div class="col-md-12 col-xs-12 title_h3_event" >
+            <h3>Comenta el evento</h3>
+        </div>
+        <textarea type="text" id="coment" class="form-control comentario_form_gp"  name="coment" size="15" placeholder="Inserta un Comentario"></textarea>
+        
     </div>
     <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg">
         <label class="col-sm-2 control-label" for="obj_usuario_id">Usuario: </label> 
@@ -58,14 +62,14 @@
         <label class="col-sm-7" for="obj_publicacion_desc" id="obj_publicacion_desc"></label>                     
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-md-12 col-xs-12">
             <div id="messages"></div>
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-primary" id="submitForm">Guardar</button>
+        <div class="col-md-12 col-xs-12">
+            <button class="btn btn-primary btn-goplace" id="submitForm">Guardar</button>
         </div>
     </div>
 
@@ -81,20 +85,16 @@
         $('#comentarioForm')
                 .bootstrapValidator({
                     container: '#messages',
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
+            
                     fields: {
-                        contenido: {
+                        coment: {
                             validators: {
                                 notEmpty: {
-                                    message: 'Debe introducir una descripción'
+                                    message: 'Debe introducir un comentario'
                                 },
                                 stringLength: {
                                     max: 255,
-                                    message: 'La descripción debe tener como máximo 255 caracteres'
+                                    message: 'El comentario debe tener como máximo 255 caracteres'
                                 }
                             }
                         },

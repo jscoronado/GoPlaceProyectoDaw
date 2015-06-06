@@ -40,9 +40,9 @@ public class ComentarioDaoGenSpImpl extends TableDaoGenImpl<ComentarioBeanGenSpI
     private Connection oConnection = null;
     
     public ComentarioDaoGenSpImpl(String strFuente, Connection pooledConnection) throws Exception {
-        super(strFuente, "Comentario", pooledConnection);
-        tabla = "comentario";
-        strTableName = "comentario";
+        super(strFuente, strFuente, pooledConnection);
+        tabla = "Comentario";
+        strTableName = "Comentario";
         oConnection = pooledConnection;
     }
     

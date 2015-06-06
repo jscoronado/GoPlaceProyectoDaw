@@ -24,40 +24,47 @@ public class subir extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         String name = "";
+        String archivo = "";
         String strMessage="";
         HashMap<String, String> hash = new HashMap<>();
         
         if (ServletFileUpload.isMultipartContent(request)) {
             try {
                 List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+                
                 for (FileItem item : multiparts) {
                     if (!item.isFormField()) {
+                        
+                        Iterator it = hash.entrySet().iterator();
+                        Map.Entry e = (Map.Entry) it.next();
+                        int id_user = Integer.parseInt(e.getValue().toString());
+                        
                         name = new File(item.getName()).getName();
-                        item.write(new File(".//..//webapps//images//" + name));
+                        archivo = "user"+id_user+"_profile.jpg";
+                        item.write(new File(".//..//webapps//images//users//" + archivo));
                     } else{
                         hash.put(item.getFieldName(), item.getString());
                     }
                 }
                 
                 
-                strMessage = "<h1>File Uploaded Successfully</h1>";
+                strMessage = "<h2>Imagen de Perfil actualizada!</h2>";
                 
                 Iterator it = hash.entrySet().iterator();
                 Map.Entry e = (Map.Entry) it.next();
-                strMessage += e.getKey() + " " + e.getValue() + "<br/>";
-                int id = Integer.parseInt(e.getValue().toString());
+                int id_user = Integer.parseInt(e.getValue().toString());
 
                 //update del campo imagen de la base de datos
                 ConnectionInterface DataConnectionSource = new BoneConnectionPoolImpl();
                 Connection oConnection = DataConnectionSource.newConnection();
 
-                String ruta = "<img src=\"/images/" + name + "\" width=\"150\" />";
+                String ruta = "<img src=\"/images/users/" + archivo + "\" width=\"150\" alt=\"Foto usuario" + id_user + "\"/>";
 
                 UsuarioDaoGenSpImpl oUsuarioDAO = new UsuarioDaoGenSpImpl("usuario", oConnection);
-                oUsuarioDAO.updateOne(id, "usuario", "imagen", ruta);
+                oUsuarioDAO.updateOne(id_user, "usuario", "imagen", ruta);
                 
-                strMessage += "<img src=\"" + "http://" + request.getServerName() + ":" + request.getServerPort() + "/" + "/images/" + name + "\"  width=\"150\" /><br/>";
-                strMessage += "<a href=\""+"http://" + request.getServerName() + ":" + request.getServerPort() + "/goplace/control#/perfil/"+ id + "\">Vuelve a tu Perfil</a><br/>";
+                strMessage += "<img src=\"" + "http://" + request.getServerName() + ":" + request.getServerPort() + "/" + "/images/users/" + archivo + "\"  width=\"150\" /><br/>";
+                strMessage += "<a href=\""+"http://" + request.getServerName() + ":" + request.getServerPort() + "/goplace/control#/perfil/"+ id_user + "\">Vuelve a tu Perfil</a><br/>";
                 request.setAttribute("message", strMessage);
             } catch (Exception ex) {
                 request.setAttribute("message", "File Upload Failed: " + ex);
