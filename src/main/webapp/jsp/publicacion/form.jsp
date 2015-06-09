@@ -20,7 +20,7 @@
 
 <%
     int id_tipousuario = 0, id_usuario = 0;
-    
+
     UsuarioBeanGenSpImpl user = (UsuarioBeanGenSpImpl) request.getSession().getAttribute("usuarioBean");
     if (user != null) {
         id_tipousuario = user.getId_tipousuario();
@@ -28,78 +28,93 @@
     }
 %>
 
-<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 form_publicacion">
-    
-<form class="form-horizontal form_gp" role="form" action="#" id="publicacionForm" name="formulario">
-    <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
-        <h3 class="col-sm-12 control-label" for="id">Id</h3>
-        <div class="col-sm-2">
-            <input type="text" id="id" class="form-control"  name="id" placeholder="id" />
+<div class="col-md-12 col-xs-12 form_publicacion">
+
+    <form class="form-horizontal form_gp" role="form" action="#" id="publicacionForm" name="formulario">
+
+        <div class="col-md-6 col-xs-12 section_form_gp">
+            <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
+                <h3 class="col-sm-12 control-label" for="id">Id</h3>
+                <div class="col-sm-2">
+                    <input type="text" id="id" class="form-control"  name="id" placeholder="id" />
+                </div>
+            </div>
+            <div class="form-group">
+                <h3 class="col-sm-12 control-label"  for="titulo">Titulo</h3>
+                <div class="col-sm-12">
+                    <input type="text" id="titulo" class="form-control"  name="titulo" size="15" placeholder="Inserta un Titulo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <h3 class="col-sm-12 control-label"  for="descripcion">Descripcion</h3>
+                <div class="col-sm-12">
+                    <textarea type="text" id="descripcion" class="form-control"  name="descripcion" placeholder="Inserta una Descripcion" ></textarea>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <h3 class="col-sm-12 control-label"  for="titulo">Titulo</h3>
-        <div class="col-sm-10">
-            <input type="text" id="titulo" class="form-control"  name="titulo" size="15" placeholder="Inserta un Titulo" />
+
+        <div class="col-md-6 col-xs-12 section_form_gp">
+
+            <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
+                <h3 class="col-sm-12 control-label" for="obj_usuario_id">Usuario</h3> 
+                <div class="col-sm-2">              
+                    <input  class="form-control"  id="obj_usuario_id" class="input-mini" name="id_usuario" type="text" size="5" maxlength="5" value=" <%=id_usuario%>" readonly/>  
+                </div>       
+                <label class="col-sm-7" for="obj_usuario_desc" id="obj_usuario_desc"></label>                     
+            </div>
+
+            <div class="col-md-12 col-xs-12 nopadding">        
+                <div class="form-group col-md-4 col-sm-4 col-xs-12 nopadding">
+                    <h3 class="col-md-12 control-label" for="obj_ciudad_id">Ciudad</h3> 
+                    <div class="col-md-8 col-xs-11 padding-left">              
+                        <input  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" readonly/>  
+                    </div>
+                    <div class="col-md-4 col-xs-1 padding-right">              
+                        <a class="btn btn-primary btn-sm btn_gp_search" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
+                    </div>        
+                    <label class="col-sm-8" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
+                </div>
+
+                <div class="form-group col-md-8 col-sm-12 col-xs-12 nopadding">
+                    <h3 class="col-sm-12 control-label"  for="direccion">Dirección</h3>
+                    <div class="col-sm-12">
+                        <input type="text" id="direccion" class="form-control"  name="direccion" size="15" placeholder="Inserta la direccion del Evento" />
+                    </div>
+                </div>
+            </div>    
+
+            <div class="col-md-12 col-xs-12 nopadding">        
+                <div class="form-group col-md-4 col-sm-4 col-xs-12 nopadding">
+                    <h3 class="col-md-12 control-label" for="obj_tipopublicacion_id">Tipo Evento</h3> 
+                    <div class="col-md-8 col-xs-11 padding-left">              
+                        <input  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" readonly/>  
+                    </div>
+                    <div class="col-md-4 col-xs-1 padding-right">              
+                        <a class="btn btn-primary btn-sm btn_gp_search" id="obj_tipopublicacion_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
+                    </div>        
+                    <label class="col-sm-8" for="obj_tipopublicacion_desc" id="obj_tipopublicacion_desc"></label>                     
+                </div>
+
+                <div class="form-group col-md-8 col-xs-12 nopadding">
+                    <h3 class="col-sm-12 control-label"  for="fechapub">Fecha del Evento</h3>
+                    <div class="col-sm-12">
+                        <input type="date" id="fechapub" class="form-control" name="fechapub" placeholder="Indica fecha y hora del Evento" required>
+                    </div>
+                </div>
+            </div> 
+
         </div>
-    </div>
-    <div class="form-group">
-        <h3 class="col-sm-12 control-label"  for="descripcion">Descripcion</h3>
-        <div class="col-sm-10">
-            <textarea type="text" id="descripcion" class="form-control"  name="descripcion" placeholder="Inserta una Descripcion" ></textarea>
+        <div class="form-group col-md-12 col-xs-12">
+            <div class="col-sm-10 col-md-12 col-xs-12">
+                <button class="btn btn-primary" id="submitForm">PUBLICAR</button>
+            </div>
         </div>
-    </div>
-    <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
-        <h3 class="col-sm-12 control-label" for="obj_usuario_id">Usuario</h3> 
-        <div class="col-sm-2">              
-            <input  class="form-control"  id="obj_usuario_id" class="input-mini" name="id_usuario" type="text" size="5" maxlength="5" value=" <%=id_usuario%>" readonly/>  
-        </div>       
-        <label class="col-sm-7" for="obj_usuario_desc" id="obj_usuario_desc"></label>                     
-    </div>
-    <div class="form-group">
-        <h3 class="col-sm-12 control-label" for="obj_ciudad_id">Ciudad</h3> 
-        <div class="col-sm-2">              
-            <input  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" readonly/>  
-        </div>
-        <div class="col-sm-1">              
-            <a class="btn btn-primary btn-sm" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
-        </div>        
-        <label class="col-sm-7" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
-    </div>
-    <div class="form-group">
-        <h3 class="col-sm-12 control-label"  for="direccion">Dirección</h3>
-        <div class="col-sm-6">
-            <input type="text" id="direccion" class="form-control"  name="direccion" size="15" placeholder="Inserta la direccion del Evento" />
-        </div>
-    </div>
-    <div class="form-group">
-        <h3 class="col-sm-12 control-label"  for="fechapub">Fecha del Evento</h3>
-        <div class="col-sm-6">
-            <input type="date" id="fechapub" class="form-control" name="fechapub" placeholder="Indica fecha y hora del Evento" required>
-        </div>
-    </div>
-    <div class="form-group">
-        <h3 class="col-sm-12 control-label" for="obj_tipopublicacion_id">Tipo Evento</h3> 
-        <div class="col-sm-2">              
-            <input  class="form-control"  id="obj_tipopublicacion_id" class="input-mini" name="id_tipopublicacion" type="text" size="5" maxlength="5" readonly/>  
-        </div>
-        <div class="col-sm-1">              
-            <a class="btn btn-primary btn-sm" id="obj_tipopublicacion_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
-        </div>        
-        <label class="col-sm-7" for="obj_tipopublicacion_desc" id="obj_tipopublicacion_desc"></label>                     
-    </div>
-    
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-primary" id="submitForm">Guardar</button>
-        </div>
-    </div>
-    
-    
-</form>
+
+
+    </form>
 </div>
-        
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 message_form">
+
+<div class="col-md-6 col-xs-12 message_form">
     <div id="messages"></div>
 </div>
 

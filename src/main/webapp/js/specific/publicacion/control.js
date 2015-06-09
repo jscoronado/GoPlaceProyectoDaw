@@ -110,3 +110,28 @@ publicacionControl.prototype.listarComentarios = function (place, id_evento, oMo
     $("#comentariospag").html(eventos);
 };
 
+publicacionControl.prototype.eliminarComentario = function (place, id_comentario, id_evento, oModel, oView) {
+    var thisObject = this;
+    
+    var oPublicacionModel = oModel;
+    var oPublicacionView = oView;
+    
+    var comentario = oComentarioModel.setGenericOperation("get&id="+id_comentario,"");
+    var user_coment = comentario.id_usuario;
+    
+    if (myuser == user_coment || myuser == "1"){
+        var data = oComentarioModel.setGenericOperation("remove&id="+id_comentario,"");
+
+        if (data.status == "200"){
+            title = "Comentario eliminado";
+            oView.doResultOperationGP(place, data.status, title, null, id_evento, "deleteComentario");
+        } else{
+            coment = "No hemos podido eliminar el comentario";
+            oView.doResultOperationGP(place, data.status, null, coment, id_evento, "deleteComentario");
+        }
+    } else {
+        coment = "No puedes eliminar el comentario de otro usuario";
+        oView.doResultOperationGP(place, "400", null, coment, id_evento, "deleteComentario");
+    }
+};
+

@@ -86,4 +86,13 @@ function fPublicacionRoutes() {
         //$('#indexContenidoJsp').empty();
         return false;
     });
+    
+    Path.map("#/evento/:id_evento/coment/delete/:id").to(function () {
+        //$('#indexContenidoJsp').spinner();
+        var idComentario = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        var idEvento = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id_evento']));
+        oPublicacionControl.eliminarComentario($('#principalpag'), idComentario['id'], idEvento["id"], oPublicacionModel, oPublicacionView);
+        //$('#indexContenidoJsp').empty();
+        return false;
+    });
 }

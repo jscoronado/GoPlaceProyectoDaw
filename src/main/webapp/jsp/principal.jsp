@@ -43,7 +43,7 @@
         <div class="pagePrincipal">
             <header class="title row">
                 <div class="col-md-4 col-xs-12 logoMain">
-                    <a href="#/inicio"><img src="./images/logo.png" alt="Logo GoPlace"></a>
+                    <a href="#/inicio"><img src="./images/logo/logo-black.png" alt="Logo GoPlace" class="logo_gp"></a>
                 </div>
                 <% if (user != null) {%>
                 <div class="col-md-8 col-xs-12 nav_header">

@@ -233,7 +233,7 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
     return eventos;
 };
 
-publicacionView.prototype.getComentarios = function (coments) {
+publicacionView.prototype.getComentarios = function (coments, id_evento) {
     
     espacio = ' ';
     comilla = "'";
@@ -264,6 +264,11 @@ publicacionView.prototype.getComentarios = function (coments) {
                     comentarios += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span> - ";
                     comentarios += "<span class=" + comilla + "fecha" + comilla + ">" + jsonP[i].fechacomentario + "</span><br/>";
                     comentarios += "<p>" + jsonP[i].coment + "</p>";
+                    if(myuser == jsonP[i].obj_usuario.id || myuser == "1"){
+                    comentarios += "<div id=\"coment_delete\" class=\"col-md-12 coment_delete\">";
+                        comentarios += "<a href=" + comilla + "#/evento/"+id_evento+"/coment/delete/" + jsonP[i].id + comilla + "> Borrar </a><br/>";
+                    comentarios += "</div>";
+                    }
                 comentarios += "</div>";
             comentarios += "</div>";
         }
@@ -296,6 +301,8 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
     
     var evento = eventos.list[0];
     var usuario = usuarios.list;
+    
+    var id_evento = evento.id;
     
     descEvent = "<div class=" + "'perfilEvento'" + "id=" + "'perfilEvento'" + ">";
         descEvent += "<div class=" + comilla + "row" + comilla + ">";
@@ -362,7 +369,7 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
         /* COMENTARIOS */
         descEvent += "<div class=" + comilla + "row evento_comentarios" + comilla + ">";
             descEvent += "<div class=" + comilla + "col-md-12 col-xs-12 coments_form" + comilla + " id=" + comilla + "coments_form" + comilla +"></div>";
-            descEvent += oPublicacionView.getComentarios(coments);
+            descEvent += oPublicacionView.getComentarios(coments, id_evento);
         descEvent += "</div>";
         
     descEvent += "</div>";

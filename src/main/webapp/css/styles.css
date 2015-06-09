@@ -38,10 +38,10 @@ body{
 h1, h1 a{
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase !important;
-    
+
 }
 h2, h4, h5, h2 a, h4 a, h5 a{
-    
+
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase !important;
 }
@@ -83,20 +83,26 @@ span.blanco{
     font-weight: 700;
     text-shadow: 3px 3px 3px black;
 }
-
+.principal span{
+    color: white;
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 10px;
+    text-shadow: 3px 3px 3px black;
+}
 a{
     font-family: 'Raleway', sans-serif;
     color: #232930;
     text-decoration: none !important; 
 }
 a:hover, a:focus {
-  color: #17643B;
-  text-decoration: underline;
+    color: #17643B;
+    text-decoration: underline;
 }
 .nav-tabs>li {
-  margin-bottom: -1px;
-  float: none;
-  display: inline-block;
+    margin-bottom: -1px;
+    float: none;
+    display: inline-block;
 }
 button{
     background-color: #55AE60;
@@ -112,15 +118,21 @@ button:hover{
 .nopadding{
     padding: 0px;
 }
+.padding-left {
+    padding-right: 0px;
+}
+.padding-right {
+    padding-left: 0px;
+}
 .btn-goplace{
-  color: #fff !important; 
-  background-color: #009688;
-  border-color: #009688;
+    color: #fff !important; 
+    background-color: #009688;
+    border-color: #009688;
 }
 .btn-goplace:hover{
-  color: #fff;
-  background-color: #00AD9D;
-  border-color: #00AD9D;
+    color: #fff;
+    background-color: #00AD9D;
+    border-color: #00AD9D;
 }
 main{
     width: 100%;
@@ -137,8 +149,8 @@ main{
     border-radius: 2px;
 }
 .form-horizontal .control-label {
-  text-align: left !important;
-  margin: 10px 0 !important;
+    text-align: left !important;
+    margin: 10px 0 !important;
 }
 
 .principalpag, .perfilGoPlace, #perfilEvento, .eventos_default, .principalpag .panel-body{
@@ -155,17 +167,16 @@ header{
     border-bottom: 5px solid #1A5A38;
 }
 
-.logo{
-    margin: 10% 0 0 30%;
-    cursor: pointer;
-}
-
-.logoRegistro, .cabecera{
-    width: 100%;
-    margin: 2% 0 1% 0;
+.logo-goplace, .logoRegistro {
     text-align: center;
+    margin-top: 20px;
 }
-
+.logo {
+    width: 220px;
+}
+.logo_gp{
+    width: 200px;
+}
 
 /* 3. PAGE INTRO & REGISTER*/
 .principal{
@@ -197,18 +208,25 @@ header{
 .register{
     margin-bottom: 30px;
 }
+.cabecera_registro{
+    text-align: center;
+}
+.cabecera_registro a{
+    color: white;
+    font-weight: 900;
+    font-size: 15px;
+}
 
 /* 3.1 FORMULARIO ACCESO */
-.formuser, .formpass{
+.formuser, .formpass, .forbutton_access{
     margin-top: 5%;
-    margin-right: 5px;
     float: left;
 }
 
 .input-access, .input-register{
     width: 100%;
     height: 40px;
-    padding: 15px;
+    padding: 10px 20px;
     border: 0;
     outline: 0;
     resize: none;
@@ -233,18 +251,31 @@ header{
 }
 .formbutton, .returnbutton{
     padding: 0px;
-    height: 34px;
+    height: 40px;
     float: left;
 }
 
 /* 3.2 FORM REGISTER */
 .registro{
-    margin-top: 5%;
     padding-top: 30px;
     padding-bottom: 30px;
+    margin-top: 40px;
     width: 100%;
     height: 100%;
     background-color: #fff;
+}
+.registro_confirm{
+    margin-top: 0px !important;
+}
+.registro h1{
+    color: #343131;
+}
+.registro h3{
+    color: #237C4C;
+    margin-bottom: 50px;
+}
+.youarenew{
+    margin-bottom: 10px;
 }
 .youarenew *{
     color: #55AE60;
@@ -254,8 +285,36 @@ header{
     text-transform: uppercase;
 }
 .youarenew span{
-    color: #2e6da4;
+    color: #5D5578;
+    font-weight: 900;
+    margin: 18px 0;
     font-size: 24px !important;
+}
+.form-control-gp {
+    text-align: left;
+    margin: 10px 0;
+}
+.form_register_gp input:not(#generoreg), .form_register_gp select {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    border: 1px solid #CCCCCC;
+    background-color: #EFEFEF;
+    color: #111;
+    font-size: 14px;
+    color: #232930;
+    font-weight: 900;
+}
+.form_register_gp label {
+    font-size: 16px;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+}
+.form_control_sex span {
+    color: black;
+    text-shadow: none;
+    font-size: 14px;
+    font-weight: 900;
 }
 
 /* 3.3 SECTION ERROR */
@@ -280,13 +339,6 @@ header{
     color: white;
     font-size: 80%;
 }
-.principal span{
-    color: white;
-    font-size: 20px;
-    font-weight: 100;
-    margin-top: 10px;
-    text-shadow: 3px 3px 3px black;
-}
 
 
 /* 4. HOME PAGE */
@@ -297,12 +349,8 @@ header{
 
 /* 4.1 Header */
 .logoMain{
-    /*width: 100%;*/
-    margin: 30px 0 30px 0;
+    margin: 15px 0 15px 0;
     text-align: center;
-}
-.logoMain{
-    height: 30px;
 }
 header .nav-tabs{
     border: 0px !important;
@@ -388,7 +436,7 @@ header .nav-tabs>li>a:focus, header .nav-tabs>li>a:hover, header .nav-tabs>li>a:
     -o-transition:0.3s all ease-in;
 }
 h5.text_number b {
-  font-size: 24px;
+    font-size: 24px;
 }
 
 .perfilMain{
@@ -449,7 +497,7 @@ h5.text_number b {
     font-weight: 700;
     text-shadow: none;
     margin-left: 5px;
-    
+
     display: none;
 }
 .evento h4 a, .evento h4 a{
@@ -473,21 +521,47 @@ h5.text_number b {
     font-weight: 900;
 }
 
-.evento1, .evento3, .evento5, .evento7, .evento9{
-    background: url('../images/eventos/vlc.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-.evento2, .evento4, .evento6, .evento8, .evento10{
-    background: url('../images/eventos/vlc2.jpg');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+.inicioh2 {
+    margin: 15px 0 30px 0;
 }
 
+.evento1, .evento10, .evento20, .evento30, .evento40, .evento50{
+    background: url('../images/eventos/evento_gp_1.jpg');
+}
+.evento2, .evento11, .evento21, .evento31, .evento41{
+    background: url('../images/eventos/evento_gp_2.jpg');
+}
+.evento3, .evento12, .evento22, .evento32, .evento42{
+    background: url('../images/eventos/evento_gp_3.jpg');
+}
+.evento4, .evento13, .evento23, .evento33, .evento43{
+    background: url('../images/eventos/evento_gp_4.jpg');
+}
+.evento5, .evento14, .evento24, .evento34, .evento44{
+    background: url('../images/eventos/evento_gp_5.jpg');
+}
+.evento6, .evento15, .evento25, .evento35, .evento45{
+    background: url('../images/eventos/evento_gp_6.jpg');
+}
+.evento7, .evento16, .evento26, .evento36, .evento46{
+    background: url('../images/eventos/evento_gp_7.jpg');
+}
+.evento8, .evento17, .evento27, .evento37, .evento47{
+    background: url('../images/eventos/evento_gp_8.jpg');
+}
+.evento9, .evento18, .evento28, .evento38, .evento48{
+    background: url('../images/eventos/evento_gp_9.jpg');
+}
+.evento19, .evento29, .evento39, .evento49{
+    background: url('../images/eventos/evento_gp_2.jpg');
+}
+
+.evento{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
 
 
 /* PERFIL */
@@ -496,7 +570,7 @@ h5.text_number b {
     color: black;
 }
 .cabeceraPerfil{
-    max-height: 300px;
+    max-height: 200px;
     overflow: hidden;
 }
 .cabeceraPerfil img{
@@ -508,11 +582,19 @@ h5.text_number b {
     padding-bottom: 30px;
     background: #fff;
 }
+.perfilgp {
+    border: 2px solid #E8E8E8;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+}
 .comentariosgp, .eventosgp{
-    margin-top: 15px;
     background: #ADE0BA;
     border: 1px solid #009688;
     border-radius: 1em;
+}
+.perfil_desc {
+    margin-bottom: 30px;
 }
 .perfil_desc h1{
     font-size: 24px;
@@ -537,6 +619,9 @@ h5.text_number b {
 }
 .boton_perfil a{
     width: 100%;
+    color: white;
+    font-size: 15px;
+    margin-bottom: 10px;
 }
 
 
@@ -563,7 +648,7 @@ h5.text_number b {
     margin: 15px 0 30px 0;
 }
 .evento_info, .coments_form {
-  padding: 0px;
+    padding: 0px;
 }
 #perfilEvento iframe{
     width: 100%;
@@ -573,18 +658,18 @@ h5.text_number b {
 }
 
 .user_event {
-  padding: 0px 5px 5px 5px;
-  width: 110px;
-  height: 100px;
+    padding: 0px 5px 5px 5px;
+    width: 110px;
+    height: 100px;
 }
 .user_event img {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 #perfilEvento textarea.comentario_form_gp{
     resize: none;
-    
+
 }
 
 #perfilEvento .comentarios {
@@ -594,7 +679,7 @@ h5.text_number b {
     padding: 10px;
     margin: 5px 0;
     border: 3px solid #DBDBDB;
-    
+
     transition:0.3s all ease-in;
     -webkit-transition:0.3s all ease-in;
     -moz-transition:0.3s all ease-in;
@@ -605,7 +690,7 @@ h5.text_number b {
     -webkit-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
     -moz-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
     box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
-    
+
     transition:0.3s all ease-in;
     -webkit-transition:0.3s all ease-in;
     -moz-transition:0.3s all ease-in;
@@ -631,6 +716,12 @@ h5.text_number b {
 }
 .coment_desc span.nick{
     color: #5F5267;
+}
+.coment .coment_delete {
+    text-align: right;
+}
+.coment .coment_delete a {
+    color: #C82121;
 }
 
 
@@ -661,10 +752,10 @@ h5.text_number b {
 }
 .comentario a.event_coment{
     float: right;
-    
+
 }
 .foto_comentario{
-   padding: 0; 
+    padding: 0; 
 }
 .fotoComent{
     width: 100%;
@@ -726,17 +817,17 @@ footer{
     padding-bottom: 10px;
 }
 #modalGP .modal-body h5 {
-  color: white;
-  font-size: 14px;
-  text-transform: initial !important;
-  font-weight: 400;
-  font-family: 'Raleway', sans-serif;
-  padding-top: 10px;
+    color: white;
+    font-size: 14px;
+    text-transform: initial !important;
+    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+    padding-top: 10px;
 }
 #modalGP .modal-footer {
-  padding: 12px;
-  text-align: right;
-  border-top: 2px solid #023522;
+    padding: 12px;
+    text-align: right;
+    border-top: 2px solid #023522;
 }
 #modalGP button{
     background-color: #023522 !important;
@@ -767,51 +858,89 @@ footer{
 
 /* FORMULARIOS */
 .form-group {
-  margin-bottom: 10px !important;
+    margin-bottom: 10px !important;
 }
 .form_gp{
     margin-top: 40px;
-    color: red;
+    color: rgb(0, 150, 136);
+    font-size: 16px;
     padding: 0 10px;
 }
 .form_gp input, .form_gp select, .form_gp textarea {
-	width: 100%;
-	height: 40px;
-	margin-bottom: 10px;
-	border: 1px solid #CCCCCC;
-	background-color: #EFEFEF;
-	color: #111;
-	font-size: 14px;
-        color: #232930;
-        font-weight: 900;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 24px;
+    border: 1px solid #CCCCCC;
+    background-color: #EFEFEF;
+    font-size: 18px;
+    color: #232930;
+    font-weight: 900;
 }
 .form_gp textarea{
-	min-height: 100px !important;
+    min-height: 100px !important;
 }
 .form_gp input#fsubmit {
-	background: #0074A5;
-	color: white;
+    background: #0074A5;
+    color: white;
 }
 .form_gp input#fsubmit:hover {
-	color: white;
-	background: #008ECA;
-	border: 2px solid #00628B;
+    color: white;
+    background: #008ECA;
+    border: 2px solid #00628B;
 }
-.form_gp #fsubmit, .form_gp #fsubmit:hover{
-	transition:0.3s all ease-in;
-	-webkit-transition:0.3s all ease-in;
-	-moz-transition:0.3s all ease-in;
-	-o-transition:0.3s all ease-in;
+.form_gp #fsubmit, .form_gp #fsubmit:hover, .btn_gp_search, .btn_gp_search:hover, #submitForm, #submitForm:hover{
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+.btn_gp_search, #submitForm{
+    background: #009688;
+    border: 0px;
+}
+.btn_gp_search:hover, #submitForm:hover{
+    background: #00AD9D;
+    border: 0px;
+    height: 51px;
+}
+.btn_gp_search{
+    width: 40px;
+    height: 40px;
+}
+.btn_gp_search i{
+    font-size: 14px;
+    padding-top: 9px;
+}
+#submitForm {
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    /*float: right;*/
+}
+
+/* error form */
+.message_form {
+    margin-top: 60px;
+}
+.message_form #messages small{
+    padding: 20px;
+    background-color: #AE2D2D;
+    border-bottom: 5px solid #771F1F;
+}
+.message_form * {
+    color: white !important;
+    font-size: 16px;
 }
 
 /* MEDIA QUERYS */
 @media (min-width: 992px){
-	
+
     .regizq, .regder{
         padding: 0 !important;
         padding-left: 5px !important;
     }
-    
+
     .botonreg{
         float: right;
     }

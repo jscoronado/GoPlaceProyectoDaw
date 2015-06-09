@@ -19,14 +19,9 @@ package com.goplace.helper;
 
 public class ConnectionClassHelper {
 
-    public static Boolean getOpenShift() {
-        Boolean openshift = false;
-        return openshift;
-    }
-
     public static String getDatabaseName() {
-        if (ConnectionClassHelper.getOpenShift()) {
-            //return System.getenv("OPENSHIFT_APP_NAME");
+        String prueba = "no";
+        if (prueba == "ok") {
             return "goplace";
         } else {
             return "goplacedb2015";
@@ -34,8 +29,8 @@ public class ConnectionClassHelper {
     }
 
     public static String getDatabaseLogin() {
-        if (ConnectionClassHelper.getOpenShift()) {
-            //return System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+        String prueba = "no";
+        if (prueba == "ok") {
             return "adminXc67K2I";
         } else {
             return "root";
@@ -43,8 +38,8 @@ public class ConnectionClassHelper {
     }
 
     public static String getDatabasePassword() {
-        if (ConnectionClassHelper.getOpenShift()) {
-            //return System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+        String prueba = "no";
+        if (prueba == "ok") {
             return "iz2aRr5DBHGv";
         } else {
             return "bitnami";
@@ -52,9 +47,8 @@ public class ConnectionClassHelper {
     }
 
     public static String getDatabasePort() {
-        if (ConnectionClassHelper.getOpenShift()) {
-            //return System.getenv("OPENSHIFT_MYSQL_DB_PORT");
-            //return System.getenv("OPENSHIFT_DIY_PORT");
+        String prueba = "no";
+        if (prueba == "ok") {
             return "3306";
         } else {
             return "3306";
@@ -62,9 +56,8 @@ public class ConnectionClassHelper {
     }
 
     public static String getDatabaseHost() {
-        if (ConnectionClassHelper.getOpenShift()) {
-            //return System.getenv("OPENSHIFT_MYSQL_DB_IP");
-            //return System.getenv("OPENSHIFT_DIY_IP");
+        String prueba = "no";
+        if (prueba == "ok") {
             return "127.10.184.130";
 
         } else {
@@ -73,7 +66,8 @@ public class ConnectionClassHelper {
     }
 
     public static String getConnectionChain() {
-        if (ConnectionClassHelper.getOpenShift()) {
+        String prueba = "no";
+        if (prueba == "ok") {
             //return "jdbc:" + System.getenv("OPENSHIFT_MYSQL_DB_URL") + ConnectionClassHelper.getDatabaseName();
             return "jdbc:mysql://" + ConnectionClassHelper.getDatabaseHost() + ":" + ConnectionClassHelper.getDatabasePort() + "/" + ConnectionClassHelper.getDatabaseName();
         } else {

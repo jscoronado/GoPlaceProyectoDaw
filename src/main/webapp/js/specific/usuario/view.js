@@ -202,14 +202,19 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
                 plantillaPerfil += "<p class=" + comilla + "perfil_ciudad" + comilla + ">" + perfil.data.obj_ciudad.nombre + "</p>";
             plantillaPerfil += "</div>";
             
-            plantillaPerfil += "<div class=" + comilla + "perfil_edit col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_edit" + comilla + "></div>";
-            plantillaPerfil += "<div class=" + comilla + "perfil_agregar col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_agregar" + comilla + "></div>";
-            
+            if (myuser == perfil.data.id || myuser == "1") {
+                plantillaPerfil += "<div class=" + comilla + "perfil_function col-md-12 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_function" + comilla + "></div>";
+            }else{
+                plantillaPerfil += "<div class=" + comilla + "perfil_function col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_function" + comilla + "></div>";
+            }   
             plantillaPerfil += "<div class=" + comilla + "perfil_friends col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_friends" + comilla + ">";
-            plantillaPerfil +='<a class="btn btn-goplace" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + perfil.data.id + '">Ver amigos</a>';
-            plantillaPerfil +='<a class="btn btn-goplace" id="botonperfil" href="control#/usuario/upload/' + perfil.data.id + '">Foto de perfil</a>';
+                plantillaPerfil +='<a class="btn btn-goplace" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + perfil.data.id + '">Ver amigos</a>';
+            plantillaPerfil += "</div>";
+            if (myuser == perfil.data.id || myuser == "1") {
+            plantillaPerfil += "<div class=" + comilla + "perfil_photo_edit col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_friends" + comilla + ">";
+                plantillaPerfil +='<a class="btn btn-goplace" id="botonperfil" href="control#/usuario/upload/' + perfil.data.id + '">Foto de perfil</a>';
             plantillaPerfil += '</div>';
-            
+            }
         plantillaPerfil += "</div>";
         
         /* Comentarios */

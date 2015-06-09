@@ -31,30 +31,30 @@ usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
     var perfil = oDocumentoModel.loadPerfil(id);
     var comentarios = oComentarioModel.loadComentarios(id);
     var eventos = oUsuarioModel.loadEventos(id);
-    
+
     $(place).append(oView.getPerfil(perfil, comentarios, eventos));
-    
+
     /* BOTONERA EDITAR - AÑADIR/BORRAR */
     var jsonamigo = oUsuarioModel.existeAmigo(id);
     var amigo = jsonamigo.data;
-    
-    if (myuser == id) {
-        $("#perfil_edit").append('<a class="btn btn-goplace" href="control#/usuario/edit/' + id + '">Editar</a>');
-    } else {
-        if(!amigo){
-            $("#perfil_agregar").append('<a class="btn btn-goplace" id=\"addfriend\">Añadir amigo</a>');
+
+    if (myuser == id || myuser == "1") {
+        $("#perfil_function").append('<a class="btn btn-goplace" href="control#/usuario/edit/' + id + '">Editar</a>');
+    } else if (myuser != id && myuser == "1") {
+        if (!amigo) {
+            $("#perfil_function").append('<a class="btn btn-goplace" id=\"addfriend\">Añadir amigo</a>');
         } else {
-            $("#perfil_agregar").append('<a class="btn btn-danger" id=\"removefriend\">Eliminar amigo</a>');
-        }        
+            $("#perfil_function").append('<a class="btn btn-danger" id=\"removefriend\">Eliminar amigo</a>');
+        }
     }
-    
+
     $('#addfriend').click(function () {
         resultado = oUsuarioModel.agregarAmigo(id);
         title = "Usuario agregado a tu lista de amigos";
         oUsuarioView.doResultOperationGP(place, resultado["status"], title, null, id, true);
         return false;
     });
-    
+
     $('#removefriend').click(function () {
         resultado = oUsuarioModel.removeAmigo(id);
         title = "Usuario eliminado de tu lista de amigos";
@@ -111,7 +111,7 @@ usuarioControl.prototype.list = function (place, objParams, callback, oModel, oV
     $("#pagination").empty().append(oView.getSpinner()).html(oView.getPageLinks(url, parseInt(objParams["page"]), parseInt(oDocumentoModel.getCachedPages()), 2));
 
     $("#tableHeaders").empty().append(oView.getSpinner()).html(oView.getHeaderPageTable(prettyFieldNames, fieldNames, parseInt(objParams["vf"]), strUrlFromParamsWithoutOrder));
-    
+
     id_elemento = 0;
     $("#tableBody").empty().append(oView.getSpinner()).html(function () {
         return oView.getBodyPageTable(page, fieldNames, parseInt(objParams["vf"]), function (id) {
@@ -158,5 +158,5 @@ usuarioControl.prototype.upload = function (place, id, oModel, oView) {
     var oDocumentoModel = oModel;
     oDocumentoModel.loadAggregateViewOne(id);
     oView.loadFormValues(oDocumentoModel.getCachedOne(), oDocumentoModel.getCachedFieldNames());
-    
+
 };

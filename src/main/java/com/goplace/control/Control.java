@@ -52,6 +52,7 @@ public class Control extends HttpServlet {
         PrintWriter out = response.getWriter();
         ConnectionInterface DataConnectionSource = null;
         Connection connection = null;
+
         try {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -69,16 +70,17 @@ public class Control extends HttpServlet {
             String op = ParameterCooker.prepareOperation(request);
             String mode = ParameterCooker.prepareMode(request);
             //security check
-            if (request.getSession().getAttribute("usuarioBean") == null) {
+            if (request.getSession().getAttribute("usuarioBean") == null) { // sin sesion
                 ob = "usuario";
                 if (!op.equals("inicio") && !op.equals("login02") && !op.equals("registro")) {
+                    op = "login";
                     mode = "wrappered";
                 }
-            }
 
-            // LOGIN
-            if (ob.equalsIgnoreCase("usuario")){
-            if (request.getParameter("op") != null) {
+                if (op.equalsIgnoreCase("inicio")) {
+                    getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                }
+
                 if (request.getParameter("op").equalsIgnoreCase("login")) {
                     UsuarioBeanGenSpImpl oUsuario = new UsuarioBeanGenSpImpl();
                     String user = request.getParameter("userform");
@@ -166,6 +168,14 @@ public class Control extends HttpServlet {
                         Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+
+            } else { //con sesion
+                if (ob.equalsIgnoreCase("usuario")) {
+                    if (op.equalsIgnoreCase("inicio")) {
+                        getServletContext().getRequestDispatcher("/jsp/principal.jsp").forward(request, response);
+                    }
+                }
+
                 //logout
                 if (request.getParameter("op").equals("logout")) {
                     request.getSession().invalidate();
@@ -175,28 +185,28 @@ public class Control extends HttpServlet {
                     request.setAttribute("contenido", "/jsp/message.jsp");
                     getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                 }
-            }}
-
-            //menu
-            if (request.getParameter("ob") != null) {
-                if (request.getParameter("ob").equals("menu")) {
-                    getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
+                //menu
+                if (request.getParameter("ob") != null) {
+                    if (request.getParameter("ob").equals("menu")) {
+                        getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
+                    }
+                    if (request.getParameter("ob").equals("menu2")) {
+                        getServletContext().getRequestDispatcher("/menu2.jsp").forward(request, response);
+                    }
                 }
-                if (request.getParameter("ob").equals("menu2")) {
-                    getServletContext().getRequestDispatcher("/menu2.jsp").forward(request, response);
+
+                //delivering jsp page
+                if ("wrappered".equals(mode)) {
+                    request.setAttribute("contenido", "jsp/" + ob + "/" + op + ".jsp");
+                    request.setAttribute("connection", connection);
+                    getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                } else {
+                    response.setContentType("text/html; charset=UTF-8");
+                    request.setAttribute("connection", connection);
+                    getServletContext().getRequestDispatcher("/jsp/" + ob + "/" + op + ".jsp").forward(request, response);
                 }
             }
 
-            //delivering jsp page
-            if ("wrappered".equals(mode)) {
-                request.setAttribute("contenido", "jsp/" + ob + "/" + op + ".jsp");
-                request.setAttribute("connection", connection);
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            } else {
-                response.setContentType("text/html; charset=UTF-8");
-                request.setAttribute("connection", connection);
-                getServletContext().getRequestDispatcher("/jsp/" + ob + "/" + op + ".jsp").forward(request, response);
-            }
         } catch (Exception ex) {
             if (EstadoHelper.getTipo_estado() == EstadoHelper.Tipo_estado.Debug) {
                 request.setAttribute("title", "404 Application server error (debug mode)");
@@ -228,9 +238,10 @@ public class Control extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-        processRequest(request, response);
-        } catch (Exception ex) {}
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+        }
     }
 
     /**
@@ -244,9 +255,10 @@ public class Control extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-        processRequest(request, response);
-        } catch (Exception ex) {}
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+        }
     }
 
     /**

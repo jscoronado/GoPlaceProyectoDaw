@@ -18,6 +18,7 @@
         <meta name="description" content="Web Developer">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/styles-mobile.css">
         <link rel="stylesheet" href="css/effects.css">
         <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:200|Oswald|Montserrat' rel='stylesheet' type='text/css'>
 
@@ -27,23 +28,23 @@
         <div class="page">
             <header class="title row">
                 <div class="col-md-6 col-sm-6 logo-goplace">
-                    <a href="index.jsp"><img src="images/logo.png" alt="Logo GoPlace" class="logo"></a>
+                    <a href="index.jsp"><img src="images/logo/logo-black.png" alt="Logo GoPlace" class="logo"></a>
                 </div>
 
                 <div class="col-md-6 col-sm-6 register">
                     <form id="loginForm" action="control" role="form" method="post">
                         <input type="hidden" name="op" value="login" />
-                        <div class="form-group formuser col-md-5 col-sm-5 col-xs-12">
-                            <input type="text" class="input-access" id="userform" placeholder="Usuario o Email" name="userform" required>
+                        <div class="form-group formuser col-md-5 col-sm-6 col-xs-12">
+                            <input type="text" class="input-access" id="userform" placeholder="Usuario" name="userform" required>
                         </div>
-                        <div class="form-group formpass col-md-5 col-sm-5 col-xs-12">
+                        <div class="form-group formpass col-md-5 col-sm-6 col-xs-12">
                             <input type="password" class="input-access" id="passform" placeholder="Contraseña" name="passform" required>
                         </div>
-                        <div class="form-remember col-md-7 col-sm-7 col-xs-12">
+                        <!--<div class="form-remember col-md-7 col-sm-7 col-xs-12">
                             <input type="checkbox" id="recuerda" name="recuerda"> No cerrar sesión
                             <span><a href="#" id="olvidopass">¿Has olvidado la contraseña?</a></span>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        </div>-->
+                        <div class="forbutton_access col-md-2 col-sm-12 col-xs-12">
                             <button class="btn btn-lg btn-primary btn-block formbutton " type="submit">Acceder</button>
                         </div>
                         <!--<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text}}-->
@@ -77,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 botonreg">
-                                <button class="btn btn-lg btn-primary btn-block regbutton" type="submit">Regístrate en<br/>GoPlace !</button>
+                                <button class="btn btn-lg btn-primary btn-block regbutton btn-goplace" type="submit">Regístrate en<br/>GoPlace !</button>
                             </div>
                         </form>
                     </div>

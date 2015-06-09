@@ -69,7 +69,7 @@
 
     <div class="form-group">
         <div class="col-md-12 col-xs-12">
-            <button class="btn btn-primary btn-goplace" id="submitForm">Guardar</button>
+            <button class="btn btn-primary btn-goplace" id="submitForm">COMENTAR</button>
         </div>
     </div>
 

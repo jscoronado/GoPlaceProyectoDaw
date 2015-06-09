@@ -30,6 +30,7 @@
         <meta name="description" content="Web Developer">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles-mobile.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/effects.css">
         <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:200|Oswald' rel='stylesheet' type='text/css'>
         <% }%>
@@ -38,8 +39,8 @@
     <body>
         <div class="page">
             <header class="title row">
-                <div class="col-md-10 col-sm-12 logoRegistro">
-                    <a href="<%=request.getContextPath()%>/index.jsp"><img src="images/logo.png" alt="Logo GoPlace"></a>
+                <div class="col-md-13 col-sm-12 logoRegistro">
+                    <a href="<%=request.getContextPath()%>/index.jsp"><img src="images/logo/logo-black.png" alt="Logo GoPlace" class="logo"></a>
                 </div>
             </header>
 
@@ -73,33 +74,18 @@
                                     <span><a href="#" id="olvidopass_access">¿Has olvidado la contraseña?</a></span>
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <button class="btn btn-lg btn-primary btn-block formbutton " type="submit">Acceder</button>
+                                    <button class="btn btn-lg btn-primary btn-block formbutton btn-goplace" type="submit">Acceder</button>
                                 </div>
                                 <!--<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text}}-->
                             </form>
                         </div>
                         
-                        <%} else if (atributo.equals("incorrecto")) {%>
-                            <div class="col-md-3 col-sm-3 col-xs-12 return_gp">
-                                <a href="<%=request.getContextPath()%>/index.jsp">
-                                    <button class="btn btn-lg btn-primary btn-block returnbutton " type="submit">Volver a Inicio</button>
-                                </a>      
-                            </div>
-                        <% } else {%>
-                            <div class="col-md-3 col-sm-3 col-xs-12 return_gp">
-                                <a href="<%=request.getContextPath()%>/index.jsp">
-                                    <button class="btn btn-lg btn-primary btn-block returnbutton " type="submit">Volver a Inicio</button>
-                                </a>      
-                            </div>
-                        <% } %>
-                    
-                        <% if (atributo.equals("out")) {%>
-                            <div class="col-md-3 col-sm-3 col-xs-12 return_gp">
-                                    <a href="<%=request.getContextPath()%>/index.jsp">
-                                        <button class="btn btn-lg btn-primary btn-block returnbutton " type="submit">Volver a Inicio</button>
-                                    </a>      
-                            </div>
-                        <% } %>
+                        <%}%>
+                        <div class="col-md-3 col-sm-3 col-xs-12 return_gp">
+                            <a href="<%=request.getContextPath()%>/index.jsp">
+                                <button class="btn btn-lg btn-primary btn-block returnbutton btn-goplace" type="submit">Volver a Inicio</button>
+                            </a>      
+                        </div>    
                     </div>
                 </div>
             </main>

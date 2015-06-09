@@ -269,15 +269,20 @@ view.prototype.doResultOperationGP = function (place, resultadoStatus, title, co
         'margin': '10px',
         'display': 'block'
     });
-    if (mostrar && resultadoStatus == "200") {
+    if (mostrar == "deleteComentario") {
+        $('#modalGP').on('hidden.bs.modal', function () {
+            window.location.href = "control#/evento/" + id;
+        });
+    }
+    else if (mostrar && resultadoStatus == "200") {
         $('#modalGP').on('hidden.bs.modal', function () {
             /*window.location.href = "control#/"+url+"/" + id;*/
             location.reload();
-        })
+        });
     } else if (mostrar && resultadoStatus == "404") {
         $('#modalGP').on('hidden.bs.modal', function () {
             window.location.href = "control#/inicio";
-        })
+        });
     }else {
         $('#modalGP').on('hidden.bs.modal', function () {
             $(place).empty();
