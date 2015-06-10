@@ -250,7 +250,7 @@ view.prototype.doResultOperationNotifyToUser = function (place, resultadoStatus,
     }
     ;
 };
-view.prototype.doResultOperationGP = function (place, resultadoStatus, title, content, id, mostrar) {
+view.prototype.doResultOperationGP = function (place, resultadoStatus, title, content, id, mostrar, destino) {
     var strNombreClase = this.clase;
     if (resultadoStatus == "200" && title != null) {
         mensaje = '<h3 class="title_modal">'+ title +'</h3>';
@@ -269,23 +269,22 @@ view.prototype.doResultOperationGP = function (place, resultadoStatus, title, co
         'margin': '10px',
         'display': 'block'
     });
-    if (mostrar == "deleteComentario") {
+    if (destino != null) {
         $('#modalGP').on('hidden.bs.modal', function () {
-            window.location.href = "control#/evento/" + id;
+            window.location.href = destino + id;
         });
     }
     else if (mostrar && resultadoStatus == "200") {
         $('#modalGP').on('hidden.bs.modal', function () {
-            /*window.location.href = "control#/"+url+"/" + id;*/
             location.reload();
         });
-    } else if (mostrar && resultadoStatus == "404") {
+    /*} else if (mostrar && resultadoStatus == "404") {
         $('#modalGP').on('hidden.bs.modal', function () {
             window.location.href = "control#/inicio";
-        });
+        });*/
     }else {
         $('#modalGP').on('hidden.bs.modal', function () {
-            $(place).empty();
+            window.location.href = "control#/inicio";
         });
     }
     ;
@@ -389,3 +388,28 @@ view.prototype.cargaEventosGP = function (json, tipo, title) {
     
     return eventos;
 };
+
+view.prototype.compareDate = function (dateEvento) {
+
+    var result;
+    
+    /* Date Today */
+    var hoy = new Date();
+
+    var dd = hoy.getDate();
+    var mm = hoy.getMonth()+1; 
+    var yyyy = hoy.getFullYear();
+    var dateToday = new Date(mm + "/" + dd + "/" + yyyy);
+    
+    /* Date Event */
+    var parts = dateEvento.split("/");
+    var dateEv = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+    
+    if(dateEv >= dateToday){
+        result = "1";
+    } else {
+        result = "0";
+    }
+    
+    return result;
+ };

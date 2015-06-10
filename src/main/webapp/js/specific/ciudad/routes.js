@@ -63,7 +63,7 @@ function fCiudadRoutes() {
     Path.map("#/ciudad/new").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oCiudadControl.new($('#principalpag'), oCiudadModel, oCiudadView);
+        oCiudadControl.new($('#principalpag'), oCiudadModel, oCiudadView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });

@@ -63,14 +63,14 @@ function fAmistadRoutes() {
     Path.map("#/amistad/new").to(function () {
         $('#indexContenidoJsp').spinner();
         //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oAmistadControl.new($('#principalpag'), null, oAmistadModel, oAmistadView);
+        oAmistadControl.new($('#principalpag'), null, oAmistadModel, oAmistadView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });
     Path.map("#/amistad/new/:url").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oAmistadControl.new($('#principalpag'), paramsObject, oAmistadModel, oAmistadView);
+        oAmistadControl.new($('#principalpag'), paramsObject, oAmistadModel, oAmistadView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });

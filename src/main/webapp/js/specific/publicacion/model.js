@@ -27,7 +27,7 @@ var oPublicacionModel = new publicacionModel('publicacion');
 
 publicacionModel.prototype.cargaEventos = function (id1) {
     
-    $.when(ajax().ajaxCallSync(this.urlJson + '&op=getpage&systemfilter=id_ciudad&systemfilteroperator=equals&systemfiltervalue='+id1+'&rpp=5&order=fechapub&ordervalue=asc', 'GET', '')).done(function (data) {
+    $.when(ajax().ajaxCallSync(this.urlJson + '&op=getpage&systemfilter=id_ciudad&systemfilteroperator=equals&systemfiltervalue='+id1+'&rpp=50&order=fechapub&ordervalue=asc', 'GET', '')).done(function (data) {
         pagina_objs = data;
     });
     

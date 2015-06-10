@@ -59,14 +59,14 @@ publicacionControl.prototype.verEvento = function (place, id_evento, oModel, oVi
     $('#btn_seguirE').click(function () {
         resultado = oPublicacionModel.seguirEvento(id_evento);
         title = "Evento añadido a tu lista de eventos";
-        oView.doResultOperationGP(place, resultado["status"], title, null, id_evento, true);
+        oView.doResultOperationGP(place, resultado["status"], title, null, id_evento, true, null);
         return false;
     });
     
     $('#btn_dejarE').click(function () {
         resultado = oPublicacionModel.dejarEvento(id_evento);
         title = "Evento eliminado de tu lista de evnetos";
-        oView.doResultOperationGP(place, resultado["status"], title, null, id_evento, true);
+        oView.doResultOperationGP(place, resultado["status"], title, null, id_evento, true, null);
         return false;
     });
     
@@ -79,7 +79,7 @@ publicacionControl.prototype.listarEventos = function (place, oModel, oView) {
     var oPublicacionView = oView;
     
     var user = myuser;
-    var eventos = oPublicacionModel.setGenericOperation("geteventos&rpp=6","");
+    var eventos = oPublicacionModel.setGenericOperation("geteventos&rpp=50","");
     
     var person = oUsuarioModel.setGenericOperation("get&id="+user,"");
     var pubs = oPublicacionModel.setGenericOperation("getregisters&systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue="+user,"");
@@ -124,14 +124,14 @@ publicacionControl.prototype.eliminarComentario = function (place, id_comentario
 
         if (data.status == "200"){
             title = "Comentario eliminado";
-            oView.doResultOperationGP(place, data.status, title, null, id_evento, "deleteComentario");
+            oView.doResultOperationGP(place, data.status, title, null, id_evento, true, "control#/evento/");
         } else{
             coment = "No hemos podido eliminar el comentario";
-            oView.doResultOperationGP(place, data.status, null, coment, id_evento, "deleteComentario");
+            oView.doResultOperationGP(place, data.status, null, coment, id_evento, true, "control#/evento/");
         }
     } else {
         coment = "No puedes eliminar el comentario de otro usuario";
-        oView.doResultOperationGP(place, "400", null, coment, id_evento, "deleteComentario");
+        oView.doResultOperationGP(place, "400", null, coment, id_evento, true, "control#/evento/");
     }
 };
 

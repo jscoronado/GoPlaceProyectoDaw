@@ -24,10 +24,14 @@ var control = function (strClase) {
 control.prototype.getClassName = function () {
     return this.clase;
 };
-control.prototype.new = function (place, objParams, oModel, oView) {
+control.prototype.new = function (place, objParams, oModel, oView, destino) {
     var thisObject = this;
     $(place).empty();
-    $(place).append(oView.getPanel("Alta de " + this.clase, oView.getEmptyForm()));
+    if(this.clase == "publicacion"){
+    $(place).append(oView.getPanel("Nuevo Evento", oView.getEmptyForm()));
+    }else{
+    $(place).append(oView.getPanel("Nuevo " + this.clase, oView.getEmptyForm()));    
+    }
     //id must not be enabled
     $('#id').val('0').attr("disabled", true);
     if (objParams) {
@@ -44,7 +48,7 @@ control.prototype.new = function (place, objParams, oModel, oView) {
     $('#submitForm').click(function () {
         oView.okValidation(function (e) {
             resultado = oModel.setOne({json: JSON.stringify(oView.getFormValues())});
-            oView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha creado el registro con id=" + resultado["message"], resultado["message"], true);
+            oView.doResultOperationGP(place, resultado["status"], "Se ha creado el registro con id=" + resultado["message"],null, resultado["message"], true, destino);
             e.preventDefault();
             return false;
         });

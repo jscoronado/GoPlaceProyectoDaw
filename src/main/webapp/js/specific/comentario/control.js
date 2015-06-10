@@ -39,7 +39,7 @@ comentarioControl.prototype.new = function (place, id_evento, oModel, oView) {
             titulo = "El comentario se ha publicado con éxito!";
             content = "Actualiza la pagina para verlo!";
             resultado = oModel.setOne({json: JSON.stringify(oView.getFormValues())});
-            oView.doResultOperationGP(place, resultado["status"], titulo, content, id_evento, true);
+            oView.doResultOperationGP(place, resultado["status"], titulo, content, id_evento, true, null);
             e.preventDefault();
             return false;
         });

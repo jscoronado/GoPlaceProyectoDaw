@@ -54,7 +54,7 @@ function fUsuarioRoutes() {
             oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
          }else{
             content = "No puedes editar el perfil de otro usuario";
-            oUsuarioView.doResultOperationGP($('#principalpag'), "404", null, content, null, true);
+            oUsuarioView.doResultOperationGP($('#principalpag'), "404", null, content, null, true, null);
          }
     });
     
@@ -67,7 +67,7 @@ function fUsuarioRoutes() {
             oUsuarioControl.upload($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
         }else{
             content = "No puedes editar el perfil de otro usuario";
-            oUsuarioView.doResultOperationGP($('#principalpag'), "404", null, content, null, true);
+            oUsuarioView.doResultOperationGP($('#principalpag'), "404", null, content, null, true, null);
          }
     });
 }

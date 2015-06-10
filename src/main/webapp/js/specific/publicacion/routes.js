@@ -45,14 +45,14 @@ function fPublicacionRoutes() {
     Path.map("#/publicacion/new").to(function () {
         //$('#indexContenidoJsp').spinner();
         //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.new($('#principalpag'), null, oPublicacionModel, oPublicacionView);
+        oPublicacionControl.new($('#principalpag'), null, oPublicacionModel, oPublicacionView, "#/evento/");
         //$('#indexContenidoJsp').empty();
         return false;
     });
     Path.map("#/publicacion/new/:url").to(function () {
         //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.new($('#principalpag'), paramsObject, oPublicacionModel, oPublicacionView);
+        oPublicacionControl.new($('#principalpag'), paramsObject, oPublicacionModel, oPublicacionView, "#/evento/");
         //$('#indexContenidoJsp').empty();
         return false;
     });
@@ -74,7 +74,7 @@ function fPublicacionRoutes() {
         $('#principalpag').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
         oPublicacionControl.verEvento($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
-        oComentarioControl.new($('#coments_form'), paramsObject['id'], oComentarioModel, oComentarioView);
+        oComentarioControl.new($('#coments_form'), paramsObject['id'], oComentarioModel, oComentarioView, null);
  
         return false;
     });

@@ -62,14 +62,14 @@ function fInicioRedSocialRoutes() {
     Path.map("#/inicioRedSocial/new").to(function () {
         $('#indexContenidoJsp').spinner();
         //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.new($('#indexContenido'), null, oPublicacionModel, oPublicacionView);
+        oPublicacionControl.new($('#indexContenido'), null, oPublicacionModel, oPublicacionView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });
     Path.map("#/inicioRedSocial/new/:url").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.new($('#indexContenido'), paramsObject, oPublicacionModel, oPublicacionView);
+        oPublicacionControl.new($('#indexContenido'), paramsObject, oPublicacionModel, oPublicacionView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });

@@ -204,12 +204,18 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
         jsonP = jason.list;
         
         eventos = "<div class=" + "'row  eventos_default'" + ">";
+        if (jsonP.length != 0) {
         eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos en " + jsonP[0].obj_ciudad.nombre + "</h2>";
+        }else{
+        eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Lo sentimos, no hay eventos próximos en tu ciudad</h2>";    
+        }
         eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
     }
     
     if (jsonP.length != 0) {
         for (i = 0; i < jsonP.length; i++) {
+            if(oPublicacionView.compareDate(jsonP[i].fechapub) == "1"){
+            /*eventos += '<a href="#/evento/' + jsonP[i].id +'">';*/
             eventos += "<div class=" + comilla + "col-md-6 evento evento" + jsonP[i].id + comilla + ">";
             eventos += "<div class=" + comilla + "contentpub" + comilla + ">";
             eventos += "<h4><a href=" + comilla + "#/evento/" + jsonP[i].id + comilla + ">" + jsonP[i].titulo + "</a></h4>";
@@ -218,12 +224,14 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
             eventos += "<span class=" + comilla + "nick" + comilla + "> @" + jsonP[i].obj_usuario.login + "</span>";
             eventos += "<p class=" + comilla + "ciudadpub" + comilla + ">" + jsonP[i].obj_ciudad.nombre + "-" + jsonP[i].fechapub + "</p>";
             eventos += "</div></div></div>";
+            /*eventos += "</a>";*/
+            }
         }
     } else {
-        eventos += "<div class=" + comilla + "col-md-12 evento evento" + comilla + ">";
+        eventos += "<div class=" + comilla + "col-md-12 evento evento5" + comilla + ">";
             eventos += "<div class=" + comilla + "contentpub" + comilla + ">";
                 eventos += "<h4>No tienes eventos en tu entorno!</h4>";
-                eventos += "<span>Busca a tu amigos, sigue sus eventos, crea tus propios eventos y comentarios y disfruta de GOPLACE!</span>";
+                eventos += "<p>Busca a tu amigos, sigue sus eventos, crea tus propios eventos y comentarios y disfruta de GOPLACE!</p>";
             eventos += "</div>";
         eventos += "</div>";
     }
@@ -252,7 +260,7 @@ publicacionView.prototype.getComentarios = function (coments, id_evento) {
         for (i = 0; i < jsonP.length; i++) {
             comentarios += "<div class=" + comilla + "col-md-12 col-sm-12 coment" + comilla + ">";
                 comentarios += "<div class=" + comilla + "col-md-2 coment_photo" + comilla + ">";
-                    if (jsonP[i].obj_usuario.imagen == null){
+                    if (jsonP[i].obj_usuario.imagen == null || jsonP[i].obj_usuario.imagen == ""){
                         comentarios += "<img src=" + comilla + "/images/user.png" + comilla + " alt=" + comilla + "Foto usuario " + i + comilla +"/>";
                     }else{
                         comentarios += jsonP[i].obj_usuario.imagen;
@@ -337,7 +345,7 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
                             for (i = 0; i < usuario.length; i++) {
                                 descEvent += "<div class=" + comilla + "user_event col-md-3 col-xs-3" + comilla + ">";
                                     descEvent += "<a href=" + comilla + "#/perfil/" + usuario[i].obj_usuario.id + comilla + ">";
-                                    if (usuario[i].obj_usuario.imagen == null){
+                                    if (usuario[i].obj_usuario.imagen == null || usuario[i].obj_usuario.imagen == ""){
                                         descEvent += "<img src=" + comilla + "/images/user.png" + comilla + " class=" + comilla + "fotoUser" + comilla + "/>";
                                     }else{
                                         descEvent += usuario[i].obj_usuario.imagen;

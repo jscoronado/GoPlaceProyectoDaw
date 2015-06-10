@@ -63,14 +63,14 @@ function fAsistenciaRoutes() {
     Path.map("#/asistencia/new").to(function () {
         $('#indexContenidoJsp').spinner();
         //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oAsistenciaControl.new($('#principalpag'), null, oAsistenciaModel, oAsistenciaView);
+        oAsistenciaControl.new($('#principalpag'), null, oAsistenciaModel, oAsistenciaView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });
     Path.map("#/asistencia/new/:url").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oAsistenciaControl.new($('#principalpag'), paramsObject, oAsistenciaModel, oAsistenciaView);
+        oAsistenciaControl.new($('#principalpag'), paramsObject, oAsistenciaModel, oAsistenciaView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });

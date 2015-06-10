@@ -62,7 +62,7 @@ function fComentarioRoutes() {
 
     Path.map("#/comentario/new").to(function () {
         $('#principalpag').spinner();
-        oComentarioControl.new($('#principalpag'), null, oComentarioModel, oComentarioView);
+        oComentarioControl.new($('#principalpag'), null, oComentarioModel, oComentarioView, null);
         return false;
     });
 

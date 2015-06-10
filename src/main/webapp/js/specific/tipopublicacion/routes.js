@@ -63,7 +63,7 @@ function fTipopublicacionRoutes() {
     Path.map("#/tipopublicacion/new").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oTipopublicacionControl.new($('#principalpag'), oTipopublicacionModel, oTipopublicacionView);
+        oTipopublicacionControl.new($('#principalpag'), oTipopublicacionModel, oTipopublicacionView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });

@@ -62,14 +62,14 @@ function fRedsocialperfilRoutes() {
     Path.map("#/redsocialperfil/new").to(function () {
         $('#indexContenidoJsp').spinner();
         //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oRedsocialperfilControl.new($('#principalpag'), null, oRedsocialperfilModel, oRedsocialperfilView);
+        oRedsocialperfilControl.new($('#principalpag'), null, oRedsocialperfilModel, oRedsocialperfilView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });
     Path.map("#/redsocialperfil/new/:url").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oRedsocialperfilControl.new($('#principalpag'), paramsObject, oRedsocialperfilModel, oRedsocialperfilView);
+        oRedsocialperfilControl.new($('#principalpag'), paramsObject, oRedsocialperfilModel, oRedsocialperfilView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });

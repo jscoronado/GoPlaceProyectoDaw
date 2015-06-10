@@ -181,7 +181,7 @@ header{
 /* 3. PAGE INTRO & REGISTER*/
 .principal{
     padding: 5% 20% 5% 20%;
-    background: url('../images/vlc.png') fixed no-repeat center;
+    background: url('../images/vlc.jpg') fixed no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

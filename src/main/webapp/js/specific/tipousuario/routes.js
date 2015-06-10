@@ -62,14 +62,14 @@ function fTipousuarioRoutes() {
     Path.map("#/tipousuario/new").to(function () {
         $('#indexContenidoJsp').spinner();
         //var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oTipousuarioControl.new($('#indexContenido'), null, oTipousuarioModel, oTipousuarioView);
+        oTipousuarioControl.new($('#indexContenido'), null, oTipousuarioModel, oTipousuarioView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });
     Path.map("#/tipousuario/new/:url").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oTipousuarioControl.new($('#indexContenido'), paramsObject, oTipousuarioModel, oTipousuarioView);
+        oTipousuarioControl.new($('#indexContenido'), paramsObject, oTipousuarioModel, oTipousuarioView, null);
         $('#indexContenidoJsp').empty();
         return false;
     });

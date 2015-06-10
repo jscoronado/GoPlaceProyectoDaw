@@ -40,7 +40,7 @@ usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
 
     if (myuser == id || myuser == "1") {
         $("#perfil_function").append('<a class="btn btn-goplace" href="control#/usuario/edit/' + id + '">Editar</a>');
-    } else if (myuser != id && myuser == "1") {
+    } else if (myuser != id || myuser == "1") {
         if (!amigo) {
             $("#perfil_function").append('<a class="btn btn-goplace" id=\"addfriend\">Añadir amigo</a>');
         } else {
@@ -51,14 +51,14 @@ usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
     $('#addfriend').click(function () {
         resultado = oUsuarioModel.agregarAmigo(id);
         title = "Usuario agregado a tu lista de amigos";
-        oUsuarioView.doResultOperationGP(place, resultado["status"], title, null, id, true);
+        oUsuarioView.doResultOperationGP(place, resultado["status"], title, null, id, true, null);
         return false;
     });
 
     $('#removefriend').click(function () {
         resultado = oUsuarioModel.removeAmigo(id);
         title = "Usuario eliminado de tu lista de amigos";
-        oUsuarioView.doResultOperationGP(place, resultado["status"], title, null, id, true);
+        oUsuarioView.doResultOperationGP(place, resultado["status"], title, null, id, true, null);
         return false;
     });
 };
