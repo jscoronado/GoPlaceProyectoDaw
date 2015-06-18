@@ -64,7 +64,7 @@ public class subir extends HttpServlet {
                 oUsuarioDAO.updateOne(id_user, "usuario", "imagen", ruta);
                 
                 strMessage += "<img src=\"" + "http://" + request.getServerName() + ":" + request.getServerPort() + "/" + "/images/users/" + archivo + "\"  width=\"150\" /><br/>";
-                strMessage += "<a href=\""+"http://" + request.getServerName() + ":" + request.getServerPort() + "/goplace/control#/perfil/"+ id_user + "\">Vuelve a tu Perfil</a><br/>";
+                strMessage += "<a class=\"btn btn-goplace returnperfil\" href=\""+"http://" + request.getServerName() + ":" + request.getServerPort() + "/goplace/control#/perfil/"+ id_user + "\">Vuelve a tu Perfil</a><br/>";
                 request.setAttribute("message", strMessage);
             } catch (Exception ex) {
                 request.setAttribute("message", "File Upload Failed: " + ex);

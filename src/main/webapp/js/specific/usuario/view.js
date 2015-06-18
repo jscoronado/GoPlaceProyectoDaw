@@ -189,10 +189,10 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
         /* Perfil */
         plantillaPerfil += "<div class=" + comilla + "perfilgp col-md-4 col-xs-12" + comilla + ">";
             plantillaPerfil += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-4" + comilla + ">";
-                if(perfil.data.imagen != null){
-                    plantillaPerfil += perfil.data.imagen;
-                }else {
+                if(perfil.data.imagen == null || perfil.data.imagen == ""){
                     plantillaPerfil += "<img src=" + comilla + "/images/user.png" + comilla + "class=" + comilla + "foto_perfil" + comilla + " alt=" + comilla + "Foto perdil de " + perfil.data.nombre + espacio + perfil.data.apellidos + comilla + ">";
+                }else {
+                    plantillaPerfil += perfil.data.imagen;
                 }
             plantillaPerfil += "</div>";
             plantillaPerfil += "<div class=" + comilla + "perfil_desc col-md-12 col-xs-8" + comilla + ">";
@@ -208,7 +208,7 @@ plantillaPerfil = "<div class=" + "'perfilGoPlace'" + "id=" + "'perfilGoPlace'" 
                 plantillaPerfil += "<div class=" + comilla + "perfil_function col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_function" + comilla + "></div>";
             }   
             plantillaPerfil += "<div class=" + comilla + "perfil_friends col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_friends" + comilla + ">";
-                plantillaPerfil +='<a class="btn btn-goplace" href="control#/amistad/list/systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue=' + perfil.data.id + '">Ver amigos</a>';
+                plantillaPerfil +='<a class="btn btn-goplace" href="control#/amigos/' + perfil.data.id + '">Ver amigos</a>';
             plantillaPerfil += "</div>";
             if (myuser == perfil.data.id || myuser == "1") {
             plantillaPerfil += "<div class=" + comilla + "perfil_photo_edit col-md-6 col-sm-8 col-xs-12 boton_perfil" + comilla + " id=" + comilla + "perfil_friends" + comilla + ">";

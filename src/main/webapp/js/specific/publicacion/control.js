@@ -90,6 +90,19 @@ publicacionControl.prototype.listarEventos = function (place, oModel, oView) {
     $("#principalpag").html(content);
 };
 
+publicacionControl.prototype.eventosUsuario = function (place, id_user, oModel, oView) {
+
+    $(place).empty();
+    var oPublicacionModel = oModel;
+    var oPublicacionView = oView;
+    
+    var person = oUsuarioModel.setGenericOperation("get&id="+id_user,"");
+    var eventos = oPublicacionModel.setGenericOperation("getpage&systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue="+id_user+"&order=fechapub&ordervalue=asc","");
+    
+    var content = oPublicacionView.getEventos(eventos, person, null, null, null, "usuario");
+    $("#principalpag").html(content);
+};
+
 publicacionControl.prototype.listarEventosFilter = function (place, id, oModel, oView, tipo) {
     var thisObject = this;
     $(place).empty();

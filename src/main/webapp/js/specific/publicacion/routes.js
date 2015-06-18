@@ -39,7 +39,7 @@ function fPublicacionRoutes() {
     Path.map("#/publicacion/edit/:id").to(function () {
         //$('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
-        oPublicacionControl.edit($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
+        oPublicacionControl.edit($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView, "#/evento/");
         //$('#indexContenidoJsp').empty();
     });
     Path.map("#/publicacion/new").to(function () {
@@ -79,11 +79,20 @@ function fPublicacionRoutes() {
         return false;
     });
     
+    Path.map("#/eventos/usuario/:id").to(function () {
+        $('#principalpag').spinner();
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        oPublicacionControl.eventosUsuario($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView);
+        oComentarioControl.new($('#coments_form'), paramsObject['id'], oComentarioModel, oComentarioView, null);
+ 
+        return false;
+    });
+    
     Path.map("#/descubre/:id").to(function () {
-        //$('#indexContenidoJsp').spinner();
+        $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
         oPublicacionControl.listarEventosFilter($('#principalpag'), paramsObject['id'], oPublicacionModel, oPublicacionView, "ciudad");
-        //$('#indexContenidoJsp').empty();
+        
         return false;
     });
     
@@ -92,7 +101,7 @@ function fPublicacionRoutes() {
         var idComentario = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
         var idEvento = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id_evento']));
         oPublicacionControl.eliminarComentario($('#principalpag'), idComentario['id'], idEvento["id"], oPublicacionModel, oPublicacionView);
-        //$('#indexContenidoJsp').empty();
+
         return false;
     });
 }

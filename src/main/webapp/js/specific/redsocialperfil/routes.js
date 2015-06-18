@@ -56,7 +56,7 @@ function fRedsocialperfilRoutes() {
     Path.map("#/redsocialperfil/edit/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oRedsocialperfilControl.edit($('#principalpag'), paramsObject['id'], oRedsocialperfilModel, oRedsocialperfilView);
+        oRedsocialperfilControl.edit($('#principalpag'), paramsObject['id'], oRedsocialperfilModel, oRedsocialperfilView, null);
         $('#indexContenidoJsp').empty();
     });
     Path.map("#/redsocialperfil/new").to(function () {

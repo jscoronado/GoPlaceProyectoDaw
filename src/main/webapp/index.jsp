@@ -86,15 +86,15 @@
                 <div class="principal_info">
                     <div class="titulo"><h2>Descubre los planes en tu ciudad</h2></div>
                     <div class="info_descubre row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 info_gp">
                             <img src="images/descubre1.png" alt="Descubre" class="logo">
                             <div class="descubre_text"><h3>Busca los planes que se celebran en tu ciudad</h3></div>
                         </div>
-                        <div class="col-md-4">
-                            <img src="images/descubre1.png" alt="Encuentra" class="logo">
+                        <div class="col-md-4 info_gp">
+                            <img src="images/descubre2.png" alt="Encuentra" class="logo">
                             <div class="descubre_text"><h3>Crea tus propios planes y haz que lo vean los demás</h3></div>
-                        </div><div class="col-md-4">
-                            <img src="images/descubre1.png" alt="Comenta" class="logo">
+                        </div><div class="col-md-4 info_gp">
+                            <img src="images/descubre3.png" alt="Comenta" class="logo">
                             <div class="descubre_text"><h3>Comenta y queda con tus amigos de una forma mas sencilla</h3></div>
                         </div>
                     </div>

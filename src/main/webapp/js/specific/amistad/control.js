@@ -26,6 +26,21 @@ amistadControl.prototype.getClassNameAmistad = function () {
 };
 var oAmistadControl = new amistadControl('amistad');
 
+amistadControl.prototype.verAmigos = function (place, id_user, oModel, oView) {
+    var thisObject = this;
+    $(place).empty();
+    var oAmistadModel = oModel;
+    var oAmistadView = oView;
+    
+    var amigos = oAmistadModel.setGenericOperation("getpage&systemfilter=id_usuario_1&systemfilteroperator=equals&systemfiltervalue="+id_user,"");
+
+    
+    var pag_amigos = oAmistadView.paginaAmigos(amigos, id_user);
+    $("#principalpag").html(pag_amigos);
+    
+};
+
+
 amistadControl.prototype.list = function (place, objParams, callback, oModel, oView) {
     var thisObject = this;
     objParams = param().validateUrlObjectParameters(objParams);
@@ -107,7 +122,4 @@ amistadControl.prototype.list = function (place, objParams, callback, oModel, oV
         //$('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + param().getStrSystemFilters(objParams))
         $('#newButton').prop("href", 'control#/' + thisObject.clase + '/new/' + 'systemfilter=' + objParams["systemfilter"] + '&systemfilteroperator=' + objParams["systemfilteroperator"] + '&systemfiltervalue=' + objParams["systemfiltervalue"]);
     }
-
-
-
 };

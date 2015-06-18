@@ -171,7 +171,7 @@ public class Control extends HttpServlet {
 
             } else { //con sesion
                 if (ob.equalsIgnoreCase("usuario")) {
-                    if (op.equalsIgnoreCase("inicio")) {
+                    if (op.equalsIgnoreCase("inicio") || op.equalsIgnoreCase("login")) {
                         getServletContext().getRequestDispatcher("/jsp/principal.jsp").forward(request, response);
                     }
                 }

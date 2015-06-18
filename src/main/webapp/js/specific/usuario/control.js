@@ -40,7 +40,8 @@ usuarioControl.prototype.perfil = function (place, id, oModel, oView) {
 
     if (myuser == id || myuser == "1") {
         $("#perfil_function").append('<a class="btn btn-goplace" href="control#/usuario/edit/' + id + '">Editar</a>');
-    } else if (myuser != id || myuser == "1") {
+    } 
+    if (myuser != id ) {
         if (!amigo) {
             $("#perfil_function").append('<a class="btn btn-goplace" id=\"addfriend\">Añadir amigo</a>');
         } else {
@@ -158,5 +159,23 @@ usuarioControl.prototype.upload = function (place, id, oModel, oView) {
     var oDocumentoModel = oModel;
     oDocumentoModel.loadAggregateViewOne(id);
     oView.loadFormValues(oDocumentoModel.getCachedOne(), oDocumentoModel.getCachedFieldNames());
+
+};
+
+usuarioControl.prototype.seguirUsuario = function (place, id, ruta, oModel, oView) {
+
+    var resultado = oModel.agregarAmigo(id);
+    title = "Usuario agregado a tu lista de amigos";
+    oView.doResultOperationGP(place, resultado["status"], title, null, ruta, true, "#/amigos/");
+    return false;
+
+};
+
+usuarioControl.prototype.dejarUsuario = function (place, id, ruta, oModel, oView) {
+
+    var resultado = oModel.removeAmigo(id);
+    title = "Usuario eliminado de tu lista de amigos";
+    oView.doResultOperationGP(place, resultado["status"], title, null, ruta, true, "#/amigos/");
+    return false;
 
 };

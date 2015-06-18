@@ -152,7 +152,9 @@ main{
     text-align: left !important;
     margin: 10px 0 !important;
 }
-
+.returnperfil{
+    margin-top: 20px;
+}
 .principalpag, .perfilGoPlace, #perfilEvento, .eventos_default, .principalpag .panel-body{
     background: #f5f5f5;
 }
@@ -215,6 +217,17 @@ header{
     color: white;
     font-weight: 900;
     font-size: 15px;
+}
+.principal_info h2 {
+    margin: 50px 0;
+}
+.info_gp{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.info_gp img {
+    width: 150px;
+    height: 150px;
 }
 
 /* 3.1 FORMULARIO ACCESO */
@@ -460,7 +473,7 @@ h5.text_number b {
     width: 100%;
     height: 100%;
 }
-.perfil_photo img{
+.perfil_photo img, .perfil_photo_amistad img{
     width: 100px;
     height: 100px;
     margin: 0 10px 0 0;
@@ -611,7 +624,7 @@ h5.text_number b {
     padding: 3px;
     color: #009688;
 }
-.perfil_photo, .perfilgp, .perfilGoPlace h2{
+.perfil_photo, .perfil_photo_amistad .perfilgp, .perfilGoPlace h2{
     text-align: center;
 }
 .perfil_photo{
@@ -763,10 +776,42 @@ h5.text_number b {
 
 /* DESCUBRE */
 .eventos_default{
-    background: white;
     padding: 20px;
 }
 
+/* PAGINA AMIGOS */
+.amigos_usuario .amigo {
+    background-color: white;
+    min-height: 145px;
+    margin: 20px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 3px solid #E8E8E8;
+    border-radius: 3px;
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+.amigos_usuario .amigo:hover {
+    border: 3px solid #237C4C;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+
+    transition:0.3s all ease-in;
+    -webkit-transition:0.3s all ease-in;
+    -moz-transition:0.3s all ease-in;
+    -o-transition:0.3s all ease-in;
+}
+.amigo span.nick_amigo {
+    color: #009688;
+    font-size: 15px;
+    font-weight: 900;
+}
+.btn-amistad{
+    margin: 10px 0;
+}
 
 /* SUBIR IMAGEN */
 .page_subir_imagen{
@@ -870,10 +915,10 @@ footer{
     width: 100%;
     height: 40px;
     margin-bottom: 10px;
-    padding: 24px;
+    padding: 20px;
     border: 1px solid #CCCCCC;
     background-color: #EFEFEF;
-    font-size: 18px;
+    font-size: 16px;
     color: #232930;
     font-weight: 900;
 }
@@ -905,12 +950,15 @@ footer{
     height: 51px;
 }
 .btn_gp_search{
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
 }
 .btn_gp_search i{
     font-size: 14px;
     padding-top: 9px;
+}
+.btn-right{
+    float: right
 }
 #submitForm {
     width: 100px;

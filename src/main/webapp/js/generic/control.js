@@ -48,7 +48,7 @@ control.prototype.new = function (place, objParams, oModel, oView, destino) {
     $('#submitForm').click(function () {
         oView.okValidation(function (e) {
             resultado = oModel.setOne({json: JSON.stringify(oView.getFormValues())});
-            oView.doResultOperationGP(place, resultado["status"], "Se ha creado el registro con id=" + resultado["message"],null, resultado["message"], true, destino);
+            oView.doResultOperationGP(place, resultado["status"], "Exito! Se ha creado el registro",null, resultado["message"], true, destino);
             e.preventDefault();
             return false;
         });
@@ -63,7 +63,7 @@ control.prototype.view = function (place, id, oModel, oView) {
     $(place).append('<a class="btn btn-primary" href="control#/' + this.clase + '/remove/' + id + '">Borrar</a>');
     $(place).append('<a class="btn btn-primary" href="control#/' + this.clase + '/list/' + id + '">Listar</a>');
 };
-control.prototype.edit = function (place, id, oModel, oView) {
+control.prototype.edit = function (place, id, oModel, oView, destino) {
     var thisObject = this;
     $(place).empty();
     $(place).append(oView.getPanel("Edición de " + this.clase, oView.getEmptyForm()));
@@ -76,13 +76,13 @@ control.prototype.edit = function (place, id, oModel, oView) {
     $('#submitForm').click(function () {
         oView.okValidation(function (e) {
             resultado = oModel.setOne({json: JSON.stringify(oView.getFormValues())});
-            oView.doResultOperationNotifyToUser(place, resultado["status"], "Se ha actualizado el registro con id=" + resultado["message"], resultado["message"], true);
+            oView.doResultOperationGP(place, resultado["status"], "Exito! Se ha editado el registro",null, resultado["message"], true, destino);
             e.preventDefault();
             return false;
         });
     });
 };
-control.prototype.remove = function (place, id, oModel, oView) {
+control.prototype.remove = function (place, id, oModel, oView, destino) {
     var thisObject = this;
     $(place).empty();
     var oDocumentoModel = oModel;
@@ -93,7 +93,7 @@ control.prototype.remove = function (place, id, oModel, oView) {
     $('#btnBorrarSi').unbind('click');
     $('#btnBorrarSi').click(function (event) {
         resultado = oModel.removeOne(id);
-        oView.doResultOperationNotifyToUser(place, resultado["status"], resultado["message"], resultado["message"], false);
+        oView.doResultOperationGP(place, resultado["status"], "Exito! Se ha eliminado el registro",null, resultado["message"], true, destino);
         return false;
     });
 };

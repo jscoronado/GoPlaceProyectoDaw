@@ -56,7 +56,7 @@ function fInicioRedSocialRoutes() {
     Path.map("#/inicioRedSocial/edit/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oPublicacionControl.edit($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView);
+        oPublicacionControl.edit($('#indexContenido'), paramsObject['id'], oPublicacionModel, oPublicacionView, null);
         $('#indexContenidoJsp').empty();
     });
     Path.map("#/inicioRedSocial/new").to(function () {

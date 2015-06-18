@@ -53,10 +53,10 @@ function fCiudadRoutes() {
         return false;
     });
 
-    Path.map("#/ciudad/edit/:id").to(function () {
+    /*Path.map("#/ciudad/edit/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oCiudadControl.edit($('#principalpag'), paramsObject['id'], oCiudadModel, oCiudadView);
+        oCiudadControl.edit($('#principalpag'), paramsObject['id'], oCiudadModel, oCiudadView, null);
         $('#indexContenidoJsp').empty();
     });
 
@@ -74,5 +74,5 @@ function fCiudadRoutes() {
         oCiudadControl.remove($('#principalpag'), paramsObject['id'], oCiudadModel, oCiudadView);
         $('#indexContenidoJsp').empty();
         return false;
-    });
+    });*/
 }

@@ -20,98 +20,104 @@
 <%
     int id = user.getId();
     String genero = user.getGenero();
+    String imagen_user = user.getImagen();
 %>
 
-<form class="form-horizontal" role="form" action="#" id="usuarioForm" name="formulario">
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="id">Id:</label>
-        <div class="col-sm-2">
-            <input type="text" id="id" class="form-control"  name="id" placeholder="id" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="nombre">Nombre:</label>
-        <div class="col-sm-6">
-            <input type="text" id="nombre" class="form-control"  name="nombre" size="15" placeholder="Pon aquí tu nombre" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="apellidos">Apellidos:</label>
-        <div class="col-sm-6">
-            <input type="text" id="apellidos" class="form-control"  name="apellidos" size="15" placeholder="Pon aquí tus apellidos" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="correo">Correo:</label>
-        <div class="col-sm-6">
-            <input type="text" id="correo" class="form-control"  name="correo" size="15" placeholder="Pon aquí tu correo" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="login">Login:</label>
-        <div class="col-sm-6">
-            <input type="text" id="login" class="form-control"  name="login" size="15" placeholder="Pon aquí tu login" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="password">Contraseña:</label>
-        <div class="col-sm-6">
-            <input type="password" id="password" class="form-control"  name="password" size="15" placeholder="Pon aquí tu contraseña" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="fecha_group">Fecha Nacimiento:</label> 
-        <div class="col-sm-3">           
-            <div class='input-group date' id='fecha_group'>
-                <input type='text' class="form-control" id='fecha' name="fecha_group" placeholder="Fecha de nacimiento" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+<div class="col-md-12 col-xs-12 form_publicacion">
+
+    <form class="form-horizontal form_gp" role="form" action="#" id="usuarioForm" name="formulario">
+
+        <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg ">
+            <h3 class="col-sm-12 control-label" for="id">Id</h3>
+            <div class="col-sm-12">
+                <input type="text" id="id" class="form-control"  name="id" placeholder="id" />
             </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="obj_ciudad_id">Ciudad: </label> 
-        <div class="col-sm-2">              
-            <input readonly="true"  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" />  
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+            <h3 class="col-sm-12 control-label"  for="nombre">Nombre</h3>
+            <div class="col-sm-12">
+                <input type="text" id="nombre" class="form-control"  name="nombre" size="15" placeholder="Pon aquí tu nombre" />
+            </div>
         </div>
-        <div class="col-sm-1">              
-            <a class="btn btn-primary btn-sm" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
-        </div>        
-        <label class="col-sm-7" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
-    </div>
-    <input type="hidden" name="genero" value="<%=genero%>" />
-    <div class="form-group">
-        <label class="col-sm-2 control-label"  for="estado">Estado:</label>
-        <div class="col-sm-6">
-            <input type="text" id="estado" class="form-control"  name="estado" size="15" placeholder="Pon aquí tu estado" />
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+            <h3 class="col-sm-12 control-label"  for="apellidos">Apellidos</h3>
+            <div class="col-sm-12">
+                <input type="text" id="apellidos" class="form-control"  name="apellidos" size="15" placeholder="Pon aquí tus apellidos" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label" for="obj_tipousuario_id">Tipo de usuario: </label> 
-        <div class="col-sm-2">              
-            <input readonly="true"  class="form-control"  id="obj_tipousuario_id" class="input-mini" name="id_tipousuario" type="text" size="5" maxlength="5" />  
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+            <h3 class="col-sm-12 control-label"  for="correo">Correo</h3>
+            <div class="col-sm-12">
+                <input type="text" id="correo" class="form-control"  name="correo" size="15" placeholder="Pon aquí tu correo" />
+            </div>
         </div>
-        <div class="col-sm-1">              
-            <a class="btn btn-primary btn-sm" id="obj_tipousuario_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
-        </div>        
-        <label class="col-sm-7" for="obj_usuario_desc" id="obj_tipousuario_desc"></label>                     
-    </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+            <h3 class="col-sm-12 control-label"  for="login">Login</h3>
+            <div class="col-sm-12">
+                <input type="text" id="login" class="form-control"  name="login" size="15" placeholder="Pon aquí tu login" />
+            </div>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+            <h3 class="col-sm-12 control-label"  for="password">Contraseña</h3>
+            <div class="col-sm-12">
+                <input type="password" id="password" class="form-control"  name="password" size="15" placeholder="Pon aquí tu contraseña" />
+            </div>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+            <h3 class="col-sm-12 control-label" for="fecha_group">Fecha Nacimiento</h3> 
+            <div class="col-sm-12">           
+                <div class='input-group date' id='fecha_group'>
+                    <input type='text' class="form-control" id='fecha' name="fecha_group" placeholder="Fecha de nacimiento" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 nomargin nopadding">
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <h3 class="col-sm-12 control-label" for="obj_ciudad_id">Ciudad</h3> 
+                <div class="col-md-8 col-xs-11 padding-left">              
+                    <input readonly="true"  class="form-control"  id="obj_ciudad_id" class="input-mini" name="id_ciudad" type="text" size="5" maxlength="5" />  
+                </div>
+                <div class="col-md-4 col-xs-1 padding-right">              
+                    <a class="btn btn-primary btn-sm btn_gp_search" id="obj_ciudad_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
+                </div>        
+                <label class="col-sm-8" for="obj_ciudad_desc" id="obj_ciudad_desc"></label>                     
+            </div>
+            <input type="hidden" name="genero" value="<%=genero%>" />
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <div id="messages"></div>
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <h3 class="col-sm-12 control-label"  for="estado">Estado</h3>
+                <div class="col-sm-12">
+                    <input type="text" id="estado" class="form-control"  name="estado" size="15" placeholder="Pon aquí tu estado" />
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-primary" id="submitForm">Guardar</button>
+        <div class="form-group hidden-xs hidden-sm hidden-md hidden-lg">
+            <h3 class="col-sm-12 control-label" for="obj_tipousuario_id">Tipo de usuario</h3> 
+            <div class="col-sm-2">              
+                <input readonly="true"  class="form-control"  id="obj_tipousuario_id" class="input-mini" name="id_tipousuario" type="text" size="5" maxlength="5" />  
+            </div>
+            <div class="col-sm-1">              
+                <a class="btn btn-primary btn-sm" id="obj_tipousuario_button" href="#"><i class="glyphicon glyphicon-search"></i></a>
+            </div>        
+            <label class="col-sm-7" for="obj_usuario_desc" id="obj_tipousuario_desc"></label>                     
         </div>
-    </div>
+        <input type="hidden" name="imagen" value=""/>
 
-</form>
+        <div class="form-group col-md-12 col-xs-12">
+            <div class="col-sm-12">
+                <button class="btn btn-primary btn-right" id="submitForm">GUARDAR</button>
+            </div>
+        </div>
 
+    </form>
+</div>
+
+<div class="col-md-6 col-xs-12 message_form">
+    <div id="messages"></div>
+</div>
 
 <script type="text/javascript">
 
@@ -187,17 +193,6 @@
                                 },
                                 integer: {
                                     message: 'El identificador de ciudad debe ser un entero'
-                                }
-                            }
-                        },
-                        estado: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Debe introducir un estado'
-                                },
-                                stringLength: {
-                                    max: 140,
-                                    message: 'El estado debe tener como máximo 140 caracteres'
                                 }
                             }
                         },

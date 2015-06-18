@@ -56,7 +56,7 @@ function fTipousuarioRoutes() {
     Path.map("#/tipousuario/edit/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oTipousuarioControl.edit($('#indexContenido'), paramsObject['id'], oTipousuarioModel, oTipousuarioView);
+        oTipousuarioControl.edit($('#indexContenido'), paramsObject['id'], oTipousuarioModel, oTipousuarioView, null);
         $('#indexContenidoJsp').empty();
     });
     Path.map("#/tipousuario/new").to(function () {

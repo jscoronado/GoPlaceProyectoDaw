@@ -40,13 +40,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <h3 class="col-sm-12 control-label"  for="titulo">Titulo</h3>
+                <h3 class="col-sm-12 control-label"  for="titulo">Título</h3>
                 <div class="col-sm-12">
                     <input type="text" id="titulo" class="form-control"  name="titulo" size="15" placeholder="Inserta un Titulo" />
                 </div>
             </div>
             <div class="form-group">
-                <h3 class="col-sm-12 control-label"  for="descripcion">Descripcion</h3>
+                <h3 class="col-sm-12 control-label"  for="descripcion">Descripción</h3>
                 <div class="col-sm-12">
                     <textarea type="text" id="descripcion" class="form-control"  name="descripcion" placeholder="Inserta una Descripcion" ></textarea>
                 </div>

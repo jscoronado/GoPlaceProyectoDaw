@@ -57,7 +57,7 @@ function fAsistenciaRoutes() {
     Path.map("#/asistencia/edit/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oAsistenciaControl.edit($('#principalpag'), paramsObject['id'], oAsistenciaModel, oAsistenciaView);
+        oAsistenciaControl.edit($('#principalpag'), paramsObject['id'], oAsistenciaModel, oAsistenciaView, null);
         $('#indexContenidoJsp').empty();
     });
     Path.map("#/asistencia/new").to(function () {

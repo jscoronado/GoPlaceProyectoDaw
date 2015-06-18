@@ -49,9 +49,9 @@ function fUsuarioRoutes() {
     Path.map("#/usuario/edit/:id").to(function () {
         
         var id_usuario = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
-        if (myuser == id_usuario.id) {
+        if (myuser == id_usuario.id || myuser == "1") {
             var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-            oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
+            oUsuarioControl.edit($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView, "#/perfil/");
          }else{
             content = "No puedes editar el perfil de otro usuario";
             oUsuarioView.doResultOperationGP($('#principalpag'), "404", null, content, null, true, null);
@@ -61,7 +61,7 @@ function fUsuarioRoutes() {
     Path.map("#/usuario/upload/:id").to(function () {
         
         var id_usuario = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
-        if (myuser == id_usuario.id) {
+        if (myuser == id_usuario.id || myuser == "1") {
             $('#principalpag').spinner();
             var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
             oUsuarioControl.upload($('#principalpag'), paramsObject['id'], oUsuarioModel, oUsuarioView);
@@ -69,5 +69,17 @@ function fUsuarioRoutes() {
             content = "No puedes editar el perfil de otro usuario";
             oUsuarioView.doResultOperationGP($('#principalpag'), "404", null, content, null, true, null);
          }
+    });
+    Path.map("#/usuario/seguir/:id/:ruta").to(function () {
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        var ruta = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['ruta']));
+        oUsuarioControl.seguirUsuario($('#principalpag'), paramsObject['id'], ruta['id'], oUsuarioModel, oUsuarioView);
+        return false;
+    });
+    Path.map("#/usuario/delete/:id/:ruta").to(function () {
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        var ruta = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['ruta']));
+        oUsuarioControl.dejarUsuario($('#principalpag'), paramsObject['id'], ruta['id'], oUsuarioModel, oUsuarioView);
+        return false;
     });
 }

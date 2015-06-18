@@ -31,11 +31,11 @@ amistadView.prototype.loadButtons = function (id, id_usuario_1) {
     var botonera = "";
     botonera += '<div class="btn-toolbar" role="toolbar"><div class="btn-group btn-group-xs">';
     botonera += '<a class="btn btn-default view" id="' + id + '"  href="control#/' + this.clase + '/view/' + id + '"><i class="glyphicon glyphicon-eye-open"></i></a>';
-    
+
     if (myuser == id_usuario_1) {
         botonera += '<a class="btn btn-default remove" id="' + id + '"  href="control#/' + this.clase + '/remove/' + id + '"><i class="glyphicon glyphicon-remove"></i></a>';
     }
-    
+
     botonera += '</div></div>';
     return botonera;
 
@@ -89,7 +89,7 @@ amistadView.prototype.doEventsLoading = function () {
             $('#obj_usuario_1_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
-        },oUsuarioModel, oUsuarioView);
+        }, oUsuarioModel, oUsuarioView);
         return false;
     });
     $('#amistadForm #obj_usuario_2_button').unbind('click');
@@ -108,7 +108,7 @@ amistadView.prototype.doEventsLoading = function () {
             $('#obj_usuario_2_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
             $('#modal01').modal('hide');
 
-        },oUsuarioModel, oUsuarioView);
+        }, oUsuarioModel, oUsuarioView);
         return false;
     });
     $('#contenido_button').unbind('click');
@@ -143,63 +143,21 @@ amistadView.prototype.okValidation = function (f) {
 };
 
 
-amistadView.prototype.doEventsLoading = function () {
-    var thisObject = this;
-    $('#amistadForm #obj_usuario_1_button').unbind('click');
-    $("#amistadForm #obj_usuario_1_button").click(function () {
-        var oControl = oUsuarioControl;  //para probar dejar documento
-        //vista('usuario').cargaModalBuscarClaveAjena('#modal01', "documento");
-
-        $("#amistadForm").append(thisObject.getEmptyModal());
-        util().loadForm('#modal01', thisObject.getFormHeader('Elección de usuario'), "", thisObject.getFormFooter(), true);
-
-        $('#amistadForm').append(thisObject.getEmptyModal());
-
-        oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oUsuarioModel, oUsuarioView);
-        oControl.modalListEventsLoading('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), function (id) {
-            $('#obj_usuario_1_id').val(id).change();
-            $('#obj_usuario_1_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
-            $('#modal01').modal('hide');
-
-        },oUsuarioModel, oUsuarioView);
-        return false;
-    });
-    $('#amistadForm #obj_usuario_2_button').unbind('click');
-    $("#amistadForm #obj_usuario_2_button").click(function () {
-        var oControl = oUsuarioControl;  //para probar dejar documento
-        //vista('usuario').cargaModalBuscarClaveAjena('#modal01', "documento");
-
-        $("#amistadForm").append(thisObject.getEmptyModal());
-        util().loadForm('#modal01', thisObject.getFormHeader('Elección de usuario'), "", thisObject.getFormFooter(), true);
-
-        $('#amistadForm').append(thisObject.getEmptyModal());
-
-        oControl.list('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), true, oUsuarioModel, oUsuarioView);
-        oControl.modalListEventsLoading('#modal01 #modal-body', param().defaultizeUrlObjectParameters({}), function (id) {
-            $('#obj_usuario_2_id').val(id).change();
-            $('#obj_usuario_2_desc').text(decodeURIComponent(oUsuarioModel.getMeAsAForeignKey(id)));
-            $('#modal01').modal('hide');
-
-        },oUsuarioModel, oUsuarioView);
-        return false;
-    });
-};
-
 amistadView.prototype.printValue = function (value, valor, recortar) {
     var thisObject = this;
     var strResult = "";
     if (/obj_usuario_/.test(valor)) {
         if (value[valor].id > 0) {
             val = valor.substring(4);
-            val = val.substring(0, val.length-2);
-            strResult = '<a href="control#/' + 'usuario' + '/list/systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue=' + value[valor].id + '&page=1&id=1&rpp=10&vf=4&order=fechacreacion&ordervalue=desc' + '">' + value[valor].login.charAt(0).toUpperCase() + value[valor].login.slice(1)+ '</a>';
+            val = val.substring(0, val.length - 2);
+            strResult = '<a href="control#/' + 'usuario' + '/list/systemfilter=id_usuario&systemfilteroperator=equals&systemfiltervalue=' + value[valor].id + '&page=1&id=1&rpp=10&vf=4&order=fechacreacion&ordervalue=desc' + '">' + value[valor].login.charAt(0).toUpperCase() + value[valor].login.slice(1) + '</a>';
         } else {
             strResult = '???';
         }
     } else if (/obj_/.test(valor)) {
         if (value[valor].id > 0) {
             strResult = '<a href="control#/' + valor.substring(4) + '/view/' + value[valor].id + '">' + value[valor].id + ":" + util().getForeign(value[valor]) + '</a>';
-            
+
         } else {
             strResult = '???';
         }
@@ -213,13 +171,85 @@ amistadView.prototype.printValue = function (value, valor, recortar) {
                 break;
             default:
                 strResult = decodeURIComponent(value[valor]);
-                
-               
-                    if (recortar) 
-                        if (strResult.length > 50) //don't show too long fields
-                            strResult = strResult.substr(0, 20) + " ...";          
 
-            };
-    };
+
+                if (recortar)
+                    if (strResult.length > 50) //don't show too long fields
+                        strResult = strResult.substr(0, 20) + " ...";
+
+        }
+        ;
+    }
+    ;
     return strResult;
+};
+
+amistadView.prototype.paginaAmigos = function (amigos, id_user_perf) {
+
+    espacio = ' ';
+    comilla = "'";
+    salto = "<br />";
+    apertura = "<";
+    cierre = ">";
+    barra = "/";
+    alm = "#";
+    
+    var amigo = amigos.list;
+    pag_amigos = "<div class=" + comilla + "amigos_usuario col-md-12 col-xs-12" + comilla + ">";
+    
+    if (amigo.length != 0) {
+        pag_amigos += "<h2>Amigos de "+ amigo[0].obj_usuario_1.login + "</h2>";
+        for (i = 0; i < amigo.length; i++) {
+            pag_amigos += '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 amigo">';
+                pag_amigos += "<div class=" + comilla + "contentamigo" + comilla + ">";
+                    pag_amigos += "<div class=" + comilla + "perfil_photo_amistad col-md-4 col-xs-4" + comilla + ">";
+                        pag_amigos += "<a href=" + comilla + "#/perfil/" + amigo[i].obj_usuario_2.id + comilla + ">";
+                        if(amigo[i].obj_usuario_2.imagen == null || amigo[i].obj_usuario_2.imagen == ""){
+                            pag_amigos += "<img src=" + comilla + "/images/user.png" + comilla + "class=" + comilla + "foto_perfil" + comilla + " alt=" + comilla + "Foto perdil de " + amigo[i].obj_usuario_2.nombre + espacio + amigo[i].obj_usuario_2.apellidos + comilla + ">";
+                        }else {
+                            pag_amigos += amigo[i].obj_usuario_2.imagen;
+                        }
+                        pag_amigos += "</a>";   
+                    pag_amigos += "</div>";
+                    pag_amigos += "<div class=" + comilla + "perfil_amigo col-md-8 col-xs-8" + comilla + ">";
+                        pag_amigos += "<a href=" + comilla + "#/perfil/" + amigo[i].obj_usuario_2.id + comilla + "><h4>" + amigo[i].obj_usuario_2.nombre + espacio + amigo[i].obj_usuario_2.apellidos + "</h4></a>";
+                        pag_amigos += "<span class=" + comilla + "nick_amigo" + comilla + "> @" + amigo[i].obj_usuario_2.login + "</span>";
+                        
+                        if(myuser != amigo[i].obj_usuario_2.id){
+                        pag_amigos += "<div class=" + comilla + "btn-amistad" + comilla + ">";
+                        
+                            var user_id = amigo[i].obj_usuario_2.id;
+                            var jsonamigo = oUsuarioModel.existeAmigo(user_id);
+                            var esamigo = jsonamigo.data;
+
+                            if (!esamigo) {
+                                pag_amigos += '<a href="#/usuario/seguir/'+ user_id +'/'+id_user_perf+'" class="btn btn-goplace">Añadir amigo</a>';
+                            } else {
+                                pag_amigos += '<a href="#/usuario/delete/'+ user_id +'/'+id_user_perf+'" class="btn btn-danger">Eliminar amigo</a>';
+                            }
+                        
+                        pag_amigos += "</div>";
+                        }
+                        
+                    pag_amigos += "</div>";
+                pag_amigos += "</div>";
+            pag_amigos += "</div>";
+        }
+    } else {
+        pag_amigos += '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 amigo">';
+            pag_amigos += "<div class=" + comilla + "contentamigo" + comilla + ">";
+                pag_amigos += "<div class=" + comilla + "perfil_photo_amistad col-md-4 col-xs-4" + comilla + ">";
+                    pag_amigos += "<img src=" + comilla + "/images/user.png" + comilla + "class=" + comilla + "foto_perfil" + comilla + " alt=" + comilla + "Foto perdil del Admin de GoPlace" + comilla +">";
+                pag_amigos += "</div>";
+                pag_amigos += "<div class=" + comilla + "perfil_amigo col-md-8 col-xs-8" + comilla + ">";
+                    pag_amigos += "<h4>No sigues a ningún usuario!</h4>";
+                    pag_amigos += "<span>Busca a tu amigos, sigue sus eventos, crea tus propios eventos y comentarios y disfruta de GOPLACE!</span>";
+                pag_amigos += "</div>";
+            pag_amigos += "</div>";
+        pag_amigos += "</div>";
+    }
+    
+    pag_amigos += "</div>";
+    
+    return pag_amigos;
 };

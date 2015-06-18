@@ -53,12 +53,12 @@ function fComentarioRoutes() {
         return false;
     });
 
-    Path.map("#/comentario/edit/:id").to(function () {
+    /*Path.map("#/comentario/edit/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oComentarioControl.edit($('#principalpag'), paramsObject['id'], oComentarioModel, oComentarioView);
+        oComentarioControl.edit($('#principalpag'), paramsObject['id'], oComentarioModel, oComentarioView, null);
         $('#indexContenidoJsp').empty();
-    });
+    });*/
 
     Path.map("#/comentario/new").to(function () {
         $('#principalpag').spinner();

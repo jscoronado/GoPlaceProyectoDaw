@@ -54,10 +54,10 @@ function fAmistadRoutes() {
         return false;
     });
 
-    Path.map("#/amistad/edit/:id").to(function () {
+    /*Path.map("#/amistad/edit/:id").to(function () {
         $('#indexContenidoJsp').spinner();
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
-        oAmistadControl.edit($('#principalpag'), paramsObject['id'], oAmistadModel, oAmistadView);
+        oAmistadControl.edit($('#principalpag'), paramsObject['id'], oAmistadModel, oAmistadView, null);
         $('#indexContenidoJsp').empty();
     });
     Path.map("#/amistad/new").to(function () {
@@ -80,6 +80,12 @@ function fAmistadRoutes() {
         var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['url']));
         oAmistadControl.remove($('#principalpag'), paramsObject['id'], oAmistadModel, oAmistadView);
         $('#indexContenidoJsp').empty();
+        return false;
+    });*/
+    Path.map("#/amigos/:id").to(function () {
+        $('#principalpag').spinner();
+        var paramsObject = param().defaultizeUrlObjectParameters(param().getUrlObjectFromUrlString(this.params['id']));
+        oAmistadControl.verAmigos($('#principalpag'), paramsObject['id'], oAmistadModel, oAmistadView);
         return false;
     });
 }

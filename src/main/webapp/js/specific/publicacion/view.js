@@ -163,10 +163,10 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
         eventos += "<div class=" + "'col-md-12 col-xs-12 eventos_main_content'" + ">";
             eventos += "<div class=" + comilla + "perfil_photo col-md-12 col-xs-4" + comilla + ">";
                 eventos += "<a href=" + comilla + "#/perfil/" + person.id + comilla + ">";
-                if(person.imagen != null){
-                    eventos += person.imagen;
-                }else {
+                if(person.imagen == null || person.imagen == ""){
                     eventos += "<img src=" + comilla + "/images/user.png" + comilla + "class=" + comilla + "foto_perfil" + comilla + " alt=" + comilla + "Foto perdil de " + person.nombre + espacio + person.apellidos + comilla + ">";
+                }else {
+                    eventos += person.imagen;
                 }
                 eventos += "</a>";
             eventos += "</div>";
@@ -178,18 +178,24 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
             eventos += "</div>";    
             eventos += "<div class=" + comilla + "col-md-12 col-xs-12 datos_home" + comilla + ">";
                 eventos += "<div class=" + comilla + "col-md-4 col-xs-4 events_home" + comilla + ">";
-                    eventos += '<h5 class="text_number">Eventos<br/>';
-                    eventos += '<b>'+ pubs.data + '</b></h5>';
+                    eventos += "<a href=" + comilla + "#/eventos/usuario/"+ person.id + comilla + ">";
+                        eventos += '<h5 class="text_number">Eventos<br/>';
+                        eventos += '<b>'+ pubs.data + '</b></h5>';
+                    eventos += "</a>";
                 eventos += "</div>";   
                 
                 eventos += "<div class=" + comilla + "col-md-4 col-xs-4 events_home" + comilla + ">";
-                    eventos += '<h5 class="text_number">Comentarios<br/>';
-                    eventos += '<b>'+ coments.data + '</b></h5>';
+                    eventos += "<a href=" + comilla + "#/perfil" + comilla + ">";
+                        eventos += '<h5 class="text_number">Comentarios<br/>';
+                        eventos += '<b>'+ coments.data + '</b></h5>';
+                    eventos += "</a>";
                 eventos += "</div>"; 
                 
                 eventos += "<div class=" + comilla + "col-md-4 col-xs-4 events_home" + comilla + ">";
-                    eventos += '<h5 class="text_number">Siguiendo<br/>';
-                    eventos += '<b>'+ friends.data + '</b></h5>';
+                    eventos += "<a href=" + comilla + "#/amigos/" + person.id + comilla + ">";
+                        eventos += '<h5 class="text_number">Siguiendo<br/>';
+                        eventos += '<b>'+ friends.data + '</b></h5>';
+                    eventos += "</a>";
                 eventos += "</div>"; 
                 
             eventos += "</div>";
@@ -199,8 +205,17 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
         /* EVENTOS */
         eventos += "<div class=" + "'col-md-8 col-xs-12 eventos_main'" + ">";
         eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos de tu entorno</h2>";
-        eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
-    }else{
+    }else if(tipo == "usuario"){
+        jsonP = jason.list;
+        
+        eventos = "<div class=" + "'row  eventos_default'" + ">";
+        if (jsonP.length != 0) {
+        eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Eventos de " + person.login + "</h2>";
+        }else{
+        eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Lo sentimos,"+person.login+"no tiene eventos próximos creados</h2>";    
+        }
+        
+    }else {
         jsonP = jason.list;
         
         eventos = "<div class=" + "'row  eventos_default'" + ">";
@@ -209,8 +224,9 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
         }else{
         eventos += "<h2 class=" + comilla + "col-md-12 inicioh2" + comilla +">Lo sentimos, no hay eventos próximos en tu ciudad</h2>";    
         }
-        eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
+        
     }
+    eventos += "<div class=" + "'col-md-12 col-sm-12 inicioMain'" + "id=" + "'eventosgp'" + ">";
     
     if (jsonP.length != 0) {
         for (i = 0; i < jsonP.length; i++) {
@@ -228,7 +244,7 @@ publicacionView.prototype.getEventos = function (jason, person, pubs, coments, f
             }
         }
     } else {
-        eventos += "<div class=" + comilla + "col-md-12 evento evento5" + comilla + ">";
+        eventos += "<div class=" + comilla + "col-md-6 col-xs-12 evento evento5" + comilla + ">";
             eventos += "<div class=" + comilla + "contentpub" + comilla + ">";
                 eventos += "<h4>No tienes eventos en tu entorno!</h4>";
                 eventos += "<p>Busca a tu amigos, sigue sus eventos, crea tus propios eventos y comentarios y disfruta de GOPLACE!</p>";
@@ -328,7 +344,9 @@ publicacionView.prototype.perfilEvento = function (eventos, usuarios, coments, f
                     descEvent += "<p>" + evento.descripcion +"</p>";
                     descEvent += "<b>Creado por: </b><a href=" + comilla + "#/perfil/" + evento.obj_usuario.id + comilla + ">" + evento.obj_usuario.nombre + " " + evento.obj_usuario.apellidos + "</a><br/>";
                     descEvent += "<b>Ciudad: </b>" + evento.obj_ciudad.nombre + "<br/>";
+                    if(evento.direccion != null || evento.direccion != ""){
                     descEvent += "<b>Dirección: </b>" + evento.direccion + "<br/>";
+                    }
                     descEvent += "<b>Fecha del Evento: </b>" + evento.fechapub + "<br/>";
                 descEvent += "</div>";
                 descEvent += "<div class=" + comilla + "col-md-12 col-sm-6 col-xs-12" + comilla + " id=" + comilla + "botones_evento" + comilla + ">";
